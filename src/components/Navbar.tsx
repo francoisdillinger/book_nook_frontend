@@ -4,7 +4,6 @@ import useDropDownVisibility from '../hooks/useDropDownVisibility';
 
 export default function Navbar() {
     const [loggedIn, setLoggedIn] = useState(false);
-    // const [showDropDown, setDropDown] = useState(false);
     const { state, dispatch, toggleButtonRef, navRef } = useMenuVisibility();
     const { state: dropDownState, dispatch: dropDownDispatch, profileRef, dropDownRef} = useDropDownVisibility();
 
