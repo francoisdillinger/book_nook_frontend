@@ -21,11 +21,38 @@ export default function Navbar() {
                         </a>
                         <span className="font-bold">BookNook</span>
                     </div>
-                    <div className="hidden md:flex items-center space-x-3">
-                        <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Features</a>
-                        <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Pricing</a>
+                    <div className="hidden md:flex items-center w-1/2">
+                        {/* <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Features</a>
+                        <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Pricing</a> */}
+                        <div className="flex min-w-full">
+                            {/* <label htmlFor="search-dropdown" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
+                                Your Email
+                            </label> */}
+                            <button id="dropdown-button" data-dropdown-toggle="dropdown" className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">
+                            All Books 
+                                <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                </svg>
+                            </button>
+                            <div id="dropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                                <li>
+                                    <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Author</button>
+                                </li>
+                                <li>
+                                    <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Title</button>
+                                </li>
+                                </ul>
+                            </div>
+                            <div className="relative w-full">
+                                <input type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search by Author or Titles..." required />
+                                <button type="submit" className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Search
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="hidden md:flex items-center space-x-1">
+                    <div className="hidden md:flex items-center space-x-1 w-170">
                         {loggedIn?
                             <React.Fragment>
                                 <a href="" className="py-5 px-4 text-gray-600 hover:text-gray-900">
@@ -80,7 +107,7 @@ export default function Navbar() {
                             </React.Fragment>
                             :
                             <React.Fragment>
-                                <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900" onClick={(e) => {e.preventDefault();setLoggedIn(true)}}>Login</a>
+                                <a href="" className=" py-5 px-3 text-gray-600 hover:text-gray-900" onClick={(e) => {e.preventDefault();setLoggedIn(true)}}>Login</a>
                                 <a href="" className="py-3 px-3 bg-yellow-400 text-yellow-900 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">Signup</a>
                             </React.Fragment>
                         }
