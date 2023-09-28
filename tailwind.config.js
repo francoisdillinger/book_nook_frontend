@@ -11,7 +11,11 @@ export default {
     'lg': '1024px',
     'xl': '1280px',
   },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'bookNook': "url(/bookstore_upscaled_edited.jpg)"
+      }
+    },
   },
   plugins: [],
 }
