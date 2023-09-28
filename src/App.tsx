@@ -1,7 +1,16 @@
+import React from 'react'
 import Navbar from "./components/Navbar";
+import HomeSection from './components/HomeSection';
+
 
 export default function App() {
   return (
-    <Navbar />
+    <React.Fragment>
+      <Navbar />
+      <HomeSection />
+      <div className="h-56 bg-black">
+
+      </div>
+    </React.Fragment>
   )
 }
