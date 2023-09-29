@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from "./components/Navbar";
 import HomeSection from './components/HomeSection';
+import HomeBadges from './components/HomeBadges';
 
 
 export default function App() {
@@ -8,9 +9,7 @@ export default function App() {
     <React.Fragment>
       <Navbar />
       <HomeSection />
-      <div className="h-56 bg-black">
-
-      </div>
+      <HomeBadges />
     </React.Fragment>
   )
 }
