@@ -14,7 +14,14 @@ export default {
     extend: {
       backgroundImage: {
         'bookNook': "url(/bookstore_upscaled_edited.jpg)"
+      },
+      contrast: {
+        25: '.25',
+      },
+      brightness: {
+        25: '.25',
       }
+
     },
   },
   plugins: [],
