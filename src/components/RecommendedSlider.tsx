@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import dracula from '../assets/dracula.jpg'
 import frankenstein from '../assets/frankenstein.jpg'
 import norseGods from '../assets/norse_mythology.jpg'
-import RecomendedBookDetails from './RecomendedBookDetails';
+import RecommendedBookDetails from './RecommendedBookDetails';
 
 export default function RecomendedSlider(){
     const [ counter, setCount] = useState(0);
@@ -70,7 +70,7 @@ export default function RecomendedSlider(){
         {books.map((book, index) => (
         <div key={index} className='book-container' style={{minWidth: '20%'}}>
             <img className={`shadow-md relative duration-500 ease-in-out ${transitionStyles[index]} `} src={book.image} alt="" />
-            <RecomendedBookDetails index={index} counter={counter} book={{
+            <RecommendedBookDetails index={index} counter={counter} book={{
                     title: book.title,
                     price: book.price
                 }} />
