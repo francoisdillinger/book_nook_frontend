@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from "./components/Navbar";
 import HomeSection from './components/HomeSection';
 import HomeBadges from './components/HomeBadges';
-import RecomendedSlider from './components/RecomendedSlider';
+import RecommendedSlider from './components/RecommendedSlider';
 
 
 
@@ -11,7 +11,7 @@ export default function App() {
     <React.Fragment>
       <Navbar />
       <HomeSection />
-      <RecomendedSlider />
+      <RecommendedSlider />
       <HomeBadges />
     </React.Fragment>
   )
