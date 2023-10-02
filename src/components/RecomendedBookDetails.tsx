@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-interface RecomendedBookDetailProps {
+interface RecommendedBookDetailProps {
     index: number,
     counter: number,
     book: {
@@ -10,7 +10,7 @@ interface RecomendedBookDetailProps {
 }
 
 
-export default function RecommendedBookDetails({ index, counter, book }: RecomendedBookDetailProps) {
+export default function RecommendedBookDetails({ index, counter, book }: RecommendedBookDetailProps) {
     const [opacityClass, setOpacityClass] = useState('opacity-0');
   
     useEffect(() => {
