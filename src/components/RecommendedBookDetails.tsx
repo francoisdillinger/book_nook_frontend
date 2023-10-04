@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 interface RecommendedBookDetailProps {
     index: number,
     counter: number,
+    centerBookOffset: number,
     book: {
         title: string,
         price: string,
@@ -10,12 +11,12 @@ interface RecommendedBookDetailProps {
 }
 
 
-export default function RecommendedBookDetails({ index, counter, book }: RecommendedBookDetailProps) {
+export default function RecommendedBookDetails({ index, counter, centerBookOffset, book }: RecommendedBookDetailProps) {
     const [opacityClass, setOpacityClass] = useState('opacity-0');
   
     useEffect(() => {
       let timerId: number | undefined;
-      if (index === counter + 2) {
+      if (index === counter + centerBookOffset) {
         timerId = setTimeout(() => {
           setOpacityClass('opacity-1');
         }, 300);
@@ -25,7 +26,7 @@ export default function RecommendedBookDetails({ index, counter, book }: Recomme
         setOpacityClass('opacity-0');
         clearTimeout(timerId);
       }
-    }, [index, counter]);
+    }, [index, counter, centerBookOffset]);
   
     return (
       <div className={`text-center ${opacityClass} transition-opacity duration-300`}>
