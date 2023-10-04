@@ -5,7 +5,7 @@ export default function HomeSection(){
     return(
         <div onClick={() => setToggleForm(!toggleForm)} className="relative md:h-screen   xl:bg-bottom bg-no-repeat flex justify-center px-6 mx-auto lg:py-2">
             <div className='absolute inset-0 brightness-50 bg-bookNook bg-cover bg-center'></div>
-            <div className='relative w-45 p-8 md:p-0 md:w-3/5 lg:w-2/5 md:mt-20'>
+            <div className='relative w-3/5 p-8 md:p-0 md:w-3/5 lg:w-2/5 md:mt-20'>
                 <h1 className='text-3xl md:text-6xl font-semibold text-white leading-snug'>Explore, Discover, Read: Your Journey Begins at BookNook.</h1>
                 <p className='text-slate-200 py-8 lg:py-10 text-sm md:text-base'>Immerse yourself in a rich tapestry of narratives, where every book is a new world waiting to be explored. At BookNook, we bring you a meticulously curated collection of literary gems, catering to diverse tastes and preferences. Whether you're a seasoned bibliophile or a casual reader, find your perfect read and embark on a literary journey like no other.</p>
                 <button className='text-base md:text-xl text-white font-semibold bg-yellow-600 p-3 rounded-md hover:bg-yellow-500 transition duration-300'>
