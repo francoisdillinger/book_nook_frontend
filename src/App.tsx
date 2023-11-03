@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import HomeSection from './components/HomeSection';
 import HomeBadges from './components/HomeBadges';
 import RecommendedSlider from './components/RecommendedSlider';
-import HomeTestimonials from './components/HomeTestimonials';
+import HomeBookTestimonials from './components/HomeBookTestimonials';
 
 
 
@@ -14,7 +14,7 @@ export default function App() {
       {/* <HomeSection />
       <RecommendedSlider />
       <HomeBadges /> */}
-      <HomeTestimonials />
+      <HomeBookTestimonials />
     </React.Fragment>
   )
 }
