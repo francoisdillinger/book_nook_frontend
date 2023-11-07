@@ -24,7 +24,7 @@ export default function StaticStarRating({ bookRating }: Rating) {
                             xmlns="http://www.w3.org/2000/svg" 
                             viewBox="0 0 24 24" 
                             className={`${
-                                ratingVal <= rating ? 'fill-yellow-400' : 'fill-gray-200'
+                                ratingVal <= rating ? 'fill-yellow-400' : 'fill-gray-300'
                             } w-12 h-12`}
                         >
                             <path 
