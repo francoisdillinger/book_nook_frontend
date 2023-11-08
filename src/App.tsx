@@ -11,9 +11,9 @@ export default function App() {
   return (
     <React.Fragment>
       <Navbar />
-      {/* <HomeSection />
+      <HomeSection />
       <RecommendedSlider />
-      <HomeBadges /> */}
+      <HomeBadges />
       <HomeBookTestimonials />
     </React.Fragment>
   )
