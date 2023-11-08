@@ -15,9 +15,12 @@ function useGetWindowSize(){
                 setWindowSize("medium")
                 // console.log('medium')
             }
-            else if(windowWidth >= 1024){
+            else if(windowWidth >= 1024 && windowWidth < 1280){
                 setWindowSize("large")
                 // console.log('large')
+            }
+            else if(windowWidth >= 1280){
+                setWindowSize('xLarge')
             }
         };
 
