@@ -72,6 +72,7 @@ export default function RecomendedSlider(){
             return (index === centerBook) ? "scale-100" : "scale-75";
             break;
           case 'large':
+          case 'xLarge':
             leftTertiaryBook = counter;
             leftSecondayBook = counter + 1;
             centerBook = counter + centerBookOffset;
