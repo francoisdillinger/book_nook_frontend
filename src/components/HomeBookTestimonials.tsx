@@ -25,7 +25,6 @@ export default function HomeBookTestimonials(){
     }
 
     return (
-        // <div className="flex p-6 w-full md:w-1/2" style={{backgroundImage: `url(${books[0].image})`}}>
         <div>
             <div className='flex flex-col text-center'>
                 <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-2 md:mt-10'>Recently Reviewed</h1>
