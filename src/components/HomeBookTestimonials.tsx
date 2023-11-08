@@ -1,6 +1,3 @@
-import { books } from "../data/books"
-import DynamicStarRating from "./DynamicStarRating"
-import StarRating from "./StarRating"
 import StaticStarRating from "./StaticStarRating"
 import { testimonials } from '../data/recentTestimonials'
 import useGetWindowSize from "../hooks/useGetWindowSize"
