@@ -4,6 +4,8 @@ import HomeSection from './components/HomeSection';
 import HomeBadges from './components/HomeBadges';
 import RecommendedSlider from './components/RecommendedSlider';
 import HomeBookTestimonials from './components/HomeBookTestimonials';
+import NewArrivals from './components/NewArrivals';
+import Footer from './components/Footer';
 
 
 
@@ -12,9 +14,11 @@ export default function App() {
     <React.Fragment>
       <Navbar />
       <HomeSection />
-      <RecommendedSlider />
+      <NewArrivals />
       <HomeBadges />
+      <RecommendedSlider />
       <HomeBookTestimonials />
+      <Footer />
     </React.Fragment>
   )
 }
