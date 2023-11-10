@@ -18,9 +18,9 @@ export default function Navbar() {
                 <div className="flex justify-between">
                     <div className="flex items-center">
                         <a href="" className="px-2 py-2">
-                            <img className="h-9 w-9" src="/booknook_logo2.svg" alt="" />
+                            <img className="h-9 w-9" src="/booknook_logo.svg" alt="" />
                         </a>
-                        <span className="font-bold">BookNook</span>
+                        <span className="font-bold">Book<span className='text-logo'>Nook</span></span>
                     </div>
                     <div className="hidden md:flex items-center w-1/2">
                         <SearchBar />
