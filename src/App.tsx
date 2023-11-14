@@ -6,19 +6,21 @@ import RecommendedSlider from './components/RecommendedSlider';
 import HomeBookTestimonials from './components/HomeBookTestimonials';
 import NewArrivals from './components/NewArrivals';
 import Footer from './components/Footer';
+import CategoriesSlider from './components/CategoriesSlider';
 
 
 
 export default function App() {
   return (
     <React.Fragment>
-      <Navbar />
+      {/* <Navbar />
       <HomeSection />
       <NewArrivals />
-      <HomeBadges />
-      <RecommendedSlider />
+      <HomeBadges /> */}
+      <CategoriesSlider />
+      {/* <RecommendedSlider />
       <HomeBookTestimonials />
-      <Footer />
+      <Footer /> */}
     </React.Fragment>
   )
 }
