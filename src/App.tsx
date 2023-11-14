@@ -13,14 +13,14 @@ import CategoriesSlider from './components/CategoriesSlider';
 export default function App() {
   return (
     <React.Fragment>
-      {/* <Navbar />
+      <Navbar />
       <HomeSection />
       <NewArrivals />
-      <HomeBadges /> */}
+      <HomeBadges />
       <CategoriesSlider />
-      {/* <RecommendedSlider />
+      <RecommendedSlider />
       <HomeBookTestimonials />
-      <Footer /> */}
+      <Footer />
     </React.Fragment>
   )
 }
