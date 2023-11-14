@@ -96,7 +96,7 @@ export default function RecomendedSlider(){
     const transitionStyles = useMemo(() => books.map((_, index) => getTransitionStyles(index)), [counter, windowSize]);
 
     return(
-            <div className='bg-amber-50 pt-4 pb-8 box-border'>
+            <div className='bg-red-50 pt-4 pb-8 box-border'>
                 <div className='flex flex-col text-center'>
                     <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-2 md:mt-10'>Recomended For You</h1>
                     <p className='w-2/3 my-6 md:my-10 m-auto text-slate-500'>Unearth a world of books specifically curated to match your unique tastes and preferences! Dive into compelling narratives and discover hidden gems, meticulously selected to resonate with your literary appetite.</p>
