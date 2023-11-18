@@ -7,20 +7,22 @@ import HomeBookTestimonials from './components/HomeBookTestimonials';
 import NewArrivals from './components/NewArrivals';
 import Footer from './components/Footer';
 import CategoriesSlider from './components/CategoriesSlider';
+import HomeStatsBadges from './components/HomeStatsBadges';
 
 
 
 export default function App() {
   return (
     <React.Fragment>
-      <Navbar />
+      {/* <Navbar />
       <HomeSection />
       <NewArrivals />
       <HomeBadges />
       <CategoriesSlider />
       <RecommendedSlider />
-      <HomeBookTestimonials />
-      <Footer />
+      <HomeBookTestimonials /> */}
+      <HomeStatsBadges />
+      {/* <Footer /> */}
     </React.Fragment>
   )
 }
