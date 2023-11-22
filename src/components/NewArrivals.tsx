@@ -2,7 +2,7 @@ import { recentArrivals } from "../data/recentArrivals"
 
 export default function NewArrivals(){
     return(
-        <div>
+        <div className="my-16">
             <div className='flex flex-col text-center'>
                 <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-2 md:mt-10'>New Arrivals</h1>
                 <p className='w-2/3 my-6 md:my-10 m-auto text-slate-500'>Explore the latest additions to our shelves, where the newest stories await to captivate your imagination and ignite your curiosity.</p>
