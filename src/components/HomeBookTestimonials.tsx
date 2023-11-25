@@ -22,7 +22,7 @@ export default function HomeBookTestimonials(){
     }
 
     return (
-        <div>
+        <div className="my-16">
             <div className='flex flex-col text-center'>
                 <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-2 md:mt-10'>Recently Reviewed</h1>
                 <p className='w-2/3 my-6 md:my-10 m-auto text-slate-500'>Check out the freshest reader thoughts and ratings on our shelves. These six books are the latest to spark conversation and enthusiasm among our BookNook community.</p>
