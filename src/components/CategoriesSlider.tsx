@@ -18,7 +18,7 @@ export default function CategoriesSlider(){
         console.log(slideTransition)
     }
     return(
-        <div>
+        <div className="my-16">
             <div className='flex flex-col text-center'>
                 <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-2 md:mt-10'>Categories</h1>
                 <p className='w-2/3 my-6 md:my-10 m-auto text-slate-500'>Step into the world of BookNook’s genres, where tales of every hue and texture come to life. Whether you’re in the mood for thrilling mysteries, heartwarming romances, or awe-inspiring sci-fi, our diverse categories promise a perfect match for every reader’s appetite.</p>
