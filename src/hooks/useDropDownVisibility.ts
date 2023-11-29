@@ -1,62 +1,64 @@
-import { useEffect, useReducer, useRef } from "react"
+import { useEffect, useReducer, useRef } from "react";
 
 interface State {
-    show: boolean;
+	show: boolean;
 }
 
 interface Action {
-    type: 'dropDownOutOfFocus' | 'toggleDropDown' | 'navigating';
+	type: "dropDownOutOfFocus" | "toggleDropDown" | "navigating";
 }
 
-function reducer(state: State, action: Action){
-    const { type } = action;
+function reducer(state: State, action: Action) {
+	const { type } = action;
 
-    switch (type) {
-        case 'dropDownOutOfFocus': {
-            return { show: false }
-        }
-        case 'toggleDropDown': {
-            return { show: !state.show }
-        }
-        case 'navigating': {
-            return { show: false }
-        }
-        default:
-            return state;
-    }
+	switch (type) {
+		case "dropDownOutOfFocus": {
+			return { show: false };
+		}
+		case "toggleDropDown": {
+			return { show: !state.show };
+		}
+		case "navigating": {
+			return { show: false };
+		}
+		default:
+			return state;
+	}
 }
 
 function useDropDownVisibility() {
-    const [state, dispatch] = useReducer(reducer, { show: true});
-    const profileRef = useRef<HTMLDivElement>(null);
-    const dropDownRef = useRef<HTMLDivElement>(null)
-    
-    useEffect(() => {
-        const dropDownFocusListener = (event: MouseEvent) => {
-            let profileRefClicked = profileRef.current && profileRef.current.contains(event.target as Node);
-            if(profileRefClicked){
-                dispatch({ type: 'toggleDropDown'});
-                return
-            }
-            
-            let dropDownInFocus = dropDownRef.current && dropDownRef.current.contains(event.target as Node)
-            if (!dropDownInFocus) dispatch({ type: 'dropDownOutOfFocus'});
-        }
+	const [state, dispatch] = useReducer(reducer, { show: true });
+	const profileRef = useRef<HTMLDivElement>(null);
+	const dropDownRef = useRef<HTMLDivElement>(null);
 
-        document.addEventListener('mousedown', dropDownFocusListener);
+	useEffect(() => {
+		const dropDownFocusListener = (event: MouseEvent) => {
+			let profileRefClicked =
+				profileRef.current && profileRef.current.contains(event.target as Node);
+			if (profileRefClicked) {
+				dispatch({ type: "toggleDropDown" });
+				return;
+			}
 
-        return () => {
-            document.removeEventListener("mousedown", dropDownFocusListener);
-        }
+			let dropDownInFocus =
+				dropDownRef.current &&
+				dropDownRef.current.contains(event.target as Node);
+			if (!dropDownInFocus) dispatch({ type: "dropDownOutOfFocus" });
+		};
 
-    }, []);
+		document.addEventListener("mousedown", dropDownFocusListener);
 
-    return {
-        state,
-        dispatch,
-        profileRef,
-        dropDownRef
-      };
+		return () => {
+			document.removeEventListener("mousedown", dropDownFocusListener);
+		};
+	}, []);
+
+	return {
+		state,
+		dispatch,
+		profileRef,
+		dropDownRef,
+	};
 }
 
 export default useDropDownVisibility;
