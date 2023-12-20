@@ -1,4 +1,3 @@
-
-export default function BookTestimonial(){
-    return(<div></div>)
+export default function BookTestimonial() {
+	return <div></div>;
 }
