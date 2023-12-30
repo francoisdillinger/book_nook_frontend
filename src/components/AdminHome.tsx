@@ -7,7 +7,16 @@ export default function AdminHome() {
 
 	useEffect(() => {
 		if (svgRef.current) {
-			d3.select(svgRef.current);
+			const svg = d3.select(svgRef.current);
+			// console.log("hello");
+			const rects = svg.selectAll("rect").data(bookSales);
+
+			rects
+				.enter()
+				.append("rect")
+				.attr("width", 20)
+				.attr("height", (d) => d.sold)
+				.attr("fill", "blue");
 		}
 	}, []);
 
@@ -19,7 +28,7 @@ export default function AdminHome() {
 					width={1200}
 					height={1000}
 				>
-					{bookSales.map((book, i) => (
+					{/* {bookSales.map((book, i) => (
 						<rect
 							x={i * 100}
 							y={500}
@@ -27,7 +36,7 @@ export default function AdminHome() {
 							width={25}
 							height={book.sold * -10 + 500}
 						></rect>
-					))}
+					))} */}
 				</svg>
 			</div>
 		</React.Fragment>
