@@ -1,107 +1,378 @@
+            <div className=" w-full bg-white rounded-lg shadow dark:border mt-8 mb-11 lg:mt-16 lg:mb-60 md:mt-11 md:mb-40 sm:max-w-md md:max-w-xl xl:p-0 xl:mb-80  dark:bg-gray-800 dark:border-gray-700">
+                {/* {toggleForm?
+                    <LoginForm  />
+                :
+                    <SignUpForm  />
+                } */}
+            </div>
 
 
 
 
 
 
-
-
-
-        <nav className="bg-gray-100">
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="flex justify-between">
-                    <div className="flex items-center">
-                        <a href="" className="px-2 py-2">
-                            <img className="h-9 w-9" src="/booknook_logo2.svg" alt="" />
-                        </a>
-                        <span className="font-bold">BookNook</span>
-                    </div>
-                    <div className="hidden md:flex items-center w-1/2">
-                        {/* <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Features</a>
-                        <a href="" className="py-5 px-3 text-gray-600 hover:text-gray-900">Pricing</a> */}
-                        <div className="relative w-full">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                </svg>
-                            </div>
-                            <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Books" required />
-                            <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                        </div>
-                    </div>
-                    <div className="hidden md:flex items-center min-width-[150px]">
-                        {loggedIn?
-                            <React.Fragment>
-                                <a href="" className="py-5 px-4 text-gray-600 hover:text-gray-900">
-                                    
-                                    <div className="relative">
-                                        <div className="absolute left-3 bottom-3">
-                                            <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">3</p>
-                                        </div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                        </svg>
-                                    </div>
-                                </a>
-                                <div className="relative">
-                                    <div ref={profileRef} id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider">
-                                        <img className="w-7 h-7 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="" alt="Bordered avatar"/>
-                                    </div>
-
-                                    {dropDownState.show && (
-                                        <div ref={dropDownRef} id="dropdownDivider" className={`z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0`}>
-                                            {/* Dropdown items */}
-                                            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                                                <li>
-                                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 inline" >
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                        </svg>
-                                                        <span className='px-1'>Profile</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 inline">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                        </svg>
-                                                        <span className='px-1'>Settings</span>
-                                                    </a>
-                                                </li>
-                                                <li onClick={() => {setLoggedIn(false); dropDownDispatch({ type: 'navigating'})}}>
-                                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 inline">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                                                        </svg>
-                                                        <span className='px-1'>Logout</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </React.Fragment>
-                            :
-                            <React.Fragment>
-                                <a href="" className=" py-5 px-3 text-gray-600 hover:text-gray-900" onClick={(e) => {e.preventDefault();setLoggedIn(true)}}>Login</a>
-                                <a href="" className="py-3 px-3 bg-yellow-400 text-yellow-900 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">Signup</a>
-                            </React.Fragment>
-                        }
-                    </div>
-                    <div className="md:hidden flex items-center">
-                        <button ref={toggleButtonRef} onClick={() => dispatch({ type: 'toggleMenu'})}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                        </button>
-                    </div>
+                            <div>
+                    <img className='scale-50 relative left-10' src={books[counter].image} alt="" />
                 </div>
-                <div className={`${state.hidden ? 'max-h-0' : 'max-h-[500px]'} overflow-hidden transition-all ease-in-out duration-300`} ref={navRef}>
-                    <div className={`${state.hidden ? 'opacity-0 translate-y-[-100%]' : 'opacity-100 translate-y-0'} transform transition-all ease-in-out duration-600`}>
-                        <a href="" className="block py-2 px-4 text-sm hover:bg-gray-200">Features</a>
-                        <a href="" className="block py-2 px-4 text-sm hover:bg-gray-200">Pricing</a>
-                    </div>
+                <div>
+                    <img className='scale-75' src={books[counter + 1].image} alt="" />
+                </div>
+                <div>
+                    <img className='scale-1' src={books[counter + 2].image} alt="" />
+                </div>
+                <div>
+                    <img className='scale-75' src={books[counter + 3].image} alt="" />
+                </div>
+                <div>
+                    <img className='scale-50 relative right-10' src={books[counter + 4].image} alt="" />
+                </div>
+
+
+
+
+
+
+                            <div className='flex transition-container' style={{ transform: `translateX(${counter * -20}%)`, transition: 'transform 0.5s ease-in-out' }}>
+                <div style={{minWidth: '20%'}}>
+                    <img className='scale-50' src={books[0].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='scale-75' src={books[1].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='scale-1' src={books[2].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[3].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[4].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[5].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[6].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[7].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[8].image} alt="" />
+                </div>
+                <div style={{minWidth: '20%'}}>
+                    <img className='' src={books[9].image} alt="" />
                 </div>
             </div>
-        </nav>
+
+
+
+
+
+
+
+            import { useState, useEffect, useRef, useMemo } from 'react'
+import useGetWindowSize from '../hooks/useGetWindowSize';
+import RecommendedBookDetails from './RecommendedBookDetails';
+import { books } from '../data/books';
+
+export default function RecomendedSlider(){
+    const [ counter, setCount] = useState(0);
+    const windowSize  = useGetWindowSize();
+    const [visibleBooks, setVisibleBooks] = useState(5);
+    const [centerBookOffset, setCenterBookOffset] = useState(2);
+    const centerBookOffsetRef = useRef(centerBookOffset);
+
+    useEffect(() =>{
+        const oldCenterBook = counter + centerBookOffsetRef.current; 
+
+        switch (windowSize) {
+            case 'small':
+                setVisibleBooks(1);
+                setCenterBookOffset(0);
+                break;
+            case 'medium':
+                setVisibleBooks(3);
+                setCenterBookOffset(1);
+                break;
+            case 'large':
+                setVisibleBooks(5);
+                setCenterBookOffset(2);
+                break;
+            default:
+                console.warn("Unexpected window size:", windowSize);
+                break;
+        }
+
+        setCount(oldCenterBook - centerBookOffset);
+    }, [windowSize, counter, centerBookOffset]);
+
+    useEffect(() => {
+        centerBookOffsetRef.current = centerBookOffset;
+    }, [centerBookOffset]);
+  
+    const handleIncrement = () => {
+      if (counter < books.length - visibleBooks + centerBookOffset) setCount(counter + 1);
+    //   console.log(`Counder: ${counter}`)
+    //   console.log(`center Book offset: ${centerBookOffset}`)
+    };
+    
+    const handleDecrement = () => {
+      if (counter > -centerBookOffset) setCount(counter - 1);
+    //   console.log(`Counder: ${counter}`)
+    //   console.log(`center Book offset: ${centerBookOffset}`)
+    };
+
+    const getTransitionStyles = (index: number): string => {
+        let leftTertiaryBook: number;
+        let leftSecondayBook: number;
+        let centerBook: number;
+        let rightSecondaryBook: number;
+        let rightTertiaryBook: number;
+      
+        switch (windowSize) {
+          case 'small':
+          case 'medium':
+            centerBook = counter + centerBookOffset;
+            console.log(`Centerbook: ${centerBook}`)
+            return (index === centerBook) ? "scale-0" : "scale-0";
+            // return "scale-100";
+            
+          case 'large':
+            leftTertiaryBook = counter;
+            leftSecondayBook = counter + 1;
+            centerBook = counter + centerBookOffset;
+            rightSecondaryBook = counter + 3;
+            rightTertiaryBook = counter + 4;
+        
+            if(index === leftTertiaryBook || index === rightTertiaryBook) return "scale-50";
+            if(index === leftSecondayBook || index === rightSecondaryBook) return "scale-75";
+            if(index === centerBook) return "scale-100";
+            if(index < leftTertiaryBook || index > rightTertiaryBook) return "scale-50";
+            break;
+            
+          default:
+            console.warn(`Unexpected windowSize: ${windowSize}`);
+            return "";
+        }
+        return "";
+      }
+      
+
+    const transitionStyles = useMemo(() => books.map((_, index) => getTransitionStyles(index)), [counter, windowSize]);
+
+    return(
+        <div className='w-full bg-amber-50 pt-4 pb-8'>
+            <div className='flex flex-col text-center'>
+                <h1 className='text-2xl md:text-5xl font-semibold text-slate-900 mt-10'>Recomended For You</h1>
+                <p className='w-2/3 my-10 m-auto text-slate-500'>Unearth a world of books specifically curated to match your unique tastes and preferences! Dive into compelling narratives and discover hidden gems, meticulously selected to resonate with your literary appetite.</p>
+            </div>
+            <div className='overflow-hidden w-11/12 flex relative m-auto py-4'>
+            <button onClick={handleIncrement} className='absolute z-10 md:left-4 lg:left-8 xl:left-12 bg-white shadow-md p-2 rounded m-2 top-1/3 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200">
+                    <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z" clipRule="evenodd" />
+                </svg>
+            </button>
+            
+            <div className='flex transition-container ' style={{ transform: `translateX(${counter * -33.333333}%)`, transition: 'transform 0.5s ease-in-out' }}>
+                {books.map((book, index) => (
+                <div key={index} className='book-container sm:min-w-full lg:min-w-1/5'>
+                    <img className={`shadow-md rounded-md relative duration-500 ease-in-out ${transitionStyles[index]} `} src={book.image} alt="" />
+                    <RecommendedBookDetails index={index} counter={counter} centerBookOffset={centerBookOffset} book={{
+                            title: book.title,
+                            price: book.price
+                        }} />
+                </div>
+                ))}
+            </div>
+            
+            <button onClick={handleDecrement} className='absolute z-10 md:right-4 lg:right-8 xl:right-12 bg-white shadow-md p-2 rounded m-2 top-1/3 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200">
+                    <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd" />
+                </svg>
+            </button>
+            </div>
+        </div>
+    )
+}
+
+
+
+
+            {/* <button onClick={handleIncrement}>+</button>
+            <button onClick={handleDecrement}>-</button>
+            
+        <div className='overflow-hidden'>
+            <div className='flex' style={{ transform: `translateX(${counter * translationValue}%)`, transition: 'transform 0.5s ease-in-out' }}>
+                {books.map((book, index) => (
+                <div key={index} className={` md:min-w-1/3 lg:min-w-1/5`}>
+                    <img className={`duration-500 ease-in-out ${transitionStyles[index]} `} src={book.image} alt="" />
+                    <RecommendedBookDetails index={index} counter={counter} centerBookOffset={centerBookOffset} book={{
+                            title: book.title,
+                            price: book.price
+                        }} />
+                </div>
+                ))}
+            </div>
+        </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @layer base {
+  :root {
+    --text: #0d0b02;
+    --background: #fefefb;
+    --primary: #112678;
+    --secondary: #ebbd05;
+    --accent: #d86464;
+  }
+  .dark {
+    --text: #fdfbf2;
+    --background: #040401;
+    --primary: #879bee;
+    --secondary: #facc14;
+    --accent: #9b2727;
+  }
+},
+
+
+@layer base {
+  :root {
+    --text-50: #fcf8e9;
+    --text-100: #f8f1d3;
+    --text-200: #f1e4a7;
+    --text-300: #ead67b;
+    --text-400: #e3c84f;
+    --text-500: #ddba22;
+    --text-600: #b0951c;
+    --text-700: #847015;
+    --text-800: #584b0e;
+    --text-900: #2c2507;
+    --text-950: #161303;
+    
+    --background-50: #fafaeb;
+    --background-100: #f5f5d6;
+    --background-200: #ebebad;
+    --background-300: #e0e085;
+    --background-400: #d6d65c;
+    --background-500: #cccc33;
+    --background-600: #a3a329;
+    --background-700: #7a7a1f;
+    --background-800: #525214;
+    --background-900: #29290a;
+    --background-950: #141405;
+    
+    --primary-50: #e9edfc;
+    --primary-100: #d2daf9;
+    --primary-200: #a6b5f2;
+    --primary-300: #7990ec;
+    --primary-400: #4c6be6;
+    --primary-500: #2046df;
+    --primary-600: #1938b3;
+    --primary-700: #132a86;
+    --primary-800: #0d1c59;
+    --primary-900: #060e2d;
+    --primary-950: #030716;
+    
+    --secondary-50: #fefae6;
+    --secondary-100: #fef4cd;
+    --secondary-200: #fde99b;
+    --secondary-300: #fcdf69;
+    --secondary-400: #fbd437;
+    --secondary-500: #fac905;
+    --secondary-600: #c8a104;
+    --secondary-700: #967903;
+    --secondary-800: #645002;
+    --secondary-900: #322801;
+    --secondary-950: #191401;
+    
+    --accent-50: #faebeb;
+    --accent-100: #f5d6d6;
+    --accent-200: #ebadad;
+    --accent-300: #e08585;
+    --accent-400: #d65c5c;
+    --accent-500: #cc3333;
+    --accent-600: #a32929;
+    --accent-700: #7a1f1f;
+    --accent-800: #521414;
+    --accent-900: #290a0a;
+    --accent-950: #140505;
+    
+  }
+  .dark {
+    --text-50: #161303;
+    --text-100: #2c2507;
+    --text-200: #584b0e;
+    --text-300: #847015;
+    --text-400: #b0951c;
+    --text-500: #ddba22;
+    --text-600: #e3c84f;
+    --text-700: #ead67b;
+    --text-800: #f1e4a7;
+    --text-900: #f8f1d3;
+    --text-950: #fcf8e9;
+    
+    --background-50: #141405;
+    --background-100: #29290a;
+    --background-200: #525214;
+    --background-300: #7a7a1f;
+    --background-400: #a3a329;
+    --background-500: #cccc33;
+    --background-600: #d6d65c;
+    --background-700: #e0e085;
+    --background-800: #ebebad;
+    --background-900: #f5f5d6;
+    --background-950: #fafaeb;
+    
+    --primary-50: #030716;
+    --primary-100: #060e2d;
+    --primary-200: #0d1c59;
+    --primary-300: #132a86;
+    --primary-400: #1938b3;
+    --primary-500: #2046df;
+    --primary-600: #4c6be6;
+    --primary-700: #7990ec;
+    --primary-800: #a6b5f2;
+    --primary-900: #d2daf9;
+    --primary-950: #e9edfc;
+    
+    --secondary-50: #191401;
+    --secondary-100: #322801;
+    --secondary-200: #645002;
+    --secondary-300: #967903;
+    --secondary-400: #c8a104;
+    --secondary-500: #fac905;
+    --secondary-600: #fbd437;
+    --secondary-700: #fcdf69;
+    --secondary-800: #fde99b;
+    --secondary-900: #fef4cd;
+    --secondary-950: #fefae6;
+    
+    --accent-50: #140505;
+    --accent-100: #290a0a;
+    --accent-200: #521414;
+    --accent-300: #7a1f1f;
+    --accent-400: #a32929;
+    --accent-500: #cc3333;
+    --accent-600: #d65c5c;
+    --accent-700: #e08585;
+    --accent-800: #ebadad;
+    --accent-900: #f5d6d6;
+    --accent-950: #faebeb;
+    
+  }
+},
