@@ -61,7 +61,7 @@ export default function AdminHome() {
 				.attr("stroke", "steelblue")
 				.attr("stroke-width", 2)
 				.attr("d", line);
-
+			//=============================================================================
 			// x.domain([1, 12]);
 			// y.domain([0, max as number]);
 
@@ -85,7 +85,7 @@ export default function AdminHome() {
 			// 	.y((d) => y(d.sold))
 			// 	.curve(d3.curveCatmullRom.alpha(0.5));
 			// 	c
-
+			//==============================================================================================
 			// graph
 			// 	.append("path")
 			// 	.datum(bookSales)
