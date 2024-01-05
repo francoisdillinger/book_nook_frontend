@@ -1,3 +1,8 @@
+// type sale = {
+// 	title: string;
+// 	month: number;
+// 	"sold": number;
+// };
 export const bookSales = [
 	{ title: "Frankenstein", month: 1, sold: 8 },
 	{ title: "Frankenstein", month: 2, sold: 30 },
