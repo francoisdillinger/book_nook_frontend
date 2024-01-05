@@ -1,9 +1,9 @@
-// type sale = {
-// 	title: string;
-// 	month: number;
-// 	"sold": number;
-// };
-export const bookSales = [
+export type BookSale = {
+	title: string;
+	month: number;
+	sold: number;
+};
+export const bookSales: BookSale[] = [
 	{ title: "Frankenstein", month: 1, sold: 8 },
 	{ title: "Frankenstein", month: 2, sold: 30 },
 	{ title: "Frankenstein", month: 3, sold: 29 },
