@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { bookSales } from "../data/bookSales";
+import { BookSale, bookSales } from "../data/bookSales";
 
 export default function AdminHome() {
 	const svgRef = useRef<SVGSVGElement>(null);
@@ -39,7 +39,7 @@ export default function AdminHome() {
 				.attr("transform", `translate(0,${graphHeight})`);
 			const yAxisGroup = graph.append("g");
 
-			const xAxis = d3.axisBottom(x).tickFormat(d3.format("d"));
+			const xAxis = d3.axisBottom(x).tickFormat((d) => `${d}`);
 			const yAxis = d3
 				.axisLeft(y)
 				.ticks(5)
@@ -49,18 +49,29 @@ export default function AdminHome() {
 			yAxisGroup.call(yAxis);
 
 			const line = d3
-				.line()
+				.line<BookSale>()
 				.x((d) => x(d.month.toString()))
 				.y((d) => y(d.sold))
 				.curve(d3.curveCatmullRom.alpha(0.5));
 
-			graph
+			const path = graph
 				.append("path")
 				.datum(bookSales)
 				.attr("fill", "none")
 				.attr("stroke", "steelblue")
 				.attr("stroke-width", 2)
 				.attr("d", line);
+
+			const totalLength = path.node()!.getTotalLength();
+
+			path
+				.attr("stroke-dasharray", totalLength + " " + totalLength)
+				.attr("stroke-dashoffset", totalLength)
+				// Animate the stroke-dashoffset to 0
+				.transition()
+				.duration(500) // Duration of the animation in milliseconds
+				.ease(d3.easeLinear)
+				.attr("stroke-dashoffset", 0);
 			//=============================================================================
 			// x.domain([1, 12]);
 			// y.domain([0, max as number]);
