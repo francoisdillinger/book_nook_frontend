@@ -1,4 +1,4 @@
-export const books = [
+export const bookSalesWithDate = [
 	{ title: "Frankenstein", date: "2023-01-23", sold: 28 },
 	{ title: "Frankenstein", date: "2023-02-14", sold: 28 },
 	{ title: "Frankenstein", date: "2023-03-11", sold: 34 },
