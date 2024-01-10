@@ -376,3 +376,272 @@ export default function RecomendedSlider(){
     
   }
 },
+
+
+
+			//=============================================================================
+			// x.domain([1, 12]);
+			// y.domain([0, max as number]);
+
+			// const xAxisGroup = graph
+			// 	.append("g")
+			// 	.attr("transform", `translate(0,${graphHeight})`);
+			// const yAxisGroup = graph.append("g");
+
+			// const xAxis = d3.axisBottom(x);
+			// const yAxis = d3
+			// 	.axisLeft(y)
+			// 	.ticks(5)
+			// 	.tickFormat((d) => d + " orders");
+
+			// xAxisGroup.call(xAxis);
+			// yAxisGroup.call(yAxis);
+
+			// const line = d3
+			// 	.line()
+			// 	.x((d) => x(d.month))
+			// 	.y((d) => y(d.sold))
+			// 	.curve(d3.curveCatmullRom.alpha(0.5));
+			// 	c
+			//==============================================================================================
+			// graph
+			// 	.append("path")
+			// 	.datum(bookSales)
+			// 	.attr("fill", "none")
+			// 	.attr("stroke", "steelblue")
+			// 	.attr("stroke-width", 4)
+			// 	.attr("d", line);
+
+			// const graph = svg
+			// 	.append("g")
+			// 	.attr("width", graphWidth)
+			// 	.attr("height", graphHeight)
+			// 	.attr("transform", `translate(${margin.left},${margin.top})`);
+
+			// const xAxisGroup = graph
+			// 	.append("g")
+			// 	.attr("transform", `translate(0,${graphHeight})`);
+			// const yAxisGroup = graph.append("g");
+
+			// const max = d3.max(bookSales, (d) => d.sold);
+			// const y = d3
+			// 	.scaleLinear()
+			// 	.domain([0, max as number])
+			// 	.range([graphHeight, 0]);
+
+			// const x = d3
+			// 	.scaleBand()
+			// 	.domain(bookSales.map((book) => book.month.toString()))
+			// 	.range([0, graphWidth])
+			// 	.paddingInner(0.2)
+			// 	.paddingOuter(0.2);
+
+			// const rects = graph.selectAll("rect").data(bookSales);
+
+			// rects
+			// 	.enter()
+			// 	.append("rect")
+			// 	.attr("width", x.bandwidth)
+			// 	.attr("height", (d) => graphHeight - y(d.sold))
+			// 	.attr("fill", "rgb(8 145 178)")
+			// 	.attr("x", (d) => x(d.month.toString()) ?? 0)
+			// 	.attr("y", (d) => y(d.sold));
+
+			// const xAxis = d3.axisBottom(x);
+			// const yAxis = d3
+			// 	.axisLeft(y)
+			// 	.ticks(5)
+			// 	.tickFormat((d) => d + " orders");
+
+			// xAxisGroup.call(xAxis);
+			// yAxisGroup.call(yAxis);
+
+
+
+
+
+
+
+
+            			const margin = { top: 20, right: 20, bottom: 100, left: 100 };
+			const graphWidth = 800 - margin.left - margin.right;
+			const graphHeight = 600 - margin.top - margin.bottom;
+			// const x = d3.scaleTime().range([0, graphWidth]);
+			// const y = d3.scaleTime().range([graphHeight, 0]);
+			const max = d3.max(filteredBooks, (d) => d.sold);
+
+			const svg = d3.select(svgRef.current);
+			svg.selectAll("*").remove();
+
+			const graph = svg
+				.append("g")
+				.attr("width", graphWidth)
+				.attr("height", graphHeight)
+				.append("g")
+				.attr("transform", `translate(${margin.left},${margin.top})`);
+
+			const x = d3
+				.scaleTime()
+				.domain(
+					d3.extent(filteredBooks, (d) => new Date(d.date)) as [Date, Date]
+				)
+				.range([0, graphWidth]);
+
+			const y = d3
+				.scaleLinear()
+				.domain([0, max as number])
+				.range([graphHeight, 0]);
+
+			const xAxisGroup = graph
+				.append("g")
+				.attr("transform", `translate(0,${graphHeight})`);
+			const yAxisGroup = graph.append("g");
+
+			const xAxis = d3
+				.axisBottom(x)
+				.tickValues(filteredBooks.map((d) => new Date(d.date)))
+				.tickFormat((d) => {
+					if (d instanceof Date) {
+						return d3.timeFormat("%d")(d);
+					}
+					return ""; // Return an empty string or some default value if `d` is not a Date
+				});
+			const yAxis = d3
+				.axisLeft(y)
+				// .ticks(5)
+				.tickFormat((d) => `${d} orders`);
+
+			xAxisGroup.transition().duration(500).call(xAxis);
+			yAxisGroup.transition().duration(500).call(yAxis);
+
+			const line = d3
+				.line<BookSaleWithDateType>()
+				.x((d) => x(new Date(d.date)))
+				.y((d) => y(d.sold));
+			// .curve(d3.curveCatmullRom.alpha(0.5));
+
+			const path = graph
+				.append("path")
+				.datum(filteredBooks)
+				.attr("fill", "none")
+				.attr("stroke", "steelblue")
+				.attr("stroke-width", 2)
+				.attr("d", line);
+
+			const totalLength = path.node()!.getTotalLength();
+
+			path
+				.attr("stroke-dasharray", totalLength + " " + totalLength)
+				.attr("stroke-dashoffset", totalLength)
+				// Animate the stroke-dashoffset to 0
+				.transition()
+				.delay(500)
+				.duration(1000) // Duration of the animation in milliseconds
+				.ease(d3.easeLinear)
+				.attr("stroke-dashoffset", 0);
+
+			const circles = graph.selectAll("circle").data(filteredBooks);
+			circles
+				.enter()
+				.append("circle")
+				.attr("r", 4)
+				.attr("cx", (d) => x(new Date(d.date)))
+				.attr("cy", graphHeight)
+				.transition()
+				.duration(500)
+				.attr("cy", (d) => y(d.sold))
+				.attr("fill", "blue");
+		}
+	}, [filteredBooks]);
+
+	// useEffect(() => {
+	// 	console.log("Rerender.");
+	// 	if (svgRef.current) {
+	// 		const margin = { top: 20, right: 20, bottom: 100, left: 100 };
+	// 		const graphWidth = 800 - margin.left - margin.right;
+	// 		const graphHeight = 600 - margin.top - margin.bottom;
+	// 		const max = d3.max(filteredBooks, (d) => d.sold);
+
+	// 		// Select the SVG and graph group, creating them if they don't exist
+	// 		const svg = d3.select(svgRef.current);
+	// 		let graph = svg.select(".graph-content");
+	// 		if (graph.empty()) {
+	// 			graph = svg
+	// 				.append("g")
+	// 				.classed("graph-content", true)
+	// 				.attr("transform", `translate(${margin.left},${margin.top})`);
+	// 		}
+
+	// 		// Update the scales
+	// 		const x = d3
+	// 			.scaleTime()
+	// 			.domain(
+	// 				d3.extent(filteredBooks, (d) => new Date(d.date)) as [Date, Date]
+	// 			)
+	// 			.range([0, graphWidth]);
+
+	// 		const y = d3
+	// 			.scaleLinear()
+	// 			.domain([0, max as number])
+	// 			.range([graphHeight, 0]);
+
+	// 		// Select and update the x and y axis groups
+	// 		let xAxisGroup = graph.select(".x-axis");
+	// 		if (xAxisGroup.empty()) {
+	// 			xAxisGroup = graph
+	// 				.append("g")
+	// 				.classed("x-axis", true)
+	// 				.attr("transform", `translate(0,${graphHeight})`);
+	// 		}
+
+	// 		let yAxisGroup = graph.select(".y-axis");
+	// 		if (yAxisGroup.empty()) {
+	// 			yAxisGroup = graph.append("g").classed("y-axis", true);
+	// 		}
+
+	// 		// Transition the axes
+	// 		xAxisGroup.transition().duration(500).call(d3.axisBottom(x));
+	// 		yAxisGroup.transition().duration(500).call(d3.axisLeft(y));
+
+	// 		// Create the line generator
+	// 		const line = d3
+	// 			.line<BookSaleWithDateType>()
+	// 			.x((d) => x(new Date(d.date)))
+	// 			.y((d) => y(d.sold));
+
+	// 		// Update or create the path for the line chart
+	// 		let path = graph.select(".line-path");
+	// 		if (path.empty()) {
+	// 			path = graph
+	// 				.append("path")
+	// 				.classed("line-path", true)
+	// 				.attr("fill", "none")
+	// 				.attr("stroke", "steelblue")
+	// 				.attr("stroke-width", 2);
+	// 		}
+
+	// 		path.datum(filteredBooks).transition().duration(1000).attr("d", line);
+
+	// 		// Update or create the circles
+	// 		let circles = graph.selectAll("circle").data(filteredBooks);
+
+	// 		circles
+	// 			.enter()
+	// 			.append("circle")
+	// 			.merge(circles)
+	// 			.transition()
+	// 			.duration(500)
+	// 			.attr("r", 4)
+	// 			.attr("cx", (d) => x(new Date(d.date)))
+	// 			.attr("cy", (d) => y(d.sold))
+	// 			.attr("fill", "blue");
+
+	// 		// Handle exiting elements
+	// 		circles
+	// 			.exit()
+	// 			.transition()
+	// 			.duration(500)
+	// 			.attr("cy", graphHeight)
+	// 			.remove();
+	// 	}
+	// }, [filteredBooks]);
