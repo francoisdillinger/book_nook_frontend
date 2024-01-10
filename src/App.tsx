@@ -14,6 +14,7 @@ import HomePageContent from "./components/HomePageContent";
 import SideBarAdminMenu from "./components/SideBarAdminMenu";
 import AdminHome from "./components/AdminHome";
 import Scratch from "./components/Scratch";
+import UsersAdminChart from "./components/UsersAdminChart";
 
 export default function App() {
 	return (
@@ -21,7 +22,8 @@ export default function App() {
 			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
-			<AdminHome />
+			{/* <AdminHome /> */}
+			<UsersAdminChart />
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
