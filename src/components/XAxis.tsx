@@ -25,7 +25,11 @@ const XAxis: React.FC<XAxisTypes> = ({ xScale, height }) => {
 			.duration(500) // Duration of the transition in milliseconds
 			.ease(d3.easeCubicInOut); // Easing function
 
-		transition.call(xAxis as any);
+		select(ref.current)
+			.call(xAxis as any)
+			.select(".domain")
+			.remove();
+		select(ref.current).selectAll(".tick line").remove();
 	}, [xScale]);
 
 	return (
