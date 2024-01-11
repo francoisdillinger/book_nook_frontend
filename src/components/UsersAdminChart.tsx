@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { users } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
-
+import useGetWindowSize from "../hooks/useGetWindowSize";
 const processDataForLineChart = (users: any[]) => {
 	return users.map((user: { orders: any[]; userName: any }) => {
 		const ordersByDateAndId = {};
@@ -118,6 +118,11 @@ const getFilteredData = (filter) => {
 };
 
 export default function UsersAdminChart() {
+	// const windowSize = useGetWindowSize();
+	// console.log(windowSize);
+	const [windowSizeInPixels, setWindowSizeInPixels] = useState(
+		window.innerWidth
+	);
 	const [timeFilter, setTimeFilter] = useState("max");
 	const filteredUserchart = getFilteredData(timeFilter);
 	// const hasData = filteredUserchart.map((user) => user.orders.length);
@@ -131,6 +136,18 @@ export default function UsersAdminChart() {
 	// console.log("One day ago:", d3.timeDay.offset(new Date(), -1));
 	// Do this for week, month, and year as well
 	// console.log("Filtered Data: ", filteredUserchart);
+
+	useEffect(() => {
+		const windowSizePixels = () => {
+			setWindowSizeInPixels(window.innerWidth);
+			console.log(window.innerWidth);
+		};
+		window.addEventListener("resize", windowSizePixels);
+
+		return () => {
+			window.removeEventListener("resize", windowSizePixels);
+		};
+	}, []);
 	interface TooltipState {
 		visible: boolean;
 		content: JSX.Element | null;
@@ -156,7 +173,7 @@ export default function UsersAdminChart() {
 	const svgRef = useRef<SVGSVGElement>(null);
 	const graphRef = useRef<SVGSVGElement>(null);
 	const margin = { top: 20, right: 20, bottom: 100, left: 80 };
-	const graphWidth = 1200 - margin.left - margin.right;
+	const graphWidth = windowSizeInPixels * 0.75 - margin.left - margin.right;
 	const graphHeight = 600 - margin.top - margin.bottom;
 	const max = d3.max(allQuantities);
 	const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
@@ -256,7 +273,7 @@ export default function UsersAdminChart() {
 				</div>
 				<svg
 					ref={svgRef}
-					width={1200}
+					width={windowSizeInPixels}
 					height={600}
 				>
 					<g
