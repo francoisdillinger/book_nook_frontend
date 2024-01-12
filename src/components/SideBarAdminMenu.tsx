@@ -6,7 +6,7 @@ export default function SideBarAdminMenu() {
 	return (
 		<div className="relative">
 			<div
-				className={`bg-slate-200 shadow-md min-h-screen w-72 absolute transition ease-in-out transform ${
+				className={`bg-white shadow-md min-h-screen w-72 absolute transition ease-in-out transform ${
 					close ? "translate-x-0" : "-translate-x-56"
 				}`}
 			>
