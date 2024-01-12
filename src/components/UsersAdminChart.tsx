@@ -178,7 +178,7 @@ export default function UsersAdminChart() {
 	const graphWidth =
 		windowSizeInPixels <= 800
 			? windowSizeInPixels - margin.left - margin.right
-			: windowSizeInPixels * 0.85 - margin.left - margin.right;
+			: windowSizeInPixels * 0.8 - margin.left - margin.right;
 	const graphHeight = 600 - margin.top - margin.bottom;
 	const max = d3.max(allQuantities);
 	const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
@@ -220,8 +220,8 @@ export default function UsersAdminChart() {
 		<React.Fragment>
 			<div className="flex">
 				<div
-					className=""
-					style={{ width: windowSizeInPixels * 0.85 }}
+					className="bg-white rounded-lg my-2 pt-2"
+					style={{ width: windowSizeInPixels * 0.8 }}
 				>
 					<div className="ml-4 h-8">
 						<button
@@ -296,154 +296,162 @@ export default function UsersAdminChart() {
 					>
 						{tooltip.content}
 					</div>
-					<svg
-						ref={svgRef}
-						width={windowSizeInPixels}
-						height={600}
-					>
-						<g
-							ref={graphRef}
-							width={graphWidth}
-							height={graphHeight}
-							transform={`translate(${margin.left},${margin.top})`}
+					<div className="">
+						<svg
+							ref={svgRef}
+							width={windowSizeInPixels}
+							height={600}
 						>
-							<XAxis
-								xScale={x}
+							<g
+								ref={graphRef}
+								width={graphWidth}
 								height={graphHeight}
-							/>
-							<YAxis
-								yScale={y}
-								graphWidth={graphWidth}
-								hasData={hasData}
-							/>
-							{hasData ? (
-								filteredUserchart.map(
-									(
-										user: {
-											orders: any[] | Iterable<[number, number]>;
-											userName: React.Key | null | undefined;
-										},
-										index: { toString: () => string }
-									) => {
-										const color = colorScale(index.toString());
-										const linePath = theLine(
-											user.orders.map((order: { date: any }) => ({
-												...order,
-												date: order.date,
-											}))
-										);
+								transform={`translate(${margin.left},${margin.top})`}
+							>
+								<XAxis
+									xScale={x}
+									height={graphHeight}
+								/>
+								<YAxis
+									yScale={y}
+									graphWidth={graphWidth}
+									hasData={hasData}
+								/>
+								{hasData ? (
+									filteredUserchart.map(
+										(
+											user: {
+												orders: any[] | Iterable<[number, number]>;
+												userName: React.Key | null | undefined;
+											},
+											index: { toString: () => string }
+										) => {
+											const color = colorScale(index.toString());
+											const linePath = theLine(
+												user.orders.map((order: { date: any }) => ({
+													...order,
+													date: order.date,
+												}))
+											);
 
-										return (
-											<React.Fragment key={user.userName}>
-												{/* Unique key for each fragment */}
-												<motion.path
-													key={user.orders}
-													initial={{ d: bottomLineGenerator(user.orders) }}
-													animate={{ d: linePath }}
-													transition={{ ease: "easeInOut", duration: 0.5 }}
-													fill="none"
-													strokeWidth={2}
-													stroke={
-														focusedUser === user.userName || focusedUser === ""
-															? color
-															: "gray"
-													}
-													opacity={
-														focusedUser === user.userName || focusedUser === ""
-															? 1
-															: 0.2
-													}
-												/>
-												{user.orders.map(
-													(order: { orderId; quantity; date }) => (
-														<motion.circle
-															key={order.orderId}
-															className="cursor-pointer"
-															initial={{ cy: graphHeight }}
-															animate={{
-																cy: y(order.quantity),
-																cx: x(new Date(order.date)),
-															}}
-															transition={{ ease: "easeInOut", duration: 0.5 }}
-															r={6}
-															fill={
-																focusedUser === user.userName ||
-																focusedUser === ""
-																	? color
-																	: "gray"
-															}
-															opacity={
-																focusedUser === user.userName ||
-																focusedUser === ""
-																	? 1
-																	: 0.2
-															}
-															onMouseEnter={(e) => {
-																console.log("We in here");
-																const content = (
-																	<div>
+											return (
+												<React.Fragment key={user.userName}>
+													{/* Unique key for each fragment */}
+													<motion.path
+														key={user.orders}
+														initial={{ d: bottomLineGenerator(user.orders) }}
+														animate={{ d: linePath }}
+														transition={{ ease: "easeInOut", duration: 0.5 }}
+														fill="none"
+														strokeWidth={2}
+														stroke={
+															focusedUser === user.userName ||
+															focusedUser === ""
+																? color
+																: "gray"
+														}
+														opacity={
+															focusedUser === user.userName ||
+															focusedUser === ""
+																? 1
+																: 0.2
+														}
+													/>
+													{user.orders.map(
+														(order: { orderId; quantity; date }) => (
+															<motion.circle
+																key={order.orderId}
+																className="cursor-pointer"
+																initial={{ cy: graphHeight }}
+																animate={{
+																	cy: y(order.quantity),
+																	cx: x(new Date(order.date)),
+																}}
+																transition={{
+																	ease: "easeInOut",
+																	duration: 0.5,
+																}}
+																r={6}
+																fill={
+																	focusedUser === user.userName ||
+																	focusedUser === ""
+																		? color
+																		: "gray"
+																}
+																opacity={
+																	focusedUser === user.userName ||
+																	focusedUser === ""
+																		? 1
+																		: 0.2
+																}
+																onMouseEnter={(e) => {
+																	console.log("We in here");
+																	const content = (
 																		<div>
-																			<span className="text-slate-600 font-bold">
-																				Order ID:
-																			</span>{" "}
-																			{order.orderId}
+																			<div>
+																				<span className="text-slate-600 font-bold">
+																					Order ID:
+																				</span>{" "}
+																				{order.orderId}
+																			</div>
+																			<div>
+																				<span className="text-slate-600 font-bold">
+																					Date:
+																				</span>{" "}
+																				{order.date.toDateString()}
+																			</div>
+																			<div>
+																				<span className="text-slate-600 font-bold">
+																					Quantity:
+																				</span>{" "}
+																				{order.quantity}
+																			</div>
 																		</div>
-																		<div>
-																			<span className="text-slate-600 font-bold">
-																				Date:
-																			</span>{" "}
-																			{order.date.toDateString()}
-																		</div>
-																		<div>
-																			<span className="text-slate-600 font-bold">
-																				Quantity:
-																			</span>{" "}
-																			{order.quantity}
-																		</div>
-																	</div>
-																);
-																setTooltip({
-																	visible: true,
-																	content: content,
-																	x: e.clientX,
-																	y: e.clientY,
-																});
-															}}
-															onMouseLeave={() => {
-																setTooltip({ ...tooltip, visible: false });
-															}}
-														/>
-													)
-												)}
-											</React.Fragment>
-										);
-									}
-								)
-							) : (
-								<React.Fragment>
-									<rect
-										x={1}
-										y={0}
-										width={graphWidth - 1}
-										height={graphHeight}
-										className="fill-slate-100"
-									/>
-									<text
-										x={graphWidth / 2}
-										y={graphHeight / 2}
-										textAnchor="middle" // Centers horizontally
-										dominantBaseline="middle" // Centers vertically
-										className="fill-current text-logo text-5xl font-light"
-									>
-										No Data Exists For This Period
-									</text>
-								</React.Fragment>
-							)}
-						</g>
-					</svg>
+																	);
+																	setTooltip({
+																		visible: true,
+																		content: content,
+																		x: e.clientX,
+																		y: e.clientY,
+																	});
+																}}
+																onMouseLeave={() => {
+																	setTooltip({ ...tooltip, visible: false });
+																}}
+															/>
+														)
+													)}
+												</React.Fragment>
+											);
+										}
+									)
+								) : (
+									<React.Fragment>
+										<rect
+											x={1}
+											y={0}
+											width={graphWidth - 1}
+											height={graphHeight}
+											className="fill-slate-100"
+										/>
+										<text
+											x={graphWidth / 2}
+											y={graphHeight / 2}
+											textAnchor="middle" // Centers horizontally
+											dominantBaseline="middle" // Centers vertically
+											className="fill-current text-logo text-5xl font-light"
+										>
+											No Data Exists For This Period
+										</text>
+									</React.Fragment>
+								)}
+							</g>
+						</svg>
+					</div>
 				</div>
 				<div
-					className="mt-16"
+					className=" bg-white rounded-lg my-2 pt-2 m-auto pl-4
+					"
 					style={{ width: windowSizeInPixels * 0.15 }}
 				>
 					{filteredUserchart.map((user, index) => {
