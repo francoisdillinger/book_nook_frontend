@@ -23,7 +23,9 @@ export default function App() {
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
-			<UsersAdminChart />
+			<div className="bg-slate-100 h-screen">
+				<UsersAdminChart />
+			</div>
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
