@@ -179,7 +179,7 @@ export default function UsersAdminChart() {
 	const graphWidth =
 		windowSizeInPixels <= 800
 			? windowSizeInPixels - margin.left - margin.right
-			: windowSizeInPixels * 0.8 - margin.left - margin.right;
+			: windowSizeInPixels * 0.9 - margin.left - margin.right;
 	const graphHeight = 600 - margin.top - margin.bottom;
 	const max = d3.max(allQuantities);
 	const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
@@ -219,10 +219,10 @@ export default function UsersAdminChart() {
 	// };
 	return (
 		<React.Fragment>
-			<div className="flex">
+			<div className="flex ml-16">
 				<div
-					className="bg-white rounded-lg my-2 pt-2"
-					style={{ width: windowSizeInPixels * 0.8 }}
+					className="bg-white rounded-lg my-2 pt-2 mx-auto"
+					style={{ width: windowSizeInPixels * 0.9 }}
 				>
 					<div className="h-12 flex items-center justify-between">
 						<div className="ml-4 h-8">
@@ -316,6 +316,7 @@ export default function UsersAdminChart() {
 								options={filteredUserchart}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
 							/>
 						</div>
 					</div>
@@ -333,8 +334,8 @@ export default function UsersAdminChart() {
 					<div className="">
 						<svg
 							ref={svgRef}
-							width={windowSizeInPixels}
-							height={600}
+							width={windowSizeInPixels * 0.9}
+							height={550}
 						>
 							<g
 								ref={graphRef}
@@ -483,7 +484,7 @@ export default function UsersAdminChart() {
 						</svg>
 					</div>
 				</div>
-				<div
+				{/* <div
 					className=" bg-white rounded-lg my-2 pt-2 m-auto pl-4
 					"
 					style={{ width: windowSizeInPixels * 0.15 }}
@@ -508,7 +509,7 @@ export default function UsersAdminChart() {
 							<></>
 						);
 					})}
-				</div>
+				</div> */}
 			</div>
 		</React.Fragment>
 	);
