@@ -5,6 +5,7 @@ import { users } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 import useGetWindowSize from "../hooks/useGetWindowSize";
+import ReactSelect from "./ReactSelect";
 const processDataForLineChart = (users: any[]) => {
 	return users.map((user: { orders: any[]; userName: any }) => {
 		const ordersByDateAndId = {};
@@ -211,11 +212,11 @@ export default function UsersAdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
-
-	const onUsernameClick = (username, event) => {
-		event.stopPropagation(); // Prevent the click from reaching the global listener
-		setFocusedUser(username);
-	};
+	console.log(focusedUser);
+	// const onUsernameClick = (username, event) => {
+	// 	event.stopPropagation(); // Prevent the click from reaching the global listener
+	// 	setFocusedUser(username);
+	// };
 	return (
 		<React.Fragment>
 			<div className="flex">
@@ -223,67 +224,100 @@ export default function UsersAdminChart() {
 					className="bg-white rounded-lg my-2 pt-2"
 					style={{ width: windowSizeInPixels * 0.8 }}
 				>
-					<div className="ml-4 h-8">
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "day"
-									? "bg-slate-100 rounded-full text-logo shadow-md "
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("day")}
-						>
-							1D
-						</button>
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "week"
-									? "bg-slate-100 rounded-full text-logo shadow-md"
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("week")}
-						>
-							1W
-						</button>
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "month"
-									? "bg-slate-100 rounded-full text-logo shadow-md"
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("month")}
-						>
-							1M
-						</button>
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "half-year"
-									? "bg-slate-100 rounded-full text-logo shadow-md"
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("half-year")}
-						>
-							6M
-						</button>
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "year"
-									? "bg-slate-100 rounded-full text-logo shadow-md"
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("year")}
-						>
-							YTD
-						</button>
-						<button
-							className={`p-2 w-16 ${
-								timeFilter === "max"
-									? "bg-slate-100 rounded-full text-logo shadow-md"
-									: "text-neutral-600"
-							}`}
-							onClick={() => setTimeFilter("max")}
-						>
-							Max
-						</button>
+					<div className="h-12 flex items-center justify-between">
+						<div className="ml-4 h-8">
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "day"
+										? "bg-slate-100 rounded-full text-logo shadow-md "
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("day")}
+							>
+								1D
+							</button>
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "week"
+										? "bg-slate-100 rounded-full text-logo shadow-md"
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("week")}
+							>
+								1W
+							</button>
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "month"
+										? "bg-slate-100 rounded-full text-logo shadow-md"
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("month")}
+							>
+								1M
+							</button>
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "half-year"
+										? "bg-slate-100 rounded-full text-logo shadow-md"
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("half-year")}
+							>
+								6M
+							</button>
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "year"
+										? "bg-slate-100 rounded-full text-logo shadow-md"
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("year")}
+							>
+								YTD
+							</button>
+							<button
+								className={`p-2 w-16 ${
+									timeFilter === "max"
+										? "bg-slate-100 rounded-full text-logo shadow-md"
+										: "text-neutral-600"
+								}`}
+								onClick={() => setTimeFilter("max")}
+							>
+								Max
+							</button>
+						</div>
+						{/* <div className=" mr-5 ">
+							<select className="w-52 h-8 bg-slate-100 rounded-md px-2 text-neutral-600">
+								{filteredUserchart.map((user, index) => {
+									const color = colorScale(index.toString());
+									return user.orders.length > 0 ? (
+										<option>
+											<div
+												key={user.userName}
+												className="flex mb-2 cursor-pointer"
+												onClick={(e) => onUsernameClick(user.userName, e)}
+											>
+												<div
+													className="h-6 w-6 rounded-full mr-2"
+													style={{ backgroundColor: color }}
+												></div>
+												<div className="text-neutral-600">{user.userName}</div>
+											</div>
+										</option>
+									) : (
+										<></>
+									);
+								})}
+							</select>
+						</div> */}
+						<div className=" mr-5 pt-2">
+							<ReactSelect
+								options={filteredUserchart}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+							/>
+						</div>
 					</div>
 
 					<div
