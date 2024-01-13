@@ -11,7 +11,7 @@ type UserType = {
 	orders: {
 		orderId: string;
 		quantity: number;
-		orderDate: string;
+		orderDate: string; // in 'YYYY-MM-DD' format
 		book: {
 			bookTitle: string;
 		};
@@ -32,7 +32,7 @@ const processDataForLineChart = (users: UserType[]) => {
 
 		user.orders.forEach(
 			(order: { orderDate: string; orderId: string; quantity: number }) => {
-				const dateKey = order.orderDate; // Assuming date is in 'YYYY-MM-DD' format
+				const dateKey = order.orderDate;
 				const orderId = order.orderId;
 				const combinedKey = `${dateKey}-${orderId}`;
 				const quantity = order.quantity;
