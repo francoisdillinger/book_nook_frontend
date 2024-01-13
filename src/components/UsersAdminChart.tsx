@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { users, UsersType } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
-import useGetWindowSize from "../hooks/useGetWindowSize";
 import ReactSelect from "./ReactSelect";
 
 type UserType = {
