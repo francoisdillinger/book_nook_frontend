@@ -1,3 +1,18 @@
+export type UsersType = {
+	data: {
+		users: {
+			userName: string;
+			orders: {
+				orderId: string;
+				quantity: number;
+				orderDate: string;
+				book: {
+					bookTitle: string;
+				};
+			}[];
+		}[];
+	};
+};
 export const users = {
 	data: {
 		users: [
