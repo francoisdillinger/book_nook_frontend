@@ -13,7 +13,7 @@ export type UsersType = {
 		}[];
 	};
 };
-export const users = {
+export const users: UsersType = {
 	data: {
 		users: [
 			{
