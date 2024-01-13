@@ -29,13 +29,14 @@ export default function AdminHome() {
 	const svgRef = useRef<SVGSVGElement>(null);
 	const graphRef = useRef<SVGSVGElement>(null);
 	const [filteredBooks, setFilteredBooks] = useState(
-		sortedBooksWithUTCNoonDate.filter((book) => book.title === "Frankenstein")
+		sortedBooksWithUTCNoonDate
 	);
 
-	const margin = { top: 20, right: 20, bottom: 100, left: 100 };
-	const graphWidth = 800 - margin.left - margin.right;
+	const margin = { top: 20, right: 20, bottom: 100, left: 80 };
+	const graphWidth = 1200 - margin.left - margin.right;
 	const graphHeight = 600 - margin.top - margin.bottom;
 	const max = d3.max(filteredBooks, (d) => d.sold);
+	const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 	const x = d3
 		.scaleTime()
 		.domain(d3.extent(filteredBooks, (d) => new Date(d.date)) as [Date, Date])
@@ -50,9 +51,9 @@ export default function AdminHome() {
 		.line<BookSaleWithDateType>()
 		.x((d) => x(new Date(d.date)))
 		.y((d) => y(d.sold));
-	let linePath = theLine(
-		filteredBooks.map((book) => ({ ...book, date: book.date.toString() }))
-	);
+	// let linePath = theLine(
+	// 	filteredBooks.map((book) => ({ ...book, date: book.date.toString() }))
+	// );
 	const bottomLineGenerator = d3
 		.line<BookSaleWithDateType>()
 		.x((d) => x(new Date(d.date)))
@@ -60,7 +61,12 @@ export default function AdminHome() {
 	const initialPath = bottomLineGenerator(
 		filteredBooks.map((book) => ({ ...book, date: book.date.toString() }))
 	);
-
+	const groups = d3.groups(sortedBooksWithUTCNoonDate, (d) => d.title);
+	// groups.forEach((value, key) => {
+	// 	console.log(`Title: ${key}`);
+	// 	console.log(value);
+	// });
+	// console.log(groups);
 	const handleClick = (bookTitle: string) => {
 		setFilteredBooks(
 			sortedBooksWithUTCNoonDate.filter((book) => book.title === bookTitle)
@@ -72,7 +78,7 @@ export default function AdminHome() {
 			<div>
 				<svg
 					ref={svgRef}
-					width={800}
+					width={1200}
 					height={600}
 				>
 					<g
@@ -81,15 +87,58 @@ export default function AdminHome() {
 						height={graphHeight}
 						transform={`translate(${margin.left},${margin.top})`}
 					>
-						<motion.path
+						{/* <motion.path
 							initial={{ d: initialPath || "" }}
 							animate={linePath ? { d: linePath } : false}
 							transition={{ ease: "easeInOut", duration: 0.5 }}
 							fill="none"
 							strokeWidth={4}
 							stroke="steelblue"
-						></motion.path>
-						{filteredBooks.map((book) => (
+						></motion.path> */}
+						{Array.from(groups).map(([title, books], index) => {
+							const color = colorScale(index.toString());
+
+							return (
+								<React.Fragment key={title}>
+									<motion.path
+										initial={{
+											d:
+												bottomLineGenerator(
+													books.map((book) => ({
+														...book,
+														date: book.date.toString(),
+													}))
+												) || "",
+										}}
+										animate={{
+											d: theLine(
+												books.map((book) => ({
+													...book,
+													date: book.date.toString(),
+												}))
+											),
+										}}
+										transition={{ ease: "easeInOut", duration: 0.5 }}
+										fill="none"
+										strokeWidth={2}
+										stroke={color}
+									/>
+									{books.map((book) => (
+										<motion.circle
+											key={book.date.toDateString() + book.title}
+											initial={{ cy: graphHeight }}
+											animate={{ cy: y(book.sold) }}
+											transition={{ ease: "easeInOut", duration: 0.5 }}
+											r={4}
+											cx={x(new Date(book.date))}
+											fill={color}
+										/>
+									))}
+								</React.Fragment>
+							);
+						})}
+
+						{/* {filteredBooks.map((book) => (
 							<motion.circle
 								key={book.date.toString()}
 								initial={{ cy: graphHeight }}
@@ -99,7 +148,7 @@ export default function AdminHome() {
 								cx={x(new Date(book.date))}
 								fill="steelblue"
 							></motion.circle>
-						))}
+						))} */}
 						<XAxis
 							xScale={x}
 							height={graphHeight}
