@@ -6,18 +6,39 @@ import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 import useGetWindowSize from "../hooks/useGetWindowSize";
 import ReactSelect from "./ReactSelect";
-const processDataForLineChart = (users: any[]) => {
-	return users.map((user: { orders: any[]; userName: any }) => {
-		const ordersByDateAndId = {};
+
+type UserType = {
+	userName: string;
+	orders: {
+		orderId: string;
+		quantity: number;
+		orderDate: string;
+		book: {
+			bookTitle: string;
+		};
+	}[];
+};
+
+type OrdersByDateAndId = {
+	[key: string]: {
+		date: Date;
+		quantity: number;
+		orderId: string;
+	};
+};
+
+const processDataForLineChart = (users: UserType[]) => {
+	return users.map((user: UserType) => {
+		const ordersByDateAndId: OrdersByDateAndId = {};
 
 		user.orders.forEach(
-			(order: { orderDate: any; orderId: any; quantity: any }) => {
+			(order: { orderDate: string; orderId: string; quantity: number }) => {
 				const dateKey = order.orderDate; // Assuming date is in 'YYYY-MM-DD' format
 				const orderId = order.orderId;
 				const combinedKey = `${dateKey}-${orderId}`;
 				const quantity = order.quantity;
 
-				if (ordersByDateAndId[combinedKey]) {
+				if (ordersByDateAndId.hasOwnProperty(combinedKey)) {
 					ordersByDateAndId[combinedKey].quantity += quantity;
 				} else {
 					ordersByDateAndId[combinedKey] = {
@@ -31,24 +52,26 @@ const processDataForLineChart = (users: any[]) => {
 
 		return {
 			userName: user.userName,
-			orders: Object.values(ordersByDateAndId).sort((a, b) => a.date - b.date),
+			orders: Object.values(ordersByDateAndId).sort(
+				(a, b) => a.date.getTime() - b.date.getTime()
+			),
 		};
 	});
 };
 
-const sixMonthsAgo = (date) => {
+const sixMonthsAgo = (date: string) => {
 	let pastDate = new Date(date);
 	pastDate.setMonth(pastDate.getMonth() - 6);
 	return pastDate;
 };
 
-const getFilteredData = (filter) => {
+const getFilteredData = (filter: string): UserType[] => {
 	const now = new Date();
-	let filteredData;
+	// let filteredData;
 
 	switch (filter) {
 		case "day":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				users.data.users.map((user) => {
 					return {
 						...user,
@@ -60,7 +83,7 @@ const getFilteredData = (filter) => {
 			);
 			break;
 		case "week":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				users.data.users.map((user) => {
 					return {
 						...user,
@@ -73,7 +96,7 @@ const getFilteredData = (filter) => {
 			);
 			break;
 		case "month":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				users.data.users.map((user) => {
 					return {
 						...user,
@@ -86,7 +109,7 @@ const getFilteredData = (filter) => {
 			);
 			break;
 		case "half-year":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				users.data.users.map((user) => {
 					return {
 						...user,
@@ -98,7 +121,7 @@ const getFilteredData = (filter) => {
 			);
 			break;
 		case "year":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				users.data.users.map((user) => {
 					return {
 						...user,
@@ -112,10 +135,10 @@ const getFilteredData = (filter) => {
 			break;
 		case "max":
 		default:
-			filteredData = processDataForLineChart(users.data.users);
+			return processDataForLineChart(users.data.users);
 	}
 
-	return filteredData;
+	// return filteredData;
 };
 
 export default function UsersAdminChart() {
