@@ -20,18 +20,29 @@ type UserType = {
 
 type OrdersByDateAndId = {
 	[key: string]: {
-		date: Date;
+		date: string;
 		quantity: number;
 		orderId: string;
 	};
+};
+
+type ProcessedOrder = {
+	date: string;
+	quantity: number;
+	orderId: string;
+};
+
+type ProcessedUserType = {
+	userName: string;
+	orders: ProcessedOrder[];
 };
 
 const reformatUserData = (users: UsersType): UserType[] => {
 	return users.data.users.map((user) => user);
 };
 
-const processDataForLineChart = (users: UserType[]) => {
-	return users.map((user: UserType) => {
+const processDataForLineChart = (users: UserType[]): ProcessedUserType[] => {
+	const processedUsers = users.map((user: UserType) => {
 		const ordersByDateAndId: OrdersByDateAndId = {};
 
 		user.orders.forEach(
@@ -45,7 +56,7 @@ const processDataForLineChart = (users: UserType[]) => {
 					ordersByDateAndId[combinedKey].quantity += quantity;
 				} else {
 					ordersByDateAndId[combinedKey] = {
-						date: new Date(dateKey),
+						date: dateKey,
 						quantity: quantity,
 						orderId: orderId,
 					};
@@ -56,10 +67,11 @@ const processDataForLineChart = (users: UserType[]) => {
 		return {
 			userName: user.userName,
 			orders: Object.values(ordersByDateAndId).sort(
-				(a, b) => a.date.getTime() - b.date.getTime()
+				(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
 			),
 		};
 	});
+	return processedUsers;
 };
 
 const sixMonthsAgo = (date: string) => {
@@ -68,13 +80,16 @@ const sixMonthsAgo = (date: string) => {
 	return pastDate;
 };
 
-const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
+const getFilteredData = (
+	filter: string,
+	userData: UserType[]
+): ProcessedUserType[] => {
 	const now = new Date();
-	// let filteredData;
+	let filteredData;
 
 	switch (filter) {
 		case "day":
-			return processDataForLineChart(
+			filteredData = processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -86,7 +101,7 @@ const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 			);
 			break;
 		case "week":
-			return processDataForLineChart(
+			filteredData = processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -99,7 +114,7 @@ const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 			);
 			break;
 		case "month":
-			return processDataForLineChart(
+			filteredData = processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -112,7 +127,7 @@ const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 			);
 			break;
 		case "half-year":
-			return processDataForLineChart(
+			filteredData = processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -124,7 +139,7 @@ const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 			);
 			break;
 		case "year":
-			return processDataForLineChart(
+			filteredData = processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -138,10 +153,10 @@ const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 			break;
 		case "max":
 		default:
-			return processDataForLineChart(userData);
+			filteredData = processDataForLineChart(userData);
 	}
 
-	// return filteredData;
+	return filteredData;
 };
 
 export default function UsersAdminChart() {
