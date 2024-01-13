@@ -26,6 +26,10 @@ type OrdersByDateAndId = {
 	};
 };
 
+const reformatUserData = (users: UsersType): UserType[] => {
+	return users.data.users.map((user) => user);
+};
+
 const processDataForLineChart = (users: UserType[]) => {
 	return users.map((user: UserType) => {
 		const ordersByDateAndId: OrdersByDateAndId = {};
@@ -64,14 +68,14 @@ const sixMonthsAgo = (date: string) => {
 	return pastDate;
 };
 
-const getFilteredData = (filter: string): UserType[] => {
+const getFilteredData = (filter: string, userData: UserType[]): UserType[] => {
 	const now = new Date();
 	// let filteredData;
 
 	switch (filter) {
 		case "day":
 			return processDataForLineChart(
-				users.data.users.map((user) => {
+				userData.map((user) => {
 					return {
 						...user,
 						orders: user.orders.filter(
@@ -83,7 +87,7 @@ const getFilteredData = (filter: string): UserType[] => {
 			break;
 		case "week":
 			return processDataForLineChart(
-				users.data.users.map((user) => {
+				userData.map((user) => {
 					return {
 						...user,
 						orders: user.orders.filter(
@@ -96,7 +100,7 @@ const getFilteredData = (filter: string): UserType[] => {
 			break;
 		case "month":
 			return processDataForLineChart(
-				users.data.users.map((user) => {
+				userData.map((user) => {
 					return {
 						...user,
 						orders: user.orders.filter(
@@ -109,7 +113,7 @@ const getFilteredData = (filter: string): UserType[] => {
 			break;
 		case "half-year":
 			return processDataForLineChart(
-				users.data.users.map((user) => {
+				userData.map((user) => {
 					return {
 						...user,
 						orders: user.orders.filter(
@@ -121,7 +125,7 @@ const getFilteredData = (filter: string): UserType[] => {
 			break;
 		case "year":
 			return processDataForLineChart(
-				users.data.users.map((user) => {
+				userData.map((user) => {
 					return {
 						...user,
 						orders: user.orders.filter(
@@ -134,7 +138,7 @@ const getFilteredData = (filter: string): UserType[] => {
 			break;
 		case "max":
 		default:
-			return processDataForLineChart(users.data.users);
+			return processDataForLineChart(userData);
 	}
 
 	// return filteredData;
@@ -149,7 +153,8 @@ export default function UsersAdminChart() {
 		window.innerWidth
 	);
 	const [timeFilter, setTimeFilter] = useState("max");
-	const filteredUserchart = getFilteredData(timeFilter);
+	const reformatedUserData = reformatUserData(users);
+	const filteredUserchart = getFilteredData(timeFilter, reformatedUserData);
 	// const hasData = filteredUserchart.map((user) => user.orders.length);
 	const hasData = filteredUserchart.reduce(
 		(accumulator, users) => accumulator + users.orders.length,
