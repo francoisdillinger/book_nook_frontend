@@ -18,14 +18,6 @@ type UserType = {
 	}[];
 };
 
-type OrdersByDateAndId = {
-	[key: string]: {
-		date: string;
-		quantity: number;
-		orderId: string;
-	};
-};
-
 type ProcessedOrder = {
 	date: string;
 	quantity: number;
@@ -42,36 +34,33 @@ const reformatUserData = (users: UsersType): UserType[] => {
 };
 
 const processDataForLineChart = (users: UserType[]): ProcessedUserType[] => {
-	const processedUsers = users.map((user: UserType) => {
-		const ordersByDateAndId: OrdersByDateAndId = {};
+	return users.map((user) => {
+		const aggregationByDateAndId: Record<string, ProcessedOrder> = {};
 
-		user.orders.forEach(
-			(order: { orderDate: string; orderId: string; quantity: number }) => {
-				const dateKey = order.orderDate;
-				const orderId = order.orderId;
-				const combinedKey = `${dateKey}-${orderId}`;
-				const quantity = order.quantity;
+		user.orders.forEach((order) => {
+			const combinedKey = `${order.orderDate}-${order.orderId}`;
 
-				if (ordersByDateAndId.hasOwnProperty(combinedKey)) {
-					ordersByDateAndId[combinedKey].quantity += quantity;
-				} else {
-					ordersByDateAndId[combinedKey] = {
-						date: dateKey,
-						quantity: quantity,
-						orderId: orderId,
-					};
-				}
+			if (aggregationByDateAndId[combinedKey]) {
+				aggregationByDateAndId[combinedKey].quantity += order.quantity;
+			} else {
+				aggregationByDateAndId[combinedKey] = {
+					date: order.orderDate, // Keeping date as string
+					quantity: order.quantity,
+					orderId: order.orderId,
+				};
 			}
+		});
+
+		// Sort by date string. Assumes date strings are in a format that allows lexicographical sorting (like 'YYYY-MM-DD')
+		const aggregatedOrders = Object.values(aggregationByDateAndId).sort(
+			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
 		);
 
 		return {
 			userName: user.userName,
-			orders: Object.values(ordersByDateAndId).sort(
-				(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-			),
+			orders: aggregatedOrders,
 		};
 	});
-	return processedUsers;
 };
 
 const sixMonthsAgo = (date: string) => {
@@ -214,12 +203,28 @@ export default function UsersAdminChart() {
 	const max = d3.max(allQuantities);
 	const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 	const validDates = allDates.filter((date) => date !== undefined);
+	// const x = d3.scaleTime().domain(d3.extent(allDates)).range([0, graphWidth]);
+	// console.log("The X: ", x(new Date("2023-07-01")));
+	// console.log("Domain: ", d3.extent(allDates));
+	// console.log("Parsed domain: ", allDates);
+
+	// Convert all date strings in allDates to Date objects
+	const parsedDates = allDates.map((dateStr) => new Date(dateStr));
+
+	// Set the domain of the x scale using the parsed dates
 	const x = d3
 		.scaleTime()
-		.domain(
-			d3.extent(validDates.filter((date) => date !== undefined)) as Date[]
-		)
+		.domain(d3.extent(parsedDates))
 		.range([0, graphWidth]);
+
+	// Log the domain to verify
+	// console.log(
+	// 	"Parsed domain: ",
+	// 	d3.extent(parsedDates).map((d) => d.toISOString())
+	// );
+
+	// Test the x scale with a date
+	console.log("The X for 2023-07-01: ", x(new Date("2023-07-01")));
 
 	const y = d3
 		.scaleLinear()
@@ -363,7 +368,7 @@ export default function UsersAdminChart() {
 										const color = colorScale(index.toString());
 										const linePath = theLine(
 											user.orders.map((order) => [
-												Number(order.date),
+												new Date(order.date), // Correctly parse the date
 												order.quantity,
 											])
 										);
@@ -377,7 +382,7 @@ export default function UsersAdminChart() {
 														d:
 															bottomLineGenerator(
 																user.orders.map((order) => [
-																	Number(order.date),
+																	new Date(order.date),
 																	order.quantity,
 																])
 															) || "",
