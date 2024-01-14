@@ -85,11 +85,10 @@ const getFilteredData = (
 	userData: UserType[]
 ): ProcessedUserType[] => {
 	const now = new Date();
-	let filteredData;
 
 	switch (filter) {
 		case "day":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -101,7 +100,7 @@ const getFilteredData = (
 			);
 			break;
 		case "week":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -114,7 +113,7 @@ const getFilteredData = (
 			);
 			break;
 		case "month":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -127,7 +126,7 @@ const getFilteredData = (
 			);
 			break;
 		case "half-year":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -139,7 +138,7 @@ const getFilteredData = (
 			);
 			break;
 		case "year":
-			filteredData = processDataForLineChart(
+			return processDataForLineChart(
 				userData.map((user) => {
 					return {
 						...user,
@@ -153,15 +152,11 @@ const getFilteredData = (
 			break;
 		case "max":
 		default:
-			filteredData = processDataForLineChart(userData);
+			return processDataForLineChart(userData);
 	}
-
-	return filteredData;
 };
 
 export default function UsersAdminChart() {
-	// const windowSize = useGetWindowSize();
-	// console.log(windowSize);
 	const [focusedUser, setFocusedUser] = useState("");
 	console.log(focusedUser);
 	const [windowSizeInPixels, setWindowSizeInPixels] = useState(
@@ -175,12 +170,6 @@ export default function UsersAdminChart() {
 		(accumulator, users) => accumulator + users.orders.length,
 		0
 	);
-	// console.log("Has Data: ", hasData);
-	// console.log(processDataForLineChart(users.data.users));
-	// console.log(getFilteredData("year")); // As an example
-	// console.log("One day ago:", d3.timeDay.offset(new Date(), -1));
-	// Do this for week, month, and year as well
-	// console.log("Filtered Data: ", filteredUserchart);
 
 	useEffect(() => {
 		const windowSizePixels = () => {
@@ -207,7 +196,6 @@ export default function UsersAdminChart() {
 		y: 0,
 	});
 
-	// const userchart = processDataForLineChart(users.data.users);
 	const allDates = filteredUserchart.flatMap((user: { orders: any[] }) =>
 		user.orders.map((order: { date: any }) => order.date)
 	);
@@ -240,9 +228,7 @@ export default function UsersAdminChart() {
 		.line()
 		.x((d) => x(d.date))
 		.y(graphHeight);
-	// if (filteredUserchart.length === 0) {
-	// 	console.log("Emtpy!");
-	// }
+
 	useEffect(() => {
 		const onGlobalClick = () => {
 			setFocusedUser("");
@@ -254,11 +240,7 @@ export default function UsersAdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
-	console.log(focusedUser);
-	// const onUsernameClick = (username, event) => {
-	// 	event.stopPropagation(); // Prevent the click from reaching the global listener
-	// 	setFocusedUser(username);
-	// };
+
 	return (
 		<React.Fragment>
 			<div className="flex ml-16">
@@ -329,30 +311,6 @@ export default function UsersAdminChart() {
 								Max
 							</button>
 						</div>
-						{/* <div className=" mr-5 ">
-							<select className="w-52 h-8 bg-slate-100 rounded-md px-2 text-neutral-600">
-								{filteredUserchart.map((user, index) => {
-									const color = colorScale(index.toString());
-									return user.orders.length > 0 ? (
-										<option>
-											<div
-												key={user.userName}
-												className="flex mb-2 cursor-pointer"
-												onClick={(e) => onUsernameClick(user.userName, e)}
-											>
-												<div
-													className="h-6 w-6 rounded-full mr-2"
-													style={{ backgroundColor: color }}
-												></div>
-												<div className="text-neutral-600">{user.userName}</div>
-											</div>
-										</option>
-									) : (
-										<></>
-									);
-								})}
-							</select>
-						</div> */}
 						<div className=" mr-5 pt-2">
 							<ReactSelect
 								options={filteredUserchart}
@@ -526,32 +484,6 @@ export default function UsersAdminChart() {
 						</svg>
 					</div>
 				</div>
-				{/* <div
-					className=" bg-white rounded-lg my-2 pt-2 m-auto pl-4
-					"
-					style={{ width: windowSizeInPixels * 0.15 }}
-				>
-					{filteredUserchart.map((user, index) => {
-						const color = colorScale(index.toString());
-						return user.orders.length > 0 ? (
-							<div
-								key={user.userName}
-								className="flex mb-2 cursor-pointer"
-								onClick={(e) => onUsernameClick(user.userName, e)}
-							>
-								<div
-									className="h-6 w-6 rounded-full mr-2"
-									style={{ backgroundColor: color }}
-								></div>
-								<div className="font-light text-neutral-600">
-									{user.userName}
-								</div>
-							</div>
-						) : (
-							<></>
-						);
-					})}
-				</div> */}
 			</div>
 		</React.Fragment>
 	);
@@ -578,3 +510,55 @@ export default function UsersAdminChart() {
 // 	}));
 // };
 // const usersstuff = processDataForD3BarChart(users.data.users);
+
+/* <div className=" mr-5 ">
+							<select className="w-52 h-8 bg-slate-100 rounded-md px-2 text-neutral-600">
+								{filteredUserchart.map((user, index) => {
+									const color = colorScale(index.toString());
+									return user.orders.length > 0 ? (
+										<option>
+											<div
+												key={user.userName}
+												className="flex mb-2 cursor-pointer"
+												onClick={(e) => onUsernameClick(user.userName, e)}
+											>
+												<div
+													className="h-6 w-6 rounded-full mr-2"
+													style={{ backgroundColor: color }}
+												></div>
+												<div className="text-neutral-600">{user.userName}</div>
+											</div>
+										</option>
+									) : (
+										<></>
+									);
+								})}
+							</select>
+						</div> */
+
+/* <div
+					className=" bg-white rounded-lg my-2 pt-2 m-auto pl-4
+					"
+					style={{ width: windowSizeInPixels * 0.15 }}
+				>
+					{filteredUserchart.map((user, index) => {
+						const color = colorScale(index.toString());
+						return user.orders.length > 0 ? (
+							<div
+								key={user.userName}
+								className="flex mb-2 cursor-pointer"
+								onClick={(e) => onUsernameClick(user.userName, e)}
+							>
+								<div
+									className="h-6 w-6 rounded-full mr-2"
+									style={{ backgroundColor: color }}
+								></div>
+								<div className="font-light text-neutral-600">
+									{user.userName}
+								</div>
+							</div>
+						) : (
+							<></>
+						);
+					})}
+				</div> */
