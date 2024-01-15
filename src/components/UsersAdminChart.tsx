@@ -120,7 +120,8 @@ const getFilteredData = (
 					return {
 						...user,
 						orders: user.orders.filter(
-							(order) => new Date(order.orderDate) >= sixMonthsAgo(now)
+							(order) =>
+								new Date(order.orderDate) >= sixMonthsAgo(now.toISOString())
 						),
 					};
 				})
@@ -147,7 +148,7 @@ const getFilteredData = (
 
 export default function UsersAdminChart() {
 	const [focusedUser, setFocusedUser] = useState("");
-	console.log(focusedUser);
+	// console.log(focusedUser);
 	const [windowSizeInPixels, setWindowSizeInPixels] = useState(
 		window.innerWidth
 	);
@@ -159,7 +160,7 @@ export default function UsersAdminChart() {
 		(accumulator, users) => accumulator + users.orders.length,
 		0
 	);
-	console.log(filteredUserchart);
+	// console.log(filteredUserchart);
 	useEffect(() => {
 		const windowSizePixels = () => {
 			setWindowSizeInPixels(window.innerWidth);
@@ -202,29 +203,22 @@ export default function UsersAdminChart() {
 	const graphHeight = 600 - margin.top - margin.bottom;
 	const max = d3.max(allQuantities);
 	const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
-	const validDates = allDates.filter((date) => date !== undefined);
-	// const x = d3.scaleTime().domain(d3.extent(allDates)).range([0, graphWidth]);
-	// console.log("The X: ", x(new Date("2023-07-01")));
-	// console.log("Domain: ", d3.extent(allDates));
-	// console.log("Parsed domain: ", allDates);
+	const parsedDates = allDates
+		.map((dateStr) => new Date(dateStr))
+		.filter((date) => !isNaN(date.valueOf()));
+	const dateExtent = d3.extent(parsedDates) as
+		| [Date, Date]
+		| [undefined, undefined];
+	const domain =
+		dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()];
 
-	// Convert all date strings in allDates to Date objects
-	const parsedDates = allDates.map((dateStr) => new Date(dateStr));
+	const x = d3.scaleTime().domain(domain).range([0, graphWidth]);
 
 	// Set the domain of the x scale using the parsed dates
-	const x = d3
-		.scaleTime()
-		.domain(d3.extent(parsedDates))
-		.range([0, graphWidth]);
-
-	// Log the domain to verify
-	// console.log(
-	// 	"Parsed domain: ",
-	// 	d3.extent(parsedDates).map((d) => d.toISOString())
-	// );
-
-	// Test the x scale with a date
-	console.log("The X for 2023-07-01: ", x(new Date("2023-07-01")));
+	// const x = d3
+	// 	.scaleTime()
+	// 	.domain(d3.extent(parsedDates))
+	// 	.range([0, graphWidth]);
 
 	const y = d3
 		.scaleLinear()
@@ -368,7 +362,7 @@ export default function UsersAdminChart() {
 										const color = colorScale(index.toString());
 										const linePath = theLine(
 											user.orders.map((order) => [
-												new Date(order.date), // Correctly parse the date
+												new Date(order.date).getTime(), // Convert Date string to Date object and then get the time
 												order.quantity,
 											])
 										);
@@ -382,7 +376,7 @@ export default function UsersAdminChart() {
 														d:
 															bottomLineGenerator(
 																user.orders.map((order) => [
-																	new Date(order.date),
+																	new Date(order.date).getTime(),
 																	order.quantity,
 																])
 															) || "",
