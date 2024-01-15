@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import { users, UsersType } from "../data/users";
+import { users } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 import ReactSelect from "./ReactSelect";
