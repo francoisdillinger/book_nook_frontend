@@ -49,6 +49,9 @@ const YAxis = ({ yScale, graphWidth, hasData }: YAxisProps) => {
 
 		const yAxis = axisLeft(yScale).ticks(5);
 		yAxisGroup.call(yAxis);
+		// Remove the axis line (the '.domain')
+		yAxisGroup.select(".domain").remove();
+		yAxisGroup.selectAll(".tick line").remove();
 
 		// Draw lines between ticks
 		const tickValues = yScale.ticks(5);
