@@ -15,6 +15,7 @@ import SideBarAdminMenu from "./components/SideBarAdminMenu";
 import AdminHome from "./components/AdminHome";
 import Scratch from "./components/Scratch";
 import UsersAdminChart from "./components/UsersAdminChart";
+import AdminChart from "./components/AdminChart";
 
 export default function App() {
 	return (
@@ -24,7 +25,8 @@ export default function App() {
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 			<div className="bg-slate-100 h-screen">
-				<UsersAdminChart />
+				{/* <UsersAdminChart /> */}
+				<AdminChart />
 			</div>
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
