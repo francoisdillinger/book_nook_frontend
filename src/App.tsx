@@ -24,7 +24,7 @@ export default function App() {
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
-			<div className="bg-slate-100 h-screen">
+			<div className="bg-slate-100 py-4">
 				{/* <UsersAdminChart /> */}
 				<AdminChart />
 			</div>
