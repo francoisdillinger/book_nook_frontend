@@ -221,7 +221,6 @@ export default function UsersAdminChart({
 											: 0.2
 									}
 									onMouseEnter={(e) => {
-										// console.log("We in here");
 										const content = (
 											<div>
 												<div>
