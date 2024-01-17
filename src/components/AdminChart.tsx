@@ -8,8 +8,9 @@ import { TooltipStateType } from "./ChartToolTip";
 import UsersAdminChart from "./UsersAdminChart";
 import UsersAdminBarChart from "./UsersAdminBarChart";
 
-const margin = { top: 20, right: 20, bottom: 100, left: 40 };
-const graphLineChartHeight = 600 - margin.top - margin.bottom;
+const margin = { top: 20, right: 20, bottom: 50, left: 40 };
+const svgHeight = 450;
+const graphLineChartHeight = svgHeight - margin.top - margin.bottom;
 const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
 export default function AdminChart() {
@@ -80,7 +81,7 @@ export default function AdminChart() {
 						<svg
 							ref={svgLineChartRef}
 							width={windowSizeInPixels * 0.9}
-							height={550}
+							height={svgHeight}
 						>
 							<g
 								ref={graphLineChartRef}
@@ -118,12 +119,14 @@ export default function AdminChart() {
 						<g
 							width={windowSizeInPixels * 0.54 - 20 - 10}
 							height={350 - 10 - 50}
-							transform={`translate(${10},${10})`}
+							transform={`translate(${margin.left},${10})`}
 						>
 							<UsersAdminBarChart
 								timeFilter={timeFilter}
 								graphHeight={350 - 10 - 50}
-								graphWidth={windowSizeInPixels * 0.54 - 20 - 10}
+								graphWidth={
+									windowSizeInPixels * 0.54 - margin.left - margin.right
+								}
 								tooltip={tooltip}
 								setTooltip={setTooltip}
 								users={users}
