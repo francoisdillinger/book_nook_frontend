@@ -7,6 +7,7 @@ import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
 import UsersAdminChart from "./UsersAdminChart";
 import UsersAdminBarChart from "./UsersAdminBarChart";
+import UsersAdminPieChart from "./UsersAdminPieChart";
 
 const margin = { top: 20, right: 20, bottom: 50, left: 40 };
 const svgHeight = 450;
@@ -143,7 +144,26 @@ export default function AdminChart() {
 					<svg
 						width={windowSizeInPixels * 0.34}
 						height={350}
-					></svg>
+					>
+						{/* <g
+							width={windowSizeInPixels * 0.34 - 20 - 10}
+							height={350 - 10 - 50}
+						> */}
+						<UsersAdminPieChart
+							timeFilter={timeFilter}
+							graphWidth={windowSizeInPixels * 0.34}
+							graphHeight={350}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							users={users}
+							colorScale={colorScale}
+							hasData={hasData}
+							setHasData={setHasData}
+							setSelectOptions={setSelectOptions}
+							focusedUser={focusedUser}
+						/>
+						{/* </g> */}
+					</svg>
 				</div>
 			</div>
 		</React.Fragment>
