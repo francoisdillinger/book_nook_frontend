@@ -28,7 +28,7 @@ const Option = (props: OptionProps) => {
 };
 
 const ReactSelect = ({ options, colorScale, setFocusedUser, focusedUser }) => {
-	console.log("Options: ", options);
+	// console.log("Options: ", options);
 	const selectOptions = options
 		.map((option, index) => {
 			return {
