@@ -24,22 +24,34 @@ export type ProcessedUserType = {
 	orders: ProcessedOrder[];
 };
 
-export const reformatUserData = (users: UsersType): UserType[] => {
-	return users.data.users.map((user) => user);
+export const reformatUserData = (users: UsersType): ProcessedUserType[] => {
+	return users.data.users.map((user) => {
+		const processedOrders = user.orders.map((order) => ({
+			...order,
+			date: order.orderDate,
+		}));
+
+		return {
+			userName: user.userName,
+			orders: processedOrders,
+		};
+	});
 };
 
-const processDataForLineChart = (users: UserType[]): ProcessedUserType[] => {
+const processDataForLineChart = (
+	users: ProcessedUserType[]
+): ProcessedUserType[] => {
 	return users.map((user) => {
 		const aggregationByDateAndId: Record<string, ProcessedOrder> = {};
 
 		user.orders.forEach((order) => {
-			const combinedKey = `${order.orderDate}-${order.orderId}`;
+			const combinedKey = `${order.date}-${order.orderId}`;
 
 			if (aggregationByDateAndId[combinedKey]) {
 				aggregationByDateAndId[combinedKey].quantity += order.quantity;
 			} else {
 				aggregationByDateAndId[combinedKey] = {
-					date: order.orderDate, // Keeping date as string
+					date: order.date, // Keeping date as string
 					quantity: order.quantity,
 					orderId: order.orderId,
 				};
@@ -66,7 +78,7 @@ const sixMonthsAgo = (date: string) => {
 
 export const getFilteredData = (
 	filter: string,
-	userData: UserType[]
+	userData: ProcessedUserType[]
 ): ProcessedUserType[] => {
 	const now = new Date();
 
@@ -75,9 +87,9 @@ export const getFilteredData = (
 			return processDataForLineChart(
 				userData.map((user) => {
 					return {
-						...user,
+						userName: user.userName,
 						orders: user.orders.filter(
-							(order) => new Date(order.orderDate) >= d3.timeDay.offset(now, -1)
+							(order) => new Date(order.date) >= d3.timeDay.offset(now, -1)
 						),
 					};
 				})
@@ -87,10 +99,9 @@ export const getFilteredData = (
 			return processDataForLineChart(
 				userData.map((user) => {
 					return {
-						...user,
+						userName: user.userName,
 						orders: user.orders.filter(
-							(order) =>
-								new Date(order.orderDate) >= d3.timeWeek.offset(now, -1)
+							(order) => new Date(order.date) >= d3.timeWeek.offset(now, -1)
 						),
 					};
 				})
@@ -100,10 +111,9 @@ export const getFilteredData = (
 			return processDataForLineChart(
 				userData.map((user) => {
 					return {
-						...user,
+						userName: user.userName,
 						orders: user.orders.filter(
-							(order) =>
-								new Date(order.orderDate) >= d3.timeMonth.offset(now, -1)
+							(order) => new Date(order.date) >= d3.timeMonth.offset(now, -1)
 						),
 					};
 				})
@@ -113,10 +123,9 @@ export const getFilteredData = (
 			return processDataForLineChart(
 				userData.map((user) => {
 					return {
-						...user,
+						userName: user.userName,
 						orders: user.orders.filter(
-							(order) =>
-								new Date(order.orderDate) >= sixMonthsAgo(now.toISOString())
+							(order) => new Date(order.date) >= sixMonthsAgo(now.toISOString())
 						),
 					};
 				})
@@ -126,10 +135,9 @@ export const getFilteredData = (
 			return processDataForLineChart(
 				userData.map((user) => {
 					return {
-						...user,
+						userName: user.userName,
 						orders: user.orders.filter(
-							(order) =>
-								new Date(order.orderDate) >= d3.timeYear.offset(now, -1)
+							(order) => new Date(order.date) >= d3.timeYear.offset(now, -1)
 						),
 					};
 				})
