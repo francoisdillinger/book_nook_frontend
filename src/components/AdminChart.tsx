@@ -115,10 +115,15 @@ export default function AdminChart() {
 						width={windowSizeInPixels * 0.54}
 						height={350}
 					>
-						<g>
+						<g
+							width={windowSizeInPixels * 0.54 - 20 - 10}
+							height={350 - 10 - 50}
+							transform={`translate(${10},${10})`}
+						>
 							<UsersAdminBarChart
-								graphHeight={350}
-								graphWidth={windowSizeInPixels * 0.54}
+								timeFilter={timeFilter}
+								graphHeight={350 - 10 - 50}
+								graphWidth={windowSizeInPixels * 0.54 - 20 - 10}
 								tooltip={tooltip}
 								setTooltip={setTooltip}
 								users={users}
