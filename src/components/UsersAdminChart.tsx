@@ -11,6 +11,10 @@ import { UsersType } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 
+const filterOutInactiveUsers = (users) => {
+	return users.filter((user) => user.orders.length > 0);
+};
+
 type UsersAdminChartType = {
 	timeFilter: string;
 	graphWidth: number;
@@ -45,7 +49,8 @@ export default function UsersAdminChart({
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
-		const filteredUserchart = getFilteredData(timeFilter, reformatedUserData);
+		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
+		const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
 		setHasData(
 			filteredUserchart.reduce(
 				(accumulator, users) => accumulator + users.orders.length,
@@ -184,7 +189,13 @@ export default function UsersAdminChart({
 										) || "",
 								}}
 								animate={{ d: linePath || "" }}
-								transition={{ ease: "easeInOut", duration: 0.5 }}
+								transition={{
+									duration: 0.5,
+									ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+									type: "spring", // Use spring physics for bounce
+									damping: 10, // Adjust damping for more or less bounce
+									stiffness: 100, // Adjust stiffness for more or less bounce
+								}}
 								fill="none"
 								strokeWidth={2}
 								stroke={
@@ -206,8 +217,11 @@ export default function UsersAdminChart({
 										cx: x(new Date(order.date)),
 									}}
 									transition={{
-										ease: "easeInOut",
 										duration: 0.5,
+										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+										type: "spring", // Use spring physics for bounce
+										damping: 10, // Adjust damping for more or less bounce
+										stiffness: 100, // Adjust stiffness for more or less bounce
 									}}
 									r={6}
 									fill={
