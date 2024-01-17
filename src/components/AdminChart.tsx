@@ -54,7 +54,7 @@ export default function AdminChart() {
 
 	return (
 		<React.Fragment>
-			<div className="flex ml-16">
+			<div className="flex ml-28">
 				<div
 					className="bg-white rounded-lg my-2 pt-2"
 					style={{ width: windowSizeInPixels * 0.9 }}
@@ -109,7 +109,7 @@ export default function AdminChart() {
 				</div>
 			</div>
 			<div
-				className="flex ml-16 justify-between"
+				className="flex ml-28 justify-between"
 				style={{ width: windowSizeInPixels * 0.9 }}
 			>
 				<div className="bg-white rounded-lg my-2 pt-2">
