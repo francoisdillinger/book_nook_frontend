@@ -11,7 +11,9 @@ import { UsersType } from "../data/users";
 import BarChartXAxis from "./BarChartXAxis";
 import BarChartYAxis from "./BarChartYAxis";
 
-const reduceOrderQuantities = (users) => {
+const reduceOrderQuantities = (
+	users: ProcessedUserType[]
+): ReducedUserDataType[] => {
 	return users.map((user) => {
 		return {
 			userName: user.userName,
@@ -23,8 +25,15 @@ const reduceOrderQuantities = (users) => {
 	});
 };
 
-const filterOutInactiveUsers = (users) => {
+const filterOutInactiveUsers = (
+	users: ProcessedUserType[]
+): ProcessedUserType[] => {
 	return users.filter((user) => user.orders.length > 0);
+};
+
+type ReducedUserDataType = {
+	userName: string;
+	totalBooksOrdered: number;
 };
 
 type UsersAdminBarChartType = {
@@ -50,13 +59,13 @@ export default function UsersAdminBarChart({
 	hasData,
 	focusedUser,
 }: UsersAdminBarChartType) {
-	const [reducedUsersData, setReducedUsersData] = useState<[]>();
+	const [reducedUsersData, setReducedUsersData] =
+		useState<ReducedUserDataType[]>();
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
+		console.log("Reformated user: ", reformatedUserData);
 		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
-		// console.log(reformatedUserData);
-		// console.log(filterOutInactiveUsers(reformatedUserData));
 		const timeFilteredUserData = getFilteredData(timeFilter, filteredUsers);
 		setReducedUsersData(reduceOrderQuantities(timeFilteredUserData));
 	}, [graphWidth, timeFilter]);
@@ -67,9 +76,11 @@ export default function UsersAdminBarChart({
 			0,
 			d3.max(
 				reducedUsersData
-					? reducedUsersData.map((user) => user.totalBooksOrdered)
+					? reducedUsersData
+							.map((user) => user.totalBooksOrdered)
+							.filter((value) => value !== undefined) // Filter out undefined values
 					: []
-			),
+			) as number, // Cast the result as number
 		])
 		.range([graphHeight, 0]);
 
