@@ -5,13 +5,16 @@ import {
 	reformatUserData,
 	getFilteredData,
 	ProcessedUserType,
+	ProcessedOrder,
 } from "../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "./ChartToolTip";
 import { UsersType } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 
-const filterOutInactiveUsers = (users) => {
+const filterOutInactiveUsers = (
+	users: ProcessedUserType[]
+): ProcessedUserType[] => {
 	return users.filter((user) => user.orders.length > 0);
 };
 
@@ -60,7 +63,7 @@ export default function UsersAdminChart({
 		setFilteredUserData(filteredUserchart);
 		setSelectOptions(filteredUserchart);
 		setAllDates(
-			filteredUserchart.flatMap((user: { orders: any[] }) =>
+			filteredUserchart.flatMap((user: { orders: ProcessedOrder[] }) =>
 				user.orders.map((order: { date: any }) => order.date)
 			)
 		);
