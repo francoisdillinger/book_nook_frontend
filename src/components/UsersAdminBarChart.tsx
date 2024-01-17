@@ -8,8 +8,8 @@ import {
 } from "../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "./ChartToolTip";
 import { UsersType } from "../data/users";
-import XAxis from "./XAxis";
-import YAxis from "./YAxis";
+import BarChartXAxis from "./BarChartXAxis";
+import BarChartYAxis from "./BarChartYAxis";
 
 const reduceOrderQuantities = (users) => {
 	return users.map((user) => {
@@ -23,6 +23,10 @@ const reduceOrderQuantities = (users) => {
 	});
 };
 
+const filterOutInactiveUsers = (users) => {
+	return users.filter((user) => user.orders.length > 0);
+};
+
 type UsersAdminBarChartType = {
 	timeFilter: string;
 	graphWidth: number;
@@ -32,8 +36,6 @@ type UsersAdminBarChartType = {
 	users: UsersType;
 	colorScale: Function;
 	hasData: number;
-	setHasData: Function;
-	setSelectOptions: Function;
 	focusedUser: string;
 };
 
@@ -46,21 +48,18 @@ export default function UsersAdminBarChart({
 	users,
 	colorScale,
 	hasData,
-	setHasData,
-	setSelectOptions,
 	focusedUser,
 }: UsersAdminBarChartType) {
 	const [reducedUsersData, setReducedUsersData] = useState<[]>();
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
-		const timeFilteredUserData = getFilteredData(
-			timeFilter,
-			reformatedUserData
-		);
+		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
+		// console.log(reformatedUserData);
+		// console.log(filterOutInactiveUsers(reformatedUserData));
+		const timeFilteredUserData = getFilteredData(timeFilter, filteredUsers);
 		setReducedUsersData(reduceOrderQuantities(timeFilteredUserData));
 	}, [graphWidth, timeFilter]);
-	console.log("Reduced User Data: ", reducedUsersData);
 
 	const y = d3
 		.scaleLinear()
@@ -72,7 +71,7 @@ export default function UsersAdminBarChart({
 					: []
 			),
 		])
-		.range([0, graphHeight]);
+		.range([graphHeight, 0]);
 
 	const x = d3
 		.scaleBand()
@@ -85,26 +84,34 @@ export default function UsersAdminBarChart({
 	// console.log("Colors: ", colorScale(["James", "Thomas", "Jester"]));
 	return (
 		<React.Fragment>
-			<XAxis
+			<BarChartXAxis
 				xScale={x}
 				height={graphHeight}
+				ticks={reducedUsersData?.length || 0}
 			/>
-			{/* <YAxis
+			<BarChartYAxis
 				yScale={y}
 				graphWidth={graphWidth}
-				hasData={hasData}
-			/> */}
+			/>
 			{hasData &&
 				reducedUsersData!.map((user, index) => {
 					const color = colorScale(index.toString());
-					const height = graphHeight - y(user.totalBooksOrdered);
+					const barHeight = graphHeight - y(user.totalBooksOrdered);
 					return (
-						<rect
+						<motion.rect
+							initial={{ height: 0, y: graphHeight }}
+							animate={{ height: barHeight, y: y(user.totalBooksOrdered) }}
+							transition={{
+								duration: 0.5,
+								ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+								type: "spring", // Use spring physics for bounce
+								damping: 10, // Adjust damping for more or less bounce
+								stiffness: 100, // Adjust stiffness for more or less bounce
+							}}
 							key={user.userName}
 							width={x.bandwidth()}
-							height={y(user.totalBooksOrdered)}
+							height={barHeight}
 							x={x(user.userName)}
-							y={height}
 							fill={
 								focusedUser === user.userName || focusedUser === ""
 									? color
@@ -113,7 +120,34 @@ export default function UsersAdminBarChart({
 							opacity={
 								focusedUser === user.userName || focusedUser === "" ? 1 : 0.2
 							}
-						></rect>
+							onMouseEnter={(e) => {
+								const content = (
+									<div>
+										<div>
+											<span className="text-slate-600 font-bold">
+												Username:
+											</span>{" "}
+											{user.userName}
+										</div>
+										<div>
+											<span className="text-slate-600 font-bold">
+												Order Quantity:
+											</span>{" "}
+											{user.totalBooksOrdered.toString()}
+										</div>
+									</div>
+								);
+								setTooltip({
+									visible: true,
+									content: content,
+									x: e.clientX,
+									y: e.clientY,
+								});
+							}}
+							onMouseLeave={() => {
+								setTooltip({ ...tooltip, visible: false });
+							}}
+						></motion.rect>
 					);
 				})}
 		</React.Fragment>
