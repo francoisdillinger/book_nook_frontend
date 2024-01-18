@@ -7,9 +7,14 @@ import { ScaleLinear } from "d3-scale";
 type BarChartYAxisProps = {
 	yScale: ScaleLinear<number, number>;
 	graphWidth: number;
+	graphHeight: number;
 };
 
-const BarChartYAxis = ({ yScale, graphWidth }: BarChartYAxisProps) => {
+const BarChartYAxis = ({
+	yScale,
+	graphWidth,
+	graphHeight,
+}: BarChartYAxisProps) => {
 	const yAxisRef = useRef<SVGSVGElement>(null);
 
 	useEffect(() => {
@@ -25,6 +30,15 @@ const BarChartYAxis = ({ yScale, graphWidth }: BarChartYAxisProps) => {
 
 	return (
 		<g className="y-axis-container">
+			<text
+				className="fill-current text-neutral-400 font-medium text-lg"
+				x={-graphHeight / 2}
+				y={-40}
+				transform={`rotate(${-90})`}
+				textAnchor="middle"
+			>
+				Total Books Ordered
+			</text>
 			<g
 				ref={yAxisRef}
 				className="y-axis text-neutral-600"
