@@ -79,17 +79,6 @@ export default function AdminChart() {
 					</div>
 					<ChartToolTip tooltip={tooltip} />
 					<div className="">
-						{/* <svg
-							ref={svgLineChartRef}
-							width={windowSizeInPixels * 0.9}
-							height={svgHeight}
-						>
-							<g
-								ref={graphLineChartRef}
-								width={graphLineChartWidth}
-								height={graphLineChartHeight}
-								transform={`translate(${margin.left},${margin.top})`}
-							> */}
 						<UsersAdminChart
 							margin={margin}
 							timeFilter={timeFilter}
@@ -105,8 +94,6 @@ export default function AdminChart() {
 							setSelectOptions={setSelectOptions}
 							focusedUser={focusedUser}
 						/>
-						{/* </g>
-						</svg> */}
 					</div>
 				</div>
 			</div>
@@ -115,33 +102,32 @@ export default function AdminChart() {
 				style={{ width: windowSizeInPixels * 0.9 }}
 			>
 				<div className="bg-white rounded-lg my-2 pt-2">
-					<svg
+					{/* <svg
 						width={windowSizeInPixels * 0.54}
 						height={350}
-					>
-						{/* <g
+					> */}
+					{/* <g
 							width={windowSizeInPixels * 0.54 - 20 - 10}
 							height={350 - 10 - 50}
 							transform={`translate(${margin.left},${10})`}
 						> */}
-						<UsersAdminBarChart
-							margin={margin}
-							timeFilter={timeFilter}
-							graphHeight={350 - 10 - 50}
-							graphWidth={
-								windowSizeInPixels * 0.54 - margin.left - margin.right
-							}
-							tooltip={tooltip}
-							setTooltip={setTooltip}
-							users={users}
-							colorScale={colorScale}
-							hasData={hasData}
-							setHasData={setHasData}
-							setSelectOptions={setSelectOptions}
-							focusedUser={focusedUser}
-						/>
-						{/* </g> */}
-					</svg>
+					<UsersAdminBarChart
+						margin={margin}
+						timeFilter={timeFilter}
+						windowSizeInPixels={windowSizeInPixels}
+						graphHeight={350 - 10 - 50}
+						graphWidth={windowSizeInPixels * 0.54 - margin.left - margin.right}
+						tooltip={tooltip}
+						setTooltip={setTooltip}
+						users={users}
+						colorScale={colorScale}
+						hasData={hasData}
+						setHasData={setHasData}
+						setSelectOptions={setSelectOptions}
+						focusedUser={focusedUser}
+					/>
+					{/* </g> */}
+					{/* </svg> */}
 				</div>
 				<div className="bg-white rounded-lg my-2 pt-2">
 					<svg
