@@ -32,14 +32,14 @@ const BarChartXAxis = ({ xScale, height, ticks }: BarChartXAxisTypes) => {
 		// This will rotate the text which might be needed depending on the number of users
 		// select(ref.current)
 		// 	.selectAll("text")
-		// 	.attr("transform", "rotate(-40)")
+		// 	.attr("transform", "rotate(-10)")
 		// 	.attr("text-anchor", "end");
 	}, [xScale]);
 
 	return (
 		<g
 			ref={ref}
-			className="text-neutral-600"
+			className="text-neutral-600 "
 			transform={`translate(0,${height})`}
 		/>
 	);
