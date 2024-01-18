@@ -9,14 +9,14 @@ import UsersAdminChart from "./UsersAdminChart";
 import UsersAdminBarChart from "./UsersAdminBarChart";
 import UsersAdminPieChart from "./UsersAdminPieChart";
 
-const margin = { top: 20, right: 20, bottom: 50, left: 40 };
-const svgHeight = 450;
-const graphLineChartHeight = svgHeight - margin.top - margin.bottom;
+const margin = { top: 20, right: 20, bottom: 50, left: 80 };
+// const svgHeight = 450;
+// const graphLineChartHeight = svgHeight - margin.top - margin.bottom;
 const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
 export default function AdminChart() {
-	const svgLineChartRef = useRef<SVGSVGElement>(null);
-	const graphLineChartRef = useRef<SVGSVGElement>(null);
+	// const svgLineChartRef = useRef<SVGSVGElement>(null);
+	// const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [focusedUser, setFocusedUser] = useState("");
 	const [windowSizeInPixels, setWindowSizeInPixels] = useState(
 		window.innerWidth
@@ -30,10 +30,10 @@ export default function AdminChart() {
 		x: 0,
 		y: 0,
 	});
-	const graphLineChartWidth =
-		windowSizeInPixels <= 800
-			? windowSizeInPixels - margin.left - margin.right
-			: windowSizeInPixels * 0.9 - margin.left - margin.right;
+	// const graphLineChartWidth =
+	// 	windowSizeInPixels <= 800
+	// 		? windowSizeInPixels - margin.left - margin.right
+	// 		: windowSizeInPixels * 0.9 - margin.left - margin.right;
 
 	useEffect(() => {
 		const windowSizePixels = () => {
@@ -54,7 +54,7 @@ export default function AdminChart() {
 
 	return (
 		<React.Fragment>
-			<div className="flex ml-28">
+			<div className="flex lg:ml-20 xl:ml-28">
 				<div
 					className="bg-white rounded-lg my-2 pt-2"
 					style={{ width: windowSizeInPixels * 0.9 }}
@@ -79,7 +79,7 @@ export default function AdminChart() {
 					</div>
 					<ChartToolTip tooltip={tooltip} />
 					<div className="">
-						<svg
+						{/* <svg
 							ref={svgLineChartRef}
 							width={windowSizeInPixels * 0.9}
 							height={svgHeight}
@@ -89,27 +89,29 @@ export default function AdminChart() {
 								width={graphLineChartWidth}
 								height={graphLineChartHeight}
 								transform={`translate(${margin.left},${margin.top})`}
-							>
-								<UsersAdminChart
-									timeFilter={timeFilter}
-									graphHeight={graphLineChartHeight}
-									graphWidth={graphLineChartWidth}
-									tooltip={tooltip}
-									setTooltip={setTooltip}
-									users={users}
-									colorScale={colorScale}
-									hasData={hasData}
-									setHasData={setHasData}
-									setSelectOptions={setSelectOptions}
-									focusedUser={focusedUser}
-								/>
-							</g>
-						</svg>
+							> */}
+						<UsersAdminChart
+							margin={margin}
+							timeFilter={timeFilter}
+							windowSizeInPixels={windowSizeInPixels}
+							// graphHeight={graphLineChartHeight}
+							// graphWidth={graphLineChartWidth}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							users={users}
+							colorScale={colorScale}
+							hasData={hasData}
+							setHasData={setHasData}
+							setSelectOptions={setSelectOptions}
+							focusedUser={focusedUser}
+						/>
+						{/* </g>
+						</svg> */}
 					</div>
 				</div>
 			</div>
 			<div
-				className="flex ml-28 justify-between"
+				className="flex lg:ml-20 xl:ml-28 justify-between"
 				style={{ width: windowSizeInPixels * 0.9 }}
 			>
 				<div className="bg-white rounded-lg my-2 pt-2">
@@ -117,27 +119,28 @@ export default function AdminChart() {
 						width={windowSizeInPixels * 0.54}
 						height={350}
 					>
-						<g
+						{/* <g
 							width={windowSizeInPixels * 0.54 - 20 - 10}
 							height={350 - 10 - 50}
 							transform={`translate(${margin.left},${10})`}
-						>
-							<UsersAdminBarChart
-								timeFilter={timeFilter}
-								graphHeight={350 - 10 - 50}
-								graphWidth={
-									windowSizeInPixels * 0.54 - margin.left - margin.right
-								}
-								tooltip={tooltip}
-								setTooltip={setTooltip}
-								users={users}
-								colorScale={colorScale}
-								hasData={hasData}
-								setHasData={setHasData}
-								setSelectOptions={setSelectOptions}
-								focusedUser={focusedUser}
-							/>
-						</g>
+						> */}
+						<UsersAdminBarChart
+							margin={margin}
+							timeFilter={timeFilter}
+							graphHeight={350 - 10 - 50}
+							graphWidth={
+								windowSizeInPixels * 0.54 - margin.left - margin.right
+							}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							users={users}
+							colorScale={colorScale}
+							hasData={hasData}
+							setHasData={setHasData}
+							setSelectOptions={setSelectOptions}
+							focusedUser={focusedUser}
+						/>
+						{/* </g> */}
 					</svg>
 				</div>
 				<div className="bg-white rounded-lg my-2 pt-2">
