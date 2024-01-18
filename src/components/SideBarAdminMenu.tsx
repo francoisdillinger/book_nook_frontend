@@ -4,7 +4,7 @@ export default function SideBarAdminMenu() {
 	const [close, setClose] = useState<boolean>(true);
 
 	return (
-		<div className="relative">
+		<div className="fixed top-0 left-0 h-screen">
 			<div
 				className={`bg-white shadow-md min-h-screen w-72 absolute transition ease-in-out transform ${
 					close ? "translate-x-0" : "-translate-x-56"
