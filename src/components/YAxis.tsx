@@ -8,9 +8,10 @@ type YAxisProps = {
 	yScale: ScaleLinear<number, number>;
 	graphWidth: number;
 	hasData: Number;
+	graphHeight: Number;
 };
 
-const YAxis = ({ yScale, graphWidth, hasData }: YAxisProps) => {
+const YAxis = ({ yScale, graphWidth, hasData, graphHeight }: YAxisProps) => {
 	const yAxisRef = useRef<SVGSVGElement>(null);
 	const stripesRef = useRef<SVGSVGElement>(null);
 
@@ -71,15 +72,26 @@ const YAxis = ({ yScale, graphWidth, hasData }: YAxisProps) => {
 	}, [yScale, graphWidth]);
 
 	return (
-		<g className="y-axis-container">
-			<g
-				ref={stripesRef}
-				className="zebra-stripes"
-			/>
-			<g
-				ref={yAxisRef}
-				className="y-axis text-neutral-600"
-			/>
+		<g>
+			<text
+				className="fill-current text-neutral-400 font-medium text-lg"
+				x={-graphHeight / 2}
+				y={-40}
+				transform={`rotate(${-90})`}
+				textAnchor="middle"
+			>
+				Books Per Order
+			</text>
+			<g className="y-axis-container">
+				<g
+					ref={stripesRef}
+					className="zebra-stripes"
+				/>
+				<g
+					ref={yAxisRef}
+					className="y-axis text-neutral-600"
+				/>
+			</g>
 		</g>
 	);
 };
