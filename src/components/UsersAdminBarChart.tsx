@@ -40,9 +40,11 @@ type ReducedUserDataType = {
 type UsersAdminBarChartType = {
 	margin: MarginType;
 	timeFilter: string;
-	windowSizeInPixels: number;
-	graphWidth: number;
-	graphHeight: number;
+	width: number;
+	height: number;
+	// windowSizeInPixels: number;
+	// graphWidth: number;
+	// graphHeight: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -54,9 +56,11 @@ type UsersAdminBarChartType = {
 export default function UsersAdminBarChart({
 	margin,
 	timeFilter,
-	windowSizeInPixels,
-	graphHeight,
-	graphWidth,
+	width,
+	height,
+	// windowSizeInPixels,
+	// graphHeight,
+	// graphWidth,
 	tooltip,
 	setTooltip,
 	users,
@@ -64,6 +68,10 @@ export default function UsersAdminBarChart({
 	hasData,
 	focusedUser,
 }: UsersAdminBarChartType) {
+	const svgWidth = width;
+	const svgHeight = height;
+	const graphHeight = svgHeight - margin.top - margin.bottom;
+	const graphWidth = svgWidth - margin.left - margin.right;
 	const [reducedUsersData, setReducedUsersData] =
 		useState<ReducedUserDataType[]>();
 
@@ -101,8 +109,8 @@ export default function UsersAdminBarChart({
 	return (
 		<React.Fragment>
 			<svg
-				width={windowSizeInPixels * 0.54}
-				height={350}
+				width={svgWidth}
+				height={svgHeight}
 			>
 				<g
 					width={graphWidth}
@@ -114,6 +122,7 @@ export default function UsersAdminBarChart({
 							xScale={x}
 							height={graphHeight}
 							ticks={reducedUsersData?.length || 0}
+							width={graphWidth}
 						/>
 					)}
 					{hasData && (
