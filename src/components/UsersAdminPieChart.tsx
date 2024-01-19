@@ -37,9 +37,11 @@ type ReducedUserDataType = {
 
 type UsersAdminPieChartType = {
 	timeFilter: string;
-	windowSizeInPixels: number;
-	graphWidth: number;
-	graphHeight: number;
+	width: number;
+	height: number;
+	// windowSizeInPixels: number;
+	// graphWidth: number;
+	// graphHeight: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -50,9 +52,11 @@ type UsersAdminPieChartType = {
 
 const UsersAdminPieChart = ({
 	timeFilter,
-	windowSizeInPixels,
-	graphHeight,
-	graphWidth,
+	width,
+	height,
+	// windowSizeInPixels,
+	// graphHeight,
+	// graphWidth,
 	tooltip,
 	setTooltip,
 	users,
@@ -60,6 +64,10 @@ const UsersAdminPieChart = ({
 	hasData,
 	focusedUser,
 }: UsersAdminPieChartType) => {
+	const svgWidth = width;
+	const svgHeight = height;
+	const graphHeight = svgHeight;
+	const graphWidth = svgWidth;
 	const [reducedUsersData, setReducedUsersData] =
 		useState<ReducedUserDataType[]>();
 	const [totalOrderCount, setTotalOrderCount] = useState(0);
@@ -103,17 +111,17 @@ const UsersAdminPieChart = ({
 	return (
 		<React.Fragment>
 			<svg
-				width={windowSizeInPixels * 0.34}
-				height={350}
+				width={svgWidth}
+				height={svgHeight}
 			>
 				<g transform={`translate(${graphWidth / 2}, ${graphHeight / 2})`}>
 					{" "}
 					{hasData && (
 						<text
 							x={0}
-							y={-graphHeight + 200}
+							y={-graphHeight / 2.3}
 							textAnchor="middle"
-							className="fill-current text-neutral-500 text-2xl"
+							className="fill-current text-neutral-500 text-2xl lg:text-lg xl:text-2xl"
 						>
 							Percentage of Orders By User
 						</text>
@@ -124,7 +132,7 @@ const UsersAdminPieChart = ({
 							y={0}
 							textAnchor="middle"
 							dominantBaseline="middle"
-							className="fill-current text-neutral-600 text-5xl font-light"
+							className="fill-current text-neutral-600 font-light text-5xl lg:text-4xl xl:text-5xl"
 						>
 							{focusedUser != ""
 								? parseFloat(
@@ -173,7 +181,7 @@ const UsersAdminPieChart = ({
 						}}
 					>
 						{hasData &&
-							pie(reducedUsersData).map((user, index) => {
+							pie(reducedUsersData)!.map((user, index) => {
 								const color = colorScale(index.toString());
 								return (
 									<motion.path
