@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
 import {
@@ -11,6 +11,7 @@ import { TooltipStateType } from "./ChartToolTip";
 import { UsersType } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
+import { MarginType } from "./AdminChart";
 
 const filterOutInactiveUsers = (
 	users: ProcessedUserType[]
@@ -19,9 +20,11 @@ const filterOutInactiveUsers = (
 };
 
 type UsersAdminChartType = {
+	margin: MarginType;
 	timeFilter: string;
-	graphWidth: number;
-	graphHeight: number;
+	// graphWidth: number;
+	// graphHeight: number;
+	windowSizeInPixels: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -33,9 +36,11 @@ type UsersAdminChartType = {
 };
 
 export default function UsersAdminChart({
+	margin,
 	timeFilter,
-	graphHeight,
-	graphWidth,
+	// graphHeight,
+	// graphWidth,
+	windowSizeInPixels,
 	tooltip,
 	setTooltip,
 	users,
@@ -45,6 +50,14 @@ export default function UsersAdminChart({
 	setSelectOptions,
 	focusedUser,
 }: UsersAdminChartType) {
+	const svgHeight = 450;
+	const graphHeight = svgHeight - margin.top - margin.bottom;
+	const graphWidth =
+		windowSizeInPixels <= 800
+			? windowSizeInPixels - margin.left - margin.right
+			: windowSizeInPixels * 0.9 - margin.left - margin.right;
+	const svgLineChartRef = useRef<SVGSVGElement>(null);
+	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [filteredUserData, setFilteredUserData] =
 		useState<ProcessedUserType[]>();
 	const [allDates, setAllDates] = useState();
@@ -158,143 +171,165 @@ export default function UsersAdminChart({
 
 	return (
 		<React.Fragment>
-			<XAxis
-				xScale={x}
-				height={graphHeight}
-			/>
-			<YAxis
-				yScale={y}
-				graphWidth={graphWidth}
-				hasData={hasData}
-			/>
-			{hasData ? (
-				filteredUserData!.map((user, index) => {
-					const color = colorScale(index.toString());
-					const linePath = theLine(
-						user.orders.map((order) => [
-							new Date(order.date).getTime(), // Convert Date string to Date object and then get the time
-							order.quantity,
-						])
-					);
+			<svg
+				ref={svgLineChartRef}
+				width={windowSizeInPixels * 0.9}
+				height={svgHeight}
+			>
+				<g
+					ref={graphLineChartRef}
+					width={graphWidth}
+					height={graphHeight}
+					transform={`translate(${margin.left},${margin.top})`}
+				>
+					{hasData && (
+						<XAxis
+							xScale={x}
+							height={graphHeight}
+						/>
+					)}
+					{hasData && (
+						<YAxis
+							yScale={y}
+							graphWidth={graphWidth}
+							hasData={hasData}
+							graphHeight={graphHeight}
+						/>
+					)}
+					{hasData ? (
+						filteredUserData!.map((user, index) => {
+							const color = colorScale(index.toString());
+							const linePath = theLine(
+								user.orders.map((order) => [
+									new Date(order.date).getTime(), // Convert Date string to Date object and then get the time
+									order.quantity,
+								])
+							);
 
-					return (
-						<React.Fragment key={user.userName}>
-							{/* Unique key for each fragment */}
-							<motion.path
-								key={user.orders}
-								initial={{
-									d:
-										bottomLineGenerator(
-											user.orders.map((order) => [
-												new Date(order.date).getTime(),
-												order.quantity,
-											])
-										) || "",
-								}}
-								animate={{ d: linePath || "" }}
-								transition={{
-									duration: 0.5,
-									ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-									type: "spring", // Use spring physics for bounce
-									damping: 10, // Adjust damping for more or less bounce
-									stiffness: 100, // Adjust stiffness for more or less bounce
-								}}
-								fill="none"
-								strokeWidth={2}
-								stroke={
-									focusedUser === user.userName || focusedUser === ""
-										? color
-										: "gray"
-								}
-								opacity={
-									focusedUser === user.userName || focusedUser === "" ? 1 : 0.2
-								}
+							return (
+								<React.Fragment key={user.userName}>
+									{/* Unique key for each fragment */}
+									<motion.path
+										key={user.orders}
+										initial={{
+											d:
+												bottomLineGenerator(
+													user.orders.map((order) => [
+														new Date(order.date).getTime(),
+														order.quantity,
+													])
+												) || "",
+										}}
+										animate={{ d: linePath || "" }}
+										transition={{
+											duration: 0.5,
+											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+											type: "spring", // Use spring physics for bounce
+											damping: 10, // Adjust damping for more or less bounce
+											stiffness: 100, // Adjust stiffness for more or less bounce
+										}}
+										fill="none"
+										strokeWidth={2}
+										stroke={
+											focusedUser === user.userName || focusedUser === ""
+												? color
+												: "gray"
+										}
+										opacity={
+											focusedUser === user.userName || focusedUser === ""
+												? 0.6
+												: 0.2
+										}
+									/>
+									{user.orders.map((order) => (
+										<motion.circle
+											key={order.orderId}
+											className="cursor-pointer"
+											stroke={"white"}
+											strokeWidth={2}
+											initial={{ cy: graphHeight }}
+											animate={{
+												cy: y(order.quantity),
+												cx: x(new Date(order.date)),
+											}}
+											transition={{
+												duration: 0.5,
+												ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+												type: "spring", // Use spring physics for bounce
+												damping: 10, // Adjust damping for more or less bounce
+												stiffness: 100, // Adjust stiffness for more or less bounce
+											}}
+											r={6}
+											fill={
+												focusedUser === user.userName || focusedUser === ""
+													? color
+													: "gray"
+											}
+											opacity={
+												focusedUser === user.userName || focusedUser === ""
+													? 1
+													: 0.2
+											}
+											onMouseEnter={(e) => {
+												const content = (
+													<div>
+														<div>
+															<span className="text-slate-600 font-bold">
+																Order ID:
+															</span>{" "}
+															{order.orderId}
+														</div>
+														<div>
+															<span className="text-slate-600 font-bold">
+																Date:
+															</span>{" "}
+															{order.date.toString()}
+														</div>
+														<div>
+															<span className="text-slate-600 font-bold">
+																Quantity:
+															</span>{" "}
+															{order.quantity}
+														</div>
+													</div>
+												);
+												setTooltip({
+													visible: true,
+													content: content,
+													x: e.clientX + 10,
+													y: e.clientY + 10,
+												});
+											}}
+											onMouseLeave={() => {
+												setTooltip({ ...tooltip, visible: false });
+											}}
+										/>
+									))}
+								</React.Fragment>
+							);
+						})
+					) : (
+						<React.Fragment>
+							<rect
+								x={1}
+								y={0}
+								width={graphWidth - 1}
+								height={graphHeight}
+								className="fill-slate-100"
 							/>
-							{user.orders.map((order) => (
-								<motion.circle
-									key={order.orderId}
-									className="cursor-pointer"
-									initial={{ cy: graphHeight }}
-									animate={{
-										cy: y(order.quantity),
-										cx: x(new Date(order.date)),
-									}}
-									transition={{
-										duration: 0.5,
-										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-										type: "spring", // Use spring physics for bounce
-										damping: 10, // Adjust damping for more or less bounce
-										stiffness: 100, // Adjust stiffness for more or less bounce
-									}}
-									r={6}
-									fill={
-										focusedUser === user.userName || focusedUser === ""
-											? color
-											: "gray"
-									}
-									opacity={
-										focusedUser === user.userName || focusedUser === ""
-											? 1
-											: 0.2
-									}
-									onMouseEnter={(e) => {
-										const content = (
-											<div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Order ID:
-													</span>{" "}
-													{order.orderId}
-												</div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Date:
-													</span>{" "}
-													{order.date.toString()}
-												</div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Quantity:
-													</span>{" "}
-													{order.quantity}
-												</div>
-											</div>
-										);
-										setTooltip({
-											visible: true,
-											content: content,
-											x: e.clientX,
-											y: e.clientY,
-										});
-									}}
-									onMouseLeave={() => {
-										setTooltip({ ...tooltip, visible: false });
-									}}
-								/>
-							))}
+							<text
+								x={graphWidth / 2}
+								y={graphHeight / 2}
+								textAnchor="middle" // Centers horizontally
+								dominantBaseline="middle" // Centers vertically
+								className="fill-current text-logo text-5xl font-light"
+							>
+								No Data Exists For This Period
+							</text>
 						</React.Fragment>
-					);
-				})
-			) : (
-				<React.Fragment>
-					<rect
-						x={1}
-						y={0}
-						width={graphWidth - 1}
-						height={graphHeight}
-						className="fill-slate-100"
-					/>
-					<text
-						x={graphWidth / 2}
-						y={graphHeight / 2}
-						textAnchor="middle" // Centers horizontally
-						dominantBaseline="middle" // Centers vertically
-						className="fill-current text-logo text-5xl font-light"
-					>
-						No Data Exists For This Period
-					</text>
-				</React.Fragment>
-			)}
+					)}
+				</g>
+			</svg>
 		</React.Fragment>
 	);
 }
