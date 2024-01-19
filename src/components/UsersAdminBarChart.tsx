@@ -10,6 +10,7 @@ import { TooltipStateType } from "./ChartToolTip";
 import { UsersType } from "../data/users";
 import BarChartXAxis from "./BarChartXAxis";
 import BarChartYAxis from "./BarChartYAxis";
+import { MarginType } from "./AdminChart";
 
 const reduceOrderQuantities = (
 	users: ProcessedUserType[]
@@ -37,7 +38,9 @@ type ReducedUserDataType = {
 };
 
 type UsersAdminBarChartType = {
+	margin: MarginType;
 	timeFilter: string;
+	windowSizeInPixels: number;
 	graphWidth: number;
 	graphHeight: number;
 	tooltip: TooltipStateType;
@@ -49,7 +52,9 @@ type UsersAdminBarChartType = {
 };
 
 export default function UsersAdminBarChart({
+	margin,
 	timeFilter,
+	windowSizeInPixels,
 	graphHeight,
 	graphWidth,
 	tooltip,
@@ -95,72 +100,110 @@ export default function UsersAdminBarChart({
 	// console.log("Colors: ", colorScale(["James", "Thomas", "Jester"]));
 	return (
 		<React.Fragment>
-			<BarChartXAxis
-				xScale={x}
-				height={graphHeight}
-				ticks={reducedUsersData?.length || 0}
-			/>
-			<BarChartYAxis
-				yScale={y}
-				graphWidth={graphWidth}
-			/>
-			{hasData &&
-				reducedUsersData!.map((user, index) => {
-					const color = colorScale(index.toString());
-					const barHeight = graphHeight - y(user.totalBooksOrdered);
-					return (
-						<motion.rect
-							initial={{ height: 0, y: graphHeight }}
-							animate={{ height: barHeight, y: y(user.totalBooksOrdered) }}
-							transition={{
-								duration: 0.5,
-								ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-								type: "spring", // Use spring physics for bounce
-								damping: 10, // Adjust damping for more or less bounce
-								stiffness: 100, // Adjust stiffness for more or less bounce
-							}}
-							key={user.userName}
-							width={x.bandwidth()}
-							height={barHeight}
-							x={x(user.userName)}
-							fill={
-								focusedUser === user.userName || focusedUser === ""
-									? color
-									: "gray"
-							}
-							opacity={
-								focusedUser === user.userName || focusedUser === "" ? 1 : 0.2
-							}
-							onMouseEnter={(e) => {
-								const content = (
-									<div>
-										<div>
-											<span className="text-slate-600 font-bold">
-												Username:
-											</span>{" "}
-											{user.userName}
-										</div>
-										<div>
-											<span className="text-slate-600 font-bold">
-												Order Quantity:
-											</span>{" "}
-											{user.totalBooksOrdered.toString()}
-										</div>
-									</div>
-								);
-								setTooltip({
-									visible: true,
-									content: content,
-									x: e.clientX,
-									y: e.clientY,
-								});
-							}}
-							onMouseLeave={() => {
-								setTooltip({ ...tooltip, visible: false });
-							}}
-						></motion.rect>
-					);
-				})}
+			<svg
+				width={windowSizeInPixels * 0.54}
+				height={350}
+			>
+				<g
+					width={graphWidth}
+					height={graphHeight}
+					transform={`translate(${margin.left},${10})`}
+				>
+					{hasData && (
+						<BarChartXAxis
+							xScale={x}
+							height={graphHeight}
+							ticks={reducedUsersData?.length || 0}
+						/>
+					)}
+					{hasData && (
+						<BarChartYAxis
+							yScale={y}
+							graphWidth={graphWidth}
+							graphHeight={graphHeight}
+						/>
+					)}
+					{hasData ? (
+						reducedUsersData!.map((user, index) => {
+							const color = colorScale(index.toString());
+							const barHeight = graphHeight - y(user.totalBooksOrdered);
+							return (
+								<motion.rect
+									initial={{ height: 0, y: graphHeight }}
+									animate={{ height: barHeight, y: y(user.totalBooksOrdered) }}
+									transition={{
+										duration: 0.5,
+										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+										type: "spring", // Use spring physics for bounce
+										damping: 10, // Adjust damping for more or less bounce
+										stiffness: 100, // Adjust stiffness for more or less bounce
+									}}
+									key={user.userName}
+									width={x.bandwidth()}
+									height={barHeight}
+									x={x(user.userName)}
+									fill={
+										focusedUser === user.userName || focusedUser === ""
+											? color
+											: "gray"
+									}
+									opacity={
+										focusedUser === user.userName || focusedUser === ""
+											? 1
+											: 0.2
+									}
+									onMouseEnter={(e) => {
+										const content = (
+											<div>
+												<div>
+													<span className="text-slate-600 font-bold">
+														Username:
+													</span>{" "}
+													{user.userName}
+												</div>
+												<div>
+													<span className="text-slate-600 font-bold">
+														Order Quantity:
+													</span>{" "}
+													{user.totalBooksOrdered.toString()}
+												</div>
+											</div>
+										);
+										setTooltip({
+											visible: true,
+											content: content,
+											x: e.clientX + 10,
+											y: e.clientY + 10,
+										});
+									}}
+									onMouseLeave={() => {
+										setTooltip({ ...tooltip, visible: false });
+									}}
+								></motion.rect>
+							);
+						})
+					) : (
+						<React.Fragment>
+							<rect
+								x={1}
+								y={0}
+								width={graphWidth - 1}
+								height={graphHeight}
+								className="fill-slate-100"
+							/>
+							<text
+								x={graphWidth / 2}
+								y={graphHeight / 2}
+								textAnchor="middle" // Centers horizontally
+								dominantBaseline="middle" // Centers vertically
+								className="fill-current text-logo text-4xl font-light"
+							>
+								No Data Exists For This Period
+							</text>
+						</React.Fragment>
+					)}
+				</g>
+			</svg>
 		</React.Fragment>
 	);
 }
