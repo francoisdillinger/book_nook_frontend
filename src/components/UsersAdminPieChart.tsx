@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
+import { PieArcDatum, pie } from "d3-shape";
 import { motion } from "framer-motion";
 import {
 	reformatUserData,
@@ -160,10 +161,6 @@ const UsersAdminPieChart = ({
 					)}
 					<motion.g
 						key={key}
-						// animate={{
-						// 	rotate: [10, -10, 5, -5, 3, -3, 0],
-						// 	rotate: [20, -20, 10, -10, 5, -5, 0],
-						// }}
 						animate={{
 							rotate:
 								key > 2
@@ -173,10 +170,6 @@ const UsersAdminPieChart = ({
 						transition={{
 							duration: 1,
 							ease: "easeInOut",
-							// ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-							// type: "spring", // Use spring physics for bounce
-							// damping: 20, // Adjust damping for more or less bounce
-							// stiffness: 100, // Adjust stiffness for more or less bounce
 						}}
 					>
 						{hasData &&
@@ -185,12 +178,9 @@ const UsersAdminPieChart = ({
 								return (
 									<motion.path
 										key={user.data.userName}
-										fill="transparent"
 										d={arcPath(user)}
 										stroke={"white"}
 										strokeWidth={2}
-										// initial={{ strokeWidth: 20 }}
-										// animate={{ strokeWidth: 2 }}
 										transition={{
 											duration: 0.5,
 											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
