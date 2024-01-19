@@ -9,9 +9,15 @@ type BarChartXAxisTypes = {
 	xScale: ScaleBand<string>;
 	height: number;
 	ticks: number;
+	width: number;
 };
 
-const BarChartXAxis = ({ xScale, height, ticks }: BarChartXAxisTypes) => {
+const BarChartXAxis = ({
+	xScale,
+	height,
+	ticks,
+	width,
+}: BarChartXAxisTypes) => {
 	const ref = useRef<SVGGElement>(null);
 
 	useEffect(() => {
@@ -30,11 +36,11 @@ const BarChartXAxis = ({ xScale, height, ticks }: BarChartXAxisTypes) => {
 			.remove();
 		select(ref.current).selectAll(".tick line").remove();
 		// This will rotate the text which might be needed depending on the number of users
-		// select(ref.current)
-		// 	.selectAll("text")
-		// 	.attr("transform", "rotate(-10)")
-		// 	.attr("text-anchor", "end");
-	}, [xScale]);
+		select(ref.current)
+			.selectAll("text")
+			.attr("transform", `${width < 700 ? "rotate(-15)" : "rotate(0)"}`)
+			.attr("text-anchor", `${width < 700 ? "end" : "middle"}`);
+	}, [xScale, width]);
 
 	return (
 		<g
