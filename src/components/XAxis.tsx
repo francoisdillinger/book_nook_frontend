@@ -9,15 +9,16 @@ import { ScaleTime } from "d3";
 type XAxisTypes = {
 	xScale: ScaleTime<number, number>;
 	height: number;
+	width: number;
 };
 
-const XAxis: React.FC<XAxisTypes> = ({ xScale, height }) => {
+const XAxis: React.FC<XAxisTypes> = ({ xScale, height, width }) => {
 	const ref = useRef<SVGGElement>(null);
 
 	useEffect(() => {
 		const xScaleNumeric = xScale as unknown as AxisScale<number>;
 
-		const xAxis = axisBottom(xScaleNumeric).ticks(12);
+		const xAxis = axisBottom(xScaleNumeric).ticks(width > 600 ? 12 : 5);
 		// Additional customizations if needed, e.g., .ticks(5)
 
 		const transition = select(ref.current)
