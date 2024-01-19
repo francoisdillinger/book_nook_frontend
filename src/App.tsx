@@ -22,14 +22,14 @@ export default function App() {
 		<React.Fragment>
 			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
-			<SideBarAdminMenu />
+			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 			<div className="bg-slate-100">
 				{/* <UsersAdminChart /> */}
 				<AdminChart />
 			</div>
 			{/* <Scratch /> */}
-			<Footer />
+			{/* <Footer /> */}
 		</React.Fragment>
 	);
 }
