@@ -35,7 +35,7 @@ const XAxis: React.FC<XAxisTypes> = ({ xScale, height }) => {
 	return (
 		<g
 			ref={ref}
-			className="text-neutral-600"
+			className=" text-neutral-600"
 			transform={`translate(0,${height})`}
 		/>
 	);
