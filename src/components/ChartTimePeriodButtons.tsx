@@ -11,7 +11,7 @@ export default function ChartTimePeriodButtons({
 }: ChartTimePeriodType) {
 	return (
 		<React.Fragment>
-			<div className="ml-4 h-8">
+			<div className="ml-14 h-8">
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "day"
