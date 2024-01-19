@@ -9,7 +9,14 @@ import UsersAdminChart from "./UsersAdminChart";
 import UsersAdminBarChart from "./UsersAdminBarChart";
 import UsersAdminPieChart from "./UsersAdminPieChart";
 
-const margin = { top: 20, right: 20, bottom: 50, left: 80 };
+export type MarginType = {
+	top: number;
+	right: number;
+	bottom: number;
+	left: number;
+};
+
+const margin: MarginType = { top: 20, right: 20, bottom: 50, left: 80 };
 // const svgHeight = 450;
 // const graphLineChartHeight = svgHeight - margin.top - margin.bottom;
 const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
@@ -119,14 +126,6 @@ export default function AdminChart() {
 					/>
 				</div>
 				<div className="bg-white rounded-lg my-2 pt-2">
-					{/* <svg
-						width={windowSizeInPixels * 0.34}
-						height={350}
-					> */}
-					{/* <g
-							width={windowSizeInPixels * 0.34 - 20 - 10}
-							height={350 - 10 - 50}
-						> */}
 					<UsersAdminPieChart
 						timeFilter={timeFilter}
 						windowSizeInPixels={windowSizeInPixels}
@@ -141,8 +140,6 @@ export default function AdminChart() {
 						setSelectOptions={setSelectOptions}
 						focusedUser={focusedUser}
 					/>
-					{/* </g> */}
-					{/* </svg> */}
 				</div>
 			</div>
 		</React.Fragment>
