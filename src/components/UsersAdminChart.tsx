@@ -12,6 +12,7 @@ import { UsersType } from "../data/users";
 import XAxis from "./XAxis";
 import YAxis from "./YAxis";
 import { MarginType } from "./AdminChart";
+import ResponsiveSVGContainer from "./ResponsiveSVGContainer";
 
 const filterOutInactiveUsers = (
 	users: ProcessedUserType[]
@@ -24,6 +25,8 @@ type UsersAdminChartType = {
 	timeFilter: string;
 	// graphWidth: number;
 	// graphHeight: number;
+	width: number;
+	height: number;
 	windowSizeInPixels: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
@@ -40,6 +43,8 @@ export default function UsersAdminChart({
 	timeFilter,
 	// graphHeight,
 	// graphWidth,
+	width,
+	height,
 	windowSizeInPixels,
 	tooltip,
 	setTooltip,
@@ -50,12 +55,17 @@ export default function UsersAdminChart({
 	setSelectOptions,
 	focusedUser,
 }: UsersAdminChartType) {
-	const svgHeight = 450;
+	console.log("Height: ", height);
+	console.log("Width: ", width);
+	const svgWidth = width;
+	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
-	const graphWidth =
-		windowSizeInPixels <= 800
-			? windowSizeInPixels - margin.left - margin.right
-			: windowSizeInPixels * 0.9 - margin.left - margin.right;
+	const graphWidth = svgWidth - margin.left - margin.right;
+
+	// const graphWidth =
+	// 	width <= 800
+	// 		? width - margin.left - margin.right
+	// 		: width * 0.9 - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [filteredUserData, setFilteredUserData] =
@@ -169,11 +179,17 @@ export default function UsersAdminChart({
 		[x, graphHeight]
 	);
 
+	// return (
+	// 	<ResponsiveSVGContainer>
+	// 		<div>hello</div>
+	// 	</ResponsiveSVGContainer>
+	// );
+
 	return (
 		<React.Fragment>
 			<svg
 				ref={svgLineChartRef}
-				width={windowSizeInPixels * 0.9}
+				width={svgWidth}
 				height={svgHeight}
 			>
 				<g
@@ -186,6 +202,7 @@ export default function UsersAdminChart({
 						<XAxis
 							xScale={x}
 							height={graphHeight}
+							width={graphWidth}
 						/>
 					)}
 					{hasData && (
