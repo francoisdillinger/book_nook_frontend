@@ -18,7 +18,7 @@ const XAxis: React.FC<XAxisTypes> = ({ xScale, height, width }) => {
 	useEffect(() => {
 		const xScaleNumeric = xScale as unknown as AxisScale<number>;
 
-		const xAxis = axisBottom(xScaleNumeric).ticks(width > 600 ? 12 : 5);
+		const xAxis = axisBottom(xScaleNumeric).ticks(width > 800 ? 12 : 6);
 		// Additional customizations if needed, e.g., .ticks(5)
 
 		const transition = select(ref.current)
