@@ -121,7 +121,7 @@ const UsersAdminPieChart = ({
 							x={0}
 							y={-graphHeight / 2.3}
 							textAnchor="middle"
-							className="fill-current text-neutral-500 text-2xl lg:text-lg xl:text-2xl"
+							className="fill-current text-neutral-500 text-2xl lg:text-lg xl:text-xl"
 						>
 							Percentage of Orders By User
 						</text>
