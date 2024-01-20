@@ -27,7 +27,7 @@ type UsersAdminChartType = {
 	// graphHeight: number;
 	width: number;
 	height: number;
-	windowSizeInPixels: number;
+	// windowSizeInPixels: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -45,7 +45,7 @@ export default function UsersAdminChart({
 	// graphWidth,
 	width,
 	height,
-	windowSizeInPixels,
+	// windowSizeInPixels,
 	tooltip,
 	setTooltip,
 	users,
