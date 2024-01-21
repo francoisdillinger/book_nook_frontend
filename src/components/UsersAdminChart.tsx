@@ -52,7 +52,7 @@ export default function UsersAdminChart({
 
 			</div> */}
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
-				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
+				{/* <div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
 					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
 						{selectOptions ? (
 							<ReactSelect
@@ -93,7 +93,7 @@ export default function UsersAdminChart({
 							setTimeFilter={setTimeFilter}
 						/>
 					</div>
-				</div>
+				</div> */}
 				<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
 					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
 						<div className="flex flex-col items-start">
