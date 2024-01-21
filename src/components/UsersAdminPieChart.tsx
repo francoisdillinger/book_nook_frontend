@@ -181,6 +181,7 @@ const UsersAdminPieChart = ({
 						}}
 					>
 						{hasData &&
+							reducedUsersData != undefined &&
 							pie(reducedUsersData)!.map((user, index) => {
 								const color = colorScale(index.toString());
 								return (
