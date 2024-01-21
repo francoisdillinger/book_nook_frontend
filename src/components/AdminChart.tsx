@@ -66,8 +66,8 @@ export default function AdminChart() {
 
 			</div> */}
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
-				<div className="bg-white rounded-lg w-full flex flex-wrap md:justify-between xl:flex-nowrap xl:h-20 xl:items-center">
-					<div className="flex w-full justify-start h-20 items-center gap-4 pl-4 xl:w-2/3 xl:h-fit">
+				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
+					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
 						{selectOptions ? (
 							<ReactSelect
 								options={selectOptions}
@@ -101,7 +101,7 @@ export default function AdminChart() {
 							<></>
 						)}
 					</div>
-					<div className="flex justify-start w-full mr-2 h-20 items-center xl:w-1/3 xl:justify-end xl:h-fit">
+					<div className="flex justify-start w-full mr-2 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
 						<ChartTimePeriodButtons
 							timeFilter={timeFilter}
 							setTimeFilter={setTimeFilter}
