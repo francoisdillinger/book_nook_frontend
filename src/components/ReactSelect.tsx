@@ -3,7 +3,8 @@ import Select, { OptionProps, components } from "react-select";
 const customStyles = {
 	control: (provided) => ({
 		...provided,
-		borderColor: "#525252",
+		borderColor: "#fff",
+		borderRadius: "25px",
 	}),
 	option: (provided, state) => ({
 		...provided,
@@ -55,9 +56,10 @@ const ReactSelect = ({ options, colorScale, setFocusedUser, focusedUser }) => {
 		<div onClick={(e) => onUsernameClick(e)}>
 			<Select
 				options={selectOptions}
-				className="w-56"
+				className="w-40"
 				components={{ Option }}
 				styles={customStyles}
+				placeholder="Filter by..."
 				onChange={handleChange}
 				value={
 					selectOptions.find((option) => option.name === focusedUser) || null
