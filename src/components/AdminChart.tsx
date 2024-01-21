@@ -26,9 +26,9 @@ export default function AdminChart() {
 	// const svgLineChartRef = useRef<SVGSVGElement>(null);
 	// const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [focusedUser, setFocusedUser] = useState("");
-	const [windowSizeInPixels, setWindowSizeInPixels] = useState(
-		window.innerWidth
-	);
+	// const [windowSizeInPixels, setWindowSizeInPixels] = useState(
+	// 	window.innerWidth
+	// );
 	const [timeFilter, setTimeFilter] = useState("max");
 	const [hasData, setHasData] = useState(0);
 	const [selectOptions, setSelectOptions] = useState("");
@@ -43,22 +43,22 @@ export default function AdminChart() {
 	// 		? windowSizeInPixels - margin.left - margin.right
 	// 		: windowSizeInPixels * 0.9 - margin.left - margin.right;
 
-	useEffect(() => {
-		const windowSizePixels = () => {
-			setWindowSizeInPixels(window.innerWidth);
-			console.log(window.innerWidth);
-		};
-		const onGlobalClick = () => {
-			setFocusedUser("");
-		};
-		window.addEventListener("resize", windowSizePixels);
-		window.addEventListener("click", onGlobalClick);
+	// useEffect(() => {
+	// 	const windowSizePixels = () => {
+	// 		setWindowSizeInPixels(window.innerWidth);
+	// 		console.log(window.innerWidth);
+	// 	};
+	// 	const onGlobalClick = () => {
+	// 		setFocusedUser("");
+	// 	};
+	// 	window.addEventListener("resize", windowSizePixels);
+	// 	window.addEventListener("click", onGlobalClick);
 
-		return () => {
-			window.removeEventListener("resize", windowSizePixels);
-			window.removeEventListener("click", onGlobalClick);
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener("resize", windowSizePixels);
+	// 		window.removeEventListener("click", onGlobalClick);
+	// 	};
+	// }, []);
 
 	return (
 		<React.Fragment>
@@ -70,7 +70,7 @@ export default function AdminChart() {
 					className="bg-white rounded-lg my-2 pt-2 w-full"
 					// style={{ width: windowSizeInPixels * 0.9 }}
 				>
-					<div className="h-12 flex flex-wrap  md:flex-nowrap md:items-center md:justify-between">
+					{/* <div className="h-12 flex flex-wrap  md:flex-nowrap md:items-center md:justify-between">
 						<ChartTimePeriodButtons
 							timeFilter={timeFilter}
 							setTimeFilter={setTimeFilter}
@@ -87,7 +87,7 @@ export default function AdminChart() {
 								<></>
 							)}
 						</div>
-					</div>
+					</div> */}
 
 					<ChartToolTip tooltip={tooltip} />
 
