@@ -133,6 +133,7 @@ export default function UsersAdminBarChart({
 						/>
 					)}
 					{hasData ? (
+						reducedUsersData != undefined &&
 						reducedUsersData!.map((user, index) => {
 							const color = colorScale(index.toString());
 							const barHeight = graphHeight - y(user.totalBooksOrdered);
