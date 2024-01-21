@@ -1,51 +1,40 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import { motion } from "framer-motion";
-import {
-	reformatUserData,
-	getFilteredData,
-	ProcessedUserType,
-	ProcessedOrder,
-} from "../utils/usersAdminChartUtilities";
+import { UsersType, users } from "../data/users";
+import ReactSelect from "./ReactSelect";
+import ChartTimePeriodButtons from "./ChartTimePeriodButtons";
+import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
-import { UsersType } from "../data/users";
-import XAxis from "./XAxis";
-import YAxis from "./YAxis";
-import { MarginType } from "./AdminChart";
+import UsersAdminBarChart from "./UsersAdminBarChart";
+import UsersAdminPieChart from "./UsersAdminPieChart";
 import ResponsiveSVGContainer from "./ResponsiveSVGContainer";
-
-const filterOutInactiveUsers = (
-	users: ProcessedUserType[]
-): ProcessedUserType[] => {
-	return users.filter((user) => user.orders.length > 0);
-};
+import UsersAdminLineChart from "./UsersAdminLineChart";
+import { MarginType } from "./AdminChart";
+import { ProcessedUserType } from "../utils/usersAdminChartUtilities";
 
 type UsersAdminChartType = {
 	margin: MarginType;
 	timeFilter: string;
-	// graphWidth: number;
-	// graphHeight: number;
+	setTimeFilter: Function;
 	width: number;
 	height: number;
-	// windowSizeInPixels: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
 	colorScale: Function;
 	hasData: number;
 	setHasData: Function;
+	selectOptions: any;
 	setSelectOptions: Function;
 	focusedUser: string;
+	setFocusedUser: Function;
 };
-
 export default function UsersAdminChart({
 	margin,
 	timeFilter,
-	// graphHeight,
-	// graphWidth,
+	setTimeFilter,
 	width,
 	height,
-	// windowSizeInPixels,
 	tooltip,
 	setTooltip,
 	users,
@@ -53,300 +42,250 @@ export default function UsersAdminChart({
 	hasData,
 	setHasData,
 	setSelectOptions,
+	selectOptions,
 	focusedUser,
+	setFocusedUser,
 }: UsersAdminChartType) {
-	console.log("Height: ", height);
-	console.log("Width: ", width);
-	const svgWidth = width;
-	const svgHeight = height;
-	const graphHeight = svgHeight - margin.top - margin.bottom;
-	const graphWidth = svgWidth - margin.left - margin.right;
-
-	// const graphWidth =
-	// 	width <= 800
-	// 		? width - margin.left - margin.right
-	// 		: width * 0.9 - margin.left - margin.right;
-	const svgLineChartRef = useRef<SVGSVGElement>(null);
-	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const [filteredUserData, setFilteredUserData] =
-		useState<ProcessedUserType[]>();
-	const [allDates, setAllDates] = useState();
-	const [allQuantities, setAllQuantinties] = useState();
-
-	useEffect(() => {
-		const reformatedUserData = reformatUserData(users);
-		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
-		const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
-		setHasData(
-			filteredUserchart.reduce(
-				(accumulator, users) => accumulator + users.orders.length,
-				0
-			)
-		);
-		setFilteredUserData(filteredUserchart);
-		setSelectOptions(filteredUserchart);
-		setAllDates(
-			filteredUserchart.flatMap((user: { orders: ProcessedOrder[] }) =>
-				user.orders.map((order: { date: any }) => order.date)
-			)
-		);
-		setAllQuantinties(
-			filteredUserchart.flatMap((user: { orders: any[] }) =>
-				user.orders.map((order: { quantity: any }) => order.quantity)
-			)
-		);
-	}, [users, timeFilter]);
-
-	// const max = allQuantities ? d3.max(allQuantities) : 0;
-	// const parsedDates = (allDates ?? [])
-	// 	.map((dateStr) => new Date(dateStr))
-	// 	.filter((date) => !isNaN(date.valueOf()));
-	// const dateExtent = d3.extent(parsedDates) as
-	// 	| [Date, Date]
-	// 	| [undefined, undefined];
-	// const domain =
-	// 	dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()];
-
-	// const x = d3.scaleTime().domain(domain).range([0, graphWidth]);
-
-	// const y = d3
-	// 	.scaleLinear()
-	// 	.domain([0, max as unknown as number])
-	// 	.range([graphHeight, 0]);
-
-	// let theLine = d3
-	// 	.line()
-	// 	.x((d) => x(d[0])) // d.date
-	// 	.y((d) => y(d[1])); // d.quantity
-	// const bottomLineGenerator = d3
-	// 	.line()
-	// 	.x((d) => x(d[0])) // d.date
-	// 	.y(graphHeight);
-
-	const parsedDates = useMemo(
-		() =>
-			(allDates ?? [])
-				.map((dateStr) => new Date(dateStr))
-				.filter((date) => !isNaN(date.valueOf())),
-		[allDates]
-	);
-
-	const dateExtent = useMemo(
-		() => d3.extent(parsedDates) as [Date, Date] | [undefined, undefined],
-		[parsedDates]
-	);
-
-	const domain = useMemo(
-		() =>
-			dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()],
-		[dateExtent]
-	);
-
-	const maxQuantity = useMemo(
-		() => (allQuantities ? d3.max(allQuantities) : 0),
-		[allQuantities]
-	);
-
-	const x = useMemo(
-		() => d3.scaleTime().domain(domain).range([0, graphWidth]),
-		[domain, graphWidth]
-	);
-
-	const y = useMemo(
-		() =>
-			d3
-				.scaleLinear()
-				.domain([0, Number(maxQuantity) ?? 0])
-				.range([graphHeight, 0]),
-		[maxQuantity, graphHeight]
-	);
-
-	const theLine = useMemo(
-		() =>
-			d3
-				.line()
-				.x((d) => x(d[0]))
-				.y((d) => y(d[1])),
-		[x, y]
-	);
-
-	const bottomLineGenerator = useMemo(
-		() =>
-			d3
-				.line()
-				.x((d) => x(d[0]))
-				.y(graphHeight),
-		[x, graphHeight]
-	);
-
-	// return (
-	// 	<ResponsiveSVGContainer>
-	// 		<div>hello</div>
-	// 	</ResponsiveSVGContainer>
-	// );
-
 	return (
 		<React.Fragment>
-			<svg
-				ref={svgLineChartRef}
-				width={svgWidth}
-				height={svgHeight}
-			>
-				<g
-					ref={graphLineChartRef}
-					width={graphWidth}
-					height={graphHeight}
-					transform={`translate(${margin.left},${margin.top})`}
-				>
-					{hasData && (
-						<XAxis
-							xScale={x}
-							height={graphHeight}
-							width={graphWidth}
-						/>
-					)}
-					{hasData && (
-						<YAxis
-							yScale={y}
-							graphWidth={graphWidth}
-							hasData={hasData}
-							graphHeight={graphHeight}
-						/>
-					)}
-					{hasData ? (
-						filteredUserData!.map((user, index) => {
-							const color = colorScale(index.toString());
-							const linePath = theLine(
-								user.orders.map((order) => [
-									new Date(order.date).getTime(), // Convert Date string to Date object and then get the time
-									order.quantity,
-								])
-							);
+			{/* <div className="flex lg:ml-20 xl:ml-28">
 
-							return (
-								<React.Fragment key={user.userName}>
-									{/* Unique key for each fragment */}
-									<motion.path
-										key={user.orders}
-										initial={{
-											d:
-												bottomLineGenerator(
-													user.orders.map((order) => [
-														new Date(order.date).getTime(),
-														order.quantity,
-													])
-												) || "",
-										}}
-										animate={{ d: linePath || "" }}
-										transition={{
-											duration: 0.5,
-											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-											type: "spring", // Use spring physics for bounce
-											damping: 10, // Adjust damping for more or less bounce
-											stiffness: 100, // Adjust stiffness for more or less bounce
-										}}
-										fill="none"
-										strokeWidth={2}
-										stroke={
-											focusedUser === user.userName || focusedUser === ""
-												? color
-												: "gray"
-										}
-										opacity={
-											focusedUser === user.userName || focusedUser === ""
-												? 0.6
-												: 0.2
-										}
-									/>
-									{user.orders.map((order) => (
-										<motion.circle
-											key={order.orderId}
-											className="cursor-pointer"
-											stroke={"white"}
-											strokeWidth={2}
-											initial={{ cy: graphHeight }}
-											animate={{
-												cy: y(order.quantity),
-												cx: x(new Date(order.date)),
-											}}
-											transition={{
-												duration: 0.5,
-												ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-												type: "spring", // Use spring physics for bounce
-												damping: 10, // Adjust damping for more or less bounce
-												stiffness: 100, // Adjust stiffness for more or less bounce
-											}}
-											r={6}
-											fill={
-												focusedUser === user.userName || focusedUser === ""
-													? color
-													: "gray"
-											}
-											opacity={
-												focusedUser === user.userName || focusedUser === ""
-													? 1
-													: 0.2
-											}
-											onMouseEnter={(e) => {
-												const content = (
-													<div>
-														<div>
-															<span className="text-slate-600 font-bold">
-																Order ID:
-															</span>{" "}
-															{order.orderId}
-														</div>
-														<div>
-															<span className="text-slate-600 font-bold">
-																Date:
-															</span>{" "}
-															{order.date.toString()}
-														</div>
-														<div>
-															<span className="text-slate-600 font-bold">
-																Quantity:
-															</span>{" "}
-															{order.quantity}
-														</div>
-													</div>
-												);
-												setTooltip({
-													visible: true,
-													content: content,
-													x: e.clientX + 10,
-													y: e.clientY + 10,
-												});
-											}}
-											onMouseLeave={() => {
-												setTooltip({ ...tooltip, visible: false });
-											}}
-										/>
-									))}
-								</React.Fragment>
-							);
-						})
-					) : (
-						<React.Fragment>
-							<rect
-								x={1}
-								y={0}
-								width={graphWidth - 1}
-								height={graphHeight}
-								className="fill-slate-100"
+			</div> */}
+			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
+					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
 							/>
-							<text
-								x={graphWidth / 2}
-								y={graphHeight / 2}
-								textAnchor="middle" // Centers horizontally
-								dominantBaseline="middle" // Centers vertically
-								className="fill-current text-logo text-5xl font-light"
-							>
-								No Data Exists For This Period
-							</text>
-						</React.Fragment>
-					)}
-				</g>
-			</svg>
+						) : (
+							<></>
+						)}
+
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						) : (
+							<></>
+						)}
+
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						) : (
+							<></>
+						)}
+					</div>
+					<div className="flex justify-start w-full mr-2 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
+						<ChartTimePeriodButtons
+							timeFilter={timeFilter}
+							setTimeFilter={setTimeFilter}
+						/>
+					</div>
+				</div>
+				<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
+					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
+						<div className="flex flex-col items-start">
+							<h1 className="text-slate-600 font-bold text-lg">Total Sales</h1>
+							<div className="flex items-center my-2">
+								<p className="text-slate-500 font-normal text-3xl">$2,453</p>
+								<div className="ml-10">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
+										/>
+									</svg>
+								</div>
+							</div>
+							<p className="text-slate-400 font-normal text-sm">
+								<span className="text-green-400">+1.2%</span> vs last week
+							</p>
+						</div>
+					</div>
+					{/* ================================ */}
+					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
+						<div className="flex flex-col items-start">
+							<h1 className="text-slate-600 font-bold text-lg">Avg Sale</h1>
+							<div className="flex items-center my-2">
+								<p className="text-slate-500 font-normal text-3xl">$23.00</p>
+								<div className="ml-10">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
+										/>
+									</svg>
+								</div>
+							</div>
+							<p className="text-slate-400 font-normal text-sm">
+								<span className="text-red-400">+1.2%</span> vs last week
+							</p>
+						</div>
+					</div>
+					{/* =================================== */}
+					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
+						<div className="flex flex-col items-start">
+							<h1 className="text-slate-600 font-bold text-lg">Total Books</h1>
+							<div className="flex items-center my-2">
+								<p className="text-slate-500 font-normal text-3xl">453</p>
+								<div className="ml-10">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
+										/>
+									</svg>
+								</div>
+							</div>
+							<p className="text-slate-400 font-normal text-sm">
+								<span className="text-green-400">+1.2%</span> vs last week
+							</p>
+						</div>
+					</div>
+					{/* ================================ */}
+					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
+						<div className="flex flex-col items-start">
+							<h1 className="text-slate-600 font-bold text-lg">
+								Avg Book Order
+							</h1>
+							<div className="flex items-center my-2">
+								<p className="text-slate-500 font-normal text-3xl">23</p>
+								<div className="ml-10">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
+										/>
+									</svg>
+								</div>
+							</div>
+							<p className="text-slate-400 font-normal text-sm">
+								<span className="text-red-400">+1.2%</span> vs last week
+							</p>
+						</div>
+					</div>
+					{/* =================================== */}
+				</div>
+				<div
+					className="bg-white rounded-lg my-2 pt-2 w-full"
+					// style={{ width: windowSizeInPixels * 0.9 }}
+				>
+					{/* <div className="h-12 flex flex-wrap  md:flex-nowrap md:items-center md:justify-between">
+						<div className="w-full flex justify-end mr-4">
+							<ChartTimePeriodButtons
+								timeFilter={timeFilter}
+								setTimeFilter={setTimeFilter}
+							/>
+						</div>
+						<div className="ml-20 mt-8 md:mr-5 md:mt-0 md:pt-2">
+							{selectOptions ? (
+								<ReactSelect
+									options={selectOptions}
+									colorScale={colorScale}
+									setFocusedUser={setFocusedUser}
+									focusedUser={focusedUser}
+								/>
+							) : (
+								<></>
+							)}
+						</div>
+					</div> */}
+
+					<ChartToolTip tooltip={tooltip} />
+
+					<div className=" flex justify-center mt-10 md:mt-0">
+						<div className="w-full h-[450px]">
+							<ResponsiveSVGContainer>
+								<UsersAdminLineChart
+									margin={margin}
+									timeFilter={timeFilter}
+									tooltip={tooltip}
+									setTooltip={setTooltip}
+									users={users}
+									colorScale={colorScale}
+									hasData={hasData}
+									setHasData={setHasData}
+									setSelectOptions={setSelectOptions}
+									focusedUser={focusedUser}
+								/>
+							</ResponsiveSVGContainer>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
+				<div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
+					<ResponsiveSVGContainer>
+						<UsersAdminBarChart
+							margin={margin}
+							timeFilter={timeFilter}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							users={users}
+							colorScale={colorScale}
+							hasData={hasData}
+							setHasData={setHasData}
+							setSelectOptions={setSelectOptions}
+							focusedUser={focusedUser}
+						/>
+					</ResponsiveSVGContainer>
+				</div>
+				<div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+					<ResponsiveSVGContainer>
+						<UsersAdminPieChart
+							timeFilter={timeFilter}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							users={users}
+							colorScale={colorScale}
+							hasData={hasData}
+							setHasData={setHasData}
+							setSelectOptions={setSelectOptions}
+							focusedUser={focusedUser}
+						/>
+					</ResponsiveSVGContainer>
+				</div>
+			</div>
 		</React.Fragment>
 	);
 }
