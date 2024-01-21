@@ -208,6 +208,7 @@ export default function UsersAdminLineChart({
 						/>
 					)}
 					{hasData ? (
+						filteredUserData != undefined &&
 						filteredUserData!.map((user, index) => {
 							const color = colorScale(index.toString());
 							const linePath = theLine(
