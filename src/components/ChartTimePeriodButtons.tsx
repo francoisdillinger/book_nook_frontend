@@ -15,7 +15,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "day"
-							? "bg-slate-100 rounded-full text-logo shadow-md "
+							? "bg-white rounded-full text-logo shadow-md "
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("day")}
@@ -25,7 +25,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "week"
-							? "bg-slate-100 rounded-full text-logo shadow-md"
+							? "bg-white rounded-full text-logo shadow-md"
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("week")}
@@ -35,7 +35,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "month"
-							? "bg-slate-100 rounded-full text-logo shadow-md"
+							? "bg-white rounded-full text-logo shadow-md"
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("month")}
@@ -45,7 +45,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "half-year"
-							? "bg-slate-100 rounded-full text-logo shadow-md"
+							? "bg-white rounded-full text-logo shadow-md"
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("half-year")}
@@ -55,7 +55,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "year"
-							? "bg-slate-100 rounded-full text-logo shadow-md"
+							? "bg-white rounded-full text-logo shadow-md"
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("year")}
@@ -65,7 +65,7 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "max"
-							? "bg-slate-100 rounded-full text-logo shadow-md"
+							? "bg-white rounded-full text-logo shadow-md"
 							: "text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("max")}
