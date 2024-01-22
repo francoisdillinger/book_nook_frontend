@@ -8,9 +8,40 @@ import { TooltipStateType } from "./ChartToolTip";
 import UsersAdminBarChart from "./UsersAdminBarChart";
 import UsersAdminPieChart from "./UsersAdminPieChart";
 import ResponsiveSVGContainer from "./ResponsiveSVGContainer";
-import UsersAdminLineChart from "./UsersAdminLineChart";
+import UsersAdminLineChart, {
+	filterOutInactiveUsers,
+} from "./UsersAdminLineChart";
 import { MarginType } from "./AdminChart";
-import { ProcessedUserType } from "../utils/usersAdminChartUtilities";
+import {
+	ProcessedUserType,
+	getFilteredData,
+	reformatUserData,
+} from "../utils/usersAdminChartUtilities";
+
+const previousTime = (timeFilter: string) => {
+	switch (timeFilter) {
+		case "day":
+			return "yesterday";
+			break;
+		case "month":
+			return "last month";
+			break;
+		case "week":
+			return "last week";
+			break;
+		case "half-year":
+			return "previous six months";
+			break;
+		case "year":
+			return "last year";
+			break;
+		case "max":
+			return "before we existed";
+			break;
+		default:
+			break;
+	}
+};
 
 type UsersAdminChartType = {
 	margin: MarginType;
@@ -46,6 +77,43 @@ export default function UsersAdminChart({
 	focusedUser,
 	setFocusedUser,
 }: UsersAdminChartType) {
+	const [totalSales, setTotalSales] = useState("");
+	const [avgSale, setAvgSale] = useState("");
+	const [totalBooks, setTotalBooks] = useState(0);
+	const [avgBookOrder, setAvgBookOrder] = useState(0);
+	useEffect(() => {
+		const reformatedUserData = reformatUserData(users);
+		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
+		const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
+		const total = filteredUserchart
+			.map((user) =>
+				user.orders.reduce(
+					(accumulator, order) => accumulator + Math.round(order.amount * 100),
+					0
+				)
+			)
+			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+		const averageSale = filteredUserchart
+			.map((user) => user.orders.length)
+			.reduce((accumulator, order) => accumulator + order, 0);
+
+		const totalBooksOrdered = filteredUserchart
+			.map((user) =>
+				user.orders.reduce(
+					(accumulator, order) => accumulator + order.quantity,
+					0
+				)
+			)
+			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+		setTotalSales((total / 100).toFixed(2));
+		setAvgSale((total / averageSale / 100).toFixed(2));
+		setTotalBooks(totalBooksOrdered);
+		setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
+	}, [timeFilter]);
+	console.log("Total Amount: ", totalSales);
+	console.log("Avgerage Sale: ", avgSale);
+	console.log("Total Books: ", totalBooks);
+	console.log("Average Books Per Order: ", avgBookOrder);
 	return (
 		<React.Fragment>
 			{/* <div className="flex lg:ml-20 xl:ml-28">
@@ -99,7 +167,9 @@ export default function UsersAdminChart({
 						<div className="flex flex-col items-start">
 							<h1 className="text-slate-600 font-bold text-lg">Total Sales</h1>
 							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">$2,453</p>
+								<p className="text-slate-500 font-normal text-3xl">
+									${totalSales}
+								</p>
 								<div className="ml-10">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +187,8 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-green-400">+1.2%</span> vs last week
+								<span className="text-green-400">+1.2%</span> vs{" "}
+								{previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
@@ -126,7 +197,9 @@ export default function UsersAdminChart({
 						<div className="flex flex-col items-start">
 							<h1 className="text-slate-600 font-bold text-lg">Avg Sale</h1>
 							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">$23.00</p>
+								<p className="text-slate-500 font-normal text-3xl">
+									${avgSale}
+								</p>
 								<div className="ml-10">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +226,9 @@ export default function UsersAdminChart({
 						<div className="flex flex-col items-start">
 							<h1 className="text-slate-600 font-bold text-lg">Total Books</h1>
 							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">453</p>
+								<p className="text-slate-500 font-normal text-3xl">
+									{totalBooks}
+								</p>
 								<div className="ml-10">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +257,9 @@ export default function UsersAdminChart({
 								Avg Book Order
 							</h1>
 							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">23</p>
+								<p className="text-slate-500 font-normal text-3xl">
+									{avgBookOrder}
+								</p>
 								<div className="ml-10">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
