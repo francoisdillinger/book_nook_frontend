@@ -59,7 +59,7 @@ const AdminChartReactSelect = ({
 				className="w-40"
 				components={{ Option }}
 				styles={customStyles}
-				placeholder={placeHolder.name}
+				placeholder={placeHolder}
 				onChange={handleChange}
 				// value={
 				// 	selectOptions.find((option) => option.name === focusedUser) || null
