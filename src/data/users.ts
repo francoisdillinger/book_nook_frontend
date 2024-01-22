@@ -6,6 +6,7 @@ export type UsersType = {
 				orderId: string;
 				quantity: number;
 				orderDate: string;
+				orderAmount: number;
 				book: {
 					bookTitle: string;
 				};
@@ -27,6 +28,7 @@ export const users: UsersType = {
 						orderId: "1072354024",
 						quantity: 4,
 						orderDate: "2023-07-25",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -35,6 +37,7 @@ export const users: UsersType = {
 						orderId: "7416208372",
 						quantity: 2,
 						orderDate: "2023-01-28",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "1984",
 						},
@@ -43,6 +46,7 @@ export const users: UsersType = {
 						orderId: "4477260062",
 						quantity: 4,
 						orderDate: "2023-12-27",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -51,6 +55,7 @@ export const users: UsersType = {
 						orderId: "1130918675",
 						quantity: 7,
 						orderDate: "2023-10-28",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "Ulysses",
 						},
@@ -59,6 +64,7 @@ export const users: UsersType = {
 						orderId: "4272728535",
 						quantity: 3,
 						orderDate: "2023-09-13",
+						orderAmount: 14.85,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
@@ -67,6 +73,7 @@ export const users: UsersType = {
 						orderId: "2062071213",
 						quantity: 5,
 						orderDate: "2023-07-06",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -75,6 +82,7 @@ export const users: UsersType = {
 						orderId: "2036589944",
 						quantity: 24,
 						orderDate: "2023-03-24",
+						orderAmount: 118.8,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
@@ -88,6 +96,7 @@ export const users: UsersType = {
 						orderId: "7439201856",
 						quantity: 3,
 						orderDate: "2023-12-20",
+						orderAmount: 14.85,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -96,6 +105,7 @@ export const users: UsersType = {
 						orderId: "4050806321",
 						quantity: 3,
 						orderDate: "2023-02-27",
+						orderAmount: 14.85,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -104,6 +114,7 @@ export const users: UsersType = {
 						orderId: "1330624081",
 						quantity: 5,
 						orderDate: "2023-12-28",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "Adventures of Huckleberry Finn",
 						},
@@ -112,6 +123,7 @@ export const users: UsersType = {
 						orderId: "8266305721",
 						quantity: 7,
 						orderDate: "2023-06-29",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "The Catcher in the Rye",
 						},
@@ -120,6 +132,7 @@ export const users: UsersType = {
 						orderId: "3227556923",
 						quantity: 4,
 						orderDate: "2023-02-03",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "To the Lighthouse",
 						},
@@ -128,6 +141,7 @@ export const users: UsersType = {
 						orderId: "6675003331",
 						quantity: 7,
 						orderDate: "2023-07-29",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -136,6 +150,7 @@ export const users: UsersType = {
 						orderId: "5673523218",
 						quantity: 14,
 						orderDate: "2023-02-07",
+						orderAmount: 69.3,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
@@ -144,6 +159,7 @@ export const users: UsersType = {
 						orderId: "5733570438",
 						quantity: 14,
 						orderDate: "2023-10-25",
+						orderAmount: 69.3,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -152,6 +168,7 @@ export const users: UsersType = {
 						orderId: "9467817281",
 						quantity: 17,
 						orderDate: "2023-06-11",
+						orderAmount: 84.15,
 						book: {
 							bookTitle: "Pride and Prejudice",
 						},
@@ -165,6 +182,7 @@ export const users: UsersType = {
 						orderId: "3580937612",
 						quantity: 8,
 						orderDate: "2023-10-07",
+						orderAmount: 39.6,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -173,6 +191,7 @@ export const users: UsersType = {
 						orderId: "9596757104",
 						quantity: 9,
 						orderDate: "2023-04-22",
+						orderAmount: 44.55,
 						book: {
 							bookTitle: "The Catcher in the Rye",
 						},
@@ -181,6 +200,7 @@ export const users: UsersType = {
 						orderId: "0827063455",
 						quantity: 7,
 						orderDate: "2023-05-01",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "To the Lighthouse",
 						},
@@ -189,6 +209,7 @@ export const users: UsersType = {
 						orderId: "0392239994",
 						quantity: 1,
 						orderDate: "2023-10-21",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -197,6 +218,7 @@ export const users: UsersType = {
 						orderId: "3316972655",
 						quantity: 5,
 						orderDate: "2023-03-06",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "Mrs Dalloway",
 						},
@@ -205,6 +227,7 @@ export const users: UsersType = {
 						orderId: "6966612013",
 						quantity: 4,
 						orderDate: "2023-12-30",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -213,6 +236,7 @@ export const users: UsersType = {
 						orderId: "8567793613",
 						quantity: 2,
 						orderDate: "2023-09-02",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "To the Lighthouse",
 						},
@@ -221,6 +245,7 @@ export const users: UsersType = {
 						orderId: "8012605969",
 						quantity: 2,
 						orderDate: "2023-06-11",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -229,6 +254,7 @@ export const users: UsersType = {
 						orderId: "4370884122",
 						quantity: 16,
 						orderDate: "2023-01-29",
+						orderAmount: 79.2,
 						book: {
 							bookTitle: "Nine Stories",
 						},
@@ -237,6 +263,7 @@ export const users: UsersType = {
 						orderId: "6740085110",
 						quantity: 27,
 						orderDate: "2024-01-11",
+						orderAmount: 133.65,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -245,6 +272,7 @@ export const users: UsersType = {
 						orderId: "1228274497",
 						quantity: 18,
 						orderDate: "2023-12-28",
+						orderAmount: 89.1,
 						book: {
 							bookTitle: "The Catcher in the Rye",
 						},
@@ -258,6 +286,7 @@ export const users: UsersType = {
 						orderId: "3906601906",
 						quantity: 3,
 						orderDate: "2023-09-04",
+						orderAmount: 14.85,
 						book: {
 							bookTitle: "The Adventures of Tom Sawyer",
 						},
@@ -266,6 +295,7 @@ export const users: UsersType = {
 						orderId: "2700026650",
 						quantity: 2,
 						orderDate: "2023-05-28",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Adventures of Huckleberry Finn",
 						},
@@ -274,6 +304,7 @@ export const users: UsersType = {
 						orderId: "1386185705",
 						quantity: 1,
 						orderDate: "2023-09-08",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -282,6 +313,7 @@ export const users: UsersType = {
 						orderId: "3735798486",
 						quantity: 1,
 						orderDate: "2023-05-09",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "Go Set a Watchman",
 						},
@@ -290,6 +322,7 @@ export const users: UsersType = {
 						orderId: "2249053178",
 						quantity: 2,
 						orderDate: "2023-01-07",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Go Set a Watchman",
 						},
@@ -298,6 +331,7 @@ export const users: UsersType = {
 						orderId: "1620601621",
 						quantity: 14,
 						orderDate: "2023-12-01",
+						orderAmount: 69.3,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -306,6 +340,7 @@ export const users: UsersType = {
 						orderId: "1808779599",
 						quantity: 12,
 						orderDate: "2023-12-30",
+						orderAmount: 59.4,
 						book: {
 							bookTitle: "To Kill a Mockingbird",
 						},
@@ -314,6 +349,7 @@ export const users: UsersType = {
 						orderId: "5486656046",
 						quantity: 16,
 						orderDate: "2023-09-17",
+						orderAmount: 79.2,
 						book: {
 							bookTitle: "Mrs Dalloway",
 						},
@@ -322,6 +358,7 @@ export const users: UsersType = {
 						orderId: "7536687912",
 						quantity: 17,
 						orderDate: "2023-11-22",
+						orderAmount: 84.15,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -330,6 +367,7 @@ export const users: UsersType = {
 						orderId: "0975468962",
 						quantity: 11,
 						orderDate: "2023-09-04",
+						orderAmount: 54.45,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -343,6 +381,7 @@ export const users: UsersType = {
 						orderId: "6556101300",
 						quantity: 3,
 						orderDate: "2023-10-21",
+						orderAmount: 14.85,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -351,6 +390,7 @@ export const users: UsersType = {
 						orderId: "7086399503",
 						quantity: 2,
 						orderDate: "2023-03-10",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Go Set a Watchman",
 						},
@@ -359,6 +399,7 @@ export const users: UsersType = {
 						orderId: "7102028770",
 						quantity: 8,
 						orderDate: "2023-11-11",
+						orderAmount: 39.6,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -367,6 +408,7 @@ export const users: UsersType = {
 						orderId: "0264761827",
 						quantity: 2,
 						orderDate: "2023-12-02",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "The Adventures of Tom Sawyer",
 						},
@@ -375,6 +417,7 @@ export const users: UsersType = {
 						orderId: "8215761514",
 						quantity: 20,
 						orderDate: "2023-07-27",
+						orderAmount: 99,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -383,6 +426,7 @@ export const users: UsersType = {
 						orderId: "8179593282",
 						quantity: 27,
 						orderDate: "2023-11-18",
+						orderAmount: 133.65,
 						book: {
 							bookTitle: "To the Lighthouse",
 						},
@@ -396,6 +440,7 @@ export const users: UsersType = {
 						orderId: "0220632267",
 						quantity: 4,
 						orderDate: "2023-02-21",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "Finnegans Wake",
 						},
@@ -404,6 +449,7 @@ export const users: UsersType = {
 						orderId: "5027403949",
 						quantity: 9,
 						orderDate: "2024-01-11",
+						orderAmount: 44.55,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -412,6 +458,7 @@ export const users: UsersType = {
 						orderId: "2228027320",
 						quantity: 4,
 						orderDate: "2023-05-30",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -420,6 +467,7 @@ export const users: UsersType = {
 						orderId: "5404884727",
 						quantity: 9,
 						orderDate: "2023-07-28",
+						orderAmount: 44.55,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -428,6 +476,7 @@ export const users: UsersType = {
 						orderId: "9390442379",
 						quantity: 9,
 						orderDate: "2023-08-03",
+						orderAmount: 44.55,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -436,6 +485,7 @@ export const users: UsersType = {
 						orderId: "9702344509",
 						quantity: 4,
 						orderDate: "2023-06-13",
+						orderAmount: 19.8,
 						book: {
 							bookTitle: "To Kill a Mockingbird",
 						},
@@ -444,6 +494,7 @@ export const users: UsersType = {
 						orderId: "4749514167",
 						quantity: 6,
 						orderDate: "2023-01-05",
+						orderAmount: 29.7,
 						book: {
 							bookTitle: "Go Set a Watchman",
 						},
@@ -452,6 +503,7 @@ export const users: UsersType = {
 						orderId: "1951933472",
 						quantity: 6,
 						orderDate: "2023-07-10",
+						orderAmount: 29.7,
 						book: {
 							bookTitle: "Go Set a Watchman",
 						},
@@ -460,6 +512,7 @@ export const users: UsersType = {
 						orderId: "8675151129",
 						quantity: 5,
 						orderDate: "2023-11-05",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "Adventures of Huckleberry Finn",
 						},
@@ -468,6 +521,7 @@ export const users: UsersType = {
 						orderId: "2569248912",
 						quantity: 5,
 						orderDate: "2023-02-14",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "Pride and Prejudice",
 						},
@@ -476,6 +530,7 @@ export const users: UsersType = {
 						orderId: "4241227744",
 						quantity: 1,
 						orderDate: "2023-07-13",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -484,6 +539,7 @@ export const users: UsersType = {
 						orderId: "1878846209",
 						quantity: 8,
 						orderDate: "2023-08-07",
+						orderAmount: 39.6,
 						book: {
 							bookTitle: "Emma",
 						},
@@ -492,6 +548,7 @@ export const users: UsersType = {
 						orderId: "9612653478",
 						quantity: 18,
 						orderDate: "2023-01-29",
+						orderAmount: 89.1,
 						book: {
 							bookTitle: "The Catcher in the Rye",
 						},
@@ -505,6 +562,7 @@ export const users: UsersType = {
 						orderId: "4722601796",
 						quantity: 2,
 						orderDate: "2023-01-13",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Nine Stories",
 						},
@@ -513,6 +571,7 @@ export const users: UsersType = {
 						orderId: "0820349998",
 						quantity: 2,
 						orderDate: "2023-03-09",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -521,6 +580,7 @@ export const users: UsersType = {
 						orderId: "2766987268",
 						quantity: 1,
 						orderDate: "2023-03-03",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
@@ -529,6 +589,7 @@ export const users: UsersType = {
 						orderId: "0409638836",
 						quantity: 1,
 						orderDate: "2024-01-11",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "Animal Farm",
 						},
@@ -537,6 +598,7 @@ export const users: UsersType = {
 						orderId: "2580681096",
 						quantity: 5,
 						orderDate: "2023-02-27",
+						orderAmount: 24.75,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -545,6 +607,7 @@ export const users: UsersType = {
 						orderId: "4805000752",
 						quantity: 11,
 						orderDate: "2023-01-07",
+						orderAmount: 54.45,
 						book: {
 							bookTitle: "Franny and Zooey",
 						},
@@ -553,6 +616,7 @@ export const users: UsersType = {
 						orderId: "5816862461",
 						quantity: 15,
 						orderDate: "2023-08-22",
+						orderAmount: 74.25,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
@@ -566,6 +630,7 @@ export const users: UsersType = {
 						orderId: "4735929749",
 						quantity: 7,
 						orderDate: "2023-04-15",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "Mrs Dalloway",
 						},
@@ -574,6 +639,7 @@ export const users: UsersType = {
 						orderId: "3817444299",
 						quantity: 7,
 						orderDate: "2023-04-18",
+						orderAmount: 34.65,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -582,6 +648,7 @@ export const users: UsersType = {
 						orderId: "3331588621",
 						quantity: 2,
 						orderDate: "2023-09-27",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "The Catcher in the Rye",
 						},
@@ -590,6 +657,7 @@ export const users: UsersType = {
 						orderId: "1208793962",
 						quantity: 19,
 						orderDate: "2023-10-21",
+						orderAmount: 94.05,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -598,6 +666,7 @@ export const users: UsersType = {
 						orderId: "1876974649",
 						quantity: 14,
 						orderDate: "2024-01-04",
+						orderAmount: 69.3,
 						book: {
 							bookTitle: "Ulysses",
 						},
@@ -611,6 +680,7 @@ export const users: UsersType = {
 						orderId: "7988055020",
 						quantity: 1,
 						orderDate: "2023-10-11",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -619,6 +689,7 @@ export const users: UsersType = {
 						orderId: "8139261382",
 						quantity: 1,
 						orderDate: "2023-07-30",
+						orderAmount: 4.95,
 						book: {
 							bookTitle: "To Kill a Mockingbird",
 						},
@@ -627,6 +698,7 @@ export const users: UsersType = {
 						orderId: "0421432948",
 						quantity: 8,
 						orderDate: "2023-06-30",
+						orderAmount: 39.6,
 						book: {
 							bookTitle: "Oliver Twist",
 						},
@@ -635,6 +707,7 @@ export const users: UsersType = {
 						orderId: "2731924041",
 						quantity: 2,
 						orderDate: "2023-11-10",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "The Adventures of Tom Sawyer",
 						},
@@ -643,6 +716,7 @@ export const users: UsersType = {
 						orderId: "1272456345",
 						quantity: 2,
 						orderDate: "2023-02-07",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Adventures of Huckleberry Finn",
 						},
@@ -651,6 +725,7 @@ export const users: UsersType = {
 						orderId: "2066681079",
 						quantity: 9,
 						orderDate: "2023-10-27",
+						orderAmount: 44.55,
 						book: {
 							bookTitle: "A Farewell to Arms",
 						},
@@ -659,6 +734,7 @@ export const users: UsersType = {
 						orderId: "1498841448",
 						quantity: 2,
 						orderDate: "2023-01-19",
+						orderAmount: 9.9,
 						book: {
 							bookTitle: "Wuthering Heights",
 						},
@@ -667,6 +743,7 @@ export const users: UsersType = {
 						orderId: "8296309457",
 						quantity: 16,
 						orderDate: "2023-11-28",
+						orderAmount: 79.2,
 						book: {
 							bookTitle: "To Kill a Mockingbird",
 						},
@@ -675,6 +752,7 @@ export const users: UsersType = {
 						orderId: "8319399300",
 						quantity: 25,
 						orderDate: "2023-02-19",
+						orderAmount: 123.75,
 						book: {
 							bookTitle: "Great Expectations",
 						},
@@ -683,6 +761,7 @@ export const users: UsersType = {
 						orderId: "1286771864",
 						quantity: 24,
 						orderDate: "2023-04-20",
+						orderAmount: 118.8,
 						book: {
 							bookTitle: "1984",
 						},
@@ -691,6 +770,7 @@ export const users: UsersType = {
 						orderId: "1302227649",
 						quantity: 19,
 						orderDate: "2024-01-07",
+						orderAmount: 94.05,
 						book: {
 							bookTitle: "Animal Farm",
 						},
@@ -699,6 +779,7 @@ export const users: UsersType = {
 						orderId: "6412138764",
 						quantity: 20,
 						orderDate: "2023-07-02",
+						orderAmount: 99,
 						book: {
 							bookTitle: "The Old Man and The Sea",
 						},
