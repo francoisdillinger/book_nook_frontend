@@ -14,7 +14,7 @@ import YAxis from "./YAxis";
 import { MarginType } from "./AdminChart";
 import ResponsiveSVGContainer from "./ResponsiveSVGContainer";
 
-const filterOutInactiveUsers = (
+export const filterOutInactiveUsers = (
 	users: ProcessedUserType[]
 ): ProcessedUserType[] => {
 	return users.filter((user) => user.orders.length > 0);
@@ -55,8 +55,8 @@ export default function UsersAdminLineChart({
 	setSelectOptions,
 	focusedUser,
 }: UsersAdminLineChartType) {
-	console.log("Height: ", height);
-	console.log("Width: ", width);
+	// console.log("Height: ", height);
+	// console.log("Width: ", width);
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
@@ -96,7 +96,7 @@ export default function UsersAdminLineChart({
 			)
 		);
 	}, [users, timeFilter]);
-
+	console.log("User Data: ", filteredUserData);
 	// const max = allQuantities ? d3.max(allQuantities) : 0;
 	// const parsedDates = (allDates ?? [])
 	// 	.map((dateStr) => new Date(dateStr))
