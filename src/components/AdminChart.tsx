@@ -50,7 +50,7 @@ export default function AdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
-	console.log("Filter: ", filterChart);
+	// console.log("Filter: ", filterChart);
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
