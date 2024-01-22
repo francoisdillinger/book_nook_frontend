@@ -88,7 +88,7 @@ const UsersAdminPieChart = ({
 		setReducedUsersData(reducedData);
 		setKey((prevKey) => prevKey + 1);
 	}, [timeFilter]);
-	console.log("Key: ", key);
+	// console.log("Key: ", key);
 	const pie = useMemo(() => {
 		return d3
 			.pie()
