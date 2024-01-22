@@ -7,6 +7,7 @@ export type UserType = {
 		orderId: string;
 		quantity: number;
 		orderDate: string; // in 'YYYY-MM-DD' format
+		orderAmount: number;
 		book: {
 			bookTitle: string;
 		};
@@ -17,6 +18,7 @@ export type ProcessedOrder = {
 	date: string;
 	quantity: number;
 	orderId: string;
+	amount: number;
 };
 
 export type ProcessedUserType = {
@@ -29,6 +31,7 @@ export const reformatUserData = (users: UsersType): ProcessedUserType[] => {
 		const processedOrders = user.orders.map((order) => ({
 			...order,
 			date: order.orderDate,
+			amount: order.orderAmount,
 		}));
 
 		return {
@@ -49,11 +52,13 @@ const processDataForLineChart = (
 
 			if (aggregationByDateAndId[combinedKey]) {
 				aggregationByDateAndId[combinedKey].quantity += order.quantity;
+				aggregationByDateAndId[combinedKey].amount += order.amount;
 			} else {
 				aggregationByDateAndId[combinedKey] = {
 					date: order.date, // Keeping date as string
 					quantity: order.quantity,
 					orderId: order.orderId,
+					amount: order.amount,
 				};
 			}
 		});
