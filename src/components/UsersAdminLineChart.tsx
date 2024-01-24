@@ -96,7 +96,7 @@ export default function UsersAdminLineChart({
 			)
 		);
 	}, [users, timeFilter]);
-	console.log("User Data: ", filteredUserData);
+	// console.log("User Data: ", filteredUserData);
 	// const max = allQuantities ? d3.max(allQuantities) : 0;
 	// const parsedDates = (allDates ?? [])
 	// 	.map((dateStr) => new Date(dateStr))
