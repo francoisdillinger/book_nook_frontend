@@ -77,7 +77,7 @@ export default function UsersAdminBarChart({
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
-		console.log("Reformated user: ", reformatedUserData);
+		// console.log("Reformated user: ", reformatedUserData);
 		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
 		const timeFilteredUserData = getFilteredData(timeFilter, filteredUsers);
 		setReducedUsersData(reduceOrderQuantities(timeFilteredUserData));
