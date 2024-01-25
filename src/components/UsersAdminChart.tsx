@@ -265,8 +265,8 @@ export default function UsersAdminChart({
 		setTotalBooks(totalBooksOrdered);
 		setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
 	}, [timeFilter]);
-	console.log("Total: ", totalSales.currentTotal);
-	console.log("Prev Total: ", totalSales.previousTotal);
+	// console.log("Total: ", totalSales.currentTotal);
+	// console.log("Prev Total: ", totalSales.previousTotal);
 	// console.log("User Data: ", filtered);
 	// console.log("Previous Data: ", previousPeriodOrders(unFiltered, timeFilter));
 	// console.log("Total Amount: ", totalSales);
