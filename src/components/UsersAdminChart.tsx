@@ -311,7 +311,14 @@ export default function UsersAdminChart({
 			),
 		});
 
-		// setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
+		setAvgBookOrder({
+			currentAverage: totalBooksOrdered / totalNumSales,
+			previousAverage: prevTotalBooksOrdered / prevNumSales,
+			totalAverage: calculatePercentageChange(
+				totalBooksOrdered / totalNumSales,
+				prevTotalBooksOrdered / prevNumSales
+			),
+		});
 	}, [timeFilter]);
 	// console.log("Total: ", totalSales.currentTotal);
 	// console.log("Prev Total: ", totalSales.previousTotal);
@@ -320,9 +327,10 @@ export default function UsersAdminChart({
 	// console.log("Total Amount: ", totalSales);
 	// console.log("Avgerage Sale: ", avgSale?.currentAverage);
 	// console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
-	console.log("Total Books: ", totalBooks?.currentTotal);
-	console.log("Prev Total Books: ", totalBooks?.previousTotal);
-	// console.log("Average Books Per Order: ", avgBookOrder);
+	// console.log("Total Books: ", totalBooks?.currentTotal);
+	// console.log("Prev Total Books: ", totalBooks?.previousTotal);
+	console.log("Average Books Per Order: ", avgBookOrder?.currentAverage);
+	console.log("Prev Average Books Per Order: ", avgBookOrder?.previousAverage);
 	return (
 		<React.Fragment>
 			{/* <div className="flex lg:ml-20 xl:ml-28">
@@ -545,15 +553,13 @@ export default function UsersAdminChart({
 					{/* ================================ */}
 					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
 						<div className="flex flex-col items-start">
-							<h1 className="text-slate-600 font-bold text-lg">
-								Avg Book Order
-							</h1>
+							<h1 className="text-slate-600 font-bold text-lg">Avg Books</h1>
 							<div className="flex items-center my-2">
 								<p className="text-slate-500 font-normal text-3xl">
-									{/* {avgBookOrder} */}
+									{Math.round(avgBookOrder?.currentAverage)}
 								</p>
 								<div className="ml-10">
-									{totalSales?.totalChange > 0 ? (
+									{avgBookOrder?.totalAverage >= 0 ? (
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
@@ -585,8 +591,19 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-red-400">+1.2%</span> vs{" "}
-								{previousTime(timeFilter)}
+								<span
+									className={`${
+										avgBookOrder?.totalAverage >= 0
+											? "text-green-400"
+											: "text-red-400"
+									}`}
+								>
+									{avgBookOrder?.totalAverage >= 0
+										? "+" + avgBookOrder?.totalAverage.toFixed(2)
+										: "-" + avgBookOrder?.totalAverage.toFixed(2)}
+									%
+								</span>{" "}
+								vs {previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
