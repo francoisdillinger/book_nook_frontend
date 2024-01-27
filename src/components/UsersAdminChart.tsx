@@ -291,23 +291,24 @@ export default function UsersAdminChart({
 		setTotalSales({
 			currentTotal: total / 100,
 			previousTotal: prevTotal / 100,
-			totalChange: (total / 100 / (prevTotal / 100)) * 100,
+			totalChange: calculatePercentageChange(total, prevTotal),
 		});
 		setAvgSale({
 			currentAverage: total / totalNumSales / 100,
 			previousAverage: prevTotal / prevNumSales / 100,
-			totalAverage:
-				((total / totalNumSales - prevTotal / prevNumSales) /
-					(prevTotal / prevNumSales)) *
-				100,
+			totalAverage: calculatePercentageChange(
+				total / totalNumSales,
+				prevTotal / prevNumSales
+			),
 		});
 
 		setTotalBooks({
 			currentTotal: totalBooksOrdered,
 			previousTotal: prevTotalBooksOrdered,
-			totalChange:
-				((totalBooksOrdered - prevTotalBooksOrdered) / prevTotalBooksOrdered) *
-				100,
+			totalChange: calculatePercentageChange(
+				totalBooksOrdered,
+				prevTotalBooksOrdered
+			),
 		});
 
 		// setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
@@ -379,7 +380,7 @@ export default function UsersAdminChart({
 									${totalSales?.currentTotal.toFixed(2)}
 								</p>
 								<div className="ml-10">
-									{totalSales?.totalChange > 0 ? (
+									{totalSales?.totalChange >= 0 ? (
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
@@ -413,12 +414,12 @@ export default function UsersAdminChart({
 							<p className="text-slate-400 font-normal text-sm">
 								<span
 									className={`${
-										totalSales?.totalChange > 0
+										totalSales?.totalChange >= 0
 											? "text-green-400"
 											: "text-red-400"
 									}`}
 								>
-									{totalSales?.totalChange > 0
+									{totalSales?.totalChange >= 0
 										? "+" + totalSales?.totalChange.toFixed(2)
 										: "-" + totalSales?.totalChange.toFixed(2)}
 									%
