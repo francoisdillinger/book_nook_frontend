@@ -177,6 +177,12 @@ type TotalSalesType = {
 	totalChange: number;
 };
 
+type AverageSalesType = {
+	currentAverage: number;
+	previousAverage: number;
+	totalAverage: number;
+};
+
 type UsersAdminChartType = {
 	margin: MarginType;
 	timeFilter: string;
@@ -212,13 +218,13 @@ export default function UsersAdminChart({
 	setFocusedUser,
 }: UsersAdminChartType) {
 	const [totalSales, setTotalSales] = useState<TotalSalesType>();
-	const [avgSale, setAvgSale] = useState("");
+	const [avgSale, setAvgSale] = useState<AverageSalesType>();
 	const [totalBooks, setTotalBooks] = useState(0);
 	const [avgBookOrder, setAvgBookOrder] = useState(0);
 	const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 	// const [unFiltered, setUnFiltered] = useState<ProcessedUserType[]>();
-	const [previousTotal, setPreviousTotal] = useState("");
-	const [before, setBefore] = useState<ProcessedUserType[]>();
+	// const [previousTotal, setPreviousTotal] = useState("");
+	// const [before, setBefore] = useState<ProcessedUserType[]>();
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
@@ -233,6 +239,9 @@ export default function UsersAdminChart({
 				)
 			)
 			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+		const prevNumSales = previousFiltered
+			.map((user) => user.orders.length)
+			.reduce((accumulator, order) => accumulator + order, 0);
 		const total = filteredUserchart
 			.map((user) =>
 				user.orders.reduce(
@@ -241,7 +250,7 @@ export default function UsersAdminChart({
 				)
 			)
 			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-		const averageSale = filteredUserchart
+		const totalNumSales = filteredUserchart
 			.map((user) => user.orders.length)
 			.reduce((accumulator, order) => accumulator + order, 0);
 
@@ -261,16 +270,25 @@ export default function UsersAdminChart({
 			previousTotal: prevTotal / 100,
 			totalChange: (total / 100 / (prevTotal / 100)) * 100,
 		});
-		setAvgSale((total / averageSale / 100).toFixed(2));
+		setAvgSale({
+			currentAverage: total / totalNumSales / 100,
+			previousAverage: prevTotal / prevNumSales / 100,
+			totalAverage:
+				((total / totalNumSales - prevTotal / prevNumSales) /
+					(prevTotal / prevNumSales)) *
+				100,
+		});
+
 		setTotalBooks(totalBooksOrdered);
-		setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
+		// setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
 	}, [timeFilter]);
 	// console.log("Total: ", totalSales.currentTotal);
 	// console.log("Prev Total: ", totalSales.previousTotal);
 	// console.log("User Data: ", filtered);
 	// console.log("Previous Data: ", previousPeriodOrders(unFiltered, timeFilter));
 	// console.log("Total Amount: ", totalSales);
-	// console.log("Avgerage Sale: ", avgSale);
+	console.log("Avgerage Sale: ", avgSale?.currentAverage);
+	console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
 	// console.log("Total Books: ", totalBooks);
 	// console.log("Average Books Per Order: ", avgBookOrder);
 	return (
@@ -384,10 +402,10 @@ export default function UsersAdminChart({
 							<h1 className="text-slate-600 font-bold text-lg">Avg Sale</h1>
 							<div className="flex items-center my-2">
 								<p className="text-slate-500 font-normal text-3xl">
-									${avgSale}
+									${avgSale?.currentAverage.toFixed(2)}
 								</p>
 								<div className="ml-10">
-									{totalSales?.totalChange > 0 ? (
+									{avgSale?.totalAverage >= 0 ? (
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
@@ -419,7 +437,19 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-red-400">+1.2%</span> vs last week
+								<span
+									className={`${
+										avgSale?.totalAverage >= 0
+											? "text-green-400"
+											: "text-red-400"
+									}`}
+								>
+									{avgSale?.totalAverage >= 0
+										? "+" + avgSale?.totalAverage.toFixed(2)
+										: "-" + avgSale?.totalAverage.toFixed(2)}
+									%
+								</span>{" "}
+								vs {previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
@@ -429,7 +459,7 @@ export default function UsersAdminChart({
 							<h1 className="text-slate-600 font-bold text-lg">Total Books</h1>
 							<div className="flex items-center my-2">
 								<p className="text-slate-500 font-normal text-3xl">
-									{totalBooks}
+									{/* {totalBooks} */}
 								</p>
 								<div className="ml-10">
 									{totalSales?.totalChange > 0 ? (
@@ -464,7 +494,8 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-green-400">+1.2%</span> vs last week
+								<span className="text-green-400">+1.2%</span> vs{" "}
+								{previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
@@ -476,7 +507,7 @@ export default function UsersAdminChart({
 							</h1>
 							<div className="flex items-center my-2">
 								<p className="text-slate-500 font-normal text-3xl">
-									{avgBookOrder}
+									{/* {avgBookOrder} */}
 								</p>
 								<div className="ml-10">
 									{totalSales?.totalChange > 0 ? (
@@ -511,7 +542,8 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-red-400">+1.2%</span> vs last week
+								<span className="text-red-400">+1.2%</span> vs{" "}
+								{previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
