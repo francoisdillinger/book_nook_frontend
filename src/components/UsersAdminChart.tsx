@@ -183,6 +183,10 @@ type AverageSalesType = {
 	totalAverage: number;
 };
 
+type TotalBooksType = TotalSalesType;
+
+type AverageBooksType = AverageSalesType;
+
 type UsersAdminChartType = {
 	margin: MarginType;
 	timeFilter: string;
@@ -219,8 +223,8 @@ export default function UsersAdminChart({
 }: UsersAdminChartType) {
 	const [totalSales, setTotalSales] = useState<TotalSalesType>();
 	const [avgSale, setAvgSale] = useState<AverageSalesType>();
-	const [totalBooks, setTotalBooks] = useState(0);
-	const [avgBookOrder, setAvgBookOrder] = useState(0);
+	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
+	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
 	const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 	// const [unFiltered, setUnFiltered] = useState<ProcessedUserType[]>();
 	// const [previousTotal, setPreviousTotal] = useState("");
@@ -242,6 +246,14 @@ export default function UsersAdminChart({
 		const prevNumSales = previousFiltered
 			.map((user) => user.orders.length)
 			.reduce((accumulator, order) => accumulator + order, 0);
+		const prevTotalBooksOrdered = previousFiltered
+			.map((user) =>
+				user.orders.reduce(
+					(accumulator, order) => accumulator + order.quantity,
+					0
+				)
+			)
+			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
 		const total = filteredUserchart
 			.map((user) =>
 				user.orders.reduce(
@@ -279,7 +291,14 @@ export default function UsersAdminChart({
 				100,
 		});
 
-		setTotalBooks(totalBooksOrdered);
+		setTotalBooks({
+			currentTotal: totalBooksOrdered,
+			previousTotal: prevTotalBooksOrdered,
+			totalChange:
+				((totalBooksOrdered - prevTotalBooksOrdered) / prevTotalBooksOrdered) *
+				100,
+		});
+
 		// setAvgBookOrder(parseInt((totalBooksOrdered / averageSale).toFixed(2)));
 	}, [timeFilter]);
 	// console.log("Total: ", totalSales.currentTotal);
@@ -287,9 +306,10 @@ export default function UsersAdminChart({
 	// console.log("User Data: ", filtered);
 	// console.log("Previous Data: ", previousPeriodOrders(unFiltered, timeFilter));
 	// console.log("Total Amount: ", totalSales);
-	console.log("Avgerage Sale: ", avgSale?.currentAverage);
-	console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
-	// console.log("Total Books: ", totalBooks);
+	// console.log("Avgerage Sale: ", avgSale?.currentAverage);
+	// console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
+	console.log("Total Books: ", totalBooks?.currentTotal);
+	console.log("Prev Total Books: ", totalBooks?.previousTotal);
 	// console.log("Average Books Per Order: ", avgBookOrder);
 	return (
 		<React.Fragment>
@@ -459,10 +479,10 @@ export default function UsersAdminChart({
 							<h1 className="text-slate-600 font-bold text-lg">Total Books</h1>
 							<div className="flex items-center my-2">
 								<p className="text-slate-500 font-normal text-3xl">
-									{/* {totalBooks} */}
+									{totalBooks?.currentTotal}
 								</p>
 								<div className="ml-10">
-									{totalSales?.totalChange > 0 ? (
+									{totalBooks?.totalChange >= 0 ? (
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
@@ -494,8 +514,19 @@ export default function UsersAdminChart({
 								</div>
 							</div>
 							<p className="text-slate-400 font-normal text-sm">
-								<span className="text-green-400">+1.2%</span> vs{" "}
-								{previousTime(timeFilter)}
+								<span
+									className={`${
+										totalBooks?.totalChange >= 0
+											? "text-green-400"
+											: "text-red-400"
+									}`}
+								>
+									{totalBooks?.totalChange >= 0
+										? "+" + totalBooks?.totalChange.toFixed(2)
+										: "-" + totalBooks?.totalChange.toFixed(2)}
+									%
+								</span>{" "}
+								vs {previousTime(timeFilter)}
 							</p>
 						</div>
 					</div>
