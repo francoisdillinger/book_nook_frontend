@@ -209,7 +209,7 @@ export default function UsersAdminBarChart({
 								y={graphHeight / 2}
 								textAnchor="middle" // Centers horizontally
 								dominantBaseline="middle" // Centers vertically
-								className="fill-current text-logo text-4xl font-light"
+								className="fill-current text-logo text-base sm:text-2xl lg:text-base xl:text-xl font-light"
 							>
 								No Data Exists For This Period
 							</text>
