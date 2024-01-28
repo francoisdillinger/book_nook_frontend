@@ -70,7 +70,7 @@ export default function AdminChart() {
 							/>
 						)}
 					</div>
-					<div className="flex justify-start w-full mr-2 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
+					<div className="flex justify-start w-full mr-4 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
 						<ChartTimePeriodButtons
 							timeFilter={timeFilter}
 							setTimeFilter={setTimeFilter}
@@ -78,25 +78,27 @@ export default function AdminChart() {
 					</div>
 				</div>{" "}
 			</div>
-			{filterChart === "Users" && (
-				<UsersAdminChart
-					margin={margin}
-					timeFilter={timeFilter}
-					tooltip={tooltip}
-					setTooltip={setTooltip}
-					users={users}
-					colorScale={colorScale}
-					hasData={hasData}
-					setHasData={setHasData}
-					setSelectOptions={setSelectOptions}
-					focusedUser={focusedUser}
-					width={0}
-					height={0}
-					setTimeFilter={setTimeFilter}
-					selectOptions={selectOptions}
-					setFocusedUser={setFocusedUser}
-				/>
-			)}
+			<div className="mr-4">
+				{filterChart === "Users" && (
+					<UsersAdminChart
+						margin={margin}
+						timeFilter={timeFilter}
+						tooltip={tooltip}
+						setTooltip={setTooltip}
+						users={users}
+						colorScale={colorScale}
+						hasData={hasData}
+						setHasData={setHasData}
+						setSelectOptions={setSelectOptions}
+						focusedUser={focusedUser}
+						width={0}
+						height={0}
+						setTimeFilter={setTimeFilter}
+						selectOptions={selectOptions}
+						setFocusedUser={setFocusedUser}
+					/>
+				)}
+			</div>
 		</React.Fragment>
 	);
 }
