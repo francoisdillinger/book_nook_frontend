@@ -182,8 +182,8 @@ export default function UsersAdminBarChart({
 										setTooltip({
 											visible: true,
 											content: content,
-											x: e.clientX + 10,
-											y: e.clientY + 10,
+											x: e.pageX + 10,
+											y: e.pageY + 10,
 										});
 									}}
 									onMouseLeave={() => {
