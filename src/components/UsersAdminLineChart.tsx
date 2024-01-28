@@ -283,6 +283,7 @@ export default function UsersAdminLineChart({
 													: 0.2
 											}
 											onMouseEnter={(e) => {
+												console.log(e);
 												const content = (
 													<div>
 														<div>
@@ -308,8 +309,8 @@ export default function UsersAdminLineChart({
 												setTooltip({
 													visible: true,
 													content: content,
-													x: e.clientX + 10,
-													y: e.clientY + 10,
+													x: e.pageX + 10,
+													y: e.pageY + 10,
 												});
 											}}
 											onMouseLeave={() => {
