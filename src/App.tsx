@@ -14,8 +14,8 @@ import HomePageContent from "./components/HomePageContent";
 import SideBarAdminMenu from "./components/SideBarAdminMenu";
 import AdminHome from "./components/AdminHome";
 import Scratch from "./components/Scratch";
-import UsersAdminChart from "./components/UsersAdminChart";
-import AdminChart from "./components/AdminChart";
+import UsersAdminChart from "./components/ChartComponents/UserChart/UsersAdminChart";
+import AdminChart from "./components/ChartComponents/AdminChart";
 
 export default function App() {
 	return (
