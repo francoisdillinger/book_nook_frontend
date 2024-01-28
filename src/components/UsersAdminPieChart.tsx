@@ -121,7 +121,7 @@ const UsersAdminPieChart = ({
 							x={0}
 							y={-graphHeight / 2.3}
 							textAnchor="middle"
-							className="fill-current text-neutral-500 text-2xl lg:text-lg xl:text-xl"
+							className="fill-current text-neutral-500 text-2xl  lg:text-base xl:text-xl"
 						>
 							Percentage of Orders By User
 						</text>
@@ -227,8 +227,8 @@ const UsersAdminPieChart = ({
 											setTooltip({
 												visible: true,
 												content: content,
-												x: e.clientX + 10,
-												y: e.clientY + 10,
+												x: e.pageX + 10,
+												y: e.pageY + 10,
 											});
 										}}
 										onMouseLeave={() => {
