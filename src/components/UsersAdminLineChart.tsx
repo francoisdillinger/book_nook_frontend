@@ -14,25 +14,6 @@ import YAxis from "./YAxis";
 import { MarginType } from "./AdminChart";
 import ResponsiveSVGContainer from "./ResponsiveSVGContainer";
 
-const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
-	const tooltipWidth = 150; // Set maximum expected width of tooltip
-	const tooltipHeight = 50; // Set maximum expected height of tooltip
-	const windowPadding = 10; // Padding from the edge of the window
-
-	// Calculate position
-	let x = e.pageX + 10;
-	let y = e.pageY + 10;
-
-	// Adjust if tooltip overflows the window
-	if (x + tooltipWidth > window.innerWidth - windowPadding) {
-		x = e.pageX - tooltipWidth - windowPadding;
-	}
-	if (y + tooltipHeight > window.innerHeight - windowPadding) {
-		y = e.pageY - tooltipHeight - windowPadding;
-	}
-	return { x: x, y: y };
-};
-
 export const filterOutInactiveUsers = (
 	users: ProcessedUserType[]
 ): ProcessedUserType[] => {
@@ -55,6 +36,7 @@ type UsersAdminLineChartType = {
 	setHasData: Function;
 	setSelectOptions: Function;
 	focusedUser: string;
+	doesToolTipOverflowWindow: Function;
 };
 
 export default function UsersAdminLineChart({
@@ -73,6 +55,7 @@ export default function UsersAdminLineChart({
 	setHasData,
 	setSelectOptions,
 	focusedUser,
+	doesToolTipOverflowWindow,
 }: UsersAdminLineChartType) {
 	// console.log("Height: ", height);
 	// console.log("Width: ", width);

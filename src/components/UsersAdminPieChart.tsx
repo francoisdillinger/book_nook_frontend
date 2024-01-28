@@ -10,25 +10,6 @@ import {
 import { TooltipStateType } from "./ChartToolTip";
 import { UsersType } from "../data/users";
 
-const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
-	const tooltipWidth = 150; // Set maximum expected width of tooltip
-	const tooltipHeight = 50; // Set maximum expected height of tooltip
-	const windowPadding = 10; // Padding from the edge of the window
-
-	// Calculate position
-	let x = e.pageX + 10;
-	let y = e.pageY + 10;
-
-	// Adjust if tooltip overflows the window
-	if (x + tooltipWidth > window.innerWidth - windowPadding) {
-		x = e.pageX - tooltipWidth - windowPadding;
-	}
-	if (y + tooltipHeight > window.innerHeight - windowPadding) {
-		y = e.pageY - tooltipHeight - windowPadding;
-	}
-	return { x: x, y: y };
-};
-
 const reduceOrderQuantities = (
 	users: ProcessedUserType[]
 ): ReducedUserDataType[] => {
@@ -67,6 +48,7 @@ type UsersAdminPieChartType = {
 	colorScale: Function;
 	hasData: number;
 	focusedUser: string;
+	doesToolTipOverflowWindow: Function;
 };
 
 const UsersAdminPieChart = ({
@@ -82,6 +64,7 @@ const UsersAdminPieChart = ({
 	colorScale,
 	hasData,
 	focusedUser,
+	doesToolTipOverflowWindow,
 }: UsersAdminPieChartType) => {
 	const svgWidth = width;
 	const svgHeight = height;
