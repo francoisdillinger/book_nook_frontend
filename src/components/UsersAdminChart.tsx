@@ -214,6 +214,7 @@ type UsersAdminChartType = {
 	setSelectOptions: Function;
 	focusedUser: string;
 	setFocusedUser: Function;
+	doesToolTipOverflowWindow: Function;
 };
 export default function UsersAdminChart({
 	margin,
@@ -231,6 +232,7 @@ export default function UsersAdminChart({
 	selectOptions,
 	focusedUser,
 	setFocusedUser,
+	doesToolTipOverflowWindow,
 }: UsersAdminChartType) {
 	const [totalSales, setTotalSales] = useState<TotalSalesType>();
 	const [avgSale, setAvgSale] = useState<AverageSalesType>();
@@ -652,6 +654,7 @@ export default function UsersAdminChart({
 									setHasData={setHasData}
 									setSelectOptions={setSelectOptions}
 									focusedUser={focusedUser}
+									doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 								/>
 							</ResponsiveSVGContainer>
 						</div>
@@ -672,6 +675,7 @@ export default function UsersAdminChart({
 							setHasData={setHasData}
 							setSelectOptions={setSelectOptions}
 							focusedUser={focusedUser}
+							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
 					</ResponsiveSVGContainer>
 				</div>
@@ -687,6 +691,7 @@ export default function UsersAdminChart({
 							setHasData={setHasData}
 							setSelectOptions={setSelectOptions}
 							focusedUser={focusedUser}
+							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
 					</ResponsiveSVGContainer>
 				</div>
