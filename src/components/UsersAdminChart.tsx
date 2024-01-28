@@ -294,12 +294,13 @@ export default function UsersAdminChart({
 			totalChange: calculatePercentageChange(total, prevTotal),
 		});
 		setAvgSale({
-			currentAverage: total / totalNumSales / 100,
-			previousAverage: prevTotal / prevNumSales / 100,
-			totalAverage: calculatePercentageChange(
-				total / totalNumSales,
-				prevTotal / prevNumSales
-			),
+			currentAverage: total / totalNumSales / 100 || 0,
+			previousAverage: prevTotal / prevNumSales / 100 || 0,
+			totalAverage:
+				calculatePercentageChange(
+					total / totalNumSales,
+					prevTotal / prevNumSales
+				) || 0,
 		});
 
 		setTotalBooks({
@@ -312,12 +313,13 @@ export default function UsersAdminChart({
 		});
 
 		setAvgBookOrder({
-			currentAverage: totalBooksOrdered / totalNumSales,
-			previousAverage: prevTotalBooksOrdered / prevNumSales,
-			totalAverage: calculatePercentageChange(
-				totalBooksOrdered / totalNumSales,
-				prevTotalBooksOrdered / prevNumSales
-			),
+			currentAverage: totalBooksOrdered / totalNumSales || 0,
+			previousAverage: prevTotalBooksOrdered / prevNumSales || 0,
+			totalAverage:
+				calculatePercentageChange(
+					totalBooksOrdered / totalNumSales,
+					prevTotalBooksOrdered / prevNumSales
+				) || 0,
 		});
 	}, [timeFilter]);
 	// console.log("Total: ", totalSales.currentTotal);
@@ -329,8 +331,8 @@ export default function UsersAdminChart({
 	// console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
 	// console.log("Total Books: ", totalBooks?.currentTotal);
 	// console.log("Prev Total Books: ", totalBooks?.previousTotal);
-	console.log("Average Books Per Order: ", avgBookOrder?.currentAverage);
-	console.log("Prev Average Books Per Order: ", avgBookOrder?.previousAverage);
+	// console.log("Average Books Per Order: ", avgBookOrder?.currentAverage);
+	// console.log("Prev Average Books Per Order: ", avgBookOrder?.previousAverage);
 	return (
 		<React.Fragment>
 			{/* <div className="flex lg:ml-20 xl:ml-28">
