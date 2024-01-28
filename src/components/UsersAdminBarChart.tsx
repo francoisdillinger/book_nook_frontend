@@ -12,6 +12,25 @@ import BarChartXAxis from "./BarChartXAxis";
 import BarChartYAxis from "./BarChartYAxis";
 import { MarginType } from "./AdminChart";
 
+const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
+	const tooltipWidth = 150; // Set maximum expected width of tooltip
+	const tooltipHeight = 50; // Set maximum expected height of tooltip
+	const windowPadding = 10; // Padding from the edge of the window
+
+	// Calculate position
+	let x = e.pageX + 10;
+	let y = e.pageY + 10;
+
+	// Adjust if tooltip overflows the window
+	if (x + tooltipWidth > window.innerWidth - windowPadding) {
+		x = e.pageX - tooltipWidth - windowPadding;
+	}
+	if (y + tooltipHeight > window.innerHeight - windowPadding) {
+		y = e.pageY - tooltipHeight - windowPadding;
+	}
+	return { x: x, y: y };
+};
+
 const reduceOrderQuantities = (
 	users: ProcessedUserType[]
 ): ReducedUserDataType[] => {
@@ -163,6 +182,7 @@ export default function UsersAdminBarChart({
 											: 0.2
 									}
 									onMouseEnter={(e) => {
+										const { x, y } = doesToolTipOverflowWindow(e);
 										const content = (
 											<div>
 												<div>
@@ -182,8 +202,8 @@ export default function UsersAdminBarChart({
 										setTooltip({
 											visible: true,
 											content: content,
-											x: e.pageX + 10,
-											y: e.pageY + 10,
+											x: x,
+											y: y,
 										});
 									}}
 									onMouseLeave={() => {
