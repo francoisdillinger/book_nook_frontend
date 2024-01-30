@@ -288,8 +288,6 @@ export default function UsersAdminChart({
 			)
 			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
 		setFiltered(filteredUserchart);
-		// setUnFiltered(filteredUsers);
-		// setPreviousTotal((prevTotal / 100).toFixed(2));
 		setTotalSales({
 			currentTotal: total / 100,
 			previousTotal: prevTotal / 100,
