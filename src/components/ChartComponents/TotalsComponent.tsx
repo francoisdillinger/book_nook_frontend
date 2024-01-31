@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 type TotalsType = {
-	title: string;
-	current: string;
-	change: number;
-	previousPeriod: string;
+	title: string | undefined;
+	current: string | undefined;
+	change: number | undefined;
+	previousPeriod: string | undefined;
 };
 
 export default function TotalsComponent({
