@@ -86,7 +86,7 @@ const UsersAdminPieChart = ({
 	// console.log("Key: ", key);
 	const pie = useMemo(() => {
 		return d3
-			.pie()
+			.pie<ReducedUserDataType>()
 			.sort(null)
 			.value((d) => d.totalBooksOrdered);
 	}, [graphWidth, reducedUsersData]);
@@ -98,7 +98,7 @@ const UsersAdminPieChart = ({
 
 	const arcPath = useMemo(() => {
 		return d3
-			.arc()
+			.arc<d3.PieArcDatum<ReducedUserDataType>>()
 			.outerRadius(radius)
 			.innerRadius(radius / 1.8);
 	}, [radius, reducedUsersData]);
@@ -182,7 +182,7 @@ const UsersAdminPieChart = ({
 								return (
 									<motion.path
 										key={user.data.userName}
-										d={arcPath(user)}
+										d={arcPath(user) || ""}
 										stroke={"white"}
 										strokeWidth={2}
 										transition={{
