@@ -17,6 +17,7 @@ import {
 	getFilteredData,
 	reformatUserData,
 } from "../../../utils/usersAdminChartUtilities";
+import TotalsComponent from "../TotalsComponent";
 
 const previousTime = (timeFilter: string) => {
 	switch (timeFilter) {
@@ -239,234 +240,36 @@ export default function UsersAdminChart({
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
 				<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
-					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
-						<div className="flex flex-col items-start">
-							<h1 className="text-slate-600 font-bold text-lg">Total Sales</h1>
-							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">
-									${totalSales?.currentTotal.toFixed(2)}
-								</p>
-								<div className="ml-10">
-									{totalSales?.totalChange >= 0 ? (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
-											/>
-										</svg>
-									) : (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
-											/>
-										</svg>
-									)}
-								</div>
-							</div>
-							<p className="text-slate-400 font-normal text-sm">
-								<span
-									className={`${
-										totalSales?.totalChange >= 0
-											? "text-green-400"
-											: "text-red-400"
-									}`}
-								>
-									{totalSales?.totalChange >= 0
-										? "+" + totalSales?.totalChange.toFixed(2)
-										: "-" + totalSales?.totalChange.toFixed(2)}
-									%
-								</span>{" "}
-								vs {previousTime(timeFilter)}
-							</p>
-						</div>
-					</div>
-					{/* ================================ */}
-					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
-						<div className="flex flex-col items-start">
-							<h1 className="text-slate-600 font-bold text-lg">Avg Sale</h1>
-							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">
-									${avgSale?.currentAverage.toFixed(2)}
-								</p>
-								<div className="ml-10">
-									{avgSale?.totalAverage >= 0 ? (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
-											/>
-										</svg>
-									) : (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
-											/>
-										</svg>
-									)}
-								</div>
-							</div>
-							<p className="text-slate-400 font-normal text-sm">
-								<span
-									className={`${
-										avgSale?.totalAverage >= 0
-											? "text-green-400"
-											: "text-red-400"
-									}`}
-								>
-									{avgSale?.totalAverage >= 0
-										? "+" + avgSale?.totalAverage.toFixed(2)
-										: "-" + avgSale?.totalAverage.toFixed(2)}
-									%
-								</span>{" "}
-								vs {previousTime(timeFilter)}
-							</p>
-						</div>
-					</div>
-					{/* =================================== */}
-					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
-						<div className="flex flex-col items-start">
-							<h1 className="text-slate-600 font-bold text-lg">Total Books</h1>
-							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">
-									{totalBooks?.currentTotal}
-								</p>
-								<div className="ml-10">
-									{totalBooks?.totalChange >= 0 ? (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
-											/>
-										</svg>
-									) : (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
-											/>
-										</svg>
-									)}
-								</div>
-							</div>
-							<p className="text-slate-400 font-normal text-sm">
-								<span
-									className={`${
-										totalBooks?.totalChange >= 0
-											? "text-green-400"
-											: "text-red-400"
-									}`}
-								>
-									{totalBooks?.totalChange >= 0
-										? "+" + totalBooks?.totalChange.toFixed(2)
-										: "-" + totalBooks?.totalChange.toFixed(2)}
-									%
-								</span>{" "}
-								vs {previousTime(timeFilter)}
-							</p>
-						</div>
-					</div>
-					{/* ================================ */}
-					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
-						<div className="flex flex-col items-start">
-							<h1 className="text-slate-600 font-bold text-lg">Avg Books</h1>
-							<div className="flex items-center my-2">
-								<p className="text-slate-500 font-normal text-3xl">
-									{Math.round(avgBookOrder?.currentAverage)}
-								</p>
-								<div className="ml-10">
-									{avgBookOrder?.totalAverage >= 0 ? (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-green-600 bg-green-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
-											/>
-										</svg>
-									) : (
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={1.5}
-											className="w-8 h-8 stroke-red-600 bg-red-200 rounded-full p-1"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181"
-											/>
-										</svg>
-									)}
-								</div>
-							</div>
-							<p className="text-slate-400 font-normal text-sm">
-								<span
-									className={`${
-										avgBookOrder?.totalAverage >= 0
-											? "text-green-400"
-											: "text-red-400"
-									}`}
-								>
-									{avgBookOrder?.totalAverage >= 0
-										? "+" + avgBookOrder?.totalAverage.toFixed(2)
-										: "-" + avgBookOrder?.totalAverage.toFixed(2)}
-									%
-								</span>{" "}
-								vs {previousTime(timeFilter)}
-							</p>
-						</div>
-					</div>
-					{/* =================================== */}
+					<TotalsComponent
+						title="Total Sales"
+						isDollarAmount={true}
+						current={(totalSales ? totalSales?.currentTotal : 0).toFixed(2)}
+						change={totalSales ? totalSales?.totalChange : 0}
+						previousPeriod={previousTime(timeFilter)}
+					/>
+					<TotalsComponent
+						title="Avg Sales"
+						isDollarAmount={true}
+						current={(avgSale ? avgSale!.currentAverage : 0).toFixed(2)}
+						change={avgSale ? avgSale!.totalAverage : 0}
+						previousPeriod={previousTime(timeFilter)}
+					/>
+					<TotalsComponent
+						title="Total Books"
+						isDollarAmount={false}
+						current={(totalBooks ? totalBooks!.currentTotal : 0).toString()}
+						change={totalBooks ? totalBooks!.totalChange : 0}
+						previousPeriod={previousTime(timeFilter)}
+					/>
+					<TotalsComponent
+						title="Avg Books"
+						isDollarAmount={false}
+						current={Math.round(
+							avgBookOrder ? avgBookOrder!.currentAverage : 0
+						).toString()}
+						change={avgBookOrder ? avgBookOrder!.totalAverage : 0}
+						previousPeriod={previousTime(timeFilter)}
+					/>
 				</div>
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					<ChartToolTip tooltip={tooltip} />
