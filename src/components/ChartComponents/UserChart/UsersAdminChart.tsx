@@ -185,8 +185,8 @@ export default function UsersAdminChart({
 							users={users}
 							colorScale={colorScale}
 							hasData={hasData}
-							setHasData={setHasData}
-							setSelectOptions={setSelectOptions}
+							// setHasData={setHasData}
+							// setSelectOptions={setSelectOptions}
 							focusedUser={focusedUser}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
@@ -201,8 +201,8 @@ export default function UsersAdminChart({
 							users={users}
 							colorScale={colorScale}
 							hasData={hasData}
-							setHasData={setHasData}
-							setSelectOptions={setSelectOptions}
+							// setHasData={setHasData}
+							// setSelectOptions={setSelectOptions}
 							focusedUser={focusedUser}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
