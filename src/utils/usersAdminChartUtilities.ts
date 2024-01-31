@@ -191,3 +191,45 @@ export const calculatePercentageChange = (
 
 	return ((currentValue - previousValue) / previousValue) * 100;
 };
+
+export const previousPeriodOrders = (
+	users: ProcessedUserType[],
+	timeFilter: string
+) => {
+	const currentDate = new Date();
+	let startPreviousPeriod, endPreviousPeriod;
+
+	switch (timeFilter) {
+		case "day":
+			startPreviousPeriod = d3.timeDay.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeDay.offset(currentDate, -1);
+			break;
+		case "week":
+			startPreviousPeriod = d3.timeDay.offset(currentDate, -14);
+			endPreviousPeriod = d3.timeDay.offset(currentDate, -7);
+			break;
+		case "month":
+			startPreviousPeriod = d3.timeMonth.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeMonth.offset(currentDate, -1);
+			break;
+		case "half-year":
+			startPreviousPeriod = d3.timeMonth.offset(currentDate, -12);
+			endPreviousPeriod = d3.timeMonth.offset(currentDate, -6);
+			break;
+		case "year":
+			startPreviousPeriod = d3.timeYear.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeYear.offset(currentDate, -1);
+			break;
+		default:
+			return users;
+	}
+	return users.map((user) => ({
+		...user,
+		orders: user.orders.filter((order) => {
+			const orderDate = new Date(order.date);
+			const filtered =
+				orderDate >= startPreviousPeriod && orderDate <= endPreviousPeriod;
+			return filtered;
+		}),
+	}));
+};
