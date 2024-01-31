@@ -239,9 +239,6 @@ export default function UsersAdminChart({
 	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
 	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
 	const [filtered, setFiltered] = useState<ProcessedUserType[]>();
-	// const [unFiltered, setUnFiltered] = useState<ProcessedUserType[]>();
-	// const [previousTotal, setPreviousTotal] = useState("");
-	// const [before, setBefore] = useState<ProcessedUserType[]>();
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
