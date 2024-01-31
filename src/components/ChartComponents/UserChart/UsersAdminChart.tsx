@@ -244,31 +244,31 @@ export default function UsersAdminChart({
 					<TotalsComponent
 						title="Total Sales"
 						isDollarAmount={true}
-						current={(totalSales ? totalSales?.currentTotal : 0).toFixed(2)}
-						change={totalSales ? totalSales?.totalChange : 0}
+						current={(totalSales ? totalSales.currentTotal : 0).toFixed(2)}
+						change={totalSales ? totalSales.totalChange : 0}
 						previousPeriod={previousTime(timeFilter)}
 					/>
 					<TotalsComponent
 						title="Avg Sales"
 						isDollarAmount={true}
-						current={(avgSale ? avgSale!.currentAverage : 0).toFixed(2)}
-						change={avgSale ? avgSale!.totalAverage : 0}
+						current={(avgSale ? avgSale.currentAverage : 0).toFixed(2)}
+						change={avgSale ? avgSale.totalAverage : 0}
 						previousPeriod={previousTime(timeFilter)}
 					/>
 					<TotalsComponent
 						title="Total Books"
 						isDollarAmount={false}
-						current={(totalBooks ? totalBooks!.currentTotal : 0).toString()}
-						change={totalBooks ? totalBooks!.totalChange : 0}
+						current={(totalBooks ? totalBooks.currentTotal : 0).toString()}
+						change={totalBooks ? totalBooks.totalChange : 0}
 						previousPeriod={previousTime(timeFilter)}
 					/>
 					<TotalsComponent
 						title="Avg Books"
 						isDollarAmount={false}
 						current={Math.round(
-							avgBookOrder ? avgBookOrder!.currentAverage : 0
+							avgBookOrder ? avgBookOrder.currentAverage : 0
 						).toString()}
-						change={avgBookOrder ? avgBookOrder!.totalAverage : 0}
+						change={avgBookOrder ? avgBookOrder.totalAverage : 0}
 						previousPeriod={previousTime(timeFilter)}
 					/>
 				</div>
