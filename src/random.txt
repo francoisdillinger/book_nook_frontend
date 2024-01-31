@@ -645,3 +645,86 @@ export default function RecomendedSlider(){
 	// 			.remove();
 	// 	}
 	// }, [filteredBooks]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    				{/* <div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
+					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						) : (
+							<></>
+						)}
+
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						) : (
+							<></>
+						)}
+
+						{selectOptions ? (
+							<ReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						) : (
+							<></>
+						)}
+					</div>
+					<div className="flex justify-start w-full mr-2 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
+						<ChartTimePeriodButtons
+							timeFilter={timeFilter}
+							setTimeFilter={setTimeFilter}
+						/>
+					</div>
+				</div> */}
+
+                					{/* <div className="h-12 flex flex-wrap  md:flex-nowrap md:items-center md:justify-between">
+						<div className="w-full flex justify-end mr-4">
+							<ChartTimePeriodButtons
+								timeFilter={timeFilter}
+								setTimeFilter={setTimeFilter}
+							/>
+						</div>
+						<div className="ml-20 mt-8 md:mr-5 md:mt-0 md:pt-2">
+							{selectOptions ? (
+								<ReactSelect
+									options={selectOptions}
+									colorScale={colorScale}
+									setFocusedUser={setFocusedUser}
+									focusedUser={focusedUser}
+								/>
+							) : (
+								<></>
+							)}
+						</div>
+					</div> */}
