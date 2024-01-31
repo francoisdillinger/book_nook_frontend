@@ -26,6 +26,37 @@ import {
 } from "../../../utils/usersAdminChartUtilities";
 import TotalsComponent from "../TotalsComponent";
 
+const totalsReducer = (user: ProcessedUserType[]) => {
+	// Reduces all sales amounts
+	return user
+		.map((user) =>
+			user.orders.reduce(
+				(accumulator, order) => accumulator + Math.round(order.amount * 100),
+				0
+			)
+		)
+		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+};
+
+const totalOrdersReducer = (user: ProcessedUserType[]) => {
+	// Reduces total number of orders (not total number of books ordered)
+	return user
+		.map((user) => user.orders.length)
+		.reduce((accumulator, order) => accumulator + order, 0);
+};
+
+const totalOrderedQuantityReducer = (user: ProcessedUserType[]) => {
+	// Reduces total number of individual books ordered (not total number of orders)
+	return user
+		.map((user) =>
+			user.orders.reduce(
+				(accumulator, order) => accumulator + order.quantity,
+				0
+			)
+		)
+		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+};
+
 type UsersAdminChartType = {
 	margin: MarginType;
 	timeFilter: string;
@@ -66,65 +97,33 @@ export default function UsersAdminChart({
 	const [avgSale, setAvgSale] = useState<AverageSalesType>();
 	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
 	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
-	const [filtered, setFiltered] = useState<ProcessedUserType[]>();
+	// const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
 		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
 		const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
 		const previousFiltered = previousPeriodOrders(filteredUsers, timeFilter);
-		const prevTotal = previousFiltered
-			.map((user) =>
-				user.orders.reduce(
-					(accumulator, order) => accumulator + Math.round(order.amount * 100),
-					0
-				)
-			)
-			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-		const prevNumSales = previousFiltered
-			.map((user) => user.orders.length)
-			.reduce((accumulator, order) => accumulator + order, 0);
-		const prevTotalBooksOrdered = previousFiltered
-			.map((user) =>
-				user.orders.reduce(
-					(accumulator, order) => accumulator + order.quantity,
-					0
-				)
-			)
-			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-		const total = filteredUserchart
-			.map((user) =>
-				user.orders.reduce(
-					(accumulator, order) => accumulator + Math.round(order.amount * 100),
-					0
-				)
-			)
-			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-		const totalNumSales = filteredUserchart
-			.map((user) => user.orders.length)
-			.reduce((accumulator, order) => accumulator + order, 0);
+		const prevTotal = totalsReducer(previousFiltered);
+		const prevNumOrders = totalOrdersReducer(previousFiltered);
+		const prevTotalBooksOrdered = totalOrderedQuantityReducer(previousFiltered);
+		const total = totalsReducer(filteredUserchart);
+		const totalNumOrders = totalOrdersReducer(filteredUserchart);
+		const totalBooksOrdered = totalOrderedQuantityReducer(filteredUserchart);
 
-		const totalBooksOrdered = filteredUserchart
-			.map((user) =>
-				user.orders.reduce(
-					(accumulator, order) => accumulator + order.quantity,
-					0
-				)
-			)
-			.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-		setFiltered(filteredUserchart);
+		// setFiltered(filteredUserchart);
 		setTotalSales({
 			currentTotal: total / 100,
 			previousTotal: prevTotal / 100,
 			totalChange: calculatePercentageChange(total, prevTotal),
 		});
 		setAvgSale({
-			currentAverage: total / totalNumSales / 100 || 0,
-			previousAverage: prevTotal / prevNumSales / 100 || 0,
+			currentAverage: total / totalNumOrders / 100 || 0,
+			previousAverage: prevTotal / prevNumOrders / 100 || 0,
 			totalAverage:
 				calculatePercentageChange(
-					total / totalNumSales,
-					prevTotal / prevNumSales
+					total / totalNumOrders,
+					prevTotal / prevNumOrders
 				) || 0,
 		});
 
@@ -138,12 +137,12 @@ export default function UsersAdminChart({
 		});
 
 		setAvgBookOrder({
-			currentAverage: totalBooksOrdered / totalNumSales || 0,
-			previousAverage: prevTotalBooksOrdered / prevNumSales || 0,
+			currentAverage: totalBooksOrdered / totalNumOrders || 0,
+			previousAverage: prevTotalBooksOrdered / prevNumOrders || 0,
 			totalAverage:
 				calculatePercentageChange(
-					totalBooksOrdered / totalNumSales,
-					prevTotalBooksOrdered / prevNumSales
+					totalBooksOrdered / totalNumOrders,
+					prevTotalBooksOrdered / prevNumOrders
 				) || 0,
 		});
 	}, [timeFilter]);
