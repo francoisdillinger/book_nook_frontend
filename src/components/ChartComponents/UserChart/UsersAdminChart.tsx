@@ -23,39 +23,11 @@ import {
 	previousPeriodOrders,
 	previousTime,
 	reformatUserData,
+	totalOrderedQuantityReducer,
+	totalOrdersReducer,
+	totalsReducer,
 } from "../../../utils/usersAdminChartUtilities";
 import TotalsComponent from "../TotalsComponent";
-
-const totalsReducer = (user: ProcessedUserType[]) => {
-	// Reduces all sales amounts
-	return user
-		.map((user) =>
-			user.orders.reduce(
-				(accumulator, order) => accumulator + Math.round(order.amount * 100),
-				0
-			)
-		)
-		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-};
-
-const totalOrdersReducer = (user: ProcessedUserType[]) => {
-	// Reduces total number of orders (not total number of books ordered)
-	return user
-		.map((user) => user.orders.length)
-		.reduce((accumulator, order) => accumulator + order, 0);
-};
-
-const totalOrderedQuantityReducer = (user: ProcessedUserType[]) => {
-	// Reduces total number of individual books ordered (not total number of orders)
-	return user
-		.map((user) =>
-			user.orders.reduce(
-				(accumulator, order) => accumulator + order.quantity,
-				0
-			)
-		)
-		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
-};
 
 type UsersAdminChartType = {
 	margin: MarginType;
