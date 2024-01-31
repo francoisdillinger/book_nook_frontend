@@ -12,7 +12,6 @@ import { UsersType } from "../../../data/users";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
-import ResponsiveSVGContainer from "../../ResponsiveSVGContainer";
 
 export const filterOutInactiveUsers = (
 	users: ProcessedUserType[]
@@ -23,11 +22,8 @@ export const filterOutInactiveUsers = (
 type UsersAdminLineChartType = {
 	margin: MarginType;
 	timeFilter: string;
-	// graphWidth: number;
-	// graphHeight: number;
 	width: number;
 	height: number;
-	// windowSizeInPixels: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -42,11 +38,8 @@ type UsersAdminLineChartType = {
 export default function UsersAdminLineChart({
 	margin,
 	timeFilter,
-	// graphHeight,
-	// graphWidth,
 	width,
 	height,
-	// windowSizeInPixels,
 	tooltip,
 	setTooltip,
 	users,
@@ -57,17 +50,10 @@ export default function UsersAdminLineChart({
 	focusedUser,
 	doesToolTipOverflowWindow,
 }: UsersAdminLineChartType) {
-	// console.log("Height: ", height);
-	// console.log("Width: ", width);
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
 	const graphWidth = svgWidth - margin.left - margin.right;
-
-	// const graphWidth =
-	// 	width <= 800
-	// 		? width - margin.left - margin.right
-	// 		: width * 0.9 - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [filteredUserData, setFilteredUserData] =
@@ -98,32 +84,6 @@ export default function UsersAdminLineChart({
 			)
 		);
 	}, [users, timeFilter]);
-	// console.log("User Data: ", filteredUserData);
-	// const max = allQuantities ? d3.max(allQuantities) : 0;
-	// const parsedDates = (allDates ?? [])
-	// 	.map((dateStr) => new Date(dateStr))
-	// 	.filter((date) => !isNaN(date.valueOf()));
-	// const dateExtent = d3.extent(parsedDates) as
-	// 	| [Date, Date]
-	// 	| [undefined, undefined];
-	// const domain =
-	// 	dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()];
-
-	// const x = d3.scaleTime().domain(domain).range([0, graphWidth]);
-
-	// const y = d3
-	// 	.scaleLinear()
-	// 	.domain([0, max as unknown as number])
-	// 	.range([graphHeight, 0]);
-
-	// let theLine = d3
-	// 	.line()
-	// 	.x((d) => x(d[0])) // d.date
-	// 	.y((d) => y(d[1])); // d.quantity
-	// const bottomLineGenerator = d3
-	// 	.line()
-	// 	.x((d) => x(d[0])) // d.date
-	// 	.y(graphHeight);
 
 	const parsedDates = useMemo(
 		() =>
