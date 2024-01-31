@@ -153,3 +153,29 @@ export const getFilteredData = (
 			return processDataForLineChart(userData);
 	}
 };
+
+export const previousTime = (timeFilter: string) => {
+	switch (timeFilter) {
+		case "day":
+			return "yesterday";
+			break;
+		case "month":
+			return "last month";
+			break;
+		case "week":
+			return "last week";
+			break;
+		case "half-year":
+			return "previous six months";
+			break;
+		case "year":
+			return "last year";
+			break;
+		case "max":
+			return "before we existed";
+			break;
+		default:
+			return " ";
+			break;
+	}
+};
