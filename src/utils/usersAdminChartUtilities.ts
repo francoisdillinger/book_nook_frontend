@@ -213,7 +213,7 @@ export const previousPeriodOrders = (
 	timeFilter: string
 ) => {
 	const currentDate = new Date();
-	let startPreviousPeriod, endPreviousPeriod;
+	let startPreviousPeriod: number | Date, endPreviousPeriod: number | Date;
 
 	switch (timeFilter) {
 		case "day":
