@@ -13,107 +13,18 @@ import UsersAdminLineChart, {
 } from "./UsersAdminLineChart";
 import { MarginType } from "../AdminChart";
 import {
+	AverageBooksType,
+	AverageSalesType,
 	ProcessedUserType,
+	TotalBooksType,
+	TotalSalesType,
+	calculatePercentageChange,
 	getFilteredData,
+	previousPeriodOrders,
+	previousTime,
 	reformatUserData,
 } from "../../../utils/usersAdminChartUtilities";
 import TotalsComponent from "../TotalsComponent";
-
-const previousTime = (timeFilter: string) => {
-	switch (timeFilter) {
-		case "day":
-			return "yesterday";
-			break;
-		case "month":
-			return "last month";
-			break;
-		case "week":
-			return "last week";
-			break;
-		case "half-year":
-			return "previous six months";
-			break;
-		case "year":
-			return "last year";
-			break;
-		case "max":
-			return "before we existed";
-			break;
-		default:
-			return " ";
-			break;
-	}
-};
-
-const calculatePercentageChange = (
-	currentValue: number,
-	previousValue: number
-) => {
-	if (previousValue === 0) {
-		// Handle division by zero, if previous value is 0 and current is greater, it could be considered as 100% increase
-		return currentValue > 0 ? 100 : 0;
-	}
-
-	return ((currentValue - previousValue) / previousValue) * 100;
-};
-
-const previousPeriodOrders = (
-	users: ProcessedUserType[],
-	timeFilter: string
-) => {
-	const currentDate = new Date();
-	let startPreviousPeriod, endPreviousPeriod;
-
-	switch (timeFilter) {
-		case "day":
-			startPreviousPeriod = d3.timeDay.offset(currentDate, -2);
-			endPreviousPeriod = d3.timeDay.offset(currentDate, -1);
-			break;
-		case "week":
-			startPreviousPeriod = d3.timeDay.offset(currentDate, -14);
-			endPreviousPeriod = d3.timeDay.offset(currentDate, -7);
-			break;
-		case "month":
-			startPreviousPeriod = d3.timeMonth.offset(currentDate, -2);
-			endPreviousPeriod = d3.timeMonth.offset(currentDate, -1);
-			break;
-		case "half-year":
-			startPreviousPeriod = d3.timeMonth.offset(currentDate, -12);
-			endPreviousPeriod = d3.timeMonth.offset(currentDate, -6);
-			break;
-		case "year":
-			startPreviousPeriod = d3.timeYear.offset(currentDate, -2);
-			endPreviousPeriod = d3.timeYear.offset(currentDate, -1);
-			break;
-		default:
-			return users;
-	}
-	return users.map((user) => ({
-		...user,
-		orders: user.orders.filter((order) => {
-			const orderDate = new Date(order.date);
-			const filtered =
-				orderDate >= startPreviousPeriod && orderDate <= endPreviousPeriod;
-			return filtered;
-		}),
-	}));
-};
-
-type TotalSalesType = {
-	currentTotal: number;
-	previousTotal: number;
-	totalChange: number;
-};
-
-type AverageSalesType = {
-	currentAverage: number;
-	previousAverage: number;
-	totalAverage: number;
-};
-
-type TotalBooksType = TotalSalesType;
-
-type AverageBooksType = AverageSalesType;
 
 type UsersAdminChartType = {
 	margin: MarginType;
