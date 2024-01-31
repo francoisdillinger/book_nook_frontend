@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
-import { PieArcDatum, pie } from "d3-shape";
 import { motion } from "framer-motion";
 import {
 	reformatUserData,
@@ -39,9 +38,6 @@ type UsersAdminPieChartType = {
 	timeFilter: string;
 	width: number;
 	height: number;
-	// windowSizeInPixels: number;
-	// graphWidth: number;
-	// graphHeight: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -55,9 +51,6 @@ const UsersAdminPieChart = ({
 	timeFilter,
 	width,
 	height,
-	// windowSizeInPixels,
-	// graphHeight,
-	// graphWidth,
 	tooltip,
 	setTooltip,
 	users,
@@ -248,125 +241,3 @@ const UsersAdminPieChart = ({
 };
 
 export default UsersAdminPieChart;
-
-//const handleMouseEnter = (e, d) => {
-// 	console.log("We in here");
-// 	const content = (
-// 		<div>
-// 			<div>
-// 				<span className="text-slate-600 font-bold">Username:</span>{" "}
-// 				{d.data.userName}
-// 			</div>
-// 			<div>
-// 				<span className="text-slate-600 font-bold">Order Quantity:</span>{" "}
-// 				{d.data.totalBooksOrdered.toString()}
-// 			</div>
-// 		</div>
-// 	);
-// 	setTooltip({
-// 		visible: true,
-// 		content: content,
-// 		x: e.clientX,
-// 		y: e.clientY,
-// 	});
-// };
-// const handleMouseLeave = () => {
-// 	setTooltip({ ...tooltip, visible: false });
-// };
-
-// const ref = useRef();
-
-// useEffect(() => {
-// 	if (ref.current && reducedUsersData) {
-// 		// Check if reducedUsersData is not undefined
-// 		const paths = d3
-// 			.select(ref.current)
-// 			.selectAll("path")
-// 			.data(pie(reducedUsersData));
-
-// 		paths
-// 			.enter()
-// 			.append("path")
-// 			.merge(paths)
-// 			.attr("d", arcPath)
-// 			.attr("fill", (d, i) =>
-// 				focusedUser === d.data.userName || focusedUser === ""
-// 					? colorScale(i.toString())
-// 					: "gray"
-// 			)
-// 			.attr("opacity", (d) =>
-// 				focusedUser === d.data.userName || focusedUser === "" ? 1 : 0.2
-// 			)
-
-// 			.on("mouseenter", handleMouseEnter)
-// 			.on("mouseleave", handleMouseLeave)
-// 			.transition()
-// 			.duration(1000)
-// 			.attrTween("d", (d) => {
-// 				const interpolate = d3.interpolate(d.startAngle, d.endAngle);
-// 				return (t) => arcPath({ ...d, endAngle: interpolate(t) });
-// 			});
-// 	}
-// }, [reducedUsersData, pie, arcPath, colorScale]);
-
-// useEffect(() => {
-// 	if (ref.current && reducedUsersData) {
-// 		// Check if reducedUsersData is not undefined
-// 		const paths = d3
-// 			.select(ref.current)
-// 			.selectAll("path")
-// 			.attr("fill", (d, i) =>
-// 				focusedUser === d.data.userName || focusedUser === ""
-// 					? colorScale(i.toString())
-// 					: "gray"
-// 			)
-// 			.attr("opacity", (d) =>
-// 				focusedUser === d.data.userName || focusedUser === "" ? 1 : 0.2
-// 			);
-// 	}
-// }, [focusedUser]);
-
-// function arcTweenUpdate(d) {
-// 	var i = d3.interpolate(this._current, d);
-// 	this._current = i(1);
-// 	return function (t) {
-// 		return arcPath(i(t));
-// 	};
-// }
-
-// return (
-// 	<g
-// 		ref={ref}
-// 		transform={`translate(${graphWidth / 2}, ${graphHeight / 2})`}
-// 	>
-// 		<text
-// 			x={0}
-// 			y={-graphHeight + 200}
-// 			textAnchor="middle"
-// 			className="fill-current text-neutral-500 text-2xl"
-// 		>
-// 			Total Percentage of User Book Orders
-// 		</text>
-// 		<text
-// 			x={0}
-// 			y={0}
-// 			textAnchor="middle"
-// 			dominantBaseline="middle"
-// 			className="fill-current text-neutral-600 text-5xl font-light"
-// 		>
-// 			{" "}
-// 			{focusedUser != ""
-// 				? parseFloat(
-// 						(
-// 							((reducedUsersData?.find(
-// 								(user) => user.userName === focusedUser
-// 							)?.totalBooksOrdered || 0) /
-// 								totalOrderCount) *
-// 							100
-// 						).toString()
-// 				  ).toFixed(0)
-// 				: "100"}
-// 			%
-// 		</text>
-// 	</g>
-// );
