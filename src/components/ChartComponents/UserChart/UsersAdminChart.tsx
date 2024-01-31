@@ -157,6 +157,7 @@ export default function UsersAdminChart({
 						<div className="w-full h-[450px]">
 							<ResponsiveSVGContainer>
 								<UsersAdminLineChart
+									//height and width are provided by the <ResponsiveSVGContainer>
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -178,6 +179,7 @@ export default function UsersAdminChart({
 				<div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
 					<ResponsiveSVGContainer>
 						<UsersAdminBarChart
+							//height and width are provided by the <ResponsiveSVGContainer>
 							margin={margin}
 							timeFilter={timeFilter}
 							tooltip={tooltip}
@@ -195,6 +197,7 @@ export default function UsersAdminChart({
 				<div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
 					<ResponsiveSVGContainer>
 						<UsersAdminPieChart
+							//height and width are provided by the <ResponsiveSVGContainer>
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
