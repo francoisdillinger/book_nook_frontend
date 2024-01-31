@@ -58,8 +58,8 @@ export default function UsersAdminLineChart({
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [filteredUserData, setFilteredUserData] =
 		useState<ProcessedUserType[]>();
-	const [allDates, setAllDates] = useState();
-	const [allQuantities, setAllQuantinties] = useState();
+	const [allDates, setAllDates] = useState<number[]>([]);
+	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
@@ -184,7 +184,7 @@ export default function UsersAdminLineChart({
 								<React.Fragment key={user.userName}>
 									{/* Unique key for each fragment */}
 									<motion.path
-										key={user.orders}
+										key={user.userName}
 										initial={{
 											d:
 												bottomLineGenerator(
