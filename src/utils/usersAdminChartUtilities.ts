@@ -179,3 +179,15 @@ export const previousTime = (timeFilter: string) => {
 			break;
 	}
 };
+
+export const calculatePercentageChange = (
+	currentValue: number,
+	previousValue: number
+) => {
+	if (previousValue === 0) {
+		// Handle division by zero, if previous value is 0 and current is greater, it could be considered as 100% increase
+		return currentValue > 0 ? 100 : 0;
+	}
+
+	return ((currentValue - previousValue) / previousValue) * 100;
+};
