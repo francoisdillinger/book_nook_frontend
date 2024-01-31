@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
-import { UsersType, users } from "../../../data/users";
-import ReactSelect from "./ReactSelect";
-import ChartTimePeriodButtons from "../../ChartTimePeriodButtons";
+import React, { useEffect, useState } from "react";
+import { UsersType } from "../../../data/users";
 import ChartToolTip from "../ChartToolTip";
 import { TooltipStateType } from "../ChartToolTip";
 import UsersAdminBarChart from "./UsersAdminBarChart";
@@ -15,7 +12,6 @@ import { MarginType } from "../AdminChart";
 import {
 	AverageBooksType,
 	AverageSalesType,
-	ProcessedUserType,
 	TotalBooksType,
 	TotalSalesType,
 	calculatePercentageChange,
