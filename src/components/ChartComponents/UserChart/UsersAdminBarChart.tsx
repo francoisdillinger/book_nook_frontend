@@ -42,9 +42,6 @@ type UsersAdminBarChartType = {
 	timeFilter: string;
 	width: number;
 	height: number;
-	// windowSizeInPixels: number;
-	// graphWidth: number;
-	// graphHeight: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -59,9 +56,6 @@ export default function UsersAdminBarChart({
 	timeFilter,
 	width,
 	height,
-	// windowSizeInPixels,
-	// graphHeight,
-	// graphWidth,
 	tooltip,
 	setTooltip,
 	users,
@@ -79,7 +73,6 @@ export default function UsersAdminBarChart({
 
 	useEffect(() => {
 		const reformatedUserData = reformatUserData(users);
-		// console.log("Reformated user: ", reformatedUserData);
 		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
 		const timeFilteredUserData = getFilteredData(timeFilter, filteredUsers);
 		setReducedUsersData(reduceOrderQuantities(timeFilteredUserData));
@@ -95,7 +88,7 @@ export default function UsersAdminBarChart({
 							.map((user) => user.totalBooksOrdered)
 							.filter((value) => value !== undefined) // Filter out undefined values
 					: []
-			) as number, // Cast the result as number
+			) as number, // Cast the result as number to eliminate type errors
 		])
 		.range([graphHeight, 0]);
 
@@ -107,7 +100,6 @@ export default function UsersAdminBarChart({
 		.range([0, graphWidth])
 		.paddingInner(0.1);
 
-	// console.log("Colors: ", colorScale(["James", "Thomas", "Jester"]));
 	return (
 		<React.Fragment>
 			<svg
