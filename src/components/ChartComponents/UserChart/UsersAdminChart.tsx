@@ -46,9 +46,9 @@ type UsersAdminChartType = {
 export default function UsersAdminChart({
 	margin,
 	timeFilter,
-	setTimeFilter,
-	width,
-	height,
+	// setTimeFilter,
+	// width,
+	// height,
 	tooltip,
 	setTooltip,
 	users,
@@ -56,9 +56,9 @@ export default function UsersAdminChart({
 	hasData,
 	setHasData,
 	setSelectOptions,
-	selectOptions,
+	// selectOptions,
 	focusedUser,
-	setFocusedUser,
+	// setFocusedUser,
 	doesToolTipOverflowWindow,
 }: UsersAdminChartType) {
 	const [totalSales, setTotalSales] = useState<TotalSalesType>();
