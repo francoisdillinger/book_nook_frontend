@@ -22,8 +22,8 @@ export const filterOutInactiveUsers = (
 type UsersAdminLineChartType = {
 	margin: MarginType;
 	timeFilter: string;
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -38,8 +38,8 @@ type UsersAdminLineChartType = {
 export default function UsersAdminLineChart({
 	margin,
 	timeFilter,
-	width,
-	height,
+	width = 0,
+	height = 0,
 	tooltip,
 	setTooltip,
 	users,

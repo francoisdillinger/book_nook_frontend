@@ -36,8 +36,8 @@ type ReducedUserDataType = {
 
 type UsersAdminPieChartType = {
 	timeFilter: string;
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -49,8 +49,8 @@ type UsersAdminPieChartType = {
 
 const UsersAdminPieChart = ({
 	timeFilter,
-	width,
-	height,
+	width = 0,
+	height = 0,
 	tooltip,
 	setTooltip,
 	users,

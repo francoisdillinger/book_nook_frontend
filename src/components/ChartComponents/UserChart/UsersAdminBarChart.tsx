@@ -40,8 +40,8 @@ type ReducedUserDataType = {
 type UsersAdminBarChartType = {
 	margin: MarginType;
 	timeFilter: string;
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	users: UsersType;
@@ -54,8 +54,8 @@ type UsersAdminBarChartType = {
 export default function UsersAdminBarChart({
 	margin,
 	timeFilter,
-	width,
-	height,
+	width = 0,
+	height = 0,
 	tooltip,
 	setTooltip,
 	users,
