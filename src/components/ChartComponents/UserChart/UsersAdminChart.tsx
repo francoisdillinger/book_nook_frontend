@@ -40,6 +40,7 @@ const previousTime = (timeFilter: string) => {
 			return "before we existed";
 			break;
 		default:
+			return " ";
 			break;
 	}
 };
