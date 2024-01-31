@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
 type TotalsType = {
-	title: string | undefined;
-	current: string | undefined;
-	change: number | undefined;
-	previousPeriod: string | undefined;
+	title: string;
+	isDollarAmount: boolean;
+	current: string;
+	change: number;
+	previousPeriod: string;
 };
 
 export default function TotalsComponent({
 	title,
+	isDollarAmount,
 	current,
 	change,
 	previousPeriod,
@@ -18,7 +20,10 @@ export default function TotalsComponent({
 			<div className="flex flex-col items-start">
 				<h1 className="text-slate-600 font-bold text-lg">{title}</h1>
 				<div className="flex items-center my-2">
-					<p className="text-slate-500 font-normal text-3xl">${current}</p>
+					<p className="text-slate-500 font-normal text-3xl">
+						{isDollarAmount ? "$" : ""}
+						{current}
+					</p>
 					<div className="ml-10">
 						{change >= 0 ? (
 							<svg
