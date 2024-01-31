@@ -249,3 +249,15 @@ export const previousPeriodOrders = (
 		}),
 	}));
 };
+
+export const totalsReducer = (user: ProcessedUserType[]) => {
+	// Reduces all sales amounts
+	return user
+		.map((user) =>
+			user.orders.reduce(
+				(accumulator, order) => accumulator + Math.round(order.amount * 100),
+				0
+			)
+		)
+		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
+};
