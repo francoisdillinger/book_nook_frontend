@@ -1,6 +1,22 @@
 import { UsersType } from "../data/users";
 import * as d3 from "d3";
 
+export type TotalSalesType = {
+	currentTotal: number;
+	previousTotal: number;
+	totalChange: number;
+};
+
+export type AverageSalesType = {
+	currentAverage: number;
+	previousAverage: number;
+	totalAverage: number;
+};
+
+export type TotalBooksType = TotalSalesType;
+
+export type AverageBooksType = AverageSalesType;
+
 export type UserType = {
 	userName: string;
 	orders: {
