@@ -261,3 +261,10 @@ export const totalsReducer = (user: ProcessedUserType[]) => {
 		)
 		.reduce((accumulator, userTotal) => accumulator + userTotal, 0);
 };
+
+export const totalOrdersReducer = (user: ProcessedUserType[]) => {
+	// Reduces total number of orders (not total number of books ordered)
+	return user
+		.map((user) => user.orders.length)
+		.reduce((accumulator, order) => accumulator + order, 0);
+};
