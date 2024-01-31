@@ -43,87 +43,6 @@ const previousTime = (timeFilter: string) => {
 	}
 };
 
-// const previousDate = (users: ProcessedUserType[], timeFilter: string) => {
-// 	const currentDate = new Date();
-// 	const pastDay = d3.timeDay.offset(currentDate, -1);
-// 	const dayBefore = d3.timeDay.offset(currentDate, -2);
-// 	const pastWeek = d3.timeDay.offset(currentDate, -7);
-// 	const weekBefore = d3.timeDay.offset(currentDate, -14);
-// 	const pastMonth = d3.timeDay.offset(currentDate, -30);
-// 	const monthBefore = d3.timeDay.offset(currentDate, -60);
-// 	const pastSixMonths = d3.timeDay.offset(currentDate, -180);
-// 	const sixMonthsBefore = d3.timeDay.offset(currentDate, -360);
-// 	const pastYear = d3.timeDay.offset(currentDate, -365);
-// 	const yearBefore = d3.timeDay.offset(currentDate, -730);
-
-// 	switch (timeFilter) {
-// 		case "day":
-// 			return users.map((user) => {
-// 				return {
-// 					...user,
-// 					orders: user.orders.filter(
-// 						(order) =>
-// 							new Date(order.date) <= pastDay &&
-// 							new Date(order.date) >= dayBefore
-// 					),
-// 				};
-// 			});
-// 			break;
-// 		case "week":
-// 			return users.map((user) => {
-// 				return {
-// 					...user,
-// 					orders: user.orders.filter(
-// 						(order) =>
-// 							new Date(order.date) <= pastWeek &&
-// 							new Date(order.date) >= weekBefore
-// 					),
-// 				};
-// 			});
-// 			break;
-// 		case "month":
-// 			return users.map((user) => {
-// 				return {
-// 					...user,
-// 					orders: user.orders.filter(
-// 						(order) =>
-// 							new Date(order.date) <= pastMonth &&
-// 							new Date(order.date) >= monthBefore
-// 					),
-// 				};
-// 			});
-// 			break;
-// 		case "half-year":
-// 			return users.map((user) => {
-// 				return {
-// 					...user,
-// 					orders: user.orders.filter(
-// 						(order) =>
-// 							new Date(order.date) <= pastSixMonths &&
-// 							new Date(order.date) >= sixMonthsBefore
-// 					),
-// 				};
-// 			});
-// 			break;
-// 		case "year":
-// 			return users.map((user) => {
-// 				return {
-// 					...user,
-// 					orders: user.orders.filter(
-// 						(order) =>
-// 							new Date(order.date) <= pastYear &&
-// 							new Date(order.date) >= yearBefore
-// 					),
-// 				};
-// 			});
-// 			break;
-// 		case "max":
-// 			return users;
-// 			break;
-// 		default:
-// 			break;
-// 	}
-// };
 const calculatePercentageChange = (
 	currentValue: number,
 	previousValue: number
@@ -173,10 +92,6 @@ const previousPeriodOrders = (
 			const orderDate = new Date(order.date);
 			const filtered =
 				orderDate >= startPreviousPeriod && orderDate <= endPreviousPeriod;
-			// console.log("Start Time: ", startPreviousPeriod);
-			// console.log("End Time: ", endPreviousPeriod);
-			// console.log("Order Date: ", orderDate);
-			// console.log("Does it match: ", filtered);
 			return filtered;
 		}),
 	}));
@@ -319,65 +234,10 @@ export default function UsersAdminChart({
 				) || 0,
 		});
 	}, [timeFilter]);
-	// console.log("Total: ", totalSales.currentTotal);
-	// console.log("Prev Total: ", totalSales.previousTotal);
-	// console.log("User Data: ", filtered);
-	// console.log("Previous Data: ", previousPeriodOrders(unFiltered, timeFilter));
-	// console.log("Total Amount: ", totalSales);
-	// console.log("Avgerage Sale: ", avgSale?.currentAverage);
-	// console.log("Prev Avgerage Sale: ", avgSale?.previousAverage);
-	// console.log("Total Books: ", totalBooks?.currentTotal);
-	// console.log("Prev Total Books: ", totalBooks?.previousTotal);
-	// console.log("Average Books Per Order: ", avgBookOrder?.currentAverage);
-	// console.log("Prev Average Books Per Order: ", avgBookOrder?.previousAverage);
+
 	return (
 		<React.Fragment>
-			{/* <div className="flex lg:ml-20 xl:ml-28">
-
-			</div> */}
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
-				{/* <div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
-					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
-						{selectOptions ? (
-							<ReactSelect
-								options={selectOptions}
-								colorScale={colorScale}
-								setFocusedUser={setFocusedUser}
-								focusedUser={focusedUser}
-							/>
-						) : (
-							<></>
-						)}
-
-						{selectOptions ? (
-							<ReactSelect
-								options={selectOptions}
-								colorScale={colorScale}
-								setFocusedUser={setFocusedUser}
-								focusedUser={focusedUser}
-							/>
-						) : (
-							<></>
-						)}
-
-						{selectOptions ? (
-							<ReactSelect
-								options={selectOptions}
-								colorScale={colorScale}
-								setFocusedUser={setFocusedUser}
-								focusedUser={focusedUser}
-							/>
-						) : (
-							<></>
-						)}
-					</div>
-					<div className="flex justify-start w-full mr-2 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
-						<ChartTimePeriodButtons
-							timeFilter={timeFilter}
-							setTimeFilter={setTimeFilter}
-						/>
-					</div>
-				</div> */}
 				<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
 					<div className="bg-white rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
 						<div className="flex flex-col items-start">
@@ -608,31 +468,7 @@ export default function UsersAdminChart({
 					</div>
 					{/* =================================== */}
 				</div>
-				<div
-					className="bg-white rounded-lg my-2 pt-2 w-full"
-					// style={{ width: windowSizeInPixels * 0.9 }}
-				>
-					{/* <div className="h-12 flex flex-wrap  md:flex-nowrap md:items-center md:justify-between">
-						<div className="w-full flex justify-end mr-4">
-							<ChartTimePeriodButtons
-								timeFilter={timeFilter}
-								setTimeFilter={setTimeFilter}
-							/>
-						</div>
-						<div className="ml-20 mt-8 md:mr-5 md:mt-0 md:pt-2">
-							{selectOptions ? (
-								<ReactSelect
-									options={selectOptions}
-									colorScale={colorScale}
-									setFocusedUser={setFocusedUser}
-									focusedUser={focusedUser}
-								/>
-							) : (
-								<></>
-							)}
-						</div>
-					</div> */}
-
+				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					<ChartToolTip tooltip={tooltip} />
 
 					<div className=" flex justify-center mt-10 md:mt-0">
