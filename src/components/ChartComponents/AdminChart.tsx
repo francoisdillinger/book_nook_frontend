@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { users } from "../../data/users";
-import ReactSelect from "./ReactSelect";
+// import ReactSelect from "./ReactSelect";
 import ChartTimePeriodButtons from "../ChartTimePeriodButtons";
-import ChartToolTip from "./ChartToolTip";
+// import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
 import UsersAdminChart from "./UserChart/UsersAdminChart";
-import UsersAdminBarChart from "./UserChart/UsersAdminBarChart";
-import UsersAdminPieChart from "./UserChart/UsersAdminPieChart";
-import ResponsiveSVGContainer from "../ResponsiveSVGContainer";
+// import UsersAdminBarChart from "./UserChart/UsersAdminBarChart";
+// import UsersAdminPieChart from "./UserChart/UsersAdminPieChart";
+// import ResponsiveSVGContainer from "../ResponsiveSVGContainer";
 import AdminChartReactSelect from "./AdminChartReactSelect";
 import UsersChartReactSelect from "./UserChart/UsersChartReactSelect";
 
