@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { axisLeft } from "d3-axis";
-import * as d3 from "d3";
 import { select } from "d3-selection";
 import { ScaleLinear } from "d3-scale";
 
