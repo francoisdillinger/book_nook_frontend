@@ -11,6 +11,7 @@ import UsersAdminChart from "./UserChart/UsersAdminChart";
 // import ResponsiveSVGContainer from "../ResponsiveSVGContainer";
 import AdminChartReactSelect from "./AdminChartReactSelect";
 import UsersChartReactSelect from "./UserChart/UsersChartReactSelect";
+import CategoriesAdminChart from "./CategoriesChart/CategoriesAdminChart";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -118,6 +119,7 @@ export default function AdminChart() {
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 					/>
 				)}
+				{filterChart === "Categories" && <CategoriesAdminChart />}
 			</div>
 		</React.Fragment>
 	);
