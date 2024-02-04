@@ -17,8 +17,10 @@ import {
 	totalOrdersReducer,
 	totalsReducer,
 } from "../../../utils/usersAdminChartUtilities";
+import { categories_data } from "../../../data/categories_data";
 import TotalsComponent from "../TotalsComponent";
 
 export default function CategoriesAdminChart() {
-	return <></>;
+	console.log(categories_data);
+	return <>hi</>;
 }
