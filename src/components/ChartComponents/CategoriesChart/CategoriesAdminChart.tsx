@@ -38,6 +38,19 @@ type TrimmedCategoriesDataType = {
 	}[];
 };
 
+type ReformattedCategoriesBooks = {
+	categories: {
+		categoryName: string;
+		orders: {
+			bookTitle: string;
+			orderId: string;
+			quantity: number;
+			orderDate: string;
+			orderAmount: number;
+		}[];
+	}[];
+};
+
 const trimCategoriesData = (
 	categories: CategoriesDataType
 ): TrimmedCategoriesDataType => {
@@ -46,8 +59,28 @@ const trimCategoriesData = (
 	};
 };
 
+const reformatCategoriesBooks = (
+	categories: TrimmedCategoriesDataType
+): ReformattedCategoriesBooks => {
+	return {
+		categories: categories.categories.map((category) => ({
+			categoryName: category.categoryName,
+			orders: category.books.flatMap((book) =>
+				book.bookOrders.map((order) => ({
+					bookTitle: book.bookTitle,
+					orderId: order.orderId,
+					quantity: order.quantity,
+					orderDate: order.orderDate,
+					orderAmount: order.orderAmount,
+				}))
+			),
+		})),
+	};
+};
+
 export default function CategoriesAdminChart() {
 	console.log(categories_data);
 	console.log(trimCategoriesData(categories_data));
+	console.log(reformatCategoriesBooks(trimCategoriesData(categories_data)));
 	return <>hi</>;
 }
