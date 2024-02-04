@@ -1,3 +1,20 @@
+export type CategoriesDataType = {
+	data: {
+		categories: {
+			categoryName: string;
+			books: {
+				bookTitle: string;
+				bookOrders: {
+					orderId: string;
+					quantity: number;
+					orderDate: string;
+					orderAmount: number;
+				}[];
+			}[];
+		}[];
+	};
+};
+
 export const categories_data = {
 	data: {
 		categories: [
