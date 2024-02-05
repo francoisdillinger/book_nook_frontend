@@ -92,7 +92,8 @@ export default function UsersAdminLineChart({
 				.filter((date) => !isNaN(date.valueOf())),
 		[allDates]
 	);
-
+	// we need to remove duplicates!!!!!!!!!!
+	// console.log("Alldates: ", new Set(allDates));
 	const dateExtent = useMemo(
 		() => d3.extent(parsedDates) as [Date, Date] | [undefined, undefined],
 		[parsedDates]
