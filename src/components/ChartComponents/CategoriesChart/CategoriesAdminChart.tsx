@@ -119,7 +119,7 @@ export default function CategoriesAdminChart({
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
-					{/* <ChartToolTip tooltip={tooltip} /> */}
+					<ChartToolTip tooltip={tooltip} />
 
 					<div className=" flex justify-center mt-10 md:mt-0">
 						<div className="w-full h-[450px]">
