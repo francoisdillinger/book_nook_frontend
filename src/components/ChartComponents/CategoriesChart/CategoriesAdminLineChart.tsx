@@ -62,41 +62,55 @@ export default function CategoriesAdminLineChart({
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const [filteredUserData, setFilteredUserData] =
 		useState<ProcessedUserType[]>();
-	const [allDates, setAllDates] = useState<number[]>([]);
+	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
 
 	console.log("Categories: ", categories);
 
-	const flattened = categories.categories.flatMap(
-		(category: ReformattedBookType) => {
-			return category.orders.map((order) => order.orderDate);
-		}
-	);
-	console.log("Flattened: ", flattened);
+	// const flattenedDates = categories.categories.flatMap(
+	// 	(category: ReformattedBookType) => {
+	// 		return category.orders.map((order) => order.orderDate);
+	// 	}
+	// );
+
+	// const uniqueDates = [...new Set(flattenedDates)];
+	// const sortedDates = uniqueDates.sort(
+	// 	(a, b) => new Date(a).getTime() - new Date(b).getTime()
+	// );
+	// console.log("Flattened: ", flattenedDates);
+	// console.log("Unique Dates: ", uniqueDates);
+	// console.log("Sorted Dates: ", sortedDates);
 
 	useEffect(() => {
 		// const reformatedUserData = reformatUserData(users);
 		// const filteredUsers = filterOutInactiveUsers(reformatedUserData);
 		// const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
-		// setHasData(
-		// 	filteredUserchart.reduce(
-		// 		(accumulator, users) => accumulator + users.orders.length,
-		// 		0
-		// 	)
-		// );
+		setHasData(
+			categories.categories.reduce(
+				(accumulator, category) => accumulator + category.orders.length,
+				0
+			)
+		);
 		// setFilteredUserData(filteredUserchart);
 		// setSelectOptions(filteredUserchart);
-		// setAllDates(
-		// 	filteredUserchart.flatMap((user: { orders: ProcessedOrder[] }) =>
-		// 		user.orders.map((order: { date: any }) => order.date)
-		// 	)
-		// );
-		// setAllQuantinties(
-		// 	filteredUserchart.flatMap((user: { orders: any[] }) =>
-		// 		user.orders.map((order: { quantity: any }) => order.quantity)
-		// 	)
-		// );
+		const flattenedDates = categories.categories.flatMap(
+			(category: ReformattedBookType) => {
+				return category.orders.map((order) => order.orderDate);
+			}
+		);
+		const flattenedQuanities = categories.categories.flatMap(
+			(category: ReformattedBookType) => {
+				return category.orders.map((order) => order.quantity);
+			}
+		);
+		const uniqueDates = [...new Set(flattenedDates)];
+		const uniqueQuantities = [...new Set(flattenedQuanities)];
+		setAllDates(uniqueDates);
+		setAllQuantinties(uniqueQuantities);
 	}, [categories, timeFilter]);
+	// console.log("All Dates: ", allDates);
+	// console.log("All Quantities: ", allQuantities);
+	// console.log("Has Data: ", hasData);
 
 	const parsedDates = useMemo(
 		() =>
@@ -110,7 +124,7 @@ export default function CategoriesAdminLineChart({
 		() => d3.extent(parsedDates) as [Date, Date] | [undefined, undefined],
 		[parsedDates]
 	);
-
+	console.log("Date Extent: ", dateExtent);
 	const domain = useMemo(
 		() =>
 			dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()],
@@ -121,7 +135,7 @@ export default function CategoriesAdminLineChart({
 		() => (allQuantities ? d3.max(allQuantities) : 0),
 		[allQuantities]
 	);
-
+	console.log("Max Quantity: ", maxQuantity);
 	const x = useMemo(
 		() => d3.scaleTime().domain(domain).range([0, graphWidth]),
 		[domain, graphWidth]
