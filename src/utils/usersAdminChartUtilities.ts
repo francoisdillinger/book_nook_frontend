@@ -91,7 +91,7 @@ const processDataForLineChart = (
 	});
 };
 
-const sixMonthsAgo = (date: string) => {
+export const sixMonthsAgo = (date: string) => {
 	let pastDate = new Date(date);
 	pastDate.setMonth(pastDate.getMonth() - 6);
 	return pastDate;
