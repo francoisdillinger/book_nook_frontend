@@ -22,8 +22,9 @@ import {
 	CategoriesDataType,
 } from "../../../data/categories_data";
 import TotalsComponent from "../TotalsComponent";
+import CategoriesAdminLineChart from "./CategoriesAdminLineChart";
 
-type TrimmedCategoriesDataType = {
+export type TrimmedCategoriesDataType = {
 	categories: {
 		categoryName: string;
 		books: {
@@ -38,20 +39,21 @@ type TrimmedCategoriesDataType = {
 	}[];
 };
 
-type ReformattedCategoriesBooks = {
-	categories: {
-		categoryName: string;
-		orders: {
-			bookTitle: string;
-			orderId: string;
-			quantity: number;
-			orderDate: string;
-			orderAmount: number;
-		}[];
+export type ReformattedBookType = {
+	categoryName: string;
+	orders: {
+		bookTitle: string;
+		orderId: string;
+		quantity: number;
+		orderDate: string;
+		orderAmount: number;
 	}[];
 };
+export type ReformattedCategoriesBooksType = {
+	categories: ReformattedBookType[];
+};
 
-const trimCategoriesData = (
+export const trimCategoriesData = (
 	categories: CategoriesDataType
 ): TrimmedCategoriesDataType => {
 	return {
@@ -59,9 +61,9 @@ const trimCategoriesData = (
 	};
 };
 
-const reformatCategoriesBooks = (
+export const reformatCategoriesBooks = (
 	categories: TrimmedCategoriesDataType
-): ReformattedCategoriesBooks => {
+): ReformattedCategoriesBooksType => {
 	return {
 		categories: categories.categories.map((category) => ({
 			categoryName: category.categoryName,
@@ -78,9 +80,103 @@ const reformatCategoriesBooks = (
 	};
 };
 
-export default function CategoriesAdminChart() {
+type CategoriesAdminChartType = {
+	margin: MarginType;
+	timeFilter: string;
+	setTimeFilter: Function;
+	width: number;
+	height: number;
+	tooltip: TooltipStateType;
+	setTooltip: Function;
+	colorScale: Function;
+	hasData: number;
+	setHasData: Function;
+	selectOptions: any;
+	setSelectOptions: Function;
+	doesToolTipOverflowWindow: Function;
+};
+
+export default function CategoriesAdminChart({
+	margin,
+	timeFilter,
+	// setTimeFilter,
+	// width,
+	// height,
+	tooltip,
+	setTooltip,
+	colorScale,
+	hasData,
+	setHasData,
+	setSelectOptions,
+	// selectOptions,
+	// setFocusedUser,
+	doesToolTipOverflowWindow,
+}: CategoriesAdminChartType) {
 	console.log(categories_data);
 	console.log(trimCategoriesData(categories_data));
 	console.log(reformatCategoriesBooks(trimCategoriesData(categories_data)));
-	return <>hi</>;
+	return (
+		<React.Fragment>
+			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+				<div className="bg-white rounded-lg my-2 pt-2 w-full">
+					{/* <ChartToolTip tooltip={tooltip} /> */}
+
+					<div className=" flex justify-center mt-10 md:mt-0">
+						<div className="w-full h-[450px]">
+							<ResponsiveSVGContainer>
+								<CategoriesAdminLineChart
+									//height and width are provided by the <ResponsiveSVGContainer>
+									categories={reformatCategoriesBooks(
+										trimCategoriesData(categories_data)
+									)}
+									margin={margin}
+									timeFilter={timeFilter}
+									tooltip={tooltip}
+									setTooltip={setTooltip}
+									colorScale={colorScale}
+									hasData={hasData}
+									setHasData={setHasData}
+									setSelectOptions={setSelectOptions}
+									doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+								/>
+							</ResponsiveSVGContainer>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* <div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
+        <div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
+            <ResponsiveSVGContainer>
+                <UsersAdminBarChart
+                    //height and width are provided by the <ResponsiveSVGContainer>
+                    margin={margin}
+                    timeFilter={timeFilter}
+                    tooltip={tooltip}
+                    setTooltip={setTooltip}
+                    users={users}
+                    colorScale={colorScale}
+                    hasData={hasData}
+                    focusedUser={focusedUser}
+                    doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+                />
+            </ResponsiveSVGContainer>
+        </div>
+        <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+            <ResponsiveSVGContainer>
+                <UsersAdminPieChart
+                    //height and width are provided by the <ResponsiveSVGContainer>
+                    timeFilter={timeFilter}
+                    tooltip={tooltip}
+                    setTooltip={setTooltip}
+                    users={users}
+                    colorScale={colorScale}
+                    hasData={hasData}
+                    focusedUser={focusedUser}
+                    doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+                />
+            </ResponsiveSVGContainer>
+        </div>
+    </div> */}
+		</React.Fragment>
+	);
 }
