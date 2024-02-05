@@ -119,7 +119,23 @@ export default function AdminChart() {
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 					/>
 				)}
-				{filterChart === "Categories" && <CategoriesAdminChart />}
+				{filterChart === "Categories" && (
+					<CategoriesAdminChart
+						margin={margin}
+						timeFilter={timeFilter}
+						tooltip={tooltip}
+						setTooltip={setTooltip}
+						colorScale={colorScale}
+						hasData={hasData}
+						setHasData={setHasData}
+						setSelectOptions={setSelectOptions}
+						width={0}
+						height={0}
+						setTimeFilter={setTimeFilter}
+						selectOptions={selectOptions}
+						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+					/>
+				)}
 			</div>
 		</React.Fragment>
 	);
