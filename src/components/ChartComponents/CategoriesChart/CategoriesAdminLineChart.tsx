@@ -16,12 +16,17 @@ import {
 	// ReformattedCategoriesBooks,
 	ReformattedCategoriesBooksType,
 } from "./CategoriesAdminChart";
+import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 
-// export const filterOutInactiveUsers = (
-// 	categories: ReformattedCategoriesBooksType
-// ): ReformattedCategoriesBooksType => {
-// 	return {categories: categories.categories.filter((category) => category.orders. > 0)};
-// };
+export const filterOutEmptyCategories = (
+	categories: ReformattedCategoriesBooksType
+): ReformattedCategoriesBooksType => {
+	return {
+		categories: categories.categories.filter(
+			(category) => category.orders.length > 0
+		),
+	};
+};
 
 type CategoriesAdminLineChartType = {
 	margin: MarginType;
@@ -60,11 +65,16 @@ export default function CategoriesAdminLineChart({
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const [filteredUserData, setFilteredUserData] =
-		useState<ProcessedUserType[]>();
+	const [orderedCategoriesData, setOrderedCategoriesData] =
+		useState<ReformattedBookType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-
+	console.log(
+		"-------------------------------------------------------------------------"
+	);
+	console.log(
+		"-------------------------------------------------------------------------"
+	);
 	console.log("Categories: ", categories);
 
 	// const flattenedDates = categories.categories.flatMap(
@@ -83,8 +93,20 @@ export default function CategoriesAdminLineChart({
 
 	useEffect(() => {
 		// const reformatedUserData = reformatUserData(users);
-		// const filteredUsers = filterOutInactiveUsers(reformatedUserData);
-		// const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
+		const filteredCategories = filterOutEmptyCategories(categories);
+		console.log("Filtered Categories: ", filteredCategories);
+		const categoryArray = filteredCategories.categories.map((category) => ({
+			categoryName: category.categoryName,
+			orders: category.orders.sort(
+				(a, b) =>
+					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+			),
+		}));
+		const filteredCategoriesChart = getFilteredCategoriesData(
+			timeFilter,
+			categoryArray
+		);
+		console.log("Time-Filtered Categories: ", filteredCategoriesChart);
 		setHasData(
 			categories.categories.reduce(
 				(accumulator, category) => accumulator + category.orders.length,
@@ -93,12 +115,12 @@ export default function CategoriesAdminLineChart({
 		);
 		// setFilteredUserData(filteredUserchart);
 		// setSelectOptions(filteredUserchart);
-		const flattenedDates = categories.categories.flatMap(
+		const flattenedDates = filteredCategoriesChart.flatMap(
 			(category: ReformattedBookType) => {
 				return category.orders.map((order) => order.orderDate);
 			}
 		);
-		const flattenedQuanities = categories.categories.flatMap(
+		const flattenedQuanities = filteredCategoriesChart.flatMap(
 			(category: ReformattedBookType) => {
 				return category.orders.map((order) => order.quantity);
 			}
@@ -107,9 +129,10 @@ export default function CategoriesAdminLineChart({
 		const uniqueQuantities = [...new Set(flattenedQuanities)];
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
+		setOrderedCategoriesData(filteredCategoriesChart);
 	}, [categories, timeFilter]);
-	// console.log("All Dates: ", allDates);
-	// console.log("All Quantities: ", allQuantities);
+	console.log("All Dates: ", allDates);
+	console.log("All Quantities: ", allQuantities);
 	// console.log("Has Data: ", hasData);
 
 	const parsedDates = useMemo(
@@ -124,7 +147,7 @@ export default function CategoriesAdminLineChart({
 		() => d3.extent(parsedDates) as [Date, Date] | [undefined, undefined],
 		[parsedDates]
 	);
-	console.log("Date Extent: ", dateExtent);
+	// console.log("Date Extent: ", dateExtent);
 	const domain = useMemo(
 		() =>
 			dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()],
@@ -135,7 +158,7 @@ export default function CategoriesAdminLineChart({
 		() => (allQuantities ? d3.max(allQuantities) : 0),
 		[allQuantities]
 	);
-	console.log("Max Quantity: ", maxQuantity);
+	// console.log("Max Quantity: ", maxQuantity);
 	const x = useMemo(
 		() => d3.scaleTime().domain(domain).range([0, graphWidth]),
 		[domain, graphWidth]
@@ -167,171 +190,184 @@ export default function CategoriesAdminLineChart({
 				.y(graphHeight),
 		[x, graphHeight]
 	);
-	return <></>;
-	// <React.Fragment>
-	// 	<svg
-	// 		ref={svgLineChartRef}
-	// 		width={svgWidth}
-	// 		height={svgHeight}
-	// 	>
-	// 		<g
-	// 			ref={graphLineChartRef}
-	// 			width={graphWidth}
-	// 			height={graphHeight}
-	// 			transform={`translate(${margin.left},${margin.top})`}
-	// 		>
-	// 			{hasData && (
-	// 				<XAxis
-	// 					xScale={x}
-	// 					height={graphHeight}
-	// 					width={graphWidth}
-	// 				/>
-	// 			)}
-	// 			{hasData && (
-	// 				<YAxis
-	// 					yScale={y}
-	// 					graphWidth={graphWidth}
-	// 					hasData={hasData}
-	// 					graphHeight={graphHeight}
-	// 				/>
-	// 			)}
-	// 			{hasData ? (
-	// 				filteredUserData != undefined &&
-	// 				filteredUserData!.map((user, index) => {
-	// 					const color = colorScale(index.toString());
-	// 					const linePath = theLine(
-	// 						user.orders.map((order) => [
-	// 							new Date(order.date).getTime(), // Convert Date string to Date object and then get the time
-	// 							order.quantity,
-	// 						])
-	// 					);
+	return (
+		<React.Fragment>
+			<svg
+				ref={svgLineChartRef}
+				width={svgWidth}
+				height={svgHeight}
+			>
+				<g
+					ref={graphLineChartRef}
+					width={graphWidth}
+					height={graphHeight}
+					transform={`translate(${margin.left},${margin.top})`}
+				>
+					{hasData && (
+						<XAxis
+							xScale={x}
+							height={graphHeight}
+							width={graphWidth}
+						/>
+					)}
+					{hasData && (
+						<YAxis
+							yScale={y}
+							graphWidth={graphWidth}
+							hasData={hasData}
+							graphHeight={graphHeight}
+						/>
+					)}
+					{hasData ? (
+						orderedCategoriesData != undefined &&
+						orderedCategoriesData.map((category, index) => {
+							const color = colorScale(index.toString());
+							// console.log("Color: ", color);
+							// console.log("Category: ", category);
+							const linePath = theLine(
+								category.orders.map((order) => [
+									new Date(order.orderDate).getTime(), // Convert Date string to Date object and then get the time
+									order.quantity,
+								])
+							);
+							// console.log("Line Path: ", linePath);
 
-	// 					return (
-	// 						<React.Fragment key={user.userName}>
-	// 							{/* Unique key for each fragment */}
-	// 							<motion.path
-	// 								key={user.userName}
-	// 								initial={{
-	// 									d:
-	// 										bottomLineGenerator(
-	// 											user.orders.map((order) => [
-	// 												new Date(order.date).getTime(),
-	// 												order.quantity,
-	// 											])
-	// 										) || "",
-	// 								}}
-	// 								animate={{ d: linePath || "" }}
-	// 								transition={{
-	// 									duration: 0.5,
-	// 									ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-	// 									type: "spring", // Use spring physics for bounce
-	// 									damping: 10, // Adjust damping for more or less bounce
-	// 									stiffness: 100, // Adjust stiffness for more or less bounce
-	// 								}}
-	// 								fill="none"
-	// 								strokeWidth={2}
-	// 								stroke={
-	// 									focusedUser === user.userName || focusedUser === ""
-	// 										? color
-	// 										: "gray"
-	// 								}
-	// 								opacity={
-	// 									focusedUser === user.userName || focusedUser === ""
-	// 										? 0.6
-	// 										: 0.2
-	// 								}
-	// 							/>
-	// 							{user.orders.map((order) => (
-	// 								<motion.circle
-	// 									key={order.orderId}
-	// 									className="cursor-pointer"
-	// 									stroke={"white"}
-	// 									strokeWidth={2}
-	// 									initial={{ cy: graphHeight }}
-	// 									animate={{
-	// 										cy: y(order.quantity),
-	// 										cx: x(new Date(order.date)),
-	// 									}}
-	// 									transition={{
-	// 										duration: 0.5,
-	// 										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-	// 										type: "spring", // Use spring physics for bounce
-	// 										damping: 10, // Adjust damping for more or less bounce
-	// 										stiffness: 100, // Adjust stiffness for more or less bounce
-	// 									}}
-	// 									r={6}
-	// 									fill={
-	// 										focusedUser === user.userName || focusedUser === ""
-	// 											? color
-	// 											: "gray"
-	// 									}
-	// 									opacity={
-	// 										focusedUser === user.userName || focusedUser === ""
-	// 											? 1
-	// 											: 0.2
-	// 									}
-	// 									onMouseEnter={(e) => {
-	// 										console.log(e);
-	// 										const { x, y } = doesToolTipOverflowWindow(e);
-	// 										const content = (
-	// 											<div>
-	// 												<div>
-	// 													<span className="text-slate-600 font-bold">
-	// 														Order ID:
-	// 													</span>{" "}
-	// 													{order.orderId}
-	// 												</div>
-	// 												<div>
-	// 													<span className="text-slate-600 font-bold">
-	// 														Date:
-	// 													</span>{" "}
-	// 													{order.date.toString()}
-	// 												</div>
-	// 												<div>
-	// 													<span className="text-slate-600 font-bold">
-	// 														Quantity:
-	// 													</span>{" "}
-	// 													{order.quantity}
-	// 												</div>
-	// 											</div>
-	// 										);
-	// 										setTooltip({
-	// 											visible: true,
-	// 											content: content,
-	// 											x: x,
-	// 											y: y,
-	// 										});
-	// 									}}
-	// 									onMouseLeave={() => {
-	// 										setTooltip({ ...tooltip, visible: false });
-	// 									}}
-	// 								/>
-	// 							))}
-	// 						</React.Fragment>
-	// 					);
-	// 				})
-	// 			) : (
-	// 				<React.Fragment>
-	// 					<rect
-	// 						x={1}
-	// 						y={0}
-	// 						width={graphWidth - 1}
-	// 						height={graphHeight}
-	// 						className="fill-slate-100"
-	// 					/>
-	// 					<text
-	// 						x={graphWidth / 2}
-	// 						y={graphHeight / 2}
-	// 						textAnchor="middle" // Centers horizontally
-	// 						dominantBaseline="middle" // Centers vertically
-	// 						className="fill-current text-logo text-base sm:text-2xl lg:text-base xl:text-xl font-light"
-	// 					>
-	// 						No Data Exists For This Period
-	// 					</text>
-	// 				</React.Fragment>
-	// 			)}
-	// 		</g>
-	// 	</svg>
-	// </React.Fragment>
-	// );
+							return (
+								<React.Fragment>
+									{/* Unique key for each fragment */}
+									<motion.path
+										key={category.categoryName}
+										initial={{
+											d:
+												bottomLineGenerator(
+													category.orders.map((order) => [
+														new Date(order.orderDate).getTime(),
+														order.quantity,
+													])
+												) || "",
+										}}
+										animate={{ d: linePath || "" }}
+										transition={{
+											duration: 0.5,
+											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+											type: "spring", // Use spring physics for bounce
+											damping: 10, // Adjust damping for more or less bounce
+											stiffness: 100, // Adjust stiffness for more or less bounce
+										}}
+										fill="none"
+										strokeWidth={2}
+										stroke={
+											color
+											// focusedUser === category.categoryName ||
+											// focusedUser === ""
+											// 	? color
+											// 	: "gray"
+										}
+										// opacity={
+										// 	focusedUser === category.categoryName ||
+										// 	focusedUser === ""
+										// 		? 0.6
+										// 		: 0.2
+										// }
+									/>
+									{category.orders.map((order) => {
+										// console.log("Order Quantity: ", order.quantity);
+										// console.log("cy: ", y(order.quantity));
+										return (
+											<motion.circle
+												key={order.orderId}
+												className="cursor-pointer"
+												stroke={"white"}
+												strokeWidth={2}
+												initial={{ cy: graphHeight }}
+												animate={{
+													cy: y(order.quantity),
+													cx: x(new Date(order.orderDate)),
+												}}
+												transition={{
+													duration: 0.5,
+													ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
+													type: "spring", // Use spring physics for bounce
+													damping: 10, // Adjust damping for more or less bounce
+													stiffness: 100, // Adjust stiffness for more or less bounce
+												}}
+												r={6}
+												fill={
+													color
+													// focusedUser === category.categoryName ||
+													// focusedUser === ""
+													// 	? color
+													// 	: "gray"
+												}
+												// opacity={
+												// 	focusedUser === category.categoryName ||
+												// 	focusedUser === ""
+												// 		? 1
+												// 		: 0.2
+												// }
+												onMouseEnter={(e) => {
+													console.log(e);
+													const { x, y } = doesToolTipOverflowWindow(e);
+													const content = (
+														<div>
+															<div>
+																<span className="text-slate-600 font-bold">
+																	Order ID:
+																</span>{" "}
+																{order.orderId}
+															</div>
+															<div>
+																<span className="text-slate-600 font-bold">
+																	Date:
+																</span>{" "}
+																{order.orderDate.toString()}
+															</div>
+															<div>
+																<span className="text-slate-600 font-bold">
+																	Quantity:
+																</span>{" "}
+																{order.quantity}
+															</div>
+														</div>
+													);
+													setTooltip({
+														visible: true,
+														content: content,
+														x: x,
+														y: y,
+													});
+												}}
+												onMouseLeave={() => {
+													setTooltip({ ...tooltip, visible: false });
+												}}
+											/>
+										);
+									})}
+								</React.Fragment>
+							);
+						})
+					) : (
+						<React.Fragment>
+							<rect
+								x={1}
+								y={0}
+								width={graphWidth - 1}
+								height={graphHeight}
+								className="fill-slate-100"
+							/>
+							<text
+								x={graphWidth / 2}
+								y={graphHeight / 2}
+								textAnchor="middle" // Centers horizontally
+								dominantBaseline="middle" // Centers vertically
+								className="fill-current text-logo text-base sm:text-2xl lg:text-base xl:text-xl font-light"
+							>
+								No Data Exists For This Period
+							</text>
+						</React.Fragment>
+					)}
+				</g>
+			</svg>
+		</React.Fragment>
+	);
 }
