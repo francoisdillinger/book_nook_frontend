@@ -32,13 +32,13 @@ const CategoriesChartReactSelect = ({
 	options,
 	colorScale,
 	setFocusedUser,
-	focusedUser,
+	focusedCategory,
 }) => {
 	// console.log("Options: ", options);
 	const selectOptions = options
 		.map((option, index) => {
 			return {
-				name: option.userName,
+				name: option.,
 				label: option.userName,
 				color: colorScale(index.toString()),
 				orders: option.orders.length,
@@ -53,10 +53,10 @@ const CategoriesChartReactSelect = ({
 
 	const onUsernameClick = (event) => {
 		// Prevent the click from reaching the global listener
-		// This prevents the focusedUser from being reset
+		// This prevents the focusedCategory from being reset
 		event.stopPropagation();
 	};
-	// console.log(selectOptions.find((option) => option.name === focusedUser));
+	// console.log(selectOptions.find((option) => option.name === focusedCategory));
 	return (
 		<div onClick={(e) => onUsernameClick(e)}>
 			<Select
@@ -67,7 +67,8 @@ const CategoriesChartReactSelect = ({
 				placeholder="Filter by..."
 				onChange={handleChange}
 				value={
-					selectOptions.find((option) => option.name === focusedUser) || null
+					selectOptions.find((option) => option.name === focusedCategory) ||
+					null
 				}
 			/>
 		</div>
