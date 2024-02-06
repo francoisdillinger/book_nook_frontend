@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import {
-	reformatUserData,
-	getFilteredData,
-	ProcessedUserType,
-	ProcessedOrder,
-} from "../../../utils/usersAdminChartUtilities";
+// import {
+// 	reformatUserData,
+// 	getFilteredData,
+// 	ProcessedUserType,
+// 	ProcessedOrder,
+// } from "../../../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
@@ -72,13 +72,13 @@ export default function CategoriesAdminLineChart({
 		useState<ReformattedBookType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-	console.log(
-		"-------------------------------------------------------------------------"
-	);
-	console.log(
-		"-------------------------------------------------------------------------"
-	);
-	console.log("Categories: ", categories);
+	// console.log(
+	// 	"-------------------------------------------------------------------------"
+	// );
+	// console.log(
+	// 	"-------------------------------------------------------------------------"
+	// );
+	// console.log("Categories: ", categories);
 
 	useEffect(() => {
 		// const reformatedUserData = reformatUserData(users);
@@ -129,8 +129,8 @@ export default function CategoriesAdminLineChart({
 			)
 		);
 	}, [categories, timeFilter]);
-	console.log("All Dates: ", allDates);
-	console.log("All Quantities: ", allQuantities);
+	// console.log("All Dates: ", allDates);
+	// console.log("All Quantities: ", allQuantities);
 	// console.log("Has Data: ", hasData);
 
 	const parsedDates = useMemo(
@@ -229,7 +229,7 @@ export default function CategoriesAdminLineChart({
 								])
 							);
 							// console.log("Line Path: ", linePath);
-							console.log("Focused Category: ", focusedCategory);
+							// console.log("Focused Category: ", focusedCategory);
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
