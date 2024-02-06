@@ -8,18 +8,26 @@ import {
 } from "../../../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "../ChartToolTip";
 import { UsersType } from "../../../data/users";
-import BarChartXAxis from "./BarChartXAxis";
-import BarChartYAxis from "./BarChartYAxis";
+import BarChartXAxis from "../UserChart/BarChartXAxis";
+import BarChartYAxis from "../UserChart/BarChartYAxis";
 import { MarginType } from "../AdminChart";
 import { CategoriesDataType } from "../../../data/categories_data";
+import {
+	trimCategoriesData,
+	reformatCategoriesBooks,
+	ReformattedCategoriesBooksType,
+	ReformattedBookType,
+} from "./CategoriesAdminChart";
+import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
+import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 
 const reduceOrderQuantities = (
-	users: ProcessedUserType[]
-): ReducedUserDataType[] => {
-	return users.map((user) => {
+	categories: ReformattedBookType[]
+): ReducedCategoriesDataType[] => {
+	return categories.map((category) => {
 		return {
-			userName: user.userName,
-			totalBooksOrdered: user.orders.reduce(
+			categoriesName: category.categoryName,
+			totalBooksOrdered: category.orders.reduce(
 				(accumulator, order) => accumulator + order.quantity,
 				0
 			),
@@ -27,14 +35,8 @@ const reduceOrderQuantities = (
 	});
 };
 
-const filterOutInactiveUsers = (
-	users: ProcessedUserType[]
-): ProcessedUserType[] => {
-	return users.filter((user) => user.orders.length > 0);
-};
-
-type ReducedUserDataType = {
-	userName: string;
+type ReducedCategoriesDataType = {
+	categoriesName: string;
 	totalBooksOrdered: number;
 };
 
@@ -69,14 +71,25 @@ export default function CategoriesAdminBarChart({
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
 	const graphWidth = svgWidth - margin.left - margin.right;
-	const [reducedUsersData, setReducedUsersData] =
-		useState<ReducedUserDataType[]>();
+	const [reducedCategoriesData, setReducedCategoriesData] =
+		useState<ReducedCategoriesDataType[]>();
 
 	useEffect(() => {
-		const reformatedUserData = reformatUserData(users);
-		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
-		const timeFilteredUserData = getFilteredData(timeFilter, filteredUsers);
-		setReducedUsersData(reduceOrderQuantities(timeFilteredUserData));
+		const trimmedCategories = trimCategoriesData(categories);
+		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		const categoryArray = filteredCategories.categories.map((category) => ({
+			categoryName: category.categoryName,
+			orders: category.orders.sort(
+				(a, b) =>
+					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+			),
+		}));
+		const timeFilteredCategories = getFilteredCategoriesData(
+			timeFilter,
+			categoryArray
+		);
+		setReducedCategoriesData(reduceOrderQuantities(timeFilteredCategories));
 	}, [graphWidth, timeFilter]);
 
 	const y = d3
@@ -84,9 +97,9 @@ export default function CategoriesAdminBarChart({
 		.domain([
 			0,
 			d3.max(
-				reducedUsersData
-					? reducedUsersData
-							.map((user) => user.totalBooksOrdered)
+				reducedCategoriesData
+					? reducedCategoriesData
+							.map((category) => category.totalBooksOrdered)
 							.filter((value) => value !== undefined) // Filter out undefined values
 					: []
 			) as number, // Cast the result as number to eliminate type errors
@@ -96,7 +109,9 @@ export default function CategoriesAdminBarChart({
 	const x = d3
 		.scaleBand()
 		.domain(
-			reducedUsersData ? reducedUsersData.map((user) => user.userName) : []
+			reducedCategoriesData
+				? reducedCategoriesData.map((category) => category.categoriesName)
+				: []
 		)
 		.range([0, graphWidth])
 		.paddingInner(0.1);
@@ -116,7 +131,7 @@ export default function CategoriesAdminBarChart({
 						<BarChartXAxis
 							xScale={x}
 							height={graphHeight}
-							ticks={reducedUsersData?.length || 0}
+							ticks={reducedCategoriesData?.length || 0}
 							width={graphWidth}
 						/>
 					)}
@@ -128,14 +143,17 @@ export default function CategoriesAdminBarChart({
 						/>
 					)}
 					{hasData ? (
-						reducedUsersData != undefined &&
-						reducedUsersData!.map((user, index) => {
+						reducedCategoriesData != undefined &&
+						reducedCategoriesData!.map((category, index) => {
 							const color = colorScale(index.toString());
-							const barHeight = graphHeight - y(user.totalBooksOrdered);
+							const barHeight = graphHeight - y(category.totalBooksOrdered);
 							return (
 								<motion.rect
 									initial={{ height: 0, y: graphHeight }}
-									animate={{ height: barHeight, y: y(user.totalBooksOrdered) }}
+									animate={{
+										height: barHeight,
+										y: y(category.totalBooksOrdered),
+									}}
 									transition={{
 										duration: 0.5,
 										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
@@ -143,17 +161,19 @@ export default function CategoriesAdminBarChart({
 										damping: 10, // Adjust damping for more or less bounce
 										stiffness: 100, // Adjust stiffness for more or less bounce
 									}}
-									key={user.userName}
+									key={category.categoriesName}
 									width={x.bandwidth()}
 									height={barHeight}
-									x={x(user.userName)}
+									x={x(category.categoriesName)}
 									fill={
-										focusedCategory === user.userName || focusedCategory === ""
+										focusedCategory === category.categoriesName ||
+										focusedCategory === ""
 											? color
 											: "gray"
 									}
 									opacity={
-										focusedCategory === user.userName || focusedCategory === ""
+										focusedCategory === category.categoriesName ||
+										focusedCategory === ""
 											? 1
 											: 0.2
 									}
@@ -163,15 +183,15 @@ export default function CategoriesAdminBarChart({
 											<div>
 												<div>
 													<span className="text-slate-600 font-bold">
-														Username:
+														Category Name:
 													</span>{" "}
-													{user.userName}
+													{category.categoriesName}
 												</div>
 												<div>
 													<span className="text-slate-600 font-bold">
 														Order Quantity:
 													</span>{" "}
-													{user.totalBooksOrdered.toString()}
+													{category.totalBooksOrdered.toString()}
 												</div>
 											</div>
 										);
