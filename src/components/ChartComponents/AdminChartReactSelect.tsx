@@ -46,31 +46,31 @@ const AdminChartReactSelect = ({
 		setChartFilter(option.name);
 	};
 
-	const onUsernameClick = (event) => {
-		// Prevent the click from reaching the global listener
-		// This prevents the focusedUser from being reset
-		//------------------------------
-		// This needed to allow bubbling as otherwise the filter won't
-		// be reset when a new selection is made from this particular component
-		// and the fliter will remain across Authors/Categories/Users
-		// event.stopPropagation();
-		//------------------------------
-	};
+	// const onUsernameClick = (event) => {
+	// Prevent the click from reaching the global listener
+	// This prevents the focusedUser from being reset
+	//------------------------------
+	// This needed to allow bubbling as otherwise the filter won't
+	// be reset when a new selection is made from this particular component
+	// and the fliter will remain across Authors/Categories/Users
+	// event.stopPropagation();
+	//------------------------------
+	// };
 	// console.log(selectOptions.find((option) => option.name === focusedUser));
 	return (
-		<div onClick={(e) => onUsernameClick(e)}>
-			<Select
-				options={filterOptions}
-				className="w-40"
-				components={{ Option }}
-				styles={customStyles}
-				placeholder={placeHolder}
-				onChange={handleChange}
-				// value={
-				// 	selectOptions.find((option) => option.name === focusedUser) || null
-				// }
-			/>
-		</div>
+		// <div onClick={(e) => onUsernameClick(e)}>
+		<Select
+			options={filterOptions}
+			className="w-40"
+			components={{ Option }}
+			styles={customStyles}
+			placeholder={placeHolder}
+			onChange={handleChange}
+			// value={
+			// 	selectOptions.find((option) => option.name === focusedUser) || null
+			// }
+		/>
+		// </div>
 	);
 };
 
