@@ -61,7 +61,7 @@ const CategoriesChartReactSelect = ({
 		<div onClick={(e) => onUsernameClick(e)}>
 			<Select
 				options={selectOptions}
-				className="w-40"
+				className="w-60"
 				components={{ Option }}
 				styles={customStyles}
 				placeholder="Filter by..."
