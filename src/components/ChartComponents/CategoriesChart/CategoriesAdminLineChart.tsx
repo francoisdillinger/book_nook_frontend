@@ -56,7 +56,7 @@ export default function CategoriesAdminLineChart({
 	hasData,
 	setHasData,
 	setSelectOptions,
-	focusedUser,
+	focusedCategory,
 	doesToolTipOverflowWindow,
 }: CategoriesAdminLineChartType) {
 	const svgWidth = width;
@@ -114,7 +114,7 @@ export default function CategoriesAdminLineChart({
 			)
 		);
 		// setFilteredUserData(filteredUserchart);
-		// setSelectOptions(filteredUserchart);
+		setSelectOptions(filteredCategoriesChart);
 		const flattenedDates = filteredCategoriesChart.flatMap(
 			(category: ReformattedBookType) => {
 				return category.orders.map((order) => order.orderDate);
@@ -258,14 +258,14 @@ export default function CategoriesAdminLineChart({
 										strokeWidth={2}
 										stroke={
 											color
-											// focusedUser === category.categoryName ||
-											// focusedUser === ""
+											// focusedCategory === category.categoryName ||
+											// focusedCategory === ""
 											// 	? color
 											// 	: "gray"
 										}
 										// opacity={
-										// 	focusedUser === category.categoryName ||
-										// 	focusedUser === ""
+										// 	focusedCategory === category.categoryName ||
+										// 	focusedCategory === ""
 										// 		? 0.6
 										// 		: 0.2
 										// }
@@ -294,14 +294,14 @@ export default function CategoriesAdminLineChart({
 												r={6}
 												fill={
 													color
-													// focusedUser === category.categoryName ||
-													// focusedUser === ""
+													// focusedCategory === category.categoryName ||
+													// focusedCategory === ""
 													// 	? color
 													// 	: "gray"
 												}
 												// opacity={
-												// 	focusedUser === category.categoryName ||
-												// 	focusedUser === ""
+												// 	focusedCategory === category.categoryName ||
+												// 	focusedCategory === ""
 												// 		? 1
 												// 		: 0.2
 												// }
