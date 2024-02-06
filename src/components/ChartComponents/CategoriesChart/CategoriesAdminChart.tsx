@@ -94,6 +94,7 @@ type CategoriesAdminChartType = {
 	selectOptions: any;
 	setSelectOptions: Function;
 	doesToolTipOverflowWindow: Function;
+	focusedCategory: string;
 };
 
 export default function CategoriesAdminChart({
@@ -111,6 +112,7 @@ export default function CategoriesAdminChart({
 	// selectOptions,
 	// setFocusedUser,
 	doesToolTipOverflowWindow,
+	focusedCategory,
 }: CategoriesAdminChartType) {
 	console.log(categories_data);
 	console.log(trimCategoriesData(categories_data));
@@ -126,9 +128,7 @@ export default function CategoriesAdminChart({
 							<ResponsiveSVGContainer>
 								<CategoriesAdminLineChart
 									//height and width are provided by the <ResponsiveSVGContainer>
-									categories={reformatCategoriesBooks(
-										trimCategoriesData(categories_data)
-									)}
+									categories={categories_data}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -138,6 +138,7 @@ export default function CategoriesAdminChart({
 									setHasData={setHasData}
 									setSelectOptions={setSelectOptions}
 									doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+									focusedCategory={focusedCategory}
 								/>
 							</ResponsiveSVGContainer>
 						</div>
