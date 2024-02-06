@@ -95,7 +95,7 @@ export default function AdminChart() {
 								options={selectOptions}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
-								focusedUser={focusedUser}
+								focusedCategory={focusedUser}
 							/>
 						)}
 					</div>
