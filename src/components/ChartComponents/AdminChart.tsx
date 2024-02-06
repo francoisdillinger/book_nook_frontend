@@ -12,6 +12,7 @@ import UsersAdminChart from "./UserChart/UsersAdminChart";
 import AdminChartReactSelect from "./AdminChartReactSelect";
 import UsersChartReactSelect from "./UserChart/UsersChartReactSelect";
 import CategoriesAdminChart from "./CategoriesChart/CategoriesAdminChart";
+import CategoriesChartReactSelect from "./CategoriesChart/CategoriesChartReactSelect";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -83,6 +84,14 @@ export default function AdminChart() {
 						/>
 						{filterChart === "Users" && selectOptions.length && (
 							<UsersChartReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedUser={focusedUser}
+							/>
+						)}
+						{filterChart === "Categories" && selectOptions.length && (
+							<CategoriesChartReactSelect
 								options={selectOptions}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
