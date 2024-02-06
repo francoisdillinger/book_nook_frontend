@@ -121,6 +121,7 @@ export default function CategoriesAdminChart({
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
+					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
 
 					<div className=" flex justify-center mt-10 md:mt-0">
