@@ -23,6 +23,7 @@ import {
 } from "../../../data/categories_data";
 import TotalsComponent from "../TotalsComponent";
 import CategoriesAdminLineChart from "./CategoriesAdminLineChart";
+import CategoriesAdminBarChart from "./CategoriesAdminBarChart";
 
 export type TrimmedCategoriesDataType = {
 	categories: {
@@ -146,24 +147,24 @@ export default function CategoriesAdminChart({
 					</div>
 				</div>
 			</div>
-			{/* <div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
-        <div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
-            <ResponsiveSVGContainer>
-                <UsersAdminBarChart
-                    //height and width are provided by the <ResponsiveSVGContainer>
-                    margin={margin}
-                    timeFilter={timeFilter}
-                    tooltip={tooltip}
-                    setTooltip={setTooltip}
-                    users={users}
-                    colorScale={colorScale}
-                    hasData={hasData}
-                    focusedUser={focusedUser}
-                    doesToolTipOverflowWindow={doesToolTipOverflowWindow}
-                />
-            </ResponsiveSVGContainer>
-        </div>
-        <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
+				<div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
+					<ResponsiveSVGContainer>
+						<CategoriesAdminBarChart
+							//height and width are provided by the <ResponsiveSVGContainer>
+							margin={margin}
+							timeFilter={timeFilter}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							categories={categories_data}
+							colorScale={colorScale}
+							hasData={hasData}
+							focusedCategory={focusedCategory}
+							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						/>
+					</ResponsiveSVGContainer>
+				</div>
+				{/* <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
             <ResponsiveSVGContainer>
                 <UsersAdminPieChart
                     //height and width are provided by the <ResponsiveSVGContainer>
@@ -177,8 +178,8 @@ export default function CategoriesAdminChart({
                     doesToolTipOverflowWindow={doesToolTipOverflowWindow}
                 />
             </ResponsiveSVGContainer>
-        </div>
-    </div> */}
+        </div> */}
+			</div>
 		</React.Fragment>
 	);
 }
