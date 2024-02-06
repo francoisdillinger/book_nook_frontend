@@ -22,7 +22,7 @@ const BarChartXAxis = ({
 
 	useEffect(() => {
 		const xScaleNumeric = xScale as unknown as AxisScale<number>;
-
+		console.log("ticks: ", ticks);
 		const xAxis = axisBottom(xScaleNumeric).ticks(ticks);
 
 		const transition = select(ref.current)
@@ -38,8 +38,15 @@ const BarChartXAxis = ({
 		// This will rotate the text which might be needed depending on the number of users
 		select(ref.current)
 			.selectAll("text")
-			.attr("transform", `${width < 700 ? "rotate(-15)" : "rotate(0)"}`)
-			.attr("text-anchor", `${width < 700 ? "end" : "middle"}`);
+			.attr(
+				"transform",
+				`${
+					width < 700 || ticks > 15
+						? `${ticks > 15 ? "rotate(-30)" : "rotate(-15)"}`
+						: "rotate(0)"
+				}`
+			)
+			.attr("text-anchor", `${width < 700 || ticks > 15 ? "end" : "middle"}`);
 	}, [xScale, width]);
 
 	return (
