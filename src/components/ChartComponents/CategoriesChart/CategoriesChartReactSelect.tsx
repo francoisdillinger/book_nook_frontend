@@ -34,12 +34,12 @@ const CategoriesChartReactSelect = ({
 	setFocusedUser,
 	focusedCategory,
 }) => {
-	// console.log("Options: ", options);
+	console.log("Options: ", options);
 	const selectOptions = options
 		.map((option, index) => {
 			return {
-				name: option.,
-				label: option.userName,
+				name: option.categoryName,
+				label: option.categoryName,
 				color: colorScale(index.toString()),
 				orders: option.orders.length,
 			};
