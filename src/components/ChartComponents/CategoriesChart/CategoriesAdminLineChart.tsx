@@ -15,8 +15,11 @@ import {
 	ReformattedBookType,
 	// ReformattedCategoriesBooks,
 	ReformattedCategoriesBooksType,
+	reformatCategoriesBooks,
+	trimCategoriesData,
 } from "./CategoriesAdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
+import { CategoriesDataType } from "../../../data/categories_data";
 
 export const filterOutEmptyCategories = (
 	categories: ReformattedCategoriesBooksType
@@ -35,12 +38,12 @@ type CategoriesAdminLineChartType = {
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	categories: ReformattedCategoriesBooksType;
+	categories: CategoriesDataType;
 	colorScale: Function;
 	hasData: number;
 	setHasData: Function;
 	setSelectOptions: Function;
-	focusedUser: string;
+	focusedCategory: string;
 	doesToolTipOverflowWindow: Function;
 };
 
@@ -79,8 +82,10 @@ export default function CategoriesAdminLineChart({
 
 	useEffect(() => {
 		// const reformatedUserData = reformatUserData(users);
-		const filteredCategories = filterOutEmptyCategories(categories);
-		console.log("Filtered Categories: ", filteredCategories);
+		const trimmedCategories = trimCategoriesData(categories);
+		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		// console.log("Filtered Categories: ", filteredCategories);
 		const categoryArray = filteredCategories.categories.map((category) => ({
 			categoryName: category.categoryName,
 			orders: category.orders.sort(
@@ -92,15 +97,15 @@ export default function CategoriesAdminLineChart({
 			timeFilter,
 			categoryArray
 		);
-		console.log("Time-Filtered Categories: ", filteredCategoriesChart);
-		setHasData(
-			categories.categories.reduce(
-				(accumulator, category) => accumulator + category.orders.length,
-				0
-			)
-		);
+		// console.log("Time-Filtered Categories: ", filteredCategoriesChart);
+		// setHasData(
+		// 	filteredCategoriesChart.reduce(
+		// 		(accumulator, category) => accumulator + category.orders.length,
+		// 		0
+		// 	)
+		// );
 		// setFilteredUserData(filteredUserchart);
-		setSelectOptions(filteredCategoriesChart);
+		// setSelectOptions(filteredCategoriesChart);
 		const flattenedDates = filteredCategoriesChart.flatMap(
 			(category: ReformattedBookType) => {
 				return category.orders.map((order) => order.orderDate);
@@ -116,6 +121,13 @@ export default function CategoriesAdminLineChart({
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
 		setOrderedCategoriesData(filteredCategoriesChart);
+		setSelectOptions(filteredCategoriesChart);
+		setHasData(
+			filteredCategoriesChart.reduce(
+				(accumulator, category) => accumulator + category.orders.length,
+				0
+			)
+		);
 	}, [categories, timeFilter]);
 	console.log("All Dates: ", allDates);
 	console.log("All Quantities: ", allQuantities);
@@ -217,7 +229,7 @@ export default function CategoriesAdminLineChart({
 								])
 							);
 							// console.log("Line Path: ", linePath);
-
+							console.log("Focused Category: ", focusedCategory);
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
@@ -243,18 +255,17 @@ export default function CategoriesAdminLineChart({
 										fill="none"
 										strokeWidth={2}
 										stroke={
-											color
-											// focusedCategory === category.categoryName ||
-											// focusedCategory === ""
-											// 	? color
-											// 	: "gray"
+											focusedCategory === category.categoryName ||
+											focusedCategory === ""
+												? color
+												: "gray"
 										}
-										// opacity={
-										// 	focusedCategory === category.categoryName ||
-										// 	focusedCategory === ""
-										// 		? 0.6
-										// 		: 0.2
-										// }
+										opacity={
+											focusedCategory === category.categoryName ||
+											focusedCategory === ""
+												? 0.8
+												: 0.1
+										}
 									/>
 									{category.orders.map((order) => {
 										// console.log("Order Quantity: ", order.quantity);
@@ -279,18 +290,17 @@ export default function CategoriesAdminLineChart({
 												}}
 												r={6}
 												fill={
-													color
-													// focusedCategory === category.categoryName ||
-													// focusedCategory === ""
-													// 	? color
-													// 	: "gray"
+													focusedCategory === category.categoryName ||
+													focusedCategory === ""
+														? color
+														: "gray"
 												}
-												// opacity={
-												// 	focusedCategory === category.categoryName ||
-												// 	focusedCategory === ""
-												// 		? 1
-												// 		: 0.2
-												// }
+												opacity={
+													focusedCategory === category.categoryName ||
+													focusedCategory === ""
+														? 1
+														: 0.1
+												}
 												onMouseEnter={(e) => {
 													console.log(e);
 													const { x, y } = doesToolTipOverflowWindow(e);
