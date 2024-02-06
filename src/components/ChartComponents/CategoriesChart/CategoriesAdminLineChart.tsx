@@ -77,20 +77,6 @@ export default function CategoriesAdminLineChart({
 	);
 	console.log("Categories: ", categories);
 
-	// const flattenedDates = categories.categories.flatMap(
-	// 	(category: ReformattedBookType) => {
-	// 		return category.orders.map((order) => order.orderDate);
-	// 	}
-	// );
-
-	// const uniqueDates = [...new Set(flattenedDates)];
-	// const sortedDates = uniqueDates.sort(
-	// 	(a, b) => new Date(a).getTime() - new Date(b).getTime()
-	// );
-	// console.log("Flattened: ", flattenedDates);
-	// console.log("Unique Dates: ", uniqueDates);
-	// console.log("Sorted Dates: ", sortedDates);
-
 	useEffect(() => {
 		// const reformatedUserData = reformatUserData(users);
 		const filteredCategories = filterOutEmptyCategories(categories);
