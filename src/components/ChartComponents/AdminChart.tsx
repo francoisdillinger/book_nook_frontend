@@ -143,6 +143,7 @@ export default function AdminChart() {
 						setTimeFilter={setTimeFilter}
 						selectOptions={selectOptions}
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						focusedCategory={focusedUser}
 					/>
 				)}
 			</div>
