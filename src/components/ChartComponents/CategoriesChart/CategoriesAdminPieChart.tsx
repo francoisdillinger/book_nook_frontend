@@ -138,7 +138,7 @@ const CategoriesAdminPieChart = ({
 							textAnchor="middle"
 							className="fill-current text-neutral-500 text-2xl  lg:text-base xl:text-xl"
 						>
-							Percentage of Orders By User
+							Percentage of Orders By Category
 						</text>
 					)}
 					{hasData ? (
