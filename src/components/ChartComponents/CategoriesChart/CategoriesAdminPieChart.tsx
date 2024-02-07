@@ -80,6 +80,7 @@ const CategoriesAdminPieChart = ({
 		const trimmedCategories = trimCategoriesData(categories);
 		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		// console.log("Empty Filtered: ", filteredCategories);
 		const categoryArray = filteredCategories.categories.map((category) => ({
 			categoryName: category.categoryName,
 			orders: category.orders.sort(
@@ -91,6 +92,7 @@ const CategoriesAdminPieChart = ({
 			timeFilter,
 			categoryArray
 		);
+		console.log("Time Filtered: ", timeFilteredCategories);
 		const reducedData = reduceOrderQuantities(timeFilteredCategories);
 		setTotalOrderCount(
 			reducedData.reduce(
@@ -229,13 +231,13 @@ const CategoriesAdminPieChart = ({
 												<div>
 													<div>
 														<span className="text-slate-600 font-bold">
-															Username:
+															Category Name:
 														</span>{" "}
 														{category.data.categoriesName}
 													</div>
 													<div>
 														<span className="text-slate-600 font-bold">
-															Order Quantity:
+															Total Quantity:
 														</span>{" "}
 														{category.data.totalBooksOrdered.toString()}
 													</div>
