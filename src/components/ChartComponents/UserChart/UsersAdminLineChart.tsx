@@ -181,6 +181,11 @@ export default function UsersAdminLineChart({
 								])
 							);
 
+							// This prevents framer motion errors from blowing up
+							// the console when no orders are present as it tries
+							// to create a path from empty points.
+							if (user.orders.length === 0) return;
+
 							return (
 								<React.Fragment key={user.userName}>
 									{/* Unique key for each fragment */}
