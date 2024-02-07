@@ -179,6 +179,11 @@ const UsersAdminPieChart = ({
 							reducedUsersData != undefined &&
 							pie(reducedUsersData)!.map((user, index) => {
 								const color = colorScale(index.toString());
+
+								// This is to override a bug where orders of 0 are still shown
+								// on the chart, but filtering them changes the index #'s so
+								// the colors change as well. I'll come back to this.
+								if (user.data.totalBooksOrdered === 0) return;
 								return (
 									<motion.path
 										key={user.data.userName}
