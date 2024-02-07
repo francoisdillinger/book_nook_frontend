@@ -20,6 +20,7 @@ import {
 } from "./CategoriesAdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 import { CategoriesDataType } from "../../../data/categories_data";
+import CategoriesChartReactSelect from "./CategoriesChartReactSelect";
 
 export const filterOutEmptyCategories = (
 	categories: ReformattedCategoriesBooksType
@@ -190,6 +191,14 @@ export default function CategoriesAdminLineChart({
 	);
 	return (
 		<React.Fragment>
+			{/* <div className="w-full flex justify-end">
+				<CategoriesChartReactSelect
+					options={[]}
+					colorScale={colorScale}
+					setFocusedUser={() => {}}
+					focusedCategory={""}
+				/>
+			</div> */}
 			<svg
 				ref={svgLineChartRef}
 				width={svgWidth}
