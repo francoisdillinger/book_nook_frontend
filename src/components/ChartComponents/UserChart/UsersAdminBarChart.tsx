@@ -131,6 +131,13 @@ export default function UsersAdminBarChart({
 						reducedUsersData!.map((user, index) => {
 							const color = colorScale(index.toString());
 							const barHeight = graphHeight - y(user.totalBooksOrdered);
+
+							// This is to prevent empty users from throwing errors.
+							// If this item has no book orders then it is rendered as
+							// an empty rect, but framer motion tries to animate it and
+							// causes a bunch of errors to be thrown. This does not effect
+							// the actual application but blows up the console.
+							if (user.totalBooksOrdered === 0) return;
 							return (
 								<motion.rect
 									initial={{ height: 0, y: graphHeight }}
