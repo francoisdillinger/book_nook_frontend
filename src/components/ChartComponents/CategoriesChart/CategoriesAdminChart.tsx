@@ -24,6 +24,7 @@ import {
 import TotalsComponent from "../TotalsComponent";
 import CategoriesAdminLineChart from "./CategoriesAdminLineChart";
 import CategoriesAdminBarChart from "./CategoriesAdminBarChart";
+import CategoriesAdminPieChart from "./CategoriesAdminPieChart";
 
 export type TrimmedCategoriesDataType = {
 	categories: {
@@ -164,21 +165,21 @@ export default function CategoriesAdminChart({
 						/>
 					</ResponsiveSVGContainer>
 				</div>
-				{/* <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
-            <ResponsiveSVGContainer>
-                <UsersAdminPieChart
-                    //height and width are provided by the <ResponsiveSVGContainer>
-                    timeFilter={timeFilter}
-                    tooltip={tooltip}
-                    setTooltip={setTooltip}
-                    users={users}
-                    colorScale={colorScale}
-                    hasData={hasData}
-                    focusedUser={focusedUser}
-                    doesToolTipOverflowWindow={doesToolTipOverflowWindow}
-                />
-            </ResponsiveSVGContainer>
-        </div> */}
+				<div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+					<ResponsiveSVGContainer>
+						<CategoriesAdminPieChart
+							//height and width are provided by the <ResponsiveSVGContainer>
+							timeFilter={timeFilter}
+							tooltip={tooltip}
+							setTooltip={setTooltip}
+							categories={categories_data}
+							colorScale={colorScale}
+							hasData={hasData}
+							focusedCategory={focusedCategory}
+							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						/>
+					</ResponsiveSVGContainer>
+				</div>
 			</div>
 		</React.Fragment>
 	);
