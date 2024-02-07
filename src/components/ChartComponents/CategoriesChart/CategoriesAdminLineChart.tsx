@@ -230,6 +230,11 @@ export default function CategoriesAdminLineChart({
 							);
 							// console.log("Line Path: ", linePath);
 							// console.log("Focused Category: ", focusedCategory);
+
+							// This prevents framer motion errors from blowing up
+							// the console when no orders are present as it tries
+							// to create a path from empty points.
+							if (category.orders.length === 0) return;
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
