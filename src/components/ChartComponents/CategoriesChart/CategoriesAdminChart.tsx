@@ -25,6 +25,7 @@ import TotalsComponent from "../TotalsComponent";
 import CategoriesAdminLineChart from "./CategoriesAdminLineChart";
 import CategoriesAdminBarChart from "./CategoriesAdminBarChart";
 import CategoriesAdminPieChart from "./CategoriesAdminPieChart";
+import CategoriesChartReactSelect from "./CategoriesChartReactSelect";
 
 export type TrimmedCategoriesDataType = {
 	categories: {
@@ -97,6 +98,9 @@ type CategoriesAdminChartType = {
 	setSelectOptions: Function;
 	doesToolTipOverflowWindow: Function;
 	focusedCategory: string;
+	focusedUser: string;
+	setFocusedUser: Function;
+	// selectOptions: string;
 };
 
 export default function CategoriesAdminChart({
@@ -111,21 +115,29 @@ export default function CategoriesAdminChart({
 	hasData,
 	setHasData,
 	setSelectOptions,
-	// selectOptions,
-	// setFocusedUser,
+	selectOptions,
+	setFocusedUser,
 	doesToolTipOverflowWindow,
 	focusedCategory,
+	focusedUser,
 }: CategoriesAdminChartType) {
-	console.log(categories_data);
-	console.log(trimCategoriesData(categories_data));
-	console.log(reformatCategoriesBooks(trimCategoriesData(categories_data)));
+	// console.log(categories_data);
+	// console.log(trimCategoriesData(categories_data));
+	// console.log(reformatCategoriesBooks(trimCategoriesData(categories_data)));
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+				{/* <div className="w-full flex justify-end pt-4 pb-4">
+					<CategoriesChartReactSelect
+						options={[]}
+						colorScale={colorScale}
+						setFocusedUser={() => {}}
+						focusedCategory={""}
+					/>
+				</div> */}
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
-
 					<div className=" flex justify-center mt-10 md:mt-0">
 						<div className="w-full h-[450px]">
 							<ResponsiveSVGContainer>
