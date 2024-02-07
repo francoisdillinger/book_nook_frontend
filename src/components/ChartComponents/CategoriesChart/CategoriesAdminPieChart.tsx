@@ -200,6 +200,11 @@ const CategoriesAdminPieChart = ({
 							reducedCategoriesData != undefined &&
 							pie(reducedCategoriesData)!.map((category, index) => {
 								const color = colorScale(index.toString());
+								console.log("Category: ", category);
+								// This is to override a bugg where orders of 0 are still shown
+								// on the chart, but filtering them changes the index #'s so
+								// the colors change as well. I'll come back to this.
+								if (category.data.totalBooksOrdered === 0) return;
 								return (
 									<motion.path
 										key={category.data.categoriesName}
