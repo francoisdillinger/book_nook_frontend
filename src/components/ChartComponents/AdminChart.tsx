@@ -91,12 +91,20 @@ export default function AdminChart() {
 							/>
 						)}
 						{filterChart === "Categories" && selectOptions.length && (
-							<CategoriesChartReactSelect
-								options={selectOptions}
-								colorScale={colorScale}
-								setFocusedUser={setFocusedUser}
-								focusedCategory={focusedUser}
-							/>
+							<>
+								<CategoriesChartReactSelect
+									options={selectOptions}
+									colorScale={colorScale}
+									setFocusedUser={setFocusedUser}
+									focusedCategory={focusedUser}
+								/>
+								{/* <CategoriesChartReactSelect
+									options={selectOptions}
+									colorScale={colorScale}
+									setFocusedUser={setFocusedUser}
+									focusedCategory={focusedUser}
+								/> */}
+							</>
 						)}
 					</div>
 					<div className="flex justify-start w-full mr-4 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
