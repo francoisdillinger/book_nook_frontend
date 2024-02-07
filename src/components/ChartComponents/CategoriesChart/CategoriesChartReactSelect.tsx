@@ -64,7 +64,7 @@ const CategoriesChartReactSelect = ({
 				className="w-60"
 				components={{ Option }}
 				styles={customStyles}
-				placeholder="Filter by..."
+				placeholder="Highlight by Category..."
 				onChange={handleChange}
 				value={
 					selectOptions.find((option) => option.name === focusedCategory) ||
