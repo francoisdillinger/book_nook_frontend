@@ -189,7 +189,7 @@ export default function CategoriesAdminBarChart({
 												</div>
 												<div>
 													<span className="text-slate-600 font-bold">
-														Order Quantity:
+														Total Quantity:
 													</span>{" "}
 													{category.totalBooksOrdered.toString()}
 												</div>
