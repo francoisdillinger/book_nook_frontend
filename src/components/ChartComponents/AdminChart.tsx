@@ -144,6 +144,8 @@ export default function AdminChart() {
 						selectOptions={selectOptions}
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						focusedCategory={focusedUser}
+						focusedUser={focusedUser}
+						setFocusedUser={setFocusedUser}
 					/>
 				)}
 			</div>
