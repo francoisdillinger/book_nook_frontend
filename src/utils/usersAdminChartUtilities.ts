@@ -1,3 +1,4 @@
+import { ReformattedBookType } from "../components/ChartComponents/CategoriesChart/CategoriesAdminChart";
 import { UsersType } from "../data/users";
 import * as d3 from "d3";
 
