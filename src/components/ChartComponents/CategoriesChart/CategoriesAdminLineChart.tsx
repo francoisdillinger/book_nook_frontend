@@ -1,12 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-// import {
-// 	reformatUserData,
-// 	getFilteredData,
-// 	ProcessedUserType,
-// 	ProcessedOrder,
-// } from "../../../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
