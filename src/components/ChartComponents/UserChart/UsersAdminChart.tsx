@@ -61,64 +61,64 @@ export default function UsersAdminChart({
 	// setFocusedUser,
 	doesToolTipOverflowWindow,
 }: UsersAdminChartType) {
-	const [totalSales, setTotalSales] = useState<TotalSalesType>();
-	const [avgSale, setAvgSale] = useState<AverageSalesType>();
-	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
-	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
+	// const [totalSales, setTotalSales] = useState<TotalSalesType>();
+	// const [avgSale, setAvgSale] = useState<AverageSalesType>();
+	// const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
+	// const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
 	// const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 
-	useEffect(() => {
-		const reformatedUserData = reformatUserData(users);
-		const filteredUsers = filterOutInactiveUsers(reformatedUserData);
-		const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
-		const previousFiltered = previousPeriodOrders(filteredUsers, timeFilter);
-		const prevTotal = totalsReducer(previousFiltered);
-		const prevNumOrders = totalOrdersReducer(previousFiltered);
-		const prevTotalBooksOrdered = totalOrderedQuantityReducer(previousFiltered);
-		const total = totalsReducer(filteredUserchart);
-		const totalNumOrders = totalOrdersReducer(filteredUserchart);
-		const totalBooksOrdered = totalOrderedQuantityReducer(filteredUserchart);
+	// useEffect(() => {
+	// 	const reformatedUserData = reformatUserData(users);
+	// 	const filteredUsers = filterOutInactiveUsers(reformatedUserData);
+	// 	const filteredUserchart = getFilteredData(timeFilter, filteredUsers);
+	// 	const previousFiltered = previousPeriodOrders(filteredUsers, timeFilter);
+	// 	const prevTotal = totalsReducer(previousFiltered);
+	// 	const prevNumOrders = totalOrdersReducer(previousFiltered);
+	// 	const prevTotalBooksOrdered = totalOrderedQuantityReducer(previousFiltered);
+	// 	const total = totalsReducer(filteredUserchart);
+	// 	const totalNumOrders = totalOrdersReducer(filteredUserchart);
+	// 	const totalBooksOrdered = totalOrderedQuantityReducer(filteredUserchart);
 
-		// setFiltered(filteredUserchart);
-		setTotalSales({
-			currentTotal: total / 100,
-			previousTotal: prevTotal / 100,
-			totalChange: calculatePercentageChange(total, prevTotal),
-		});
-		setAvgSale({
-			currentAverage: total / totalNumOrders / 100 || 0,
-			previousAverage: prevTotal / prevNumOrders / 100 || 0,
-			totalAverage:
-				calculatePercentageChange(
-					total / totalNumOrders,
-					prevTotal / prevNumOrders
-				) || 0,
-		});
+	// 	// setFiltered(filteredUserchart);
+	// 	setTotalSales({
+	// 		currentTotal: total / 100,
+	// 		previousTotal: prevTotal / 100,
+	// 		totalChange: calculatePercentageChange(total, prevTotal),
+	// 	});
+	// 	setAvgSale({
+	// 		currentAverage: total / totalNumOrders / 100 || 0,
+	// 		previousAverage: prevTotal / prevNumOrders / 100 || 0,
+	// 		totalAverage:
+	// 			calculatePercentageChange(
+	// 				total / totalNumOrders,
+	// 				prevTotal / prevNumOrders
+	// 			) || 0,
+	// 	});
 
-		setTotalBooks({
-			currentTotal: totalBooksOrdered,
-			previousTotal: prevTotalBooksOrdered,
-			totalChange: calculatePercentageChange(
-				totalBooksOrdered,
-				prevTotalBooksOrdered
-			),
-		});
+	// 	setTotalBooks({
+	// 		currentTotal: totalBooksOrdered,
+	// 		previousTotal: prevTotalBooksOrdered,
+	// 		totalChange: calculatePercentageChange(
+	// 			totalBooksOrdered,
+	// 			prevTotalBooksOrdered
+	// 		),
+	// 	});
 
-		setAvgBookOrder({
-			currentAverage: totalBooksOrdered / totalNumOrders || 0,
-			previousAverage: prevTotalBooksOrdered / prevNumOrders || 0,
-			totalAverage:
-				calculatePercentageChange(
-					totalBooksOrdered / totalNumOrders,
-					prevTotalBooksOrdered / prevNumOrders
-				) || 0,
-		});
-	}, [timeFilter]);
+	// 	setAvgBookOrder({
+	// 		currentAverage: totalBooksOrdered / totalNumOrders || 0,
+	// 		previousAverage: prevTotalBooksOrdered / prevNumOrders || 0,
+	// 		totalAverage:
+	// 			calculatePercentageChange(
+	// 				totalBooksOrdered / totalNumOrders,
+	// 				prevTotalBooksOrdered / prevNumOrders
+	// 			) || 0,
+	// 	});
+	// }, [timeFilter]);
 
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
-				<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
+				{/* <div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
 					<TotalsComponent
 						title="Total Sales"
 						isDollarAmount={true}
@@ -149,7 +149,7 @@ export default function UsersAdminChart({
 						change={avgBookOrder ? avgBookOrder.totalAverage : 0}
 						previousPeriod={previousTime(timeFilter)}
 					/>
-				</div>
+				</div> */}
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					<ChartToolTip tooltip={tooltip} />
 
