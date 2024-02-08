@@ -61,10 +61,10 @@ const UsersChartReactSelect = ({
 		<div onClick={(e) => onUsernameClick(e)}>
 			<Select
 				options={selectOptions}
-				className="w-40"
+				className="w-48"
 				components={{ Option }}
 				styles={customStyles}
-				placeholder="Filter by..."
+				placeholder="Highlight User..."
 				onChange={handleChange}
 				value={
 					selectOptions.find((option) => option.name === focusedUser) || null
