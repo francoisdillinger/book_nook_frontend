@@ -73,3 +73,79 @@ export const getFilteredCategoriesData = (
 			return categoryData;
 	}
 };
+
+export const previousPeriodOrders = (
+	categories: ReformattedBookType[],
+	timeFilter: string
+) => {
+	const currentDate = new Date();
+	let startPreviousPeriod: number | Date, endPreviousPeriod: number | Date;
+
+	switch (timeFilter) {
+		case "day":
+			startPreviousPeriod = d3.timeDay.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeDay.offset(currentDate, -1);
+			break;
+		case "week":
+			startPreviousPeriod = d3.timeDay.offset(currentDate, -14);
+			endPreviousPeriod = d3.timeDay.offset(currentDate, -7);
+			break;
+		case "month":
+			startPreviousPeriod = d3.timeMonth.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeMonth.offset(currentDate, -1);
+			break;
+		case "half-year":
+			startPreviousPeriod = d3.timeMonth.offset(currentDate, -12);
+			endPreviousPeriod = d3.timeMonth.offset(currentDate, -6);
+			break;
+		case "year":
+			startPreviousPeriod = d3.timeYear.offset(currentDate, -2);
+			endPreviousPeriod = d3.timeYear.offset(currentDate, -1);
+			break;
+		default:
+			return categories;
+	}
+	return categories.map((category) => ({
+		...category,
+		orders: category.orders.filter((order) => {
+			const orderDate = new Date(order.orderDate);
+			const filtered =
+				orderDate >= startPreviousPeriod && orderDate <= endPreviousPeriod;
+			return filtered;
+		}),
+	}));
+};
+
+export const totalsReducer = (categories: ReformattedBookType[]) => {
+	// Reduces all sales amounts
+	return categories
+		.map((category) =>
+			category.orders.reduce(
+				(accumulator, order) =>
+					accumulator + Math.round(order.orderAmount * 100),
+				0
+			)
+		)
+		.reduce((accumulator, categoryTotal) => accumulator + categoryTotal, 0);
+};
+
+export const totalOrdersReducer = (categories: ReformattedBookType[]) => {
+	// Reduces total number of orders (not total number of books ordered)
+	return categories
+		.map((category) => category.orders.length)
+		.reduce((accumulator, order) => accumulator + order, 0);
+};
+
+export const totalOrderedQuantityReducer = (
+	categories: ReformattedBookType[]
+) => {
+	// Reduces total number of individual books ordered (not total number of orders)
+	return categories
+		.map((category) =>
+			category.orders.reduce(
+				(accumulator, order) => accumulator + order.quantity,
+				0
+			)
+		)
+		.reduce((accumulator, categoryTotal) => accumulator + categoryTotal, 0);
+};
