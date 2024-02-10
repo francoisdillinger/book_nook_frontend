@@ -260,6 +260,26 @@ export default function AdminChart() {
 						setFocusedUser={setFocusedUser}
 					/>
 				)}
+				{filterChart === "Authors" && (
+					<AuthorsAdminChart
+						margin={margin}
+						timeFilter={timeFilter}
+						tooltip={tooltip}
+						setTooltip={setTooltip}
+						colorScale={colorScale}
+						hasData={hasData}
+						setHasData={setHasData}
+						setSelectOptions={setSelectOptions}
+						width={0}
+						height={0}
+						setTimeFilter={setTimeFilter}
+						selectOptions={selectOptions}
+						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						focusedCategory={focusedUser}
+						focusedUser={focusedUser}
+						setFocusedUser={setFocusedUser}
+					/>
+				)}
 			</div>
 		</React.Fragment>
 	);
