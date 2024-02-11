@@ -6,7 +6,7 @@ import BarChartXAxis from "../UserChart/BarChartXAxis";
 import BarChartYAxis from "../UserChart/BarChartYAxis";
 import { MarginType } from "../AdminChart";
 import { CategoriesDataType } from "../../../data/categories_data";
-import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
+// import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
 
 // const reduceOrderQuantities = (
 // 	categories: ReformattedBookType[]
