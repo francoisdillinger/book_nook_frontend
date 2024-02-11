@@ -5,26 +5,26 @@ import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
-import {
-	ReformattedBookType,
-	// ReformattedCategoriesBooks,
-	ReformattedCategoriesBooksType,
-	reformatCategoriesBooks,
-	trimCategoriesData,
-} from "./CategoriesAdminChart";
+// import {
+// 	ReformattedBookType,
+// 	// ReformattedCategoriesBooks,
+// 	ReformattedCategoriesBooksType,
+// 	reformatCategoriesBooks,
+// 	trimCategoriesData,
+// } from "./CategoriesAdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
-import { CategoriesDataType } from "../../../data/categories_data";
-import CategoriesChartReactSelect from "./CategoriesChartReactSelect";
+// import { CategoriesDataType } from "../../../data/categories_data";
+// import CategoriesChartReactSelect from "./CategoriesChartReactSelect";
 
-export const filterOutEmptyCategories = (
-	categories: ReformattedCategoriesBooksType
-): ReformattedCategoriesBooksType => {
-	return {
-		categories: categories.categories.filter(
-			(category) => category.orders.length > 0
-		),
-	};
-};
+// export const filterOutEmptyCategories = (
+// 	categories: ReformattedCategoriesBooksType
+// ): ReformattedCategoriesBooksType => {
+// 	return {
+// 		categories: categories.categories.filter(
+// 			(category) => category.orders.length > 0
+// 		),
+// 	};
+// };
 
 type AuthorsAdminLineChartType = {
 	margin: MarginType;
