@@ -35,11 +35,6 @@ import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
 // 	});
 // };
 
-type ReducedCategoriesDataType = {
-	categoriesName: string;
-	totalBooksOrdered: number;
-};
-
 type AuthorsAdminBarChartType = {
 	margin: MarginType;
 	timeFilter: string;
