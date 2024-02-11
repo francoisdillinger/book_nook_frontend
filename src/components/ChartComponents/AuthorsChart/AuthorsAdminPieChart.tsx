@@ -37,11 +37,6 @@ const reduceOrderQuantities = (
 // 	return users.filter((user) => user.orders.length > 0);
 // };
 
-type ReducedCategoriesDataType = {
-	categoriesName: string;
-	totalBooksOrdered: number;
-};
-
 type AuthorsAdminPieChartType = {
 	timeFilter: string;
 	width?: number;
