@@ -29,6 +29,7 @@ import {
 } from "../../utils/usersAdminChartUtilities";
 import { filterOutInactiveUsers } from "./UserChart/UsersAdminLineChart";
 import TotalsComponent from "./TotalsComponent";
+import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
