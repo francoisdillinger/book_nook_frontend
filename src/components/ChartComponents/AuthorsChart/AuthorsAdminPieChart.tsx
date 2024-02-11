@@ -1,35 +1,35 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import {
-	reformatUserData,
-	getFilteredData,
-	ProcessedUserType,
-} from "../../../utils/usersAdminChartUtilities";
+// import {
+// 	reformatUserData,
+// 	getFilteredData,
+// 	ProcessedUserType,
+// } from "../../../utils/usersAdminChartUtilities";
 import { TooltipStateType } from "../ChartToolTip";
-import { UsersType } from "../../../data/users";
-import { CategoriesDataType } from "../../../data/categories_data";
+// import { UsersType } from "../../../data/users";
+// import { CategoriesDataType } from "../../../data/categories_data";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
-import {
-	ReformattedBookType,
-	trimCategoriesData,
-	reformatCategoriesBooks,
-} from "./CategoriesAdminChart";
-import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
+// import {
+// 	ReformattedBookType,
+// 	trimCategoriesData,
+// 	reformatCategoriesBooks,
+// } from "./CategoriesAdminChart";
+// import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
 
-const reduceOrderQuantities = (
-	categories: ReformattedBookType[]
-): ReducedCategoriesDataType[] => {
-	return categories.map((category) => {
-		return {
-			categoriesName: category.categoryName,
-			totalBooksOrdered: category.orders.reduce(
-				(accumulator, order) => accumulator + order.quantity,
-				0
-			),
-		};
-	});
-};
+// const reduceOrderQuantities = (
+// 	categories: ReformattedBookType[]
+// ): ReducedCategoriesDataType[] => {
+// 	return categories.map((category) => {
+// 		return {
+// 			categoriesName: category.categoryName,
+// 			totalBooksOrdered: category.orders.reduce(
+// 				(accumulator, order) => accumulator + order.quantity,
+// 				0
+// 			),
+// 		};
+// 	});
+// };
 
 // const filterOutInactiveUsers = (
 // 	users: ProcessedUserType[]
