@@ -1,3 +1,22 @@
+export type AuthorsDataType = {
+	data: {
+		authors: {
+			authorFirstName: string;
+			authorLastName: string;
+			books: {
+				bookTitle: string;
+				bookOrders: {
+					orderId: string;
+					userId: number;
+					bookId: number;
+					quantity: number;
+					orderDate: string;
+					orderAmount: number;
+				}[];
+			}[];
+		}[];
+	};
+};
 export const authors_data = {
 	data: {
 		authors: [
