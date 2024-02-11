@@ -29,61 +29,61 @@ import { MarginType } from "../AdminChart";
 // import { filterOutInactiveUsers } from "../UserChart/UsersAdminLineChart";
 // import { users } from "../../../data/users";
 
-export type TrimmedCategoriesDataType = {
-	categories: {
-		categoryName: string;
-		books: {
-			bookTitle: string;
-			bookOrders: {
-				orderId: string;
-				quantity: number;
-				orderDate: string;
-				orderAmount: number;
-			}[];
-		}[];
-	}[];
-};
+// export type TrimmedCategoriesDataType = {
+// 	categories: {
+// 		categoryName: string;
+// 		books: {
+// 			bookTitle: string;
+// 			bookOrders: {
+// 				orderId: string;
+// 				quantity: number;
+// 				orderDate: string;
+// 				orderAmount: number;
+// 			}[];
+// 		}[];
+// 	}[];
+// };
 
-export type ReformattedBookType = {
-	categoryName: string;
-	orders: {
-		bookTitle: string;
-		orderId: string;
-		quantity: number;
-		orderDate: string;
-		orderAmount: number;
-	}[];
-};
-export type ReformattedCategoriesBooksType = {
-	categories: ReformattedBookType[];
-};
+// export type ReformattedBookType = {
+// 	categoryName: string;
+// 	orders: {
+// 		bookTitle: string;
+// 		orderId: string;
+// 		quantity: number;
+// 		orderDate: string;
+// 		orderAmount: number;
+// 	}[];
+// };
+// export type ReformattedCategoriesBooksType = {
+// 	categories: ReformattedBookType[];
+// };
 
-export const trimCategoriesData = (
-	categories: CategoriesDataType
-): TrimmedCategoriesDataType => {
-	return {
-		categories: categories.data.categories.map((category) => category),
-	};
-};
+// export const trimCategoriesData = (
+// 	categories: CategoriesDataType
+// ): TrimmedCategoriesDataType => {
+// 	return {
+// 		categories: categories.data.categories.map((category) => category),
+// 	};
+// };
 
-export const reformatCategoriesBooks = (
-	categories: TrimmedCategoriesDataType
-): ReformattedCategoriesBooksType => {
-	return {
-		categories: categories.categories.map((category) => ({
-			categoryName: category.categoryName,
-			orders: category.books.flatMap((book) =>
-				book.bookOrders.map((order) => ({
-					bookTitle: book.bookTitle,
-					orderId: order.orderId,
-					quantity: order.quantity,
-					orderDate: order.orderDate,
-					orderAmount: order.orderAmount,
-				}))
-			),
-		})),
-	};
-};
+// export const reformatCategoriesBooks = (
+// 	categories: TrimmedCategoriesDataType
+// ): ReformattedCategoriesBooksType => {
+// 	return {
+// 		categories: categories.categories.map((category) => ({
+// 			categoryName: category.categoryName,
+// 			orders: category.books.flatMap((book) =>
+// 				book.bookOrders.map((order) => ({
+// 					bookTitle: book.bookTitle,
+// 					orderId: order.orderId,
+// 					quantity: order.quantity,
+// 					orderDate: order.orderDate,
+// 					orderAmount: order.orderAmount,
+// 				}))
+// 			),
+// 		})),
+// 	};
+// };
 
 type AuthorsAdminChartType = {
 	margin: MarginType;
