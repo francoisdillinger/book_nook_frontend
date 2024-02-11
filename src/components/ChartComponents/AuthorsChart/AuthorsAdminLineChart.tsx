@@ -5,16 +5,7 @@ import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
-// import {
-// 	ReformattedBookType,
-// 	// ReformattedCategoriesBooks,
-// 	ReformattedCategoriesBooksType,
-// 	reformatCategoriesBooks,
-// 	trimCategoriesData,
-// } from "./CategoriesAdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
-// import { CategoriesDataType } from "../../../data/categories_data";
-// import CategoriesChartReactSelect from "./CategoriesChartReactSelect";
 
 // export const filterOutEmptyCategories = (
 // 	categories: ReformattedCategoriesBooksType
