@@ -6,6 +6,7 @@ import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
+import { AuthorsDataType } from "../../../data/authors_data";
 
 // export const filterOutEmptyCategories = (
 // 	categories: ReformattedCategoriesBooksType
@@ -24,7 +25,7 @@ type AuthorsAdminLineChartType = {
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	categories: CategoriesDataType;
+	authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
 	setHasData: Function;
@@ -40,7 +41,7 @@ export default function AuthorsAdminLineChart({
 	height = 0,
 	tooltip,
 	setTooltip,
-	categories,
+	authors,
 	colorScale,
 	hasData,
 	setHasData,
