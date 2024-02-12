@@ -29,7 +29,7 @@ type AuthorsAdminBarChartType = {
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	categories: CategoriesDataType;
+	authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
 	focusedCategory: string;
