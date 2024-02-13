@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
+import { AuthorsDataType } from "../../../data/authors_data";
 
 // const reduceOrderQuantities = (
 // 	categories: ReformattedBookType[]
