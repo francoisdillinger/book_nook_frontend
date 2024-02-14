@@ -44,7 +44,7 @@ const AuthorsAdminPieChart = ({
 	height = 0,
 	tooltip,
 	setTooltip,
-	categories,
+	authors,
 	colorScale,
 	hasData,
 	focusedCategory,
