@@ -5,6 +5,7 @@ import { TooltipStateType } from "../ChartToolTip";
 import BarChartXAxis from "../UserChart/BarChartXAxis";
 import BarChartYAxis from "../UserChart/BarChartYAxis";
 import { MarginType } from "../AdminChart";
+import { AuthorsDataType } from "../../../data/authors_data";
 // import { CategoriesDataType } from "../../../data/categories_data";
 // import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
 
