@@ -44,7 +44,7 @@ export default function AuthorsAdminBarChart({
 	height = 0,
 	tooltip,
 	setTooltip,
-	categories,
+	authors,
 	colorScale,
 	hasData,
 	focusedCategory,
