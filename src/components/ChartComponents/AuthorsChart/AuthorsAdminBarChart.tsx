@@ -23,6 +23,11 @@ import { AuthorsDataType } from "../../../data/authors_data";
 // 	});
 // };
 
+type ReducedAuthorsDataType = {
+	authorName: string;
+	totalBooksOrdered: number;
+};
+
 type AuthorsAdminBarChartType = {
 	margin: MarginType;
 	timeFilter: string;
