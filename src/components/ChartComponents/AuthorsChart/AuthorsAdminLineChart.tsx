@@ -206,25 +206,26 @@ export default function AuthorsAdminLineChart({
 			timeFilter,
 			sortedCombinedOrders
 		);
-		// const flattenedDates = filteredCategoriesChart.flatMap(
-		// 	(category: ReformattedBookType) => {
-		// 		return category.orders.map((order) => order.orderDate);
-		// 	}
-		// );
-		// const flattenedQuanities = filteredCategoriesChart.flatMap(
-		// 	(category: ReformattedBookType) => {
-		// 		return category.orders.map((order) => order.quantity);
-		// 	}
-		// );
-		// const uniqueDates = [...new Set(flattenedDates)];
-		// const uniqueQuantities = [...new Set(flattenedQuanities)];
-		// setAllDates(uniqueDates);
-		// setAllQuantinties(uniqueQuantities);
-		// setOrderedCategoriesData(filteredCategoriesChart);
-		// setSelectOptions(filteredCategoriesChart);
+		const flattenedDates = filteredAuthorsChart.flatMap(
+			(author: CombinedAuthorsOrdersType) => {
+				return author.orders.map((order) => order.orderDate);
+			}
+		);
+		const flattenedQuanities = filteredAuthorsChart.flatMap(
+			(author: CombinedAuthorsOrdersType) => {
+				return author.orders.map((order) => order.quantity);
+			}
+		);
+		const uniqueDates = [...new Set(flattenedDates)];
+		const uniqueQuantities = [...new Set(flattenedQuanities)];
+		setAllDates(uniqueDates);
+		setAllQuantinties(uniqueQuantities);
+		setOrderedAuthorsData(filteredAuthorsChart);
+		// setOrderedCategoriesData(filteredAuthorsChart);
+		// setSelectOptions(filteredAuthorsChart);
 		// setHasData(
-		// 	filteredCategoriesChart.reduce(
-		// 		(accumulator, category) => accumulator + category.orders.length,
+		// 	filteredAuthorsChart.reduce(
+		// 		(accumulator, author) => accumulator + author.orders.length,
 		// 		0
 		// 	)
 		// );
