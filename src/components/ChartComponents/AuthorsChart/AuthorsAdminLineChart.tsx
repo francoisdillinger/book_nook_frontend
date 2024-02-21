@@ -187,9 +187,10 @@ export default function AuthorsAdminLineChart({
 		const trimmedAuthors = trimAuthorsData(authors);
 		const combinedAuthorName = combineName(trimmedAuthors);
 		const combinedOrders = combineOrders(combinedAuthorName);
-		const sortedCombinedOrders = combinedOrders;
+		const sortedCombinedOrders = sortOrders(combinedOrders);
 		// console.log("Combined Names: ", combinedAuthorName);
 		// console.log("Combined Orders: ", combinedOrders);
+		console.log("Orders Sorted: ", sortedCombinedOrders);
 		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
 		// const categoryArray = filteredCategories.categories.map((category) => ({
@@ -226,7 +227,7 @@ export default function AuthorsAdminLineChart({
 		// 	)
 		// );
 	}, [authors, timeFilter]);
-	console.log("Authors: ", authors);
+	// console.log("Authors: ", authors);
 	// console.log("All Dates: ", allDates);
 	// console.log("All Quantities: ", allQuantities);
 	// console.log("Has Data: ", hasData);
