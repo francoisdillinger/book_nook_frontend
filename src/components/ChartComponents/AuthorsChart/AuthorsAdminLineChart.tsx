@@ -325,13 +325,13 @@ export default function AuthorsAdminLineChart({
 						/>
 					)}
 					{hasData ? (
-						orderedCategoriesData != undefined &&
-						orderedCategoriesData.map((category, index) => {
+						orderedAuthorsData != undefined &&
+						orderedAuthorsData.map((author, index) => {
 							const color = colorScale(index.toString());
 							// console.log("Color: ", color);
 							// console.log("Category: ", category);
 							const linePath = theLine(
-								category.orders.map((order) => [
+								author.orders.map((order) => [
 									new Date(order.orderDate).getTime(), // Convert Date string to Date object and then get the time
 									order.quantity,
 								])
@@ -342,16 +342,16 @@ export default function AuthorsAdminLineChart({
 							// This prevents framer motion errors from blowing up
 							// the console when no orders are present as it tries
 							// to create a path from empty points.
-							if (category.orders.length === 0) return;
+							if (author.orders.length === 0) return;
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
 									<motion.path
-										key={category.categoryName}
+										key={author.categoryName}
 										initial={{
 											d:
 												bottomLineGenerator(
-													category.orders.map((order) => [
+													author.orders.map((order) => [
 														new Date(order.orderDate).getTime(),
 														order.quantity,
 													])
@@ -368,19 +368,19 @@ export default function AuthorsAdminLineChart({
 										fill="none"
 										strokeWidth={2}
 										stroke={
-											focusedCategory === category.categoryName ||
+											focusedCategory === author.categoryName ||
 											focusedCategory === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === category.categoryName ||
+											focusedCategory === author.categoryName ||
 											focusedCategory === ""
 												? 0.8
 												: 0.1
 										}
 									/>
-									{category.orders.map((order) => {
+									{author.orders.map((order) => {
 										// console.log("Order Quantity: ", order.quantity);
 										// console.log("cy: ", y(order.quantity));
 										return (
@@ -403,13 +403,13 @@ export default function AuthorsAdminLineChart({
 												}}
 												r={6}
 												fill={
-													focusedCategory === category.categoryName ||
+													focusedCategory === author.categoryName ||
 													focusedCategory === ""
 														? color
 														: "gray"
 												}
 												opacity={
-													focusedCategory === category.categoryName ||
+													focusedCategory === author.categoryName ||
 													focusedCategory === ""
 														? 1
 														: 0.1
