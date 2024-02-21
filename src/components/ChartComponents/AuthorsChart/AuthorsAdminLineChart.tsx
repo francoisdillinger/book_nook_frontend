@@ -5,7 +5,7 @@ import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
-import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
+// import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 
