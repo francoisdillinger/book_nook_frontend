@@ -6,22 +6,31 @@ import BarChartXAxis from "../UserChart/BarChartXAxis";
 import BarChartYAxis from "../UserChart/BarChartYAxis";
 import { MarginType } from "../AdminChart";
 import { AuthorsDataType } from "../../../data/authors_data";
+import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
+import {
+	trimAuthorsData,
+	combineName,
+	combineOrders,
+	sortOrders,
+	CombinedAuthorsOrdersType,
+	ReducedAuthorsDataType,
+} from "./AuthorsAdminLineChart";
 // import { CategoriesDataType } from "../../../data/categories_data";
 // import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
 
-// const reduceOrderQuantities = (
-// 	categories: ReformattedBookType[]
-// ): ReducedCategoriesDataType[] => {
-// 	return categories.map((category) => {
-// 		return {
-// 			categoriesName: category.categoryName,
-// 			totalBooksOrdered: category.orders.reduce(
-// 				(accumulator, order) => accumulator + order.quantity,
-// 				0
-// 			),
-// 		};
-// 	});
-// };
+const reduceOrderQuantities = (
+	authors: CombinedAuthorsOrdersType[]
+): ReducedAuthorsDataType[] => {
+	return authors.map((author) => {
+		return {
+			authorName: author.authorName,
+			totalBooksOrdered: author.orders.reduce(
+				(accumulator, order) => accumulator + order.quantity,
+				0
+			),
+		};
+	});
+};
 
 // type ReducedAuthorsDataType = {
 // 	authorName: string;
@@ -59,11 +68,31 @@ export default function AuthorsAdminBarChart({
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
 	const graphWidth = svgWidth - margin.left - margin.right;
-	const [reducedCategoriesData, setReducedCategoriesData] =
-		useState<ReducedCategoriesDataType[]>();
+	const [reducedAuthorsData, setReducedAuthorsData] =
+		useState<CombinedAuthorsOrdersType[]>();
 
 	useEffect(() => {
-		console.log("Authors: ", authors);
+		// console.log("Authors: ", authors);
+		const trimmedAuthors = trimAuthorsData(authors);
+		const combinedAuthorName = combineName(trimmedAuthors);
+		const combinedOrders = combineOrders(combinedAuthorName);
+		const sortedCombinedOrders = sortOrders(combinedOrders);
+		const filteredAuthorsChart = getFilteredAuthorsData(
+			timeFilter,
+			sortedCombinedOrders
+		);
+		// const flattenedDates = filteredAuthorsChart.flatMap(
+		// 	(author: CombinedAuthorsOrdersType) => {
+		// 		return author.orders.map((order) => order.orderDate);
+		// 	}
+		// );
+		// const flattenedQuanities = filteredAuthorsChart.flatMap(
+		// 	(author: CombinedAuthorsOrdersType) => {
+		// 		return author.orders.map((order) => order.quantity);
+		// 	}
+		// );
+		// const uniqueDates = [...new Set(flattenedDates)];
+		// const uniqueQuantities = [...new Set(flattenedQuanities)];
 		// const trimmedCategories = trimCategoriesData(categories);
 		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
