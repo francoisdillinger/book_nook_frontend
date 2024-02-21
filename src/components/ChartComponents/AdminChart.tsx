@@ -146,7 +146,7 @@ export default function AdminChart() {
 	// console.log("Filter: ", filterChart);
 	return (
 		<React.Fragment>
-			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
 					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
 						<AdminChartReactSelect
@@ -196,7 +196,7 @@ export default function AdminChart() {
 				</div>{" "}
 			</div>
 			<div className="mr-4">
-				<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+				<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 					<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
 						<TotalsComponent
 							title="Total Sales"
