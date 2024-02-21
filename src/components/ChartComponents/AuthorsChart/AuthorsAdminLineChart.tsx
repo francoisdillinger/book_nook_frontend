@@ -54,7 +54,7 @@ export const combineOrders = (
 	return authors.map((author) => {
 		return {
 			authorName: author.authorName,
-			bookOrders: author.books
+			orders: author.books
 				.map((book) => {
 					return book.bookOrders.map((order) => {
 						return {
@@ -74,7 +74,7 @@ export const sortOrders = (
 	return authors.map((author) => {
 		return {
 			authorName: author.authorName,
-			bookOrders: author.bookOrders.sort((a, b) => {
+			orders: author.orders.sort((a, b) => {
 				return (
 					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
 				);
@@ -118,7 +118,7 @@ type CombinedAuthorNameType = {
 
 type CombinedAuthorsOrdersType = {
 	authorName: string;
-	bookOrders: {
+	orders: {
 		bookTitle: string;
 		orderId: string;
 		userId: number;
