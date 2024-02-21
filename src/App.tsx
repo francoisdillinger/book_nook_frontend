@@ -23,7 +23,7 @@ export default function App() {
 		<React.Fragment>
 			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
-			{/* <SideBarAdminMenu /> */}
+			<SideBarAdminMenu />
 			{/* <AdminHome /> */}
 			<AdminMenu />
 			<div className="bg-slate-100">
