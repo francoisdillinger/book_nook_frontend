@@ -69,7 +69,7 @@ export default function AuthorsAdminBarChart({
 	const graphHeight = svgHeight - margin.top - margin.bottom;
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const [reducedAuthorsData, setReducedAuthorsData] =
-		useState<CombinedAuthorsOrdersType[]>();
+		useState<ReducedAuthorsDataType[]>();
 
 	useEffect(() => {
 		// console.log("Authors: ", authors);
@@ -107,7 +107,7 @@ export default function AuthorsAdminBarChart({
 		// 	timeFilter,
 		// 	categoryArray
 		// );
-		// setReducedCategoriesData(reduceOrderQuantities(timeFilteredCategories));
+		setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 	}, [graphWidth, timeFilter]);
 
 	const y = d3
@@ -115,9 +115,9 @@ export default function AuthorsAdminBarChart({
 		.domain([
 			0,
 			d3.max(
-				reducedCategoriesData
-					? reducedCategoriesData
-							.map((category) => category.totalBooksOrdered)
+				reducedAuthorsData
+					? reducedAuthorsData
+							.map((author) => author.totalBooksOrdered)
 							.filter((value) => value !== undefined) // Filter out undefined values
 					: []
 			) as number, // Cast the result as number to eliminate type errors
@@ -127,8 +127,8 @@ export default function AuthorsAdminBarChart({
 	const x = d3
 		.scaleBand()
 		.domain(
-			reducedCategoriesData
-				? reducedCategoriesData.map((category) => category.categoriesName)
+			reducedAuthorsData
+				? reducedAuthorsData.map((author) => author.authorName)
 				: []
 		)
 		.range([0, graphWidth])
@@ -149,7 +149,7 @@ export default function AuthorsAdminBarChart({
 						<BarChartXAxis
 							xScale={x}
 							height={graphHeight}
-							ticks={reducedCategoriesData?.length || 0}
+							ticks={reducedAuthorsData?.length || 0}
 							width={graphWidth}
 						/>
 					)}
@@ -161,22 +161,22 @@ export default function AuthorsAdminBarChart({
 						/>
 					)}
 					{hasData ? (
-						reducedCategoriesData != undefined &&
-						reducedCategoriesData!.map((category, index) => {
+						reducedAuthorsData != undefined &&
+						reducedAuthorsData!.map((author, index) => {
 							const color = colorScale(index.toString());
-							const barHeight = graphHeight - y(category.totalBooksOrdered);
+							const barHeight = graphHeight - y(author.totalBooksOrdered);
 							// This is to prevent empty categories from throwing errors.
 							// If this item has no book orders then it is rendered as
 							// an empty rect, but framer motion tries to animate it and
 							// causes a bunch of errors to be thrown. This does not effect
 							// the actual application but blows up the console.
-							if (category.totalBooksOrdered === 0) return;
+							if (author.totalBooksOrdered === 0) return;
 							return (
 								<motion.rect
 									initial={{ height: 0, y: graphHeight }}
 									animate={{
 										height: barHeight,
-										y: y(category.totalBooksOrdered),
+										y: y(author.totalBooksOrdered),
 									}}
 									transition={{
 										duration: 0.5,
@@ -185,18 +185,18 @@ export default function AuthorsAdminBarChart({
 										damping: 10, // Adjust damping for more or less bounce
 										stiffness: 100, // Adjust stiffness for more or less bounce
 									}}
-									key={category.categoriesName}
+									key={author.authorName}
 									width={x.bandwidth()}
 									height={barHeight}
-									x={x(category.categoriesName)}
+									x={x(author.authorName)}
 									fill={
-										focusedCategory === category.categoriesName ||
+										focusedCategory === author.authorName ||
 										focusedCategory === ""
 											? color
 											: "gray"
 									}
 									opacity={
-										focusedCategory === category.categoriesName ||
+										focusedCategory === author.authorName ||
 										focusedCategory === ""
 											? 1
 											: 0.2
@@ -209,13 +209,13 @@ export default function AuthorsAdminBarChart({
 													<span className="text-slate-600 font-bold">
 														Category Name:
 													</span>{" "}
-													{category.categoriesName}
+													{author.authorName}
 												</div>
 												<div>
 													<span className="text-slate-600 font-bold">
 														Total Quantity:
 													</span>{" "}
-													{category.totalBooksOrdered.toString()}
+													{author.totalBooksOrdered.toString()}
 												</div>
 											</div>
 										);
