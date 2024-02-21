@@ -20,7 +20,9 @@ export default function AdminMenu() {
 
 	return (
 		<nav className="bg-gray-100">
-			<div className="max-w-7xl mx-auto px-4">
+			{/* Do the following if you want to set a max container width, this may be a good idea */}
+			{/* <div className="max-w-7xl mx-auto px-4"> */}
+			<div className=" mx-auto px-4">
 				<div className="flex justify-end pt-2">
 					<div className="hidden md:flex justify-end w-40 items-center space-x-1 ">
 						<a
