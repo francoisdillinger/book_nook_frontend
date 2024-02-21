@@ -129,7 +129,7 @@ export default function AuthorsAdminChart({
 }: AuthorsAdminChartType) {
 	return (
 		<React.Fragment>
-			<div className="flex flex-wrap lg:ml-20 xl:ml-28">
+			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
@@ -155,7 +155,7 @@ export default function AuthorsAdminChart({
 					</div>
 				</div>
 			</div>
-			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
+			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4">
 				<div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
 					<ResponsiveSVGContainer>
 						<AuthorsAdminBarChart
