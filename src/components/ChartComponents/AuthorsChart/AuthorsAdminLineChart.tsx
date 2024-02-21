@@ -36,6 +36,16 @@ export const combineName = (
 	});
 };
 
+// export const filterOutEmptyAuthors = (
+// 	authors: CombinedAuthorNameType[]
+// ): CombinedAuthorNameType[] => {
+// 	return authors.map((author) => {
+// 		return author.books.filter((book) => {
+// 			return book.bookOrders.
+// 		})
+// 	})
+// };
+
 type TrimmedAuthorsDataType = {
 	authors: {
 		authorFirstName: string;
