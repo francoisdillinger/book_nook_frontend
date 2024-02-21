@@ -7,6 +7,7 @@ import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 import { AuthorsDataType } from "../../../data/authors_data";
+import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 
 // export const filterOutEmptyCategories = (
 // 	categories: ReformattedCategoriesBooksType
@@ -116,7 +117,7 @@ type CombinedAuthorNameType = {
 	}[];
 };
 
-type CombinedAuthorsOrdersType = {
+export type CombinedAuthorsOrdersType = {
 	authorName: string;
 	orders: {
 		bookTitle: string;
@@ -188,7 +189,7 @@ export default function AuthorsAdminLineChart({
 		const combinedAuthorName = combineName(trimmedAuthors);
 		const combinedOrders = combineOrders(combinedAuthorName);
 		const sortedCombinedOrders = sortOrders(combinedOrders);
-		setOrderedAuthorsData(sortedCombinedOrders);
+		// setOrderedAuthorsData(sortedCombinedOrders);
 		// console.log("Combined Names: ", combinedAuthorName);
 		// console.log("Combined Orders: ", combinedOrders);
 		// console.log("Orders Sorted: ", sortedCombinedOrders);
@@ -201,10 +202,10 @@ export default function AuthorsAdminLineChart({
 		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
 		// 	),
 		// }));
-		// const filteredCategoriesChart = getFilteredCategoriesData(
-		// 	timeFilter,
-		// 	categoryArray
-		// );
+		const filteredAuthorsChart = getFilteredAuthorsData(
+			timeFilter,
+			sortedCombinedOrders
+		);
 		// const flattenedDates = filteredCategoriesChart.flatMap(
 		// 	(category: ReformattedBookType) => {
 		// 		return category.orders.map((order) => order.orderDate);
