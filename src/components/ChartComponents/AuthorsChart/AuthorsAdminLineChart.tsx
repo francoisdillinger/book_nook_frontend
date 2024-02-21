@@ -36,6 +36,8 @@ export const combineName = (
 	});
 };
 
+// We need to reformat 'authors' so that each object has an authorName and then a list of all book orders rather than each book individually
+
 // export const filterOutEmptyAuthors = (
 // 	authors: CombinedAuthorNameType[]
 // ): CombinedAuthorNameType[] => {
