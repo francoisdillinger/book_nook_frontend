@@ -242,7 +242,7 @@ const AuthorsAdminPieChart = ({
 												<div>
 													<div>
 														<span className="text-slate-600 font-bold">
-															Category Name:
+															Author Name:
 														</span>{" "}
 														{author.data.authorName}
 													</div>
