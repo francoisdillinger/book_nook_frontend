@@ -104,7 +104,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button>
 				</div>
-				<div className="absolute bottom-0 w-full">
+				{/* <div className="absolute bottom-0 w-full">
 					<div className="flex justify-between px-2 items-center my-2">
 						<h2 className="text-lg font-semibold">Profile</h2>
 						<button className="shadow-md rounded-full active:shadow-none">
@@ -141,7 +141,7 @@ export default function SideBarAdminMenu() {
 							</svg>
 						</button>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
