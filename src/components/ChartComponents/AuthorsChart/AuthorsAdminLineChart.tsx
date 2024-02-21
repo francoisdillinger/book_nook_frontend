@@ -221,14 +221,13 @@ export default function AuthorsAdminLineChart({
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
 		setOrderedAuthorsData(filteredAuthorsChart);
-		// setOrderedCategoriesData(filteredAuthorsChart);
-		// setSelectOptions(filteredAuthorsChart);
-		// setHasData(
-		// 	filteredAuthorsChart.reduce(
-		// 		(accumulator, author) => accumulator + author.orders.length,
-		// 		0
-		// 	)
-		// );
+		setSelectOptions(filteredAuthorsChart);
+		setHasData(
+			filteredAuthorsChart.reduce(
+				(accumulator, author) => accumulator + author.orders.length,
+				0
+			)
+		);
 	}, [authors, timeFilter]);
 	// console.log("Authors: ", authors);
 	// console.log("All Dates: ", allDates);
