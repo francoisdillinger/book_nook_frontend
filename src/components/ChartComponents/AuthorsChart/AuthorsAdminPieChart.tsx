@@ -4,20 +4,29 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
 import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 import { AuthorsDataType } from "../../../data/authors_data";
+import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
+import {
+	CombinedAuthorsOrdersType,
+	ReducedAuthorsDataType,
+	trimAuthorsData,
+	combineName,
+	combineOrders,
+	sortOrders,
+} from "./AuthorsAdminLineChart";
 
-// const reduceOrderQuantities = (
-// 	categories: ReformattedBookType[]
-// ): ReducedCategoriesDataType[] => {
-// 	return categories.map((category) => {
-// 		return {
-// 			categoriesName: category.categoryName,
-// 			totalBooksOrdered: category.orders.reduce(
-// 				(accumulator, order) => accumulator + order.quantity,
-// 				0
-// 			),
-// 		};
-// 	});
-// };
+const reduceOrderQuantities = (
+	authors: CombinedAuthorsOrdersType[]
+): ReducedAuthorsDataType[] => {
+	return authors.map((author) => {
+		return {
+			authorName: author.authorName,
+			totalBooksOrdered: author.orders.reduce(
+				(accumulator, order) => accumulator + order.quantity,
+				0
+			),
+		};
+	});
+};
 
 // const filterOutInactiveUsers = (
 // 	users: ProcessedUserType[]
@@ -34,7 +43,7 @@ type AuthorsAdminPieChartType = {
 	authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
-	focusedCategory: string;
+	focusedAuthor: string;
 	doesToolTipOverflowWindow: Function;
 };
 
@@ -47,52 +56,61 @@ const AuthorsAdminPieChart = ({
 	authors,
 	colorScale,
 	hasData,
-	focusedCategory,
+	focusedAuthor,
 	doesToolTipOverflowWindow,
 }: AuthorsAdminPieChartType) => {
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight;
 	const graphWidth = svgWidth;
-	const [reducedCategoriesData, setReducedCategoriesData] =
-		useState<ReducedCategoriesDataType[]>();
+	const [reducedAuthorsData, setReducedAuthorsData] =
+		useState<ReducedAuthorsDataType[]>();
 	const [totalOrderCount, setTotalOrderCount] = useState(0);
 	const [key, setKey] = useState(0);
 
 	useEffect(() => {
-		const trimmedCategories = trimCategoriesData(categories);
-		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
-		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
-		// console.log("Empty Filtered: ", filteredCategories);
-		const categoryArray = filteredCategories.categories.map((category) => ({
-			categoryName: category.categoryName,
-			orders: category.orders.sort(
-				(a, b) =>
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-			),
-		}));
-		const timeFilteredCategories = getFilteredCategoriesData(
+		const trimmedAuthors = trimAuthorsData(authors);
+		const combinedAuthorName = combineName(trimmedAuthors);
+		const combinedOrders = combineOrders(combinedAuthorName);
+		const sortedCombinedOrders = sortOrders(combinedOrders);
+		const filteredAuthorsChart = getFilteredAuthorsData(
 			timeFilter,
-			categoryArray
+			sortedCombinedOrders
 		);
-		console.log("Time Filtered: ", timeFilteredCategories);
-		const reducedData = reduceOrderQuantities(timeFilteredCategories);
-		setTotalOrderCount(
-			reducedData.reduce(
-				(accumulator, category) => accumulator + category.totalBooksOrdered,
-				0
-			)
-		);
-		setReducedCategoriesData(reducedData);
+		// const trimmedCategories = trimCategoriesData(categories);
+		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		// console.log("Empty Filtered: ", filteredCategories);
+		// const categoryArray = filteredCategories.categories.map((category) => ({
+		// 	categoryName: category.categoryName,
+		// 	orders: category.orders.sort(
+		// 		(a, b) =>
+		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+		// 	),
+		// }));
+		// const timeFilteredCategories = getFilteredCategoriesData(
+		// 	timeFilter,
+		// 	categoryArray
+		// );
+		// console.log("Time Filtered: ", timeFilteredCategories);
+		// const reducedData = reduceOrderQuantities(timeFilteredCategories);
+		// setTotalOrderCount(
+		// 	reducedData.reduce(
+		// 		(accumulator, category) => accumulator + category.totalBooksOrdered,
+		// 		0
+		// 	)
+		// );
+		// setReducedCategoriesData(reducedData);
+		setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 		setKey((prevKey) => prevKey + 1);
 	}, [timeFilter]);
 	// console.log("Key: ", key);
 	const pie = useMemo(() => {
 		return d3
-			.pie<ReducedCategoriesDataType>()
+			.pie<ReducedAuthorsDataType>()
 			.sort(null)
 			.value((d) => d.totalBooksOrdered);
-	}, [graphWidth, reducedCategoriesData]);
+	}, [graphWidth, reducedAuthorsData]);
 
 	const radius = useMemo(() => {
 		const smallerSide = Math.min(graphWidth, graphHeight);
@@ -101,10 +119,10 @@ const AuthorsAdminPieChart = ({
 
 	const arcPath = useMemo(() => {
 		return d3
-			.arc<d3.PieArcDatum<ReducedCategoriesDataType>>()
+			.arc<d3.PieArcDatum<ReducedAuthorsDataType>>()
 			.outerRadius(radius)
 			.innerRadius(radius / 1.8);
-	}, [radius, reducedCategoriesData]);
+	}, [radius, reducedAuthorsData]);
 
 	return (
 		<React.Fragment>
@@ -121,7 +139,7 @@ const AuthorsAdminPieChart = ({
 							textAnchor="middle"
 							className="fill-current text-neutral-500 text-2xl  lg:text-base xl:text-xl"
 						>
-							Percentage of Orders By Category
+							Percentage of Orders By Author
 						</text>
 					)}
 					{hasData ? (
@@ -132,12 +150,11 @@ const AuthorsAdminPieChart = ({
 							dominantBaseline="middle"
 							className="fill-current text-neutral-600 font-light text-5xl lg:text-4xl xl:text-5xl"
 						>
-							{focusedCategory != ""
+							{focusedAuthor != ""
 								? parseFloat(
 										(
-											((reducedCategoriesData?.find(
-												(category) =>
-													category.categoriesName === focusedCategory
+											((reducedAuthorsData?.find(
+												(author) => author.authorName === focusedAuthor
 											)?.totalBooksOrdered || 0) /
 												totalOrderCount) *
 											100
@@ -180,18 +197,18 @@ const AuthorsAdminPieChart = ({
 						}}
 					>
 						{hasData &&
-							reducedCategoriesData != undefined &&
-							pie(reducedCategoriesData)!.map((category, index) => {
+							reducedAuthorsData != undefined &&
+							pie(reducedAuthorsData)!.map((author, index) => {
 								const color = colorScale(index.toString());
-								console.log("Category: ", category);
+								console.log("Category: ", author);
 								// This is to override a bug where orders of 0 are still shown
 								// on the chart, but filtering them changes the index #'s so
 								// the colors change as well. I'll come back to this.
-								if (category.data.totalBooksOrdered === 0) return;
+								if (author.data.totalBooksOrdered === 0) return;
 								return (
 									<motion.path
-										key={category.data.categoriesName}
-										d={arcPath(category) || ""}
+										key={author.data.authorName}
+										d={arcPath(author) || ""}
 										stroke={"white"}
 										strokeWidth={2}
 										transition={{
@@ -202,14 +219,14 @@ const AuthorsAdminPieChart = ({
 											stiffness: 100, // Adjust stiffness for more or less bounce
 										}}
 										fill={
-											focusedCategory === category.data.categoriesName ||
-											focusedCategory === ""
+											focusedAuthor === author.data.authorName ||
+											focusedAuthor === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === category.data.categoriesName ||
-											focusedCategory === ""
+											focusedAuthor === author.data.authorName ||
+											focusedAuthor === ""
 												? 1
 												: 0.2
 										}
@@ -221,13 +238,13 @@ const AuthorsAdminPieChart = ({
 														<span className="text-slate-600 font-bold">
 															Category Name:
 														</span>{" "}
-														{category.data.categoriesName}
+														{author.data.authorName}
 													</div>
 													<div>
 														<span className="text-slate-600 font-bold">
 															Total Quantity:
 														</span>{" "}
-														{category.data.totalBooksOrdered.toString()}
+														{author.data.totalBooksOrdered.toString()}
 													</div>
 												</div>
 											);
