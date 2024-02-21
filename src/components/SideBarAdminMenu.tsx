@@ -50,7 +50,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button> */}
 				</div>
-				<div className="flex justify-between px-3 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-6">
 					<h2 className="text-lg font-semibold">Data Analytics</h2>
 					<button className="shadow-md rounded-md active:shadow-none">
 						<svg
@@ -68,7 +68,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button>
 				</div>
-				<div className="flex justify-between px-3 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-6">
 					<h2 className="text-lg font-semibold">Orders</h2>
 					<button className="shadow-md rounded-full active:shadow-none">
 						<svg
@@ -86,7 +86,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button>
 				</div>
-				<div className="flex justify-between px-3 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-6">
 					<h2 className="text-lg font-semibold">Inventory</h2>
 					<button className="shadow-md rounded-md active:shadow-none">
 						<svg

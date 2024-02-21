@@ -21,12 +21,13 @@ import AdminMenu from "./components/AdminMenu";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
-			{/* <HomePageContent /> */}
-			<SideBarAdminMenu />
+			{/* <Navbar />
+			<HomePageContent /> */}
+			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
-			<AdminMenu />
+
 			<div className="bg-slate-100">
+				<AdminMenu />
 				<AdminChart />
 			</div>
 			{/* <Scratch /> */}
