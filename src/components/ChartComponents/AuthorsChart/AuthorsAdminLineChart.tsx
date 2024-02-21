@@ -18,6 +18,11 @@ import { AuthorsDataType } from "../../../data/authors_data";
 // 	};
 // };
 
+type ReducedAuthorsDataType = {
+	authorName: string;
+	totalBooksOrdered: number;
+};
+
 type AuthorsAdminLineChartType = {
 	margin: MarginType;
 	timeFilter: string;
@@ -68,54 +73,44 @@ export default function AuthorsAdminLineChart({
 	// console.log("Categories: ", categories);
 
 	useEffect(() => {
-		// const reformatedUserData = reformatUserData(users);
-		const trimmedCategories = trimCategoriesData(categories);
-		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
-		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
-		// console.log("Filtered Categories: ", filteredCategories);
-		const categoryArray = filteredCategories.categories.map((category) => ({
-			categoryName: category.categoryName,
-			orders: category.orders.sort(
-				(a, b) =>
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-			),
-		}));
-		const filteredCategoriesChart = getFilteredCategoriesData(
-			timeFilter,
-			categoryArray
-		);
-		// console.log("Time-Filtered Categories: ", filteredCategoriesChart);
+		// const trimmedCategories = trimCategoriesData(categories);
+		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		// const categoryArray = filteredCategories.categories.map((category) => ({
+		// 	categoryName: category.categoryName,
+		// 	orders: category.orders.sort(
+		// 		(a, b) =>
+		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+		// 	),
+		// }));
+		// const filteredCategoriesChart = getFilteredCategoriesData(
+		// 	timeFilter,
+		// 	categoryArray
+		// );
+		// const flattenedDates = filteredCategoriesChart.flatMap(
+		// 	(category: ReformattedBookType) => {
+		// 		return category.orders.map((order) => order.orderDate);
+		// 	}
+		// );
+		// const flattenedQuanities = filteredCategoriesChart.flatMap(
+		// 	(category: ReformattedBookType) => {
+		// 		return category.orders.map((order) => order.quantity);
+		// 	}
+		// );
+		// const uniqueDates = [...new Set(flattenedDates)];
+		// const uniqueQuantities = [...new Set(flattenedQuanities)];
+		// setAllDates(uniqueDates);
+		// setAllQuantinties(uniqueQuantities);
+		// setOrderedCategoriesData(filteredCategoriesChart);
+		// setSelectOptions(filteredCategoriesChart);
 		// setHasData(
 		// 	filteredCategoriesChart.reduce(
 		// 		(accumulator, category) => accumulator + category.orders.length,
 		// 		0
 		// 	)
 		// );
-		// setFilteredUserData(filteredUserchart);
-		// setSelectOptions(filteredCategoriesChart);
-		const flattenedDates = filteredCategoriesChart.flatMap(
-			(category: ReformattedBookType) => {
-				return category.orders.map((order) => order.orderDate);
-			}
-		);
-		const flattenedQuanities = filteredCategoriesChart.flatMap(
-			(category: ReformattedBookType) => {
-				return category.orders.map((order) => order.quantity);
-			}
-		);
-		const uniqueDates = [...new Set(flattenedDates)];
-		const uniqueQuantities = [...new Set(flattenedQuanities)];
-		setAllDates(uniqueDates);
-		setAllQuantinties(uniqueQuantities);
-		setOrderedCategoriesData(filteredCategoriesChart);
-		setSelectOptions(filteredCategoriesChart);
-		setHasData(
-			filteredCategoriesChart.reduce(
-				(accumulator, category) => accumulator + category.orders.length,
-				0
-			)
-		);
-	}, [categories, timeFilter]);
+	}, [authors, timeFilter]);
+	console.log("Authors: ", authors);
 	// console.log("All Dates: ", allDates);
 	// console.log("All Quantities: ", allQuantities);
 	// console.log("Has Data: ", hasData);
