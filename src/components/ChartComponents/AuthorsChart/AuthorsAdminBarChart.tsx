@@ -207,7 +207,7 @@ export default function AuthorsAdminBarChart({
 											<div>
 												<div>
 													<span className="text-slate-600 font-bold">
-														Category Name:
+														Author Name:
 													</span>{" "}
 													{author.authorName}
 												</div>
