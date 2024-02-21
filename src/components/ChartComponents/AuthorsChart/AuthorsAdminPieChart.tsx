@@ -43,7 +43,7 @@ type AuthorsAdminPieChartType = {
 	authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
-	focusedAuthor: string;
+	focusedCategory: string;
 	doesToolTipOverflowWindow: Function;
 };
 
@@ -56,7 +56,7 @@ const AuthorsAdminPieChart = ({
 	authors,
 	colorScale,
 	hasData,
-	focusedAuthor,
+	focusedCategory,
 	doesToolTipOverflowWindow,
 }: AuthorsAdminPieChartType) => {
 	const svgWidth = width;
@@ -139,7 +139,7 @@ const AuthorsAdminPieChart = ({
 							textAnchor="middle"
 							className="fill-current text-neutral-500 text-2xl  lg:text-base xl:text-xl"
 						>
-							Percentage of Orders By Author
+							Percentage of Orders By Category
 						</text>
 					)}
 					{hasData ? (
@@ -150,11 +150,12 @@ const AuthorsAdminPieChart = ({
 							dominantBaseline="middle"
 							className="fill-current text-neutral-600 font-light text-5xl lg:text-4xl xl:text-5xl"
 						>
-							{focusedAuthor != ""
+							{focusedCategory != ""
 								? parseFloat(
 										(
 											((reducedAuthorsData?.find(
-												(author) => author.authorName === focusedAuthor
+												(category) =>
+													category.categoriesName === focusedCategory
 											)?.totalBooksOrdered || 0) /
 												totalOrderCount) *
 											100
@@ -198,17 +199,17 @@ const AuthorsAdminPieChart = ({
 					>
 						{hasData &&
 							reducedAuthorsData != undefined &&
-							pie(reducedAuthorsData)!.map((author, index) => {
+							pie(reducedAuthorsData)!.map((category, index) => {
 								const color = colorScale(index.toString());
-								console.log("Category: ", author);
+								console.log("Category: ", category);
 								// This is to override a bug where orders of 0 are still shown
 								// on the chart, but filtering them changes the index #'s so
 								// the colors change as well. I'll come back to this.
-								if (author.data.totalBooksOrdered === 0) return;
+								if (category.data.totalBooksOrdered === 0) return;
 								return (
 									<motion.path
-										key={author.data.authorName}
-										d={arcPath(author) || ""}
+										key={category.data.categoriesName}
+										d={arcPath(category) || ""}
 										stroke={"white"}
 										strokeWidth={2}
 										transition={{
@@ -219,14 +220,14 @@ const AuthorsAdminPieChart = ({
 											stiffness: 100, // Adjust stiffness for more or less bounce
 										}}
 										fill={
-											focusedAuthor === author.data.authorName ||
-											focusedAuthor === ""
+											focusedCategory === category.data.categoriesName ||
+											focusedCategory === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedAuthor === author.data.authorName ||
-											focusedAuthor === ""
+											focusedCategory === category.data.categoriesName ||
+											focusedCategory === ""
 												? 1
 												: 0.2
 										}
@@ -238,13 +239,13 @@ const AuthorsAdminPieChart = ({
 														<span className="text-slate-600 font-bold">
 															Category Name:
 														</span>{" "}
-														{author.data.authorName}
+														{category.data.categoriesName}
 													</div>
 													<div>
 														<span className="text-slate-600 font-bold">
 															Total Quantity:
 														</span>{" "}
-														{author.data.totalBooksOrdered.toString()}
+														{category.data.totalBooksOrdered.toString()}
 													</div>
 												</div>
 											);
