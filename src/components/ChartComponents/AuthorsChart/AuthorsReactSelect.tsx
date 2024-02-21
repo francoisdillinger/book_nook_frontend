@@ -31,7 +31,7 @@ const Option = (props: OptionProps) => {
 const AuthorsChartReactSelect = ({
 	options,
 	colorScale,
-	setFocusedAuthor,
+	setFocusedUser,
 	focusedAuthor,
 }) => {
 	console.log("Options: ", options);
@@ -48,7 +48,7 @@ const AuthorsChartReactSelect = ({
 
 	const handleChange = (option) => {
 		console.log(option);
-		setFocusedAuthor(option.name);
+		setFocusedUser(option.name);
 	};
 
 	const onUsernameClick = (event) => {
