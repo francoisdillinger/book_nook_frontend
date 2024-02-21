@@ -195,7 +195,7 @@ export default function AuthorsAdminLineChart({
 		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
 		// const categoryArray = filteredCategories.categories.map((category) => ({
-		// 	categoryName: category.categoryName,
+		// .authorName: category.authorName,
 		// 	orders: category.orders.sort(
 		// 		(a, b) =>
 		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
@@ -347,7 +347,7 @@ export default function AuthorsAdminLineChart({
 								<React.Fragment>
 									{/* Unique key for each fragment */}
 									<motion.path
-										key={author.categoryName}
+										key={author.authorName}
 										initial={{
 											d:
 												bottomLineGenerator(
@@ -368,13 +368,13 @@ export default function AuthorsAdminLineChart({
 										fill="none"
 										strokeWidth={2}
 										stroke={
-											focusedCategory === author.categoryName ||
+											focusedCategory === author.authorName ||
 											focusedCategory === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === author.categoryName ||
+											focusedCategory === author.authorName ||
 											focusedCategory === ""
 												? 0.8
 												: 0.1
@@ -403,13 +403,13 @@ export default function AuthorsAdminLineChart({
 												}}
 												r={6}
 												fill={
-													focusedCategory === author.categoryName ||
+													focusedCategory === author.authorName ||
 													focusedCategory === ""
 														? color
 														: "gray"
 												}
 												opacity={
-													focusedCategory === author.categoryName ||
+													focusedCategory === author.authorName ||
 													focusedCategory === ""
 														? 1
 														: 0.1
