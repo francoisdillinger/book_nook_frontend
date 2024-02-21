@@ -6,6 +6,7 @@ import { MarginType } from "../AdminChart";
 import AuthorsAdminLineChart from "./AuthorsAdminLineChart";
 import { authors_data } from "../../../data/authors_data";
 import AuthorsAdminBarChart from "./AuthorsAdminBarChart";
+import AuthorsAdminPieChart from "./AuthorsAdminPieChart";
 // import {
 // 	AverageBooksType,
 // 	AverageSalesType,
@@ -171,21 +172,21 @@ export default function AuthorsAdminChart({
 						/>
 					</ResponsiveSVGContainer>
 				</div>
-				{/* <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+				<div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
 					<ResponsiveSVGContainer>
 						<AuthorsAdminPieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							categories={categories_data}
+							authors={authors_data}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
 					</ResponsiveSVGContainer>
-				</div> */}
+				</div>
 			</div>
 		</React.Fragment>
 	);
