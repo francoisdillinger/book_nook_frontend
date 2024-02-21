@@ -23,10 +23,10 @@ import { AuthorsDataType } from "../../../data/authors_data";
 // 	});
 // };
 
-type ReducedAuthorsDataType = {
-	authorName: string;
-	totalBooksOrdered: number;
-};
+// type ReducedAuthorsDataType = {
+// 	authorName: string;
+// 	totalBooksOrdered: number;
+// };
 
 type AuthorsAdminBarChartType = {
 	margin: MarginType;
@@ -63,21 +63,22 @@ export default function AuthorsAdminBarChart({
 		useState<ReducedCategoriesDataType[]>();
 
 	useEffect(() => {
-		const trimmedCategories = trimCategoriesData(categories);
-		const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
-		const filteredCategories = filterOutEmptyCategories(reformattedCategories);
-		const categoryArray = filteredCategories.categories.map((category) => ({
-			categoryName: category.categoryName,
-			orders: category.orders.sort(
-				(a, b) =>
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-			),
-		}));
-		const timeFilteredCategories = getFilteredCategoriesData(
-			timeFilter,
-			categoryArray
-		);
-		setReducedCategoriesData(reduceOrderQuantities(timeFilteredCategories));
+		console.log("Authors: ", authors);
+		// const trimmedCategories = trimCategoriesData(categories);
+		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+		// const categoryArray = filteredCategories.categories.map((category) => ({
+		// 	categoryName: category.categoryName,
+		// 	orders: category.orders.sort(
+		// 		(a, b) =>
+		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+		// 	),
+		// }));
+		// const timeFilteredCategories = getFilteredCategoriesData(
+		// 	timeFilter,
+		// 	categoryArray
+		// );
+		// setReducedCategoriesData(reduceOrderQuantities(timeFilteredCategories));
 	}, [graphWidth, timeFilter]);
 
 	const y = d3
