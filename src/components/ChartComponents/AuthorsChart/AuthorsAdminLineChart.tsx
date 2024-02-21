@@ -48,6 +48,26 @@ export const combineName = (
 // 	})
 // };
 
+export const combineOrders = (
+	authors: CombinedAuthorNameType[]
+): CombinedOrdersType[] => {
+	return authors.map((author) => {
+		return {
+			authorName: author.authorName,
+			bookOrders: author.books
+				.map((book) => {
+					return book.bookOrders.map((order) => {
+						return {
+							bookTitle: book.bookTitle,
+							...order,
+						};
+					});
+				})
+				.flat(),
+		};
+	});
+};
+
 type TrimmedAuthorsDataType = {
 	authors: {
 		authorFirstName: string;
@@ -78,6 +98,19 @@ type CombinedAuthorNameType = {
 			orderDate: string;
 			orderAmount: number;
 		}[];
+	}[];
+};
+
+type CombinedOrdersType = {
+	authorName: string;
+	bookOrders: {
+		bookTitle: string;
+		orderId: string;
+		userId: number;
+		bookId: number;
+		quantity: number;
+		orderDate: string;
+		orderAmount: number;
 	}[];
 };
 
@@ -138,7 +171,8 @@ export default function AuthorsAdminLineChart({
 	useEffect(() => {
 		const trimmedAuthors = trimAuthorsData(authors);
 		const combinedAuthorName = combineName(trimmedAuthors);
-		console.log("Combined: ", combinedAuthorName);
+		console.log("Combined Names: ", combinedAuthorName);
+		console.log("Combined Orders: ", combineOrders(combinedAuthorName));
 		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
 		// const categoryArray = filteredCategories.categories.map((category) => ({
