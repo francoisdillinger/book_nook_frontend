@@ -3,6 +3,8 @@ import ChartToolTip from "../ChartToolTip";
 import { TooltipStateType } from "../ChartToolTip";
 import ResponsiveSVGContainer from "../../ResponsiveSVGContainer";
 import { MarginType } from "../AdminChart";
+import AuthorsAdminLineChart from "./AuthorsAdminLineChart";
+import { authors_data } from "../../../data/authors_data";
 // import {
 // 	AverageBooksType,
 // 	AverageSalesType,
@@ -129,12 +131,12 @@ export default function AuthorsAdminChart({
 				<div className="bg-white rounded-lg my-2 pt-2 w-full">
 					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
-					{/* <div className=" flex justify-center mt-10 md:mt-0">
+					<div className=" flex justify-center mt-10 md:mt-0">
 						<div className="w-full h-[450px]">
 							<ResponsiveSVGContainer>
-								<CategoriesAdminLineChart
+								<AuthorsAdminLineChart
 									//height and width are provided by the <ResponsiveSVGContainer>
-									categories={categories_data}
+									authors={authors_data}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -148,13 +150,13 @@ export default function AuthorsAdminChart({
 								/>
 							</ResponsiveSVGContainer>
 						</div>
-					</div> */}
+					</div>
 				</div>
 			</div>
 			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-28 justify-between md:gap-4">
 				{/* <div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
 					<ResponsiveSVGContainer>
-						<CategoriesAdminBarChart
+						<AuthorsAdminBarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							margin={margin}
 							timeFilter={timeFilter}
@@ -170,7 +172,7 @@ export default function AuthorsAdminChart({
 				</div> */}
 				{/* <div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
 					<ResponsiveSVGContainer>
-						<CategoriesAdminPieChart
+						<AuthorsAdminPieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							timeFilter={timeFilter}
 							tooltip={tooltip}
