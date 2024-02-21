@@ -30,6 +30,7 @@ import {
 import { filterOutInactiveUsers } from "./UserChart/UsersAdminLineChart";
 import TotalsComponent from "./TotalsComponent";
 import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
+import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -176,6 +177,14 @@ export default function AdminChart() {
 									focusedCategory={focusedUser}
 								/> */}
 							</>
+						)}
+						{filterChart === "Authors" && selectOptions.length && (
+							<AuthorsChartReactSelect
+								options={selectOptions}
+								colorScale={colorScale}
+								setFocusedUser={setFocusedUser}
+								focusedAuthor={focusedUser}
+							/>
 						)}
 					</div>
 					<div className="flex justify-start w-full mr-4 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
