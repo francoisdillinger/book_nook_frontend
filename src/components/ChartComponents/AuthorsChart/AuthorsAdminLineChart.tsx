@@ -130,7 +130,7 @@ export type CombinedAuthorsOrdersType = {
 	}[];
 };
 
-type ReducedAuthorsDataType = {
+export type ReducedAuthorsDataType = {
 	authorName: string;
 	totalBooksOrdered: number;
 };
