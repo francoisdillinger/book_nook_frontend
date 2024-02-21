@@ -29,7 +29,7 @@ export default function SideBarAdminMenu() {
 							<p className="text-slate-500 text-xs">Where Stories Live</p>
 						</div>
 					</div>
-					<button
+					{/* <button
 						className="shadow-md rounded-full active:shadow-none"
 						onClick={() => setClose(!close)}
 					>
@@ -48,9 +48,9 @@ export default function SideBarAdminMenu() {
 								d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 							/>
 						</svg>
-					</button>
+					</button> */}
 				</div>
-				<div className="flex justify-between px-2 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-2">
 					<h2 className="text-lg font-semibold">Data Analytics</h2>
 					<button className="shadow-md rounded-md active:shadow-none">
 						<svg
@@ -58,7 +58,7 @@ export default function SideBarAdminMenu() {
 							fill="none"
 							viewBox="0 0 24 24"
 							strokeWidth={1}
-							className="stroke-logo w-12 h-12"
+							className="stroke-logo w-9 h-9"
 						>
 							<path
 								strokeLinecap="round"
@@ -68,7 +68,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button>
 				</div>
-				<div className="flex justify-between px-2 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-2">
 					<h2 className="text-lg font-semibold">Orders</h2>
 					<button className="shadow-md rounded-full active:shadow-none">
 						<svg
@@ -76,7 +76,7 @@ export default function SideBarAdminMenu() {
 							fill="none"
 							viewBox="0 0 24 24"
 							strokeWidth={1}
-							className="stroke-logo w-12 h-12"
+							className="stroke-logo w-9 h-9"
 						>
 							<path
 								strokeLinecap="round"
@@ -86,7 +86,7 @@ export default function SideBarAdminMenu() {
 						</svg>
 					</button>
 				</div>
-				<div className="flex justify-between px-2 items-center my-2">
+				<div className="flex justify-between px-3 items-center my-2">
 					<h2 className="text-lg font-semibold">Inventory</h2>
 					<button className="shadow-md rounded-md active:shadow-none">
 						<svg
@@ -94,7 +94,7 @@ export default function SideBarAdminMenu() {
 							fill="none"
 							viewBox="0 0 24 24"
 							strokeWidth={1}
-							className="stroke-logo w-12 h-12"
+							className="stroke-logo w-9 h-9"
 						>
 							<path
 								strokeLinecap="round"
