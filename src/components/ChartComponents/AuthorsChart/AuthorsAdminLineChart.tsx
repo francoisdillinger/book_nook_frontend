@@ -171,8 +171,8 @@ export default function AuthorsAdminLineChart({
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const [orderedCategoriesData, setOrderedCategoriesData] =
-		useState<ReformattedBookType[]>();
+	const [orderedAuthorsData, setOrderedAuthorsData] =
+		useState<CombinedAuthorsOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
 	// console.log(
