@@ -26,7 +26,7 @@ export default function App() {
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 			<AdminMenu />
-			<div className="bg-slate-100">
+			<div className="bg-slate-100 ">
 				<AdminChart />
 			</div>
 			{/* <Scratch /> */}
