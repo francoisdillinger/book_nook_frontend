@@ -50,7 +50,7 @@ export const combineName = (
 
 export const combineOrders = (
 	authors: CombinedAuthorNameType[]
-): CombinedOrdersType[] => {
+): CombinedAuthorsOrdersType[] => {
 	return authors.map((author) => {
 		return {
 			authorName: author.authorName,
@@ -69,8 +69,8 @@ export const combineOrders = (
 };
 
 export const sortOrders = (
-	authors: CombinedOrdersType[]
-): CombinedOrdersType[] => {
+	authors: CombinedAuthorsOrdersType[]
+): CombinedAuthorsOrdersType[] => {
 	return authors.map((author) => {
 		return {
 			authorName: author.authorName,
@@ -116,7 +116,7 @@ type CombinedAuthorNameType = {
 	}[];
 };
 
-type CombinedOrdersType = {
+type CombinedAuthorsOrdersType = {
 	authorName: string;
 	bookOrders: {
 		bookTitle: string;
