@@ -26,10 +26,10 @@ export default function App() {
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
-			<div className="bg-slate-100">
+			{/* <div className="bg-slate-100">
 				<AdminMenu />
 				<AdminChart />
-			</div>
+			</div> */}
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
