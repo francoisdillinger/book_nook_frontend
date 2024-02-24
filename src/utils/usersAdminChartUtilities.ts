@@ -61,7 +61,9 @@ export const reformatUserData = (users: UsersType): ProcessedUserType[] => {
 const processDataForLineChart = (
 	users: ProcessedUserType[]
 ): ProcessedUserType[] => {
+	let total = 0;
 	return users.map((user) => {
+		total += user.orders.length;
 		const aggregationByDateAndId: Record<string, ProcessedOrder> = {};
 
 		user.orders.forEach((order) => {
@@ -84,7 +86,7 @@ const processDataForLineChart = (
 		const aggregatedOrders = Object.values(aggregationByDateAndId).sort(
 			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
 		);
-
+		console.log("Pre-Agg: ", total);
 		return {
 			userName: user.userName,
 			orders: aggregatedOrders,
