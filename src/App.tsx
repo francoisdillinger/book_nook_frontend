@@ -17,6 +17,7 @@ import Scratch from "./components/Scratch";
 import UsersAdminChart from "./components/ChartComponents/UserChart/UsersAdminChart";
 import AdminChart from "./components/ChartComponents/AdminChart";
 import AdminMenu from "./components/AdminMenu";
+import AdminOrders from "./components/AdminOrders";
 
 export default function App() {
 	return (
@@ -30,6 +31,7 @@ export default function App() {
 				<AdminMenu />
 				<AdminChart />
 			</div> */}
+			<AdminOrders />
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
