@@ -39,15 +39,21 @@ export default function TableData() {
 			<tr>
 				<td className="">
 					<motion.div
-						initial={{ height: expandSlide ? "0em" : "0em" }}
+						initial={{ height: 0 }}
 						animate={{ height: expandSlide ? "5em" : "0em" }}
-						transition={{
-							duration: 0.1,
-							ease: expandSlide ? [0.17, 0.67] : [0, 0, 0, 0],
-							type: expandSlide ? "spring" : "ease",
-							damping: 8,
-							stiffness: 100,
-						}}
+						transition={
+							expandSlide
+								? {
+										duration: 0.2, // Adjust duration for spring effect
+										type: "spring",
+										damping: 10, // Tune for a less "bouncy" spring
+										stiffness: 100, // Adjust stiffness for the spring
+								  }
+								: {
+										duration: 0.1, // Adjust duration for ease effect
+										ease: "easeInOut", // Use an ease-in-out curve for closing
+								  }
+						}
 						className={`relative overflow-hidden `}
 					>
 						hi
