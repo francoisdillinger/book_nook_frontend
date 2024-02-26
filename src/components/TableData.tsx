@@ -11,16 +11,17 @@ export default function TableData() {
 	console.log("Expand: ", expandSlide);
 	return (
 		<React.Fragment>
-			<tr className="border-gray-200 border-solid border-t border-r border-l rounded-lg ">
+			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
+			<tr className="">
 				<td>12312312</td>
 				<td>
-					<div className="flex items-center py-2 ">
+					<div className="flex items-center justify-center py-2">
 						<img
-							className="w-10 rounded-full border-gray-300 border-solid border-2"
+							className="w-10 rounded-full border-green-300 border-solid border-2"
 							src={purpur}
 							alt=""
 						/>
-						<p className="text-slate-700 text-md pl-2">James Jester</p>
+						<p className="pl-2">James Jester</p>
 					</div>
 				</td>
 				<td>Ready</td>
@@ -49,7 +50,8 @@ export default function TableData() {
 					</div>
 				</td>
 			</tr>
-			<tr className="border-gray-200 border-solid border-b border-r border-l rounded-lg w-full">
+			{/* <tr className="border-gray-200 border-solid border-b border-r border-l rounded-lg w-full"> */}
+			<tr className="border-gray-200 border-solid border-b">
 				<td
 					className=""
 					colSpan={5}
