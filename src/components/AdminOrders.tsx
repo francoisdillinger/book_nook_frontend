@@ -6,16 +6,16 @@ export default function AdminOrders() {
 		<div className="">
 			<div className="">
 				<table className="table-auto w-3/4 m-auto">
-					<thead className="bg-gray-100 text-gray-700 text-xl text-left">
-						<tr>
-							<th className="font-semibold">Order ID</th>
+					<thead className="bg-gray-100 text-gray-400 text-xl text-center h-12">
+						<tr className="">
+							<th className="font-semibold rounded-s-lg">Order ID</th>
 							<th className="font-semibold">User Name</th>
 							<th className="font-semibold">Status</th>
 							<th className="font-semibold">Total</th>
-							<th></th>
+							<th className=" rounded-e-lg"></th>
 						</tr>
 					</thead>
-					<tbody className="">
+					<tbody className="text-md text-gray-500 text-center">
 						<TableData />
 						<TableData />
 						<TableData />
