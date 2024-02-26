@@ -18,7 +18,10 @@ export default function TableData() {
 				<td className="">
 					<div
 						onClick={handleExpandSlide}
-						className="border-gray-700 border-solid border rounded-full w-fit m-auto"
+						className="border-gray-700 border-solid border rounded-full w-fit m-auto cursor-pointer"
+						role="button"
+						tabIndex={0}
+						aria-expanded={expandSlide}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
