@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import purpur from "../assets/purpur.jpg";
 
 export default function TableData() {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
@@ -12,7 +13,16 @@ export default function TableData() {
 		<React.Fragment>
 			<tr className="border-gray-200 border-solid border-t border-r border-l rounded-lg ">
 				<td>12312312</td>
-				<td>James JEster</td>
+				<td>
+					<div className="flex items-center py-2 ">
+						<img
+							className="w-10 rounded-full border-gray-300 border-solid border-2"
+							src={purpur}
+							alt=""
+						/>
+						<p className="text-slate-700 text-md pl-2">James Jester</p>
+					</div>
+				</td>
 				<td>Ready</td>
 				<td>$45.89</td>
 				<td className="">
