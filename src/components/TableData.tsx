@@ -29,24 +29,25 @@ export default function TableData() {
 				<td className="">
 					<div
 						onClick={handleExpandSlide}
-						className="border-gray-700 border-solid border rounded-full w-fit m-auto cursor-pointer"
+						className=" w-fit m-auto cursor-pointer"
 						role="button"
 						tabIndex={0}
 						aria-expanded={expandSlide}
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
+						<motion.svg
+							xmlns="http://www.w3.org/2000/motion."
 							fill="none"
 							viewBox="0 0 24 24"
 							strokeWidth={1.5}
-							className="w-4 h-4 stroke-gray-700"
+							className="w-5 h-5 stroke-gray-700"
+							animate={{ rotate: expandSlide ? 180 : 0 }}
 						>
 							<path
 								strokeLinecap="round"
 								strokeLinejoin="round"
 								d="m19.5 8.25-7.5 7.5-7.5-7.5"
 							/>
-						</svg>
+						</motion.svg>
 					</div>
 				</td>
 			</tr>
