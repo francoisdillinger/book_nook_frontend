@@ -15,7 +15,9 @@ export default function AdminOrders() {
 							<th></th>
 						</tr>
 					</thead>
-					<tbody className="border-gray-200 border-solid border rounded-lg">
+					<tbody className="">
+						<TableData />
+						<TableData />
 						<TableData />
 					</tbody>
 				</table>
