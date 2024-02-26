@@ -10,7 +10,7 @@ export default function TableData() {
 	console.log("Expand: ", expandSlide);
 	return (
 		<React.Fragment>
-			<tr className="border-gray-200 border-solid border rounded-lg">
+			<tr className="border-gray-200 border-solid border-t border-r border-l rounded-lg ">
 				<td>12312312</td>
 				<td>James JEster</td>
 				<td>Ready</td>
@@ -39,8 +39,11 @@ export default function TableData() {
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td className="">
+			<tr className="border-gray-200 border-solid border-b border-r border-l rounded-lg w-full">
+				<td
+					className=""
+					colSpan={5}
+				>
 					<motion.div
 						initial={{ height: 0 }}
 						animate={{ height: expandSlide ? "5em" : "0em" }}
@@ -57,7 +60,7 @@ export default function TableData() {
 										ease: "easeInOut", // Use an ease-in-out curve for closing
 								  }
 						}
-						className={`relative overflow-hidden `}
+						className={`relative overflow-hidden flex items-center justify-center`}
 					>
 						hi
 					</motion.div>
