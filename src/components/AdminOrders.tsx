@@ -12,7 +12,7 @@ export default function AdminOrders() {
 							<th className="font-semibold">User Name</th>
 							<th className="font-semibold">Status</th>
 							<th className="font-semibold">Total</th>
-							<th className=" rounded-e-lg"></th>
+							<th className="font-semibold rounded-e-lg">Expand</th>
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
