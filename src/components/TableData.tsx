@@ -6,11 +6,11 @@ import useDropDownVisibility from "../hooks/useDropDownVisibility";
 const statusColor = (status: StatusType): string => {
 	switch (status.status) {
 		case "Processing":
-			return "bg-red-300";
+			return "red-200";
 		case "Shipped":
-			return "bg-yellow-300";
+			return "yellow-200";
 		case "Delivered":
-			return "bg-green-300";
+			return "green-200";
 		default:
 			return "";
 	}
@@ -42,7 +42,9 @@ export default function TableData() {
 				<td>
 					<div className="flex items-center justify-center py-2">
 						<img
-							className="w-10 rounded-full border-green-300 border-solid border-2"
+							className={`w-10 rounded-full ${
+								"border-" + statusColor(status)
+							} border-solid border-2`}
 							src={purpur}
 							alt=""
 						/>
@@ -56,7 +58,13 @@ export default function TableData() {
 							id="dropdownDividerButton"
 							data-dropdown-toggle="dropdownDivider"
 						>
-							{status.status}
+							<span
+								className={`cursor-pointer bg-${statusColor(
+									status
+								)} p-1 rounded-lg`}
+							>
+								{status.status}
+							</span>
 						</div>
 						{dropDownState.show && (
 							<div
