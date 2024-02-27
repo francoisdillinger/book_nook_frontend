@@ -71,7 +71,7 @@ export default function TableData() {
 							<div
 								ref={dropDownRef}
 								id="dropdownDivider"
-								className={`z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0`}
+								className={`z-10 bg-gray-50 divide-y divide-white rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0`}
 							>
 								{/* Dropdown items */}
 								<ul
@@ -83,7 +83,7 @@ export default function TableData() {
 											setStatus({ status: "Processing" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
-										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Processing</span>
 									</li>
@@ -92,7 +92,7 @@ export default function TableData() {
 											setStatus({ status: "Shipped" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
-										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Shipped</span>
 									</li>
@@ -101,7 +101,7 @@ export default function TableData() {
 											setStatus({ status: "Delivered" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
-										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Delivered</span>
 									</li>
