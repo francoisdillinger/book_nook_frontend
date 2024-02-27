@@ -8,7 +8,7 @@ export default function TableData() {
 	const handleExpandSlide = () => {
 		setExpandSlide((prevState) => !prevState);
 	};
-	console.log("Expand: ", expandSlide);
+	// console.log("Expand: ", expandSlide);
 	return (
 		<React.Fragment>
 			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
