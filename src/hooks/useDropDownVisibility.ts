@@ -27,7 +27,7 @@ function reducer(state: State, action: Action) {
 }
 
 function useDropDownVisibility() {
-	const [state, dispatch] = useReducer(reducer, { show: true });
+	const [state, dispatch] = useReducer(reducer, { show: false });
 	const profileRef = useRef<HTMLDivElement>(null);
 	const dropDownRef = useRef<HTMLDivElement>(null);
 
