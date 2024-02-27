@@ -84,7 +84,13 @@ export default function UsersAdminLineChart({
 			)
 		);
 	}, [users, timeFilter]);
-
+	console.log(
+		"Post-agg: ",
+		filteredUserData?.reduce(
+			(accumulator, user) => accumulator + user.orders.length,
+			0
+		)
+	);
 	const parsedDates = useMemo(
 		() =>
 			(allDates ?? [])
