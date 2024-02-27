@@ -51,6 +51,7 @@ export default function TableData() {
 						<p className="pl-2">James Jester</p>
 					</div>
 				</td>
+				<td>$45.89</td>
 				<td>
 					<div className="relative">
 						<div
@@ -109,7 +110,6 @@ export default function TableData() {
 						)}
 					</div>
 				</td>
-				<td>$45.89</td>
 				<td className="">
 					<div
 						onClick={handleExpandSlide}
