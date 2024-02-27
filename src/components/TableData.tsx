@@ -51,17 +51,17 @@ export default function TableData() {
 									className="py-2 text-sm text-gray-700 dark:text-gray-200"
 									aria-labelledby="dropdownDividerButton"
 								>
-									<li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+									<li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
 										<span className="px-1">Profile</span>
 									</li>
-									<li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+									<li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
 										<span className="px-1">Settings</span>
 									</li>
 									<li
 										onClick={() => {
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
-										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Logout</span>
 									</li>
