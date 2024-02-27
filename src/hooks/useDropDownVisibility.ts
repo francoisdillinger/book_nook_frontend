@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useRef } from "react";
 
-interface State {
+type State = {
 	show: boolean;
-}
+};
 
-interface Action {
+type Action = {
 	type: "dropDownOutOfFocus" | "toggleDropDown" | "hasSelectedItem";
-}
+};
 
 function reducer(state: State, action: Action) {
 	const { type } = action;
