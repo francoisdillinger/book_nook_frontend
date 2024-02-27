@@ -5,7 +5,7 @@ interface State {
 }
 
 interface Action {
-	type: "dropDownOutOfFocus" | "toggleDropDown" | "navigating";
+	type: "dropDownOutOfFocus" | "toggleDropDown" | "hasSelectedItem";
 }
 
 function reducer(state: State, action: Action) {
@@ -18,7 +18,7 @@ function reducer(state: State, action: Action) {
 		case "toggleDropDown": {
 			return { show: !state.show };
 		}
-		case "navigating": {
+		case "hasSelectedItem": {
 			return { show: false };
 		}
 		default:
