@@ -3,6 +3,19 @@ import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 
+const statusColor = (status: StatusType): string => {
+	switch (status.status) {
+		case "Processing":
+			return "bg-red-300";
+		case "Shipped":
+			return "bg-yellow-300";
+		case "Delivered":
+			return "bg-green-300";
+		default:
+			return "";
+	}
+};
+
 type StatusType = {
 	status: "Processing" | "Shipped" | "Delivered";
 };
@@ -43,7 +56,7 @@ export default function TableData() {
 							id="dropdownDividerButton"
 							data-dropdown-toggle="dropdownDivider"
 						>
-							Ready
+							{status.status}
 						</div>
 						{dropDownState.show && (
 							<div
@@ -58,27 +71,30 @@ export default function TableData() {
 								>
 									<li
 										onClick={() => {
+											setStatus({ status: "Processing" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
 										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
-										<span className="px-1">Profile</span>
+										<span className="px-1">Processing</span>
 									</li>
 									<li
 										onClick={() => {
+											setStatus({ status: "Shipped" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
 										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
-										<span className="px-1">Settings</span>
+										<span className="px-1">Shipped</span>
 									</li>
 									<li
 										onClick={() => {
+											setStatus({ status: "Delivered" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
 										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
-										<span className="px-1">Logout</span>
+										<span className="px-1">Delivered</span>
 									</li>
 								</ul>
 							</div>
