@@ -3,8 +3,13 @@ import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 
+type StatusType = {
+	status: "Processing" | "Shipped" | "Delivered";
+};
+
 export default function TableData() {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
+	const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
 	const {
 		state: dropDownState,
 		dispatch: dropDownDispatch,
