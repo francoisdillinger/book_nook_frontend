@@ -127,7 +127,7 @@ export default function AdminMenu() {
 										<li
 											onClick={() => {
 												setLoggedIn(false);
-												dropDownDispatch({ type: "navigating" });
+												dropDownDispatch({ type: "hasSelectedItem" });
 											}}
 										>
 											<a
