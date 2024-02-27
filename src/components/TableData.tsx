@@ -102,7 +102,7 @@ export default function TableData() {
 									</li>
 									<li
 										onClick={() => {
-											dropDownDispatch({ type: "navigating" });
+											dropDownDispatch({ type: "hasSelectedItem" });
 										}}
 									>
 										<a
