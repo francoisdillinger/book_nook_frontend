@@ -10,8 +10,9 @@ export default function AdminOrders() {
 						<tr className="">
 							<th className="font-semibold rounded-s-lg">Order ID</th>
 							<th className="font-semibold">User Name</th>
-							<th className="font-semibold">Status</th>
 							<th className="font-semibold">Total</th>
+							<th className="font-semibold">Status</th>
+
 							<th className="font-semibold rounded-e-lg">Expand</th>
 						</tr>
 					</thead>
