@@ -147,7 +147,7 @@ export default function Navbar() {
 												<li
 													onClick={() => {
 														setLoggedIn(false);
-														dropDownDispatch({ type: "navigating" });
+														dropDownDispatch({ type: "hasSelectedItem" });
 													}}
 												>
 													<a
