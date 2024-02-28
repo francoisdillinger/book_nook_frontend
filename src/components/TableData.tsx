@@ -158,9 +158,7 @@ export default function TableData() {
 								  }
 						}
 						className={`relative overflow-hidden flex items-center justify-center`}
-					>
-						hi
-					</motion.div>
+					></motion.div>
 				</td>
 			</tr>
 		</React.Fragment>
