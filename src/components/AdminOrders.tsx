@@ -3,6 +3,7 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 
 type IndividualOrderType = {
+	bookId: number;
 	bookTitle: string;
 	isbn: string;
 	orderAmount: string;
@@ -52,6 +53,13 @@ const reformateOrders = (
 
 	const newOrders = removedDuplicateIds.map((id) => {
 		const matchingOrders = orders.filter((order) => id === order.orderId);
+		const reformatedOrder = {
+			orderId: matchingOrders[0].orderId,
+			userId: matchingOrders[0].userId,
+			firstName: matchingOrders[0].user.firstName,
+			lastName: matchingOrders[0].user.lastName,
+			orderDate: matchingOrders[0].orderDate,
+		};
 		console.log("Matching Orders: ", matchingOrders);
 	});
 };
