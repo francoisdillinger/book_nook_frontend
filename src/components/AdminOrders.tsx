@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TableData from "./TableData";
-import { orders_data } from "../data/orders_data";
+import { orders_data, OrdersType } from "../data/orders_data";
 
 type IndividualOrderType = {
 	bookTitle: string;
@@ -8,7 +8,7 @@ type IndividualOrderType = {
 	orderAmount: string;
 };
 
-type ReformatedOrders = {
+type ReformatedOrdersType = {
 	orderId: string;
 	userId: number;
 	firstName: string;
@@ -16,6 +16,26 @@ type ReformatedOrders = {
 	orderDate: string;
 	totalAmount: number;
 	orders: IndividualOrderType[];
+};
+
+type TrimmedOrdersType = {
+	orders: {
+		orderId: string;
+		userId: number;
+		bookId: number;
+		quantity: number;
+		orderDate: string;
+		orderAmount: number;
+		user: {
+			userName: string;
+			firstName: string;
+			lastName: string;
+		};
+		book: {
+			bookTitle: string;
+			isbn: string;
+		};
+	}[];
 };
 
 export default function AdminOrders() {
