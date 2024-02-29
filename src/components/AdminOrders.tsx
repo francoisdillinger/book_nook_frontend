@@ -6,7 +6,7 @@ type IndividualOrderType = {
 	bookId: number;
 	bookTitle: string;
 	isbn: string;
-	orderAmount: string;
+	orderAmount: number;
 	quantity: number;
 };
 
@@ -59,9 +59,30 @@ const reformateOrders = (
 			firstName: matchingOrders[0].user.firstName,
 			lastName: matchingOrders[0].user.lastName,
 			orderDate: matchingOrders[0].orderDate,
+			totalAmount: matchingOrders.reduce(
+				(accumulator, order) => accumulator + order.orderAmount,
+				0
+			),
+			totalQuantity: matchingOrders.reduce(
+				(accumulator, order) => accumulator + order.quantity,
+				0
+			),
+			orders: matchingOrders.map((order) => {
+				return {
+					bookId: order.bookId,
+					bookTitle: order.book.bookTitle,
+					isbn: order.book.isbn,
+					orderAmount: order.orderAmount,
+					quantity: order.quantity,
+				};
+			}),
 		};
-		console.log("Matching Orders: ", matchingOrders);
+		return reformatedOrder;
+		// console.log("Matching Orders: ", matchingOrders);
+		// console.log("Reformatted Order: ", reformatedOrder);
 	});
+	// console.log("Orders: ", newOrders);
+	return newOrders;
 };
 
 export default function AdminOrders() {
@@ -69,7 +90,7 @@ export default function AdminOrders() {
 	const orderedByDate = trimmmedOrders.sort(
 		(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
 	);
-	reformateOrders(orderedByDate);
+	const reformattedOrders = reformateOrders(orderedByDate);
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	return (
