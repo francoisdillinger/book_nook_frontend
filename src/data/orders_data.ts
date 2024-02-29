@@ -1,4 +1,22 @@
-export const orders_data = {
+type OrdersType = {
+	data: {
+		orders: {
+			orderId: string;
+			userId: number;
+			bookId: number;
+			quantity: number;
+			orderDate: string;
+			orderAmount: number;
+			user: {
+				userName: string;
+				firstName: string;
+				lastName: string;
+			};
+		}[];
+	};
+};
+
+export const orders_data: OrdersType = {
 	data: {
 		orders: [
 			{
