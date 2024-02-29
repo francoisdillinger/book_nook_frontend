@@ -51,8 +51,8 @@ export default function TableData({
 			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
 			<tr className="">
 				<td>{orderId}</td>
-				<td>
-					<div className="flex items-center justify-start py-2">
+				<td className="text-center">
+					<div className="inline-flex items-center py-2 w-44">
 						<img
 							className={`w-10 rounded-full ${
 								"border-" + statusColor(status)
