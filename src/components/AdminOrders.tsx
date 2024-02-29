@@ -6,6 +6,7 @@ type IndividualOrderType = {
 	bookTitle: string;
 	isbn: string;
 	orderAmount: string;
+	quantity: number;
 };
 
 type ReformatedOrdersType = {
@@ -15,6 +16,7 @@ type ReformatedOrdersType = {
 	lastName: string;
 	orderDate: string;
 	totalAmount: number;
+	totalQuantity: number;
 	orders: IndividualOrderType[];
 };
 
@@ -37,7 +39,21 @@ type TrimmedOrdersType = {
 };
 
 const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
-	return [...orders_data.data.orders];
+	return [...orders.data.orders];
+};
+
+const reformateOrders = (
+	orders: TrimmedOrdersType[]
+): ReformatedOrdersType[] => {
+	const orderIds = orders.map((order) => order.orderId);
+	const removedDuplicateIds = [...new Set(orderIds)];
+	// console.log("Ids: ", new Set(orderIds));
+	// console.log("Ids: ", removedDuplicateIds);
+
+	const newOrders = removedDuplicateIds.map((id) => {
+		const matchingOrders = orders.filter((order) => id === order.orderId);
+		console.log("Matching Orders: ", matchingOrders);
+	});
 };
 
 export default function AdminOrders() {
@@ -45,8 +61,9 @@ export default function AdminOrders() {
 	const orderedByDate = trimmmedOrders.sort(
 		(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
 	);
+	reformateOrders(orderedByDate);
 	// console.log("Trimmed: ", trimmmedOrders);
-	console.log("Orders: ", orderedByDate);
+	// console.log("Orders: ", orderedByDate);
 	return (
 		<div className="">
 			<div className="">
