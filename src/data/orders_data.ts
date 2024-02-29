@@ -1,4 +1,4 @@
-type OrdersType = {
+export type OrdersType = {
 	data: {
 		orders: {
 			orderId: string;
