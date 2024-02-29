@@ -19,27 +19,29 @@ type ReformatedOrdersType = {
 };
 
 type TrimmedOrdersType = {
-	orders: {
-		orderId: string;
-		userId: number;
-		bookId: number;
-		quantity: number;
-		orderDate: string;
-		orderAmount: number;
-		user: {
-			userName: string;
-			firstName: string;
-			lastName: string;
-		};
-		book: {
-			bookTitle: string;
-			isbn: string;
-		};
-	}[];
+	orderId: string;
+	userId: number;
+	bookId: number;
+	quantity: number;
+	orderDate: string;
+	orderAmount: number;
+	user: {
+		userName: string;
+		firstName: string;
+		lastName: string;
+	};
+	book: {
+		bookTitle: string;
+		isbn: string;
+	};
+};
+
+const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
+	return [...orders_data.data.orders];
 };
 
 export default function AdminOrders() {
-	const trimmmedOrders = [...orders_data.data.orders];
+	const trimmmedOrders = trimOrders(orders_data);
 	const orderedByDate = trimmmedOrders.sort(
 		(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
 	);
