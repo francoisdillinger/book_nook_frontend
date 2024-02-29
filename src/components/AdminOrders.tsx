@@ -1,7 +1,30 @@
 import { useEffect, useState } from "react";
 import TableData from "./TableData";
+import { orders_data } from "../data/orders_data";
+
+type IndividualOrderType = {
+	bookTitle: string;
+	isbn: string;
+	orderAmount: string;
+};
+
+type ReformatedOrders = {
+	orderId: string;
+	userId: number;
+	firstName: string;
+	lastName: string;
+	orderDate: string;
+	totalAmount: number;
+	orders: IndividualOrderType[];
+};
 
 export default function AdminOrders() {
+	const trimmmedOrders = [...orders_data.data.orders];
+	const orderedByDate = trimmmedOrders.sort(
+		(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
+	);
+	// console.log("Trimmed: ", trimmmedOrders);
+	console.log("Orders: ", orderedByDate);
 	return (
 		<div className="">
 			<div className="">
