@@ -108,9 +108,15 @@ export default function AdminOrders() {
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
-						<TableData />
-						<TableData />
-						<TableData />
+						{reformattedOrders.map((order) => (
+							<TableData
+								key={order.orderId}
+								orderId={order.orderId}
+								firstName={order.firstName}
+								lastName={order.lastName}
+								total={order.totalAmount}
+							/>
+						))}
 					</tbody>
 				</table>
 			</div>
