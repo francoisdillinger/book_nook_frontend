@@ -52,7 +52,7 @@ export default function TableData({
 			<tr className="">
 				<td>{orderId}</td>
 				<td>
-					<div className="flex items-center justify-center py-2">
+					<div className="flex items-center justify-start py-2">
 						<img
 							className={`w-10 rounded-full ${
 								"border-" + statusColor(status)
