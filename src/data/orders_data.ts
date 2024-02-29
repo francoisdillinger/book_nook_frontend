@@ -12,6 +12,10 @@ type OrdersType = {
 				firstName: string;
 				lastName: string;
 			};
+			book: {
+				bookTitle: string;
+				isbn: string;
+			};
 		}[];
 	};
 };
@@ -31,6 +35,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "1984",
+					isbn: "978-0451524935",
+				},
 			},
 			{
 				orderId: "2345678901",
@@ -43,6 +51,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "To the Lighthouse",
+					isbn: "978-0156907392",
 				},
 			},
 			{
@@ -57,6 +69,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "The Old Man and The Sea",
+					isbn: "978-0684801223",
+				},
 			},
 			{
 				orderId: "4567890123",
@@ -69,6 +85,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Ulysses",
+					isbn: "978-0679722762",
 				},
 			},
 			{
@@ -83,6 +103,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "Pride and Prejudice",
+					isbn: "978-1503290563",
+				},
 			},
 			{
 				orderId: "4567890123",
@@ -95,6 +119,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Oliver Twist",
+					isbn: "978-0486424538",
 				},
 			},
 			{
@@ -109,6 +137,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "Adventures of Huckleberry Finn",
+					isbn: "978-0486449900",
+				},
 			},
 			{
 				orderId: "9012345678",
@@ -121,6 +153,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "To Kill a Mockingbird",
+					isbn: "978-0446310789",
 				},
 			},
 			{
@@ -135,6 +171,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Nine Stories",
+					isbn: "978-0316769495",
+				},
 			},
 			{
 				orderId: "9012345678",
@@ -147,6 +187,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Franny and Zooey",
+					isbn: "978-0316769495",
 				},
 			},
 			{
@@ -161,6 +205,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "1984",
+					isbn: "978-0451524935",
+				},
 			},
 			{
 				orderId: "3648927165",
@@ -173,6 +221,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Animal Farm",
+					isbn: "978-0451526342",
 				},
 			},
 			{
@@ -187,6 +239,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "To the Lighthouse",
+					isbn: "978-0156907392",
+				},
 			},
 			{
 				orderId: "8973451026",
@@ -199,6 +255,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Mrs Dalloway",
+					isbn: "978-0156628709",
 				},
 			},
 			{
@@ -213,6 +273,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "The Old Man and The Sea",
+					isbn: "978-0684801223",
+				},
 			},
 			{
 				orderId: "1289073451",
@@ -225,6 +289,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "A Farewell to Arms",
+					isbn: "978-0684801469",
 				},
 			},
 			{
@@ -239,6 +307,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Ulysses",
+					isbn: "978-0679722762",
+				},
 			},
 			{
 				orderId: "5902371648",
@@ -251,6 +323,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Finnegans Wake",
+					isbn: "978-0141181264",
 				},
 			},
 			{
@@ -265,6 +341,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Wuthering Heights",
+					isbn: "978-0553212587",
+				},
 			},
 			{
 				orderId: "1349056172",
@@ -277,6 +357,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Pride and Prejudice",
+					isbn: "978-1503290563",
 				},
 			},
 			{
@@ -291,6 +375,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "Emma",
+					isbn: "978-0141439587",
+				},
 			},
 			{
 				orderId: "8490173256",
@@ -303,6 +391,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Great Expectations",
+					isbn: "978-0141439563",
 				},
 			},
 			{
@@ -317,6 +409,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Oliver Twist",
+					isbn: "978-0486424538",
+				},
 			},
 			{
 				orderId: "1902735461",
@@ -329,6 +425,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Adventures of Huckleberry Finn",
+					isbn: "978-0486449900",
 				},
 			},
 			{
@@ -343,6 +443,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "The Adventures of Tom Sawyer",
+					isbn: "978-0486400778",
+				},
 			},
 			{
 				orderId: "7032841956",
@@ -355,6 +459,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "To Kill a Mockingbird",
+					isbn: "978-0446310789",
 				},
 			},
 			{
@@ -369,6 +477,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "Go Set a Watchman",
+					isbn: "978-0062409850",
+				},
 			},
 			{
 				orderId: "2938471056",
@@ -381,6 +493,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "The Catcher in the Rye",
+					isbn: "978-7543321724",
 				},
 			},
 			{
@@ -395,6 +511,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Nine Stories",
+					isbn: "978-0316769495",
+				},
 			},
 			{
 				orderId: "3840921507",
@@ -407,6 +527,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Franny and Zooey",
+					isbn: "978-0316769495",
 				},
 			},
 			{
@@ -421,6 +545,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "1984",
+					isbn: "978-0451524935",
+				},
 			},
 			{
 				orderId: "4092175368",
@@ -433,6 +561,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Animal Farm",
+					isbn: "978-0451526342",
 				},
 			},
 			{
@@ -447,6 +579,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "To the Lighthouse",
+					isbn: "978-0156907392",
+				},
 			},
 			{
 				orderId: "2091354768",
@@ -459,6 +595,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Mrs Dalloway",
+					isbn: "978-0156628709",
 				},
 			},
 			{
@@ -473,6 +613,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "The Old Man and The Sea",
+					isbn: "978-0684801223",
+				},
 			},
 			{
 				orderId: "8901234756",
@@ -485,6 +629,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "A Farewell to Arms",
+					isbn: "978-0684801469",
 				},
 			},
 			{
@@ -499,6 +647,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Ulysses",
+					isbn: "978-0679722762",
+				},
 			},
 			{
 				orderId: "8012437561",
@@ -511,6 +663,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Finnegans Wake",
+					isbn: "978-0141181264",
 				},
 			},
 			{
@@ -525,6 +681,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "Wuthering Heights",
+					isbn: "978-0553212587",
+				},
 			},
 			{
 				orderId: "9031247561",
@@ -537,6 +697,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Pride and Prejudice",
+					isbn: "978-1503290563",
 				},
 			},
 			{
@@ -551,6 +715,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Emma",
+					isbn: "978-0141439587",
+				},
 			},
 			{
 				orderId: "1023475610",
@@ -563,6 +731,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "Great Expectations",
+					isbn: "978-0141439563",
 				},
 			},
 			{
@@ -577,6 +749,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Oliver Twist",
+					isbn: "978-0486424538",
+				},
 			},
 			{
 				orderId: "9031247560",
@@ -589,6 +765,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Adventures of Huckleberry Finn",
+					isbn: "978-0486449900",
 				},
 			},
 			{
@@ -603,6 +783,10 @@ export const orders_data: OrdersType = {
 					firstName: "Jane",
 					lastName: "Smith",
 				},
+				book: {
+					bookTitle: "The Adventures of Tom Sawyer",
+					isbn: "978-0486400778",
+				},
 			},
 			{
 				orderId: "1023475061",
@@ -615,6 +799,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "To Kill a Mockingbird",
+					isbn: "978-0446310789",
 				},
 			},
 			{
@@ -629,6 +817,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Go Set a Watchman",
+					isbn: "978-0062409850",
+				},
 			},
 			{
 				orderId: "8031247560",
@@ -641,6 +833,10 @@ export const orders_data: OrdersType = {
 					userName: "reader123",
 					firstName: "Jane",
 					lastName: "Smith",
+				},
+				book: {
+					bookTitle: "The Catcher in the Rye",
+					isbn: "978-7543321724",
 				},
 			},
 			{
@@ -655,6 +851,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Nine Stories",
+					isbn: "978-0316769495",
+				},
 			},
 			{
 				orderId: "9031245067",
@@ -667,6 +867,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Franny and Zooey",
+					isbn: "978-0316769495",
 				},
 			},
 			{
@@ -681,6 +885,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Pride and Prejudice",
+					isbn: "978-1503290563",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -693,6 +901,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "The Adventures of Tom Sawyer",
+					isbn: "978-0486400778",
 				},
 			},
 			{
@@ -707,6 +919,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "1984",
+					isbn: "978-0451524935",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -719,6 +935,10 @@ export const orders_data: OrdersType = {
 					userName: "booklover1",
 					firstName: "John",
 					lastName: "Doe",
+				},
+				book: {
+					bookTitle: "Ulysses",
+					isbn: "978-0679722762",
 				},
 			},
 			{
@@ -733,6 +953,10 @@ export const orders_data: OrdersType = {
 					firstName: "John",
 					lastName: "Doe",
 				},
+				book: {
+					bookTitle: "Oliver Twist",
+					isbn: "978-0486424538",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -745,6 +969,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "A Farewell to Arms",
+					isbn: "978-0684801469",
 				},
 			},
 			{
@@ -759,6 +987,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Great Expectations",
+					isbn: "978-0141439563",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -771,6 +1003,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Finnegans Wake",
+					isbn: "978-0141181264",
 				},
 			},
 			{
@@ -785,6 +1021,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "To Kill a Mockingbird",
+					isbn: "978-0446310789",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -798,6 +1038,10 @@ export const orders_data: OrdersType = {
 					firstName: "Michael",
 					lastName: "Johnson",
 				},
+				book: {
+					bookTitle: "Nine Stories",
+					isbn: "978-0316769495",
+				},
 			},
 			{
 				orderId: "1234567890",
@@ -810,6 +1054,10 @@ export const orders_data: OrdersType = {
 					userName: "bibliophile",
 					firstName: "Michael",
 					lastName: "Johnson",
+				},
+				book: {
+					bookTitle: "Animal Farm",
+					isbn: "978-0451526342",
 				},
 			},
 		],
