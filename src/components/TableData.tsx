@@ -20,7 +20,19 @@ type StatusType = {
 	status: "Processing" | "Shipped" | "Delivered";
 };
 
-export default function TableData() {
+type TableDataType = {
+	orderId: string;
+	firstName: string;
+	lastName: string;
+	total: number;
+};
+
+export default function TableData({
+	orderId,
+	firstName,
+	lastName,
+	total,
+}: TableDataType) {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
 	const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
 	const {
@@ -38,7 +50,7 @@ export default function TableData() {
 		<React.Fragment>
 			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
 			<tr className="">
-				<td>12312312</td>
+				<td>{orderId}</td>
 				<td>
 					<div className="flex items-center justify-center py-2">
 						<img
@@ -48,10 +60,10 @@ export default function TableData() {
 							src={purpur}
 							alt=""
 						/>
-						<p className="pl-2">James Jester</p>
+						<p className="pl-2">{firstName + " " + lastName}</p>
 					</div>
 				</td>
-				<td>$45.89</td>
+				<td>${total}</td>
 				<td>
 					<div className="relative">
 						<div
