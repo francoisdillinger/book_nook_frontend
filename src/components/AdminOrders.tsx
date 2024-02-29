@@ -97,7 +97,7 @@ export default function AdminOrders() {
 		<div className="">
 			<div className="">
 				<table className="table-auto w-3/4 m-auto">
-					<thead className="bg-gray-100 text-gray-400 text-xl text-left h-12">
+					<thead className="bg-gray-100 text-gray-400 text-xl h-12">
 						<tr className="">
 							<th className="font-semibold rounded-s-lg">Order ID</th>
 							<th className="font-semibold">User Name</th>
@@ -107,7 +107,7 @@ export default function AdminOrders() {
 							<th className="font-semibold rounded-e-lg">Expand</th>
 						</tr>
 					</thead>
-					<tbody className="text-md text-gray-500 text-left">
+					<tbody className="text-md text-gray-500 text-center">
 						{reformattedOrders.map((order) => (
 							<TableData
 								key={order.orderId}
