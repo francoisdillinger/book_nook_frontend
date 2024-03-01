@@ -86,11 +86,17 @@ const reformateOrders = (
 };
 
 export default function AdminOrders() {
-	const trimmmedOrders = trimOrders(orders_data);
-	const orderedByDate = trimmmedOrders.sort(
-		(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
-	);
-	const reformattedOrders = reformateOrders(orderedByDate);
+	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
+
+	useEffect(() => {
+		const trimmmedOrders = trimOrders(orders_data);
+		const orderedByDate = trimmmedOrders.sort(
+			(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
+		);
+		const reformattedOrders = reformateOrders(orderedByDate);
+		setOrders(reformattedOrders);
+	}, [orders_data]);
+
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	return (
@@ -108,15 +114,16 @@ export default function AdminOrders() {
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
-						{reformattedOrders.map((order) => (
-							<TableData
-								key={order.orderId}
-								orderId={order.orderId}
-								firstName={order.firstName}
-								lastName={order.lastName}
-								total={order.totalAmount}
-							/>
-						))}
+						{orders != null &&
+							orders.map((order) => (
+								<TableData
+									key={order.orderId}
+									orderId={order.orderId}
+									firstName={order.firstName}
+									lastName={order.lastName}
+									total={order.totalAmount}
+								/>
+							))}
 					</tbody>
 				</table>
 			</div>
