@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 
-const statusColor = (status: StatusType): string => {
+const backgroundStatusColor = (status: StatusType): string => {
 	switch (status.status) {
 		case "Processing":
-			return "red-200";
+			return "bg-red-200";
 		case "Shipped":
-			return "yellow-200";
+			return "bg-yellow-200";
 		case "Delivered":
-			return "green-200";
+			return "bg-green-200";
 		default:
 			return "";
 	}
@@ -58,9 +58,9 @@ export default function TableData({
 				<td className="text-center">
 					<div className="inline-flex items-center py-2 w-44">
 						<img
-							className={`w-10 rounded-full ${
-								"border-" + statusColor(status)
-							} border-solid border-2`}
+							className={`w-10 rounded-full ${statusColor(
+								status
+							)} border-solid border-2`}
 							src={purpur}
 							alt=""
 						/>
@@ -76,7 +76,7 @@ export default function TableData({
 							data-dropdown-toggle="dropdownDivider"
 						>
 							<span
-								className={`cursor-pointer bg-${statusColor(
+								className={`cursor-pointer ${backgroundStatusColor(
 									status
 								)} p-1 rounded-lg`}
 							>
