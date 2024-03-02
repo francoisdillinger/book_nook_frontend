@@ -3,6 +3,21 @@ import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 
+type StatusType = {
+	status: "Processing" | "Shipped" | "Delivered";
+};
+
+type BackgroundType = {
+	background: "border" | "background";
+};
+
+type TableDataType = {
+	orderId: string;
+	firstName: string;
+	lastName: string;
+	total: number;
+};
+
 const statusColor = (
 	status: StatusType,
 	background: BackgroundType
@@ -23,21 +38,6 @@ const statusColor = (
 		default:
 			return "";
 	}
-};
-
-type StatusType = {
-	status: "Processing" | "Shipped" | "Delivered";
-};
-
-type BackgroundType = {
-	background: "border" | "background";
-};
-
-type TableDataType = {
-	orderId: string;
-	firstName: string;
-	lastName: string;
-	total: number;
 };
 
 export default function TableData({
