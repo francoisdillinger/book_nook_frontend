@@ -3,9 +3,16 @@ import React from "react";
 type SearchBarType = {
 	options: string[];
 	placeHolder: string;
+	selectStyles: string;
+	buttonStyles: string;
 };
 
-export default function SearchBar({ options, placeHolder }: SearchBarType) {
+export default function SearchBar({
+	options,
+	placeHolder,
+	selectStyles,
+	buttonStyles,
+}: SearchBarType) {
 	return (
 		<React.Fragment>
 			<div className="flex min-w-full">
@@ -14,7 +21,7 @@ export default function SearchBar({ options, placeHolder }: SearchBarType) {
             </label> */}
 				<select
 					id="book-selector"
-					className="font-semibold form-select block w-24 py-2 px-3 border border-gray-300 bg-gray-50 rounded-l-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+					className={`${selectStyles}`}
 				>
 					{/* <option>All</option>
 					<option>Author</option>
