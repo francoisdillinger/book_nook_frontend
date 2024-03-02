@@ -71,9 +71,9 @@ export default function TableData({
 				<td className="text-center">
 					<div className="inline-flex items-center py-2 w-44">
 						<img
-							className={`w-10 rounded-full ${
-								"border-" + statusColor(status)
-							} border-solid border-2`}
+							className={`w-10 rounded-full ${statusColor(status, {
+								background: "border",
+							})} border-solid border-2`}
 							src={purpur}
 							alt=""
 						/>
@@ -89,9 +89,9 @@ export default function TableData({
 							data-dropdown-toggle="dropdownDivider"
 						>
 							<span
-								className={`cursor-pointer bg-${statusColor(
-									status
-								)} p-1 rounded-lg`}
+								className={`cursor-pointer ${statusColor(status, {
+									background: "background",
+								})} p-1 rounded-lg`}
 							>
 								{status.status}
 							</span>
