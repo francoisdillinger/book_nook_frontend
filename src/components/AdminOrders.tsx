@@ -84,6 +84,10 @@ const reformateOrders = (
 	return newOrders;
 };
 
+const changeHandler = (inputValue: string) => {
+	console.log(inputValue);
+};
+
 export default function AdminOrders() {
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
 
@@ -107,6 +111,7 @@ export default function AdminOrders() {
 						placeHolder="Search by Order ID or User"
 						selectStyles="font-semibold form-select block w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
 						buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+						changeHandler={changeHandler}
 					/>
 				</div>
 			</div>
