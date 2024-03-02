@@ -10,16 +10,16 @@ const statusColor = (
 	switch (status.status) {
 		case "Processing":
 			return background.background === "background"
-				? "bg-red-200"
-				: "border-red-200";
+				? "bg-red-300"
+				: "border-red-300";
 		case "Shipped":
 			return background.background === "background"
-				? "bg-yellow-200"
-				: "border-yellow-200";
+				? "bg-yellow-300"
+				: "border-yellow-300";
 		case "Delivered":
 			return background.background === "background"
-				? "bg-green-200"
-				: "border-green-200";
+				? "bg-green-300"
+				: "border-green-300";
 		default:
 			return "";
 	}
