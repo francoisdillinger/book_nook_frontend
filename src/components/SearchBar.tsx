@@ -6,6 +6,7 @@ type SearchBarType = {
 	selectStyles: string;
 	buttonStyles: string;
 	changeHandler: Function;
+	clickHandler: Function;
 };
 
 export default function SearchBar({
@@ -14,6 +15,7 @@ export default function SearchBar({
 	selectStyles,
 	buttonStyles,
 	changeHandler,
+	clickHandler,
 }: SearchBarType) {
 	return (
 		<React.Fragment>
@@ -35,7 +37,7 @@ export default function SearchBar({
 
 				<div className="relative w-full">
 					<input
-						onChange={(event) => changeHandler(event.target.value)}
+						onChange={(event) => changeHandler(event)}
 						type="search"
 						id="search-dropdown"
 						className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50  border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500 focus-visible:outline-none"
@@ -44,6 +46,7 @@ export default function SearchBar({
 					/>
 				</div>
 				<button
+					onClick={(event) => clickHandler(event)}
 					type="submit"
 					className={`${buttonStyles}`}
 				>
