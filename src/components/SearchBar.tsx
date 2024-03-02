@@ -1,5 +1,9 @@
 import React from "react";
 
+type SearchBarType = {
+	options: string[];
+};
+
 export default function SearchBar() {
 	return (
 		<React.Fragment>
