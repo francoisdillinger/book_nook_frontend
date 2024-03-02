@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
+import SearchBar from "./SearchBar";
 
 type IndividualOrderType = {
 	bookId: number;
@@ -99,6 +100,15 @@ export default function AdminOrders() {
 	// console.log("Orders: ", orderedByDate);
 	return (
 		<div className="">
+			<div className="w-3/4 m-auto py-4">
+				<div className="w-1/2">
+					<SearchBar
+						options={["OrderId", "User"]}
+						placeHolder="Search by Order ID or User"
+						selectStyles="font-semibold form-select block w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+					/>
+				</div>
+			</div>
 			<div className="">
 				<table className="table-auto w-3/4 m-auto">
 					<thead className="bg-gray-100 text-gray-400 text-xl h-12">
