@@ -48,8 +48,6 @@ const reformateOrders = (
 ): ReformatedOrdersType[] => {
 	const orderIds = orders.map((order) => order.orderId);
 	const removedDuplicateIds = [...new Set(orderIds)];
-	// console.log("Ids: ", new Set(orderIds));
-	// console.log("Ids: ", removedDuplicateIds);
 
 	const newOrders = removedDuplicateIds.map((id) => {
 		const matchingOrders = orders.filter((order) => id === order.orderId);
