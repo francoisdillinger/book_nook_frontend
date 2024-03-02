@@ -40,7 +40,10 @@ export default function Navbar() {
 						</div>
 					</div>
 					<div className="hidden md:flex items-center w-1/2">
-						<SearchBar options={["All", "Author", "Title"]} />
+						<SearchBar
+							options={["All", "Author", "Title"]}
+							placeHolder="Search by Author or Titles..."
+						/>
 					</div>
 					<div className="hidden md:flex justify-end w-40 items-center space-x-1 ">
 						{loggedIn ? (
