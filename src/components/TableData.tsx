@@ -55,10 +55,6 @@ export default function TableData({
 		dropDownRef,
 	} = useDropDownVisibility();
 
-	// useEffect(() => {
-	// 	setStatus({ status: "Shipped" });
-	// }, []);
-
 	const handleExpandSlide = () => {
 		setExpandSlide((prevState) => !prevState);
 	};
