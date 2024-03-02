@@ -91,7 +91,7 @@ export default function TableData({
 							<span
 								className={`cursor-pointer ${statusColor(status, {
 									background: "background",
-								})} p-1 rounded-lg`}
+								})} p-1 rounded-lg text-white`}
 							>
 								{status.status}
 							</span>
