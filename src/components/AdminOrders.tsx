@@ -40,6 +40,17 @@ type TrimmedOrdersType = {
 	};
 };
 
+type OrdersSortType = {
+	sortBy:
+		| "Date: Newest"
+		| "Date: Oldest"
+		| "Total: Ascending"
+		| "Total: Descending"
+		| "Status: Processing"
+		| "Status: Shipped"
+		| "Status: Delivered";
+};
+
 const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
 	return [...orders.data.orders];
 };
@@ -84,8 +95,47 @@ const reformateOrders = (
 	return newOrders;
 };
 
+const sortedOrders = (
+	orders: ReformatedOrdersType[],
+	sortBy: OrdersSortType
+) => {
+	switch (sortBy.sortBy) {
+		case "Date: Newest":
+			return orders.sort((a, b) => {
+				new Date(a.orderDate) > new Date(b.orderDate);
+			});
+		case "Date: Oldest":
+			return orders.sort((a, b) => {
+				new Date(a.orderDate) < new Date(b.orderDate);
+			});
+		case "Total: Ascending":
+			return orders.sort((a, b) => {
+				a.totalAmount - b.totalAmount;
+			});
+		case "Total: Descending":
+			return orders.sort((a, b) => {
+				b.totalAmount - a.totalAmount;
+			});
+		// case "Status: Processing":
+		// case "Status: Shipped":
+		// case "Status: Delivered":
+	}
+};
+
 export default function AdminOrders() {
+	const options = [
+		"Date: Newest",
+		"Date: Oldest",
+		"Total: Ascending",
+		"Total: Descending",
+		"Status: Processing",
+		"Status: Shipped",
+		"Status: Delivered",
+	];
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
+	// const [sortBy, setSortBy] = useState<OrdersSortType>({
+	// 	sortBy: "Date: Newest",
+	// });
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
@@ -97,12 +147,25 @@ export default function AdminOrders() {
 	useEffect(() => {
 		const trimmmedOrders = trimOrders(orders_data);
 		const orderedByDate = trimmmedOrders.sort(
-			(a, b) => new Date(a.orderDate) - new Date(b.orderDate)
+			(a, b) =>
+				new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
 		);
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
 		setFilteredOrders(reformattedOrders);
 	}, [orders_data]);
+
+	const selectOptionsHandler = (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		setFilteredOrders(
+			filteredOrders
+				? sortedOrders(filteredOrders, {
+						sortBy: event.target.value as OrdersSortType["sortBy"],
+				  })
+				: []
+		);
+	};
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({ option: event.target.value, value: "" });
@@ -129,9 +192,10 @@ export default function AdminOrders() {
 
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
+	// console.log(sortBy);
 	return (
 		<div className="">
-			<div className="w-3/4 m-auto py-4">
+			<div className="w-3/4 m-auto py-4 flex justify-between">
 				<div className="w-1/2">
 					<SearchBar
 						options={["OrderId", "User"]}
@@ -143,6 +207,20 @@ export default function AdminOrders() {
 						inputHandler={inputHandler}
 						clickHandler={clickHandler}
 					/>
+				</div>
+				<div className="">
+					<select
+						id="book-selector"
+						className="font-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+						onChange={(event) => selectOptionsHandler(event)}
+					>
+						{/* <option>All</option>
+						<option>Author</option>
+						<option>Title</option> */}
+						{options.map((option) => (
+							<option key={option}>{option}</option>
+						))}
+					</select>
 				</div>
 			</div>
 			<div className="">
