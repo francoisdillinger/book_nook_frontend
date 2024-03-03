@@ -89,9 +89,6 @@ export default function AdminOrders() {
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
-	// const [inputValue, setInputValue] = useState("");
-	// const [optionsValue, setOptionsValue] = useState(options[0]);
-	// console.log(optionsValue);
 	const [searchValues, setSearchValues] = useState({
 		option: "",
 		value: "",
@@ -113,11 +110,9 @@ export default function AdminOrders() {
 	};
 
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		// console.log(event.target.value);
 		setSearchValues({ ...searchValues, value: event.target.value });
 		setFilteredOrders(
 			orders?.filter((order) => {
-				console.log(searchValues.value);
 				if (searchValues.option === "OrderId") {
 					return order.orderId.includes(event.target.value);
 				} else if (searchValues.option === "User") {
@@ -126,16 +121,9 @@ export default function AdminOrders() {
 				}
 			})
 		);
-		// console.log(
-		// 	orders?.filter((order) => {
-		// 		console.log(searchValues.value);
-		// 		return order.orderId.includes(event.target.value);
-		// 	})
-		// );
 	};
 
 	const clickHandler = () => {
-		// console.log(event);
 		setSearchValues({ ...searchValues, value: "" });
 	};
 
