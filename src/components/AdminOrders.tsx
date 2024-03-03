@@ -101,24 +101,25 @@ const sortedOrders = (
 ) => {
 	switch (sortBy.sortBy) {
 		case "Date: Newest":
-			return orders.sort((a, b) => {
-				new Date(a.orderDate) > new Date(b.orderDate);
-			});
+			return orders.sort(
+				(a, b) =>
+					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+			);
 		case "Date: Oldest":
-			return orders.sort((a, b) => {
-				new Date(a.orderDate) < new Date(b.orderDate);
-			});
+			return orders.sort(
+				(a, b) =>
+					new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
+			);
 		case "Total: Ascending":
-			return orders.sort((a, b) => {
-				a.totalAmount - b.totalAmount;
-			});
+			return orders.sort((a, b) => b.totalAmount - a.totalAmount);
 		case "Total: Descending":
-			return orders.sort((a, b) => {
-				b.totalAmount - a.totalAmount;
-			});
+			return orders.sort((a, b) => a.totalAmount - b.totalAmount);
 		// case "Status: Processing":
+		// 	return orders.filter((order) => order.)
 		// case "Status: Shipped":
 		// case "Status: Delivered":
+		default:
+			return orders; // Return unsorted if no match (or handle as needed)
 	}
 };
 
@@ -140,7 +141,7 @@ export default function AdminOrders() {
 		ReformatedOrdersType[] | null
 	>();
 	const [searchValues, setSearchValues] = useState({
-		option: "",
+		option: "OrderId",
 		value: "",
 	});
 
@@ -160,7 +161,7 @@ export default function AdminOrders() {
 	) => {
 		setFilteredOrders(
 			filteredOrders
-				? sortedOrders(filteredOrders, {
+				? sortedOrders([...filteredOrders], {
 						sortBy: event.target.value as OrdersSortType["sortBy"],
 				  })
 				: []
