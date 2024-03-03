@@ -86,6 +86,9 @@ const reformateOrders = (
 
 export default function AdminOrders() {
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
+	const [filteredOrders, setFilteredOrders] = useState<
+		ReformatedOrdersType[] | null
+	>();
 	// const [inputValue, setInputValue] = useState("");
 	// const [optionsValue, setOptionsValue] = useState(options[0]);
 	// console.log(optionsValue);
@@ -101,15 +104,34 @@ export default function AdminOrders() {
 		);
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
+		setFilteredOrders(reformattedOrders);
 	}, [orders_data]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({ option: event.target.value, value: "" });
+		setFilteredOrders(orders);
 	};
 
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		// console.log(event.target.value);
 		setSearchValues({ ...searchValues, value: event.target.value });
+		setFilteredOrders(
+			orders?.filter((order) => {
+				console.log(searchValues.value);
+				if (searchValues.option === "OrderId") {
+					return order.orderId.includes(event.target.value);
+				} else if (searchValues.option === "User") {
+					const name = order.firstName + " " + order.lastName;
+					return name.includes(event.target.value);
+				}
+			})
+		);
+		// console.log(
+		// 	orders?.filter((order) => {
+		// 		console.log(searchValues.value);
+		// 		return order.orderId.includes(event.target.value);
+		// 	})
+		// );
 	};
 
 	const clickHandler = () => {
@@ -148,8 +170,8 @@ export default function AdminOrders() {
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
-						{orders != null &&
-							orders.map((order) => (
+						{filteredOrders != null &&
+							filteredOrders.map((order) => (
 								<TableData
 									key={order.orderId}
 									orderId={order.orderId}
