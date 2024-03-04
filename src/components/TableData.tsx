@@ -4,7 +4,7 @@ import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 import { ReformatedOrdersType } from "./AdminOrders";
 
-type StatusType = "Processing" | "Shipped" | "Delivered";
+// type StatusType = "Processing" | "Shipped" | "Delivered";
 
 type BackgroundType = {
 	background: "border" | "background";
@@ -20,10 +20,7 @@ type TableDataType = {
 	setOrders: Function;
 };
 
-const statusColor = (
-	status: StatusType,
-	background: BackgroundType
-): string => {
+const statusColor = (status: string, background: BackgroundType): string => {
 	switch (status) {
 		case "Processing":
 			return background.background === "background"
