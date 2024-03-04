@@ -17,6 +17,7 @@ type TableDataType = {
 	firstName: string;
 	lastName: string;
 	total: number;
+	orderStatus: string;
 	filteredOrders: ReformatedOrdersType[];
 	setFilteredOrders: Function;
 };
@@ -48,6 +49,7 @@ export default function TableData({
 	firstName,
 	lastName,
 	total,
+	orderStatus,
 	filteredOrders,
 	setFilteredOrders,
 }: TableDataType) {
@@ -94,7 +96,7 @@ export default function TableData({
 									background: "background",
 								})} p-1 rounded-lg text-white`}
 							>
-								{status.status}
+								{orderStatus}
 							</span>
 						</div>
 						{dropDownState.show && (
