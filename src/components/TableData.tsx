@@ -16,8 +16,8 @@ type TableDataType = {
 	lastName: string;
 	total: number;
 	orderStatus: string;
-	filteredOrders: ReformatedOrdersType[];
-	setFilteredOrders: Function;
+	orders: ReformatedOrdersType[];
+	setOrders: Function;
 };
 
 const statusColor = (
@@ -48,8 +48,8 @@ export default function TableData({
 	lastName,
 	total,
 	orderStatus,
-	filteredOrders,
-	setFilteredOrders,
+	orders,
+	setOrders,
 }: TableDataType) {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
 	// const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
@@ -112,8 +112,8 @@ export default function TableData({
 										onClick={() => {
 											// setStatus({ status: "Processing" });
 											dropDownDispatch({ type: "hasSelectedItem" });
-											setFilteredOrders(
-												filteredOrders.map((order) => {
+											setOrders(
+												orders.map((order) => {
 													if (order.orderId === orderId) {
 														return { ...order, orderStatus: "Processing" };
 													}
@@ -129,8 +129,8 @@ export default function TableData({
 										onClick={() => {
 											// setStatus({ status: "Shipped" });
 											dropDownDispatch({ type: "hasSelectedItem" });
-											setFilteredOrders(
-												filteredOrders.map((order) => {
+											setOrders(
+												orders.map((order) => {
 													if (order.orderId === orderId) {
 														return { ...order, orderStatus: "Shipped" };
 													}
@@ -146,8 +146,8 @@ export default function TableData({
 										onClick={() => {
 											// setStatus({ status: "Delivered" });
 											dropDownDispatch({ type: "hasSelectedItem" });
-											setFilteredOrders(
-												filteredOrders.map((order) => {
+											setOrders(
+												orders.map((order) => {
 													if (order.orderId === orderId) {
 														return { ...order, orderStatus: "Delivered" };
 													}
