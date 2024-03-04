@@ -4,9 +4,7 @@ import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 import { ReformatedOrdersType } from "./AdminOrders";
 
-type StatusType = {
-	status: "Processing" | "Shipped" | "Delivered";
-};
+type StatusType = "Processing" | "Shipped" | "Delivered";
 
 type BackgroundType = {
 	background: "border" | "background";
@@ -26,7 +24,7 @@ const statusColor = (
 	status: StatusType,
 	background: BackgroundType
 ): string => {
-	switch (status.status) {
+	switch (status) {
 		case "Processing":
 			return background.background === "background"
 				? "bg-red-300"
@@ -54,7 +52,7 @@ export default function TableData({
 	setFilteredOrders,
 }: TableDataType) {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
-	const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
+	// const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
 	const {
 		state: dropDownState,
 		dispatch: dropDownDispatch,
@@ -74,7 +72,7 @@ export default function TableData({
 				<td className="text-center">
 					<div className="inline-flex items-center py-2 w-44">
 						<img
-							className={`w-10 rounded-full ${statusColor(status, {
+							className={`w-10 rounded-full ${statusColor(orderStatus, {
 								background: "border",
 							})} border-solid border-2`}
 							src={purpur}
@@ -92,7 +90,7 @@ export default function TableData({
 							data-dropdown-toggle="dropdownDivider"
 						>
 							<span
-								className={`cursor-pointer ${statusColor(status, {
+								className={`cursor-pointer ${statusColor(orderStatus, {
 									background: "background",
 								})} p-1 rounded-lg text-white`}
 							>
@@ -112,7 +110,7 @@ export default function TableData({
 								>
 									<li
 										onClick={() => {
-											setStatus({ status: "Processing" });
+											// setStatus({ status: "Processing" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 											setFilteredOrders(
 												filteredOrders.map((order) => {
@@ -129,7 +127,7 @@ export default function TableData({
 									</li>
 									<li
 										onClick={() => {
-											setStatus({ status: "Shipped" });
+											// setStatus({ status: "Shipped" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 											setFilteredOrders(
 												filteredOrders.map((order) => {
@@ -146,7 +144,7 @@ export default function TableData({
 									</li>
 									<li
 										onClick={() => {
-											setStatus({ status: "Delivered" });
+											// setStatus({ status: "Delivered" });
 											dropDownDispatch({ type: "hasSelectedItem" });
 											setFilteredOrders(
 												filteredOrders.map((order) => {
