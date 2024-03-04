@@ -11,7 +11,7 @@ type IndividualOrderType = {
 	quantity: number;
 };
 
-type ReformatedOrdersType = {
+export type ReformatedOrdersType = {
 	orderId: string;
 	userId: number;
 	firstName: string;
