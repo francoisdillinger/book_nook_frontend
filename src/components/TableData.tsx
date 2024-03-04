@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
+import { ReformatedOrdersType } from "./AdminOrders";
 
 type StatusType = {
 	status: "Processing" | "Shipped" | "Delivered";
@@ -16,6 +17,8 @@ type TableDataType = {
 	firstName: string;
 	lastName: string;
 	total: number;
+	filteredOrders: ReformatedOrdersType[];
+	setFilteredOrders: Function;
 };
 
 const statusColor = (
