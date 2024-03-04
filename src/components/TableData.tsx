@@ -48,6 +48,8 @@ export default function TableData({
 	firstName,
 	lastName,
 	total,
+	filteredOrders,
+	setFilteredOrders,
 }: TableDataType) {
 	const [expandSlide, setExpandSlide] = useState<boolean>(false);
 	const [status, setStatus] = useState<StatusType>({ status: "Shipped" });
