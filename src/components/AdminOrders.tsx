@@ -117,10 +117,10 @@ const sortedOrders = (
 			return orders.sort((a, b) => b.totalAmount - a.totalAmount);
 		case "Total: Descending":
 			return orders.sort((a, b) => a.totalAmount - b.totalAmount);
-		// case "Status: Processing":
-		// 	return orders.filter((order) => order.)
-		// case "Status: Shipped":
-		// case "Status: Delivered":
+		case "Status: Processing":
+		case "Status: Shipped":
+		case "Status: Delivered":
+			return orders.filter((order) => order.orderStatus === sortBy.sortBy);
 		default:
 			return orders; // Return unsorted if no match (or handle as needed)
 	}
