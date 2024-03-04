@@ -251,6 +251,8 @@ export default function AdminOrders() {
 									firstName={order.firstName}
 									lastName={order.lastName}
 									total={order.totalAmount}
+									filteredOrders={filteredOrders}
+									setFilteredOrders={setFilteredOrders}
 								/>
 							))}
 					</tbody>
