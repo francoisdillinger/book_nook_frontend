@@ -18,6 +18,7 @@ type ReformatedOrdersType = {
 	lastName: string;
 	orderDate: string;
 	totalAmount: number;
+	orderStatus: string;
 	totalQuantity: number;
 	orders: IndividualOrderType[];
 };
@@ -29,6 +30,7 @@ type TrimmedOrdersType = {
 	quantity: number;
 	orderDate: string;
 	orderAmount: number;
+	orderStatus: string;
 	user: {
 		userName: string;
 		firstName: string;
@@ -69,6 +71,7 @@ const reformateOrders = (
 			firstName: matchingOrders[0].user.firstName,
 			lastName: matchingOrders[0].user.lastName,
 			orderDate: matchingOrders[0].orderDate,
+			orderStatus: matchingOrders[0].orderStatus,
 			totalAmount: matchingOrders.reduce(
 				(accumulator, order) => accumulator + order.orderAmount,
 				0
