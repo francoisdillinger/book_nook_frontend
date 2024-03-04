@@ -200,6 +200,7 @@ export default function AdminOrders() {
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	// console.log(sortBy);
+	console.log(filteredOrders);
 	return (
 		<div className="">
 			<div className="w-3/4 m-auto py-4 flex justify-between">
@@ -251,6 +252,7 @@ export default function AdminOrders() {
 									firstName={order.firstName}
 									lastName={order.lastName}
 									total={order.totalAmount}
+									orderStatus={order.orderStatus}
 									filteredOrders={filteredOrders}
 									setFilteredOrders={setFilteredOrders}
 								/>
