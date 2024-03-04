@@ -112,6 +112,14 @@ export default function TableData({
 										onClick={() => {
 											setStatus({ status: "Processing" });
 											dropDownDispatch({ type: "hasSelectedItem" });
+											setFilteredOrders(
+												filteredOrders.map((order) => {
+													if (order.orderId === orderId) {
+														return { ...order, orderStatus: "Processing" };
+													}
+													return order;
+												})
+											);
 										}}
 										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
@@ -121,6 +129,14 @@ export default function TableData({
 										onClick={() => {
 											setStatus({ status: "Shipped" });
 											dropDownDispatch({ type: "hasSelectedItem" });
+											setFilteredOrders(
+												filteredOrders.map((order) => {
+													if (order.orderId === orderId) {
+														return { ...order, orderStatus: "Shipped" };
+													}
+													return order;
+												})
+											);
 										}}
 										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
@@ -130,6 +146,14 @@ export default function TableData({
 										onClick={() => {
 											setStatus({ status: "Delivered" });
 											dropDownDispatch({ type: "hasSelectedItem" });
+											setFilteredOrders(
+												filteredOrders.map((order) => {
+													if (order.orderId === orderId) {
+														return { ...order, orderStatus: "Delivered" };
+													}
+													return order;
+												})
+											);
 										}}
 										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
