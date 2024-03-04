@@ -98,10 +98,7 @@ const reformateOrders = (
 	return newOrders;
 };
 
-const sortedOrders = (
-	orders: ReformatedOrdersType[],
-	sortBy: OrdersSortType
-) => {
+const sortOrders = (orders: ReformatedOrdersType[], sortBy: OrdersSortType) => {
 	switch (sortBy.sortBy) {
 		case "Date: Newest":
 			return orders.sort(
@@ -146,6 +143,9 @@ export default function AdminOrders() {
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
+	const [sortedOrders, setSortedOrders] = useState<
+		ReformatedOrdersType[] | null
+	>();
 	const [searchValues, setSearchValues] = useState({
 		option: "OrderId",
 		value: "",
@@ -160,14 +160,27 @@ export default function AdminOrders() {
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
 		setFilteredOrders(reformattedOrders);
+		setSortedOrders(reformattedOrders);
 	}, [orders_data]);
+
+	useEffect(() => {
+		setFilteredOrders(orders);
+		setSortedOrders(orders);
+	}, [orders]);
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		setFilteredOrders(
+		// setFilteredOrders(
+		// 	filteredOrders
+		// 		? sortOrders(filteredOrders, {
+		// 				sortBy: event.target.value as OrdersSortType["sortBy"],
+		// 		  })
+		// 		: []
+		// );
+		setSortedOrders(
 			filteredOrders
-				? sortedOrders([...filteredOrders], {
+				? sortOrders(filteredOrders, {
 						sortBy: event.target.value as OrdersSortType["sortBy"],
 				  })
 				: []
@@ -244,8 +257,9 @@ export default function AdminOrders() {
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
-						{filteredOrders != null &&
-							filteredOrders.map((order) => (
+						{filteredOrders &&
+							sortedOrders != null &&
+							sortedOrders.map((order) => (
 								<TableData
 									key={order.orderId}
 									orderId={order.orderId}
