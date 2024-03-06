@@ -101,19 +101,20 @@ const reformateOrders = (
 const sortOrders = (orders: ReformatedOrdersType[], sortBy: OrdersSortType) => {
 	switch (sortBy.sortBy) {
 		case "Date: Newest":
-			return orders.sort(
-				(a, b) =>
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-			);
-		case "Date: Oldest":
-			return orders.sort(
+			return [...orders].sort(
 				(a, b) =>
 					new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
 			);
+		case "Date: Oldest":
+			return [...orders].sort(
+				(a, b) =>
+					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+			);
 		case "Total: Ascending":
-			return orders.sort((a, b) => b.totalAmount - a.totalAmount);
+			return [...orders].sort((a, b) => a.totalAmount - b.totalAmount);
 		case "Total: Descending":
-			return orders.sort((a, b) => a.totalAmount - b.totalAmount);
+			return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
+
 		case "Status: Processing":
 			// console.log("Sort By: ", sortBy.sortBy)
 			return orders.filter((order) => order.orderStatus === "Processing");
@@ -165,22 +166,19 @@ export default function AdminOrders() {
 
 	useEffect(() => {
 		setFilteredOrders(orders);
-		setSortedOrders(orders);
+		// setSortedOrders(orders);
 	}, [orders]);
+
+	useEffect(() => {
+		setSortedOrders(filteredOrders);
+	}, [filteredOrders]);
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		// setFilteredOrders(
-		// 	filteredOrders
-		// 		? sortOrders(filteredOrders, {
-		// 				sortBy: event.target.value as OrdersSortType["sortBy"],
-		// 		  })
-		// 		: []
-		// );
 		setSortedOrders(
 			filteredOrders
-				? sortOrders(filteredOrders, {
+				? sortOrders([...filteredOrders], {
 						sortBy: event.target.value as OrdersSortType["sortBy"],
 				  })
 				: []
