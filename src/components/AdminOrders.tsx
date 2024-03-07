@@ -91,8 +91,6 @@ const reformateOrders = (
 			}),
 		};
 		return reformatedOrder;
-		// console.log("Matching Orders: ", matchingOrders);
-		// console.log("Reformatted Order: ", reformatedOrder);
 	});
 	// console.log("Orders: ", newOrders);
 	return newOrders;
