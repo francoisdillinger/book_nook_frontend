@@ -174,13 +174,14 @@ export default function AdminOrders() {
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		setSortedOrders(
-			filteredOrders
-				? sortOrders([...filteredOrders], {
-						sortBy: event.target.value as OrdersSortType["sortBy"],
-				  })
-				: []
-		);
+		// setSortedOrders(
+		// 	filteredOrders
+		// 		? sortOrders([...filteredOrders], {
+		// 				sortBy: event.target.value as OrdersSortType["sortBy"],
+		// 		  })
+		// 		: []
+		// );
+		setSortBy({ sortBy: event.target.value as OrdersSortType["sortBy"] });
 	};
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -208,8 +209,8 @@ export default function AdminOrders() {
 
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
-	// console.log(sortBy);
-	console.log(filteredOrders);
+	console.log("Sort by: ", sortBy);
+	// console.log(filteredOrders);
 	return (
 		<div className="">
 			<div className="w-3/4 m-auto py-4 flex justify-between">
