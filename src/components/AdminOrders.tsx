@@ -194,10 +194,6 @@ export default function AdminOrders() {
 		// setSortedOrders(orders);
 	}, [orders, searchValues, sortOption]);
 
-	useEffect(() => {
-		// setSortedOrders(filteredOrders);
-	}, [filteredOrders]);
-
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
