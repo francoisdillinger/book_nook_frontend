@@ -201,13 +201,6 @@ export default function AdminOrders() {
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		// setSortedOrders(
-		// 	filteredOrders
-		// 		? sortOrders([...filteredOrders], {
-		// 				sortOption: event.target.value as OrdersSortType["sortOption"],
-		// 		  })
-		// 		: []
-		// );
 		setSortOption({
 			sortOption: event.target.value as OrdersSortType["sortOption"],
 		});
