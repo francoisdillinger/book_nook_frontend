@@ -181,7 +181,6 @@ export default function AdminOrders() {
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
 		setFilteredOrders(reformattedOrders);
-		// setSortedOrders(reformattedOrders);
 	}, [orders_data]);
 
 	useEffect(() => {
