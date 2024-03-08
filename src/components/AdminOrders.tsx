@@ -137,7 +137,7 @@ const searchedOrders = (
 	orders: ReformatedOrdersType[],
 	searchValues: OrdersSearchType
 ) => {
-	orders.filter((order) => {
+	return orders.filter((order) => {
 		if (searchValues.option === "OrderId") {
 			return order.orderId.includes(searchValues.value);
 		} else if (searchValues.option === "User") {
@@ -186,7 +186,10 @@ export default function AdminOrders() {
 
 	useEffect(() => {
 		const sortedOrders = sortOrders(orders ? orders : [], sortOption);
-		const searchedResults = searchedOrders(sortedOrders, searchValues);
+		const searchedResults =
+			searchValues.value.length > 0
+				? searchedOrders(sortedOrders, searchValues)
+				: sortedOrders;
 		setFilteredOrders(searchedResults);
 		// setSortedOrders(orders);
 	}, [orders, searchValues, sortOption]);
