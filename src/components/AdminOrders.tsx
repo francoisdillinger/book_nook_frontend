@@ -191,7 +191,6 @@ export default function AdminOrders() {
 				? searchedOrders(sortedOrders, searchValues)
 				: sortedOrders;
 		setFilteredOrders(searchedResults);
-		// setSortedOrders(orders);
 	}, [orders, searchValues, sortOption]);
 
 	const selectOptionsHandler = (
