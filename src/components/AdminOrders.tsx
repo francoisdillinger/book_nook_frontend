@@ -216,16 +216,6 @@ export default function AdminOrders() {
 
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({ ...searchValues, value: event.target.value });
-		// setFilteredOrders(
-		// 	orders?.filter((order) => {
-		// 		if (searchValues.option === "OrderId") {
-		// 			return order.orderId.includes(event.target.value);
-		// 		} else if (searchValues.option === "User") {
-		// 			const name = order.firstName + " " + order.lastName;
-		// 			return name.includes(event.target.value);
-		// 		}
-		// 	})
-		// );
 	};
 
 	const clickHandler = () => {
