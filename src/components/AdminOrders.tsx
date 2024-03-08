@@ -161,7 +161,7 @@ export default function AdminOrders() {
 	const [sortOption, setSortOption] = useState<OrdersSortType>({
 		sortOption: "Date: Newest",
 	});
-	const [filteredOrders, setFilteredOrders] = useState<
+	const [displayedOrders, setDisplayedOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
 	const [searchValues, setSearchValues] = useState<OrdersSearchType>({
@@ -177,7 +177,7 @@ export default function AdminOrders() {
 		);
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
-		setFilteredOrders(reformattedOrders);
+		setDisplayedOrders(reformattedOrders);
 	}, [orders_data]);
 
 	useEffect(() => {
@@ -186,7 +186,7 @@ export default function AdminOrders() {
 			searchValues.value.length > 0
 				? searchedOrders(sortedOrders, searchValues)
 				: sortedOrders;
-		setFilteredOrders(searchedResults);
+		setDisplayedOrders(searchedResults);
 	}, [orders, searchValues, sortOption]);
 
 	const selectOptionsHandler = (
@@ -215,7 +215,7 @@ export default function AdminOrders() {
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	console.log("Sort by: ", sortOption);
-	// console.log(filteredOrders);
+	// console.log(displayedOrders);
 	return (
 		<div className="">
 			<div className="w-3/4 m-auto py-4 flex justify-between">
@@ -256,9 +256,9 @@ export default function AdminOrders() {
 						</tr>
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
-						{filteredOrders &&
-							filteredOrders != null &&
-							filteredOrders.map((order) => (
+						{displayedOrders &&
+							displayedOrders != null &&
+							displayedOrders.map((order) => (
 								<TableData
 									key={order.orderId}
 									orderId={order.orderId}
