@@ -218,12 +218,12 @@ export default function AdminOrders() {
 	// console.log(displayedOrders);
 	return (
 		<div className="">
-			<div className="w-3/4 m-auto py-4 flex justify-between">
-				<div className="w-1/2">
+			<div className="w-full p-4 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
+				<div className="w-full my-2 md:my-0 md:w-1/2">
 					<SearchBar
 						options={["OrderId", "User"]}
 						placeHolder="Search by Order ID or User"
-						selectStyles="font-semibold form-select block w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+						selectStyles="font-semibold form-select block w-36 md:w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
 						buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-logo rounded-r-lg border border-logo opacity-80 hover:opacity-100 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800"
 						values={searchValues}
 						optionsHandler={optionsHandler}
@@ -234,7 +234,7 @@ export default function AdminOrders() {
 				<div className="">
 					<select
 						id="book-selector"
-						className="font-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+						className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
 						onChange={(event) => selectOptionsHandler(event)}
 					>
 						{options.map((option) => (
