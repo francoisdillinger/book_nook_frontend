@@ -78,7 +78,7 @@ export default function TableData({
 						<p className="pl-2">{firstName + " " + lastName}</p>
 					</div>
 				</td>
-				<td>${total.toFixed(2)}</td>
+				<td className="hidden md:table-cell">${total.toFixed(2)}</td>
 				<td>
 					<div className="relative">
 						<div
