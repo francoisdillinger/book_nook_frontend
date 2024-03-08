@@ -211,7 +211,10 @@ export default function AdminOrders() {
 	};
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValues({ option: event.target.value, value: "" });
+		setSearchValues({
+			option: event.target.value as "OrderId" | "User",
+			value: "",
+		});
 		setFilteredOrders(orders);
 	};
 
