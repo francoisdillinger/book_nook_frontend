@@ -136,9 +136,9 @@ export default function AdminOrders() {
 		"Status: Delivered",
 	];
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
-	// const [sortBy, setSortBy] = useState<OrdersSortType>({
-	// 	sortBy: "Date: Newest",
-	// });
+	const [sortBy, setSortBy] = useState<OrdersSortType>({
+		sortBy: "Date: Newest",
+	});
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
@@ -231,9 +231,6 @@ export default function AdminOrders() {
 						className="font-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
 						onChange={(event) => selectOptionsHandler(event)}
 					>
-						{/* <option>All</option>
-						<option>Author</option>
-						<option>Title</option> */}
 						{options.map((option) => (
 							<option key={option}>{option}</option>
 						))}
