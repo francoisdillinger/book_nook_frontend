@@ -145,9 +145,9 @@ export default function AdminOrders() {
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
-	const [sortedOrders, setSortedOrders] = useState<
-		ReformatedOrdersType[] | null
-	>();
+	// const [sortedOrders, setSortedOrders] = useState<
+	// 	ReformatedOrdersType[] | null
+	// >();
 	const [searchValues, setSearchValues] = useState({
 		option: "OrderId",
 		value: "",
@@ -162,7 +162,7 @@ export default function AdminOrders() {
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
 		setFilteredOrders(reformattedOrders);
-		setSortedOrders(reformattedOrders);
+		// setSortedOrders(reformattedOrders);
 	}, [orders_data]);
 
 	useEffect(() => {
@@ -171,7 +171,7 @@ export default function AdminOrders() {
 	}, [orders]);
 
 	useEffect(() => {
-		setSortedOrders(filteredOrders);
+		// setSortedOrders(filteredOrders);
 	}, [filteredOrders]);
 
 	const selectOptionsHandler = (
@@ -257,8 +257,8 @@ export default function AdminOrders() {
 					</thead>
 					<tbody className="text-md text-gray-500 text-center">
 						{filteredOrders &&
-							sortedOrders != null &&
-							sortedOrders.map((order) => (
+							filteredOrders != null &&
+							filteredOrders.map((order) => (
 								<TableData
 									key={order.orderId}
 									orderId={order.orderId}
