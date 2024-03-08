@@ -187,7 +187,7 @@ export default function AdminOrders() {
 	useEffect(() => {
 		const sortedOrders = sortOrders(orders ? orders : [], sortOption);
 		const searchedResults = searchedOrders(sortedOrders, searchValues);
-		setFilteredOrders(orders);
+		setFilteredOrders(searchedResults);
 		// setSortedOrders(orders);
 	}, [orders, searchValues, sortOption]);
 
