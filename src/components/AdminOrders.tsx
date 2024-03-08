@@ -53,6 +53,11 @@ type OrdersSortType = {
 		| "Status: Delivered";
 };
 
+type OrdersSearchType = {
+	option: "OrderId" | "User";
+	value: string;
+};
+
 const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
 	return [...orders.data.orders];
 };
@@ -118,14 +123,28 @@ const sortOrders = (
 
 		case "Status: Processing":
 			// console.log("Sort By: ", sortOption.sortOption)
-			return orders.filter((order) => order.orderStatus === "Processing");
+			return [...orders].filter((order) => order.orderStatus === "Processing");
 		case "Status: Shipped":
-			return orders.filter((order) => order.orderStatus === "Shipped");
+			return [...orders].filter((order) => order.orderStatus === "Shipped");
 		case "Status: Delivered":
-			return orders.filter((order) => order.orderStatus === "Delivered");
+			return [...orders].filter((order) => order.orderStatus === "Delivered");
 		default:
-			return orders; // Return unsorted if no match (or handle as needed)
+			return [...orders]; // Return unsorted if no match (or handle as needed)
 	}
+};
+
+const searchedOrders = (
+	orders: ReformatedOrdersType[],
+	searchValues: OrdersSearchType
+) => {
+	orders.filter((order) => {
+		if (searchValues.option === "OrderId") {
+			return order.orderId.includes(searchValues.value);
+		} else if (searchValues.option === "User") {
+			const name = order.firstName + " " + order.lastName;
+			return name.includes(searchValues.value);
+		}
+	});
 };
 
 export default function AdminOrders() {
@@ -148,7 +167,7 @@ export default function AdminOrders() {
 	// const [sortedOrders, setSortedOrders] = useState<
 	// 	ReformatedOrdersType[] | null
 	// >();
-	const [searchValues, setSearchValues] = useState({
+	const [searchValues, setSearchValues] = useState<OrdersSearchType>({
 		option: "OrderId",
 		value: "",
 	});
@@ -166,9 +185,11 @@ export default function AdminOrders() {
 	}, [orders_data]);
 
 	useEffect(() => {
+		const sortedOrders = sortOrders(orders ? orders : [], sortOption);
+		const searchedResults = searchedOrders(sortedOrders, searchValues);
 		setFilteredOrders(orders);
 		// setSortedOrders(orders);
-	}, [orders]);
+	}, [orders, searchValues, sortOption]);
 
 	useEffect(() => {
 		// setSortedOrders(filteredOrders);
@@ -196,16 +217,16 @@ export default function AdminOrders() {
 
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({ ...searchValues, value: event.target.value });
-		setFilteredOrders(
-			orders?.filter((order) => {
-				if (searchValues.option === "OrderId") {
-					return order.orderId.includes(event.target.value);
-				} else if (searchValues.option === "User") {
-					const name = order.firstName + " " + order.lastName;
-					return name.includes(event.target.value);
-				}
-			})
-		);
+		// setFilteredOrders(
+		// 	orders?.filter((order) => {
+		// 		if (searchValues.option === "OrderId") {
+		// 			return order.orderId.includes(event.target.value);
+		// 		} else if (searchValues.option === "User") {
+		// 			const name = order.firstName + " " + order.lastName;
+		// 			return name.includes(event.target.value);
+		// 		}
+		// 	})
+		// );
 	};
 
 	const clickHandler = () => {
