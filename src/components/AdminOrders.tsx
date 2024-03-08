@@ -43,7 +43,7 @@ type TrimmedOrdersType = {
 };
 
 type OrdersSortType = {
-	sortBy:
+	sortOption:
 		| "Date: Newest"
 		| "Date: Oldest"
 		| "Total: Ascending"
@@ -96,8 +96,11 @@ const reformateOrders = (
 	return newOrders;
 };
 
-const sortOrders = (orders: ReformatedOrdersType[], sortBy: OrdersSortType) => {
-	switch (sortBy.sortBy) {
+const sortOrders = (
+	orders: ReformatedOrdersType[],
+	sortOption: OrdersSortType
+) => {
+	switch (sortOption.sortOption) {
 		case "Date: Newest":
 			return [...orders].sort(
 				(a, b) =>
@@ -114,7 +117,7 @@ const sortOrders = (orders: ReformatedOrdersType[], sortBy: OrdersSortType) => {
 			return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
 
 		case "Status: Processing":
-			// console.log("Sort By: ", sortBy.sortBy)
+			// console.log("Sort By: ", sortOption.sortOption)
 			return orders.filter((order) => order.orderStatus === "Processing");
 		case "Status: Shipped":
 			return orders.filter((order) => order.orderStatus === "Shipped");
@@ -136,8 +139,8 @@ export default function AdminOrders() {
 		"Status: Delivered",
 	];
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
-	const [sortBy, setSortBy] = useState<OrdersSortType>({
-		sortBy: "Date: Newest",
+	const [sortOption, setSortOption] = useState<OrdersSortType>({
+		sortOption: "Date: Newest",
 	});
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
@@ -177,11 +180,13 @@ export default function AdminOrders() {
 		// setSortedOrders(
 		// 	filteredOrders
 		// 		? sortOrders([...filteredOrders], {
-		// 				sortBy: event.target.value as OrdersSortType["sortBy"],
+		// 				sortOption: event.target.value as OrdersSortType["sortOption"],
 		// 		  })
 		// 		: []
 		// );
-		setSortBy({ sortBy: event.target.value as OrdersSortType["sortBy"] });
+		setSortOption({
+			sortOption: event.target.value as OrdersSortType["sortOption"],
+		});
 	};
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -209,7 +214,7 @@ export default function AdminOrders() {
 
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
-	console.log("Sort by: ", sortBy);
+	console.log("Sort by: ", sortOption);
 	// console.log(filteredOrders);
 	return (
 		<div className="">
