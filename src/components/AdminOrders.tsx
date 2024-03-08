@@ -211,7 +211,6 @@ export default function AdminOrders() {
 			option: event.target.value as "OrderId" | "User",
 			value: "",
 		});
-		setFilteredOrders(orders);
 	};
 
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
