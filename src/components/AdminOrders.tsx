@@ -214,7 +214,7 @@ export default function AdminOrders() {
 
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
-	console.log("Sort by: ", sortOption);
+	// console.log("Sort by: ", sortOption);
 	// console.log(displayedOrders);
 	return (
 		<div className="">
