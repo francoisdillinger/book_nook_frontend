@@ -164,9 +164,6 @@ export default function AdminOrders() {
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
-	// const [sortedOrders, setSortedOrders] = useState<
-	// 	ReformatedOrdersType[] | null
-	// >();
 	const [searchValues, setSearchValues] = useState<OrdersSearchType>({
 		option: "OrderId",
 		value: "",
