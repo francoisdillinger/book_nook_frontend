@@ -3,10 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
-	return [...orders.data.orders];
-};
-
 const reformateOrders = (
 	orders: TrimmedOrdersType[]
 ): ReformatedOrdersType[] => {
