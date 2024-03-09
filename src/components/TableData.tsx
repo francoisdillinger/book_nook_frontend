@@ -4,6 +4,7 @@ import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 import { ReformatedOrdersType } from "../utils/adminOrdersUtilities";
 import alchemist from "../assets/alchemist.jpg";
+import OrderedItem from "./OrderedItem";
 // import { ReformatedOrdersType } from "./AdminOrders";
 
 // type StatusType = "Processing" | "Shipped" | "Delivered";
@@ -218,27 +219,12 @@ export default function TableData({
 							</h1>
 							<div className="flex">
 								<div className="flex flex-col w-1/2">
-									<div className="flex items-center justify-center py-2">
-										<div className="w-20">
-											<img
-												src={alchemist}
-												alt=""
-											/>
-										</div>
-										<div className="px-8">
-											<h2 className="block text-gray-400 font-semibold text-2xl">
-												The Alchemist
-											</h2>
-											<div className="">
-												<p className="inline-block px-2 text-gray-500 text-lg">
-													Quantity: 4
-												</p>
-												<p className="inline-block px-2 text-gray-500 text-lg">
-													Amount: $ 4.96
-												</p>
-											</div>
-										</div>
-									</div>
+									<OrderedItem
+										imgageURL={alchemist}
+										bookTitle={"The Alchemist"}
+										quantity={4}
+										total={4.96}
+									/>
 								</div>
 								<div className="text-center w-1/2">
 									<p className="px-2 text-gray-400 text-sm font-medium">
