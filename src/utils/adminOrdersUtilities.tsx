@@ -126,3 +126,17 @@ export const sortOrders = (
 			return [...orders]; // Return unsorted if no match (or handle as needed)
 	}
 };
+
+export const searchedOrders = (
+	orders: ReformatedOrdersType[],
+	searchValues: OrdersSearchType
+) => {
+	return orders.filter((order) => {
+		if (searchValues.option === "OrderId") {
+			return order.orderId.includes(searchValues.value);
+		} else if (searchValues.option === "User") {
+			const name = order.firstName + " " + order.lastName;
+			return name.includes(searchValues.value);
+		}
+	});
+};
