@@ -122,7 +122,6 @@ const sortOrders = (
 			return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
 
 		case "Status: Processing":
-			// console.log("Sort By: ", sortOption.sortOption)
 			return [...orders].filter((order) => order.orderStatus === "Processing");
 		case "Status: Shipped":
 			return [...orders].filter((order) => order.orderStatus === "Shipped");
