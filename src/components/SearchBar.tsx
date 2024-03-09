@@ -49,9 +49,6 @@ export default function SearchBar({
 					className={`${selectStyles}`}
 					onChange={(event) => optionsHandler(event)}
 				>
-					{/* <option>All</option>
-					<option>Author</option>
-					<option>Title</option> */}
 					{options.map((option) => (
 						<option key={option}>{option}</option>
 					))}
