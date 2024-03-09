@@ -209,8 +209,14 @@ export default function TableData({
 										ease: "easeInOut", // Use an ease-in-out curve for closing
 								  }
 						}
-						className={`relative overflow-hidden flex items-center justify-center`}
-					></motion.div>
+						className={`relative overflow-hidden flex items-center`}
+					>
+						<div className="p-8">
+							<h4 className="text-slate-600 font-semibold text-xl">
+								Order Details:
+							</h4>
+						</div>
+					</motion.div>
 				</td>
 			</tr>
 		</React.Fragment>
