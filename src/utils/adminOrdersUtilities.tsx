@@ -1,3 +1,5 @@
+import { OrdersType } from "../data/orders_data";
+
 export type IndividualOrderType = {
 	bookId: number;
 	bookTitle: string;
