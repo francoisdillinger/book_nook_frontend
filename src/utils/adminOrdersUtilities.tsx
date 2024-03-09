@@ -47,3 +47,8 @@ export type OrdersSortType = {
 		| "Status: Shipped"
 		| "Status: Delivered";
 };
+
+export type OrdersSearchType = {
+	option: "OrderId" | "User";
+	value: string;
+};
