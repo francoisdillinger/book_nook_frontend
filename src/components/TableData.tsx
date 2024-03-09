@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
-import { ReformatedOrdersType } from "./AdminOrders";
+import { ReformatedOrdersType } from "../utils/adminOrdersUtilities";
+// import { ReformatedOrdersType } from "./AdminOrders";
 
 // type StatusType = "Processing" | "Shipped" | "Delivered";
 
