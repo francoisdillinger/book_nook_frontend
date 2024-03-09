@@ -3,7 +3,7 @@ import React from "react";
 type OrderedItemType = {
 	imgageURL: string;
 	bookTitle: string;
-	quantity: string;
+	quantity: number;
 	total: number;
 };
 export default function OrderedItem({
