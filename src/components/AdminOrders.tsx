@@ -131,6 +131,7 @@ export default function AdminOrders() {
 									lastName={order.lastName}
 									total={order.totalAmount}
 									orderStatus={order.orderStatus}
+									userOrders={order.orders}
 									orders={orders}
 									setOrders={setOrders}
 								/>
