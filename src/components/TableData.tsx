@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 import { ReformatedOrdersType } from "../utils/adminOrdersUtilities";
+import alchemist from "../assets/alchemist.jpg";
 // import { ReformatedOrdersType } from "./AdminOrders";
 
 // type StatusType = "Processing" | "Shipped" | "Delivered";
@@ -195,7 +196,7 @@ export default function TableData({
 				>
 					<motion.div
 						initial={{ height: 0 }}
-						animate={{ height: expandSlide ? "5em" : "0em" }}
+						animate={{ height: expandSlide ? "18em" : "0em" }}
 						transition={
 							expandSlide
 								? {
@@ -209,12 +210,33 @@ export default function TableData({
 										ease: "easeInOut", // Use an ease-in-out curve for closing
 								  }
 						}
-						className={`relative overflow-hidden flex items-center`}
+						className={`relative overflow-hidden flex`}
 					>
-						<div className="p-8">
-							<h4 className="text-slate-600 font-semibold text-xl">
+						<div className="w-3/4 m-auto p-8">
+							<h1 className="text-gray-600 font-semibold text-3xl">
 								Order Details:
-							</h4>
+							</h1>
+							<div className="flex items-center">
+								<div className="w-20">
+									<img
+										src={alchemist}
+										alt=""
+									/>
+								</div>
+								<div className="px-8">
+									<div className="block text-gray-400 font-semibold text-2xl">
+										The Alchemist
+									</div>
+									<div className="">
+										<div className="inline-block px-2 text-gray-500 text-lg">
+											Quantity: 4
+										</div>
+										<div className="inline-block px-2 text-gray-500 text-lg">
+											Amount: $ 4.96
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</motion.div>
 				</td>
