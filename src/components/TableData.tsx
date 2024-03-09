@@ -54,7 +54,7 @@ const calculateHeight = (numOfItems: number): string => {
 		numOfItems > 1
 			? header + numOfItems * bookHeight + "em"
 			: header + customerDetails + "em";
-	console.log("Needed Height: ", neededHeight);
+	// console.log("Needed Height: ", neededHeight);
 	return neededHeight;
 };
 
@@ -80,7 +80,7 @@ export default function TableData({
 	const handleExpandSlide = () => {
 		setExpandSlide((prevState) => !prevState);
 	};
-	console.log("User Orders: ", userOrders);
+	// console.log("User Orders: ", userOrders);
 	return (
 		<React.Fragment>
 			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
@@ -240,6 +240,7 @@ export default function TableData({
 								<div className="flex flex-col w-2/3">
 									{userOrders.map((order) => (
 										<OrderedItem
+											key={order.bookId}
 											imgageURL={alchemist}
 											bookTitle={order.bookTitle}
 											quantity={order.quantity}
