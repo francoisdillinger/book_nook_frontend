@@ -3,37 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-const sortOrders = (
-	orders: ReformatedOrdersType[],
-	sortOption: OrdersSortType
-) => {
-	switch (sortOption.sortOption) {
-		case "Date: Newest":
-			return [...orders].sort(
-				(a, b) =>
-					new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
-			);
-		case "Date: Oldest":
-			return [...orders].sort(
-				(a, b) =>
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-			);
-		case "Total: Ascending":
-			return [...orders].sort((a, b) => a.totalAmount - b.totalAmount);
-		case "Total: Descending":
-			return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
-
-		case "Status: Processing":
-			return [...orders].filter((order) => order.orderStatus === "Processing");
-		case "Status: Shipped":
-			return [...orders].filter((order) => order.orderStatus === "Shipped");
-		case "Status: Delivered":
-			return [...orders].filter((order) => order.orderStatus === "Delivered");
-		default:
-			return [...orders]; // Return unsorted if no match (or handle as needed)
-	}
-};
-
 const searchedOrders = (
 	orders: ReformatedOrdersType[],
 	searchValues: OrdersSearchType
