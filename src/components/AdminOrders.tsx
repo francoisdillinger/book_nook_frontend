@@ -3,14 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-type IndividualOrderType = {
-	bookId: number;
-	bookTitle: string;
-	isbn: string;
-	orderAmount: number;
-	quantity: number;
-};
-
 export type ReformatedOrdersType = {
 	orderId: string;
 	userId: number;
