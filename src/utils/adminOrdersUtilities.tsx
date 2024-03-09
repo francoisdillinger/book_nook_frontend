@@ -17,3 +17,22 @@ export type ReformatedOrdersType = {
 	totalQuantity: number;
 	orders: IndividualOrderType[];
 };
+
+export type TrimmedOrdersType = {
+	orderId: string;
+	userId: number;
+	bookId: number;
+	quantity: number;
+	orderDate: string;
+	orderAmount: number;
+	orderStatus: string;
+	user: {
+		userName: string;
+		firstName: string;
+		lastName: string;
+	};
+	book: {
+		bookTitle: string;
+		isbn: string;
+	};
+};
