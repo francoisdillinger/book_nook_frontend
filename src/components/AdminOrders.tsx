@@ -3,18 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-export type ReformatedOrdersType = {
-	orderId: string;
-	userId: number;
-	firstName: string;
-	lastName: string;
-	orderDate: string;
-	totalAmount: number;
-	orderStatus: string;
-	totalQuantity: number;
-	orders: IndividualOrderType[];
-};
-
 type TrimmedOrdersType = {
 	orderId: string;
 	userId: number;
