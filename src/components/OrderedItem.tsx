@@ -15,14 +15,14 @@ export default function OrderedItem({
 	return (
 		<React.Fragment>
 			{" "}
-			<div className="flex items-center justify-center py-2">
-				<div className="w-20">
+			<div className="flex items-center justify-between py-2 px-6">
+				<div className="w-24">
 					<img
 						src={imgageURL}
 						alt=""
 					/>
 				</div>
-				<div className="px-8">
+				<div className="px-8 w-full">
 					<h2 className="block text-gray-400 font-semibold text-2xl">
 						{bookTitle}
 					</h2>
