@@ -31,7 +31,7 @@ export default function OrderedItem({
 							Quantity: {quantity}
 						</p>
 						<p className="inline-block px-2 text-gray-500 text-lg">
-							Amount: $ {total}
+							Amount: $ {total.toFixed(2)}
 						</p>
 					</div>
 				</div>
