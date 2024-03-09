@@ -104,7 +104,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-07-07",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "reader123",
 					firstName: "Jane",
@@ -122,7 +121,6 @@ export const orders_data: OrdersType = {
 				quantity: 2,
 				orderDate: "2023-07-07",
 				orderAmount: 9.9,
-				orderStatus: "Processing",
 				orderStatus: "Processing",
 				user: {
 					userName: "reader123",
@@ -196,7 +194,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-07-10",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "bibliophile",
 					firstName: "Michael",
@@ -250,7 +247,6 @@ export const orders_data: OrdersType = {
 				quantity: 2,
 				orderDate: "2023-06-18",
 				orderAmount: 9.9,
-				orderStatus: "Processing",
 				orderStatus: "Processing",
 				user: {
 					userName: "bibliophile",
@@ -450,7 +446,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-06-19",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "reader123",
 					firstName: "Jane",
@@ -613,7 +608,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-08-12",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "reader123",
 					firstName: "Jane",
@@ -740,7 +734,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-01-23",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "bibliophile",
 					firstName: "Michael",
@@ -812,7 +805,6 @@ export const orders_data: OrdersType = {
 				quantity: 2,
 				orderDate: "2023-09-15",
 				orderAmount: 9.9,
-				orderStatus: "Processing",
 				orderStatus: "Processing",
 				user: {
 					userName: "booklover1",
@@ -922,7 +914,6 @@ export const orders_data: OrdersType = {
 				orderDate: "2023-03-04",
 				orderAmount: 9.9,
 				orderStatus: "Processing",
-				orderStatus: "Processing",
 				user: {
 					userName: "booklover1",
 					firstName: "John",
@@ -940,7 +931,6 @@ export const orders_data: OrdersType = {
 				quantity: 2,
 				orderDate: "2023-07-23",
 				orderAmount: 9.9,
-				orderStatus: "Processing",
 				orderStatus: "Processing",
 				user: {
 					userName: "booklover1",
@@ -1031,7 +1021,6 @@ export const orders_data: OrdersType = {
 				quantity: 2,
 				orderDate: "2023-07-23",
 				orderAmount: 9.9,
-				orderStatus: "Processing",
 				orderStatus: "Processing",
 				user: {
 					userName: "bibliophile",
