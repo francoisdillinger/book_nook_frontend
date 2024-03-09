@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import purpur from "../assets/purpur.jpg";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
-import { ReformatedOrdersType } from "../utils/adminOrdersUtilities";
+import {
+	IndividualOrderType,
+	ReformatedOrdersType,
+} from "../utils/adminOrdersUtilities";
 import alchemist from "../assets/alchemist.jpg";
 import OrderedItem from "./OrderedItem";
 // import { ReformatedOrdersType } from "./AdminOrders";
@@ -19,6 +22,7 @@ type TableDataType = {
 	lastName: string;
 	total: number;
 	orderStatus: string;
+	userOrders: IndividualOrderType[];
 	orders: ReformatedOrdersType[];
 	setOrders: Function;
 };
@@ -42,12 +46,25 @@ const statusColor = (status: string, background: BackgroundType): string => {
 	}
 };
 
+const calculateHeight = (numOfItems: number): string => {
+	const header = 5;
+	const customerDetails = 13;
+	const bookHeight = 9;
+	const neededHeight =
+		numOfItems > 1
+			? header + numOfItems * bookHeight + "em"
+			: header + customerDetails + "em";
+	console.log("Needed Height: ", neededHeight);
+	return neededHeight;
+};
+
 export default function TableData({
 	orderId,
 	firstName,
 	lastName,
 	total,
 	orderStatus,
+	userOrders,
 	orders,
 	setOrders,
 }: TableDataType) {
@@ -63,7 +80,7 @@ export default function TableData({
 	const handleExpandSlide = () => {
 		setExpandSlide((prevState) => !prevState);
 	};
-
+	console.log("User Orders: ", userOrders);
 	return (
 		<React.Fragment>
 			{/* <tr className="border-gray-200 border-solid border-t border-r border-l rounded-t-2xl"> */}
@@ -197,7 +214,9 @@ export default function TableData({
 				>
 					<motion.div
 						initial={{ height: 0 }}
-						animate={{ height: expandSlide ? "28em" : "0em" }}
+						animate={{
+							height: expandSlide ? calculateHeight(userOrders.length) : "0em",
+						}}
 						transition={
 							expandSlide
 								? {
@@ -219,16 +238,14 @@ export default function TableData({
 							</h1>
 							<div className="flex">
 								<div className="flex flex-col w-2/3">
-									{orders.map((order) =>
-										order.orders.map((order) => (
-											<OrderedItem
-												imgageURL={alchemist}
-												bookTitle={order.bookTitle}
-												quantity={order.quantity}
-												total={order.orderAmount}
-											/>
-										))
-									)}
+									{userOrders.map((order) => (
+										<OrderedItem
+											imgageURL={alchemist}
+											bookTitle={order.bookTitle}
+											quantity={order.quantity}
+											total={order.orderAmount}
+										/>
+									))}
 								</div>
 								<div className="text-center w-1/3">
 									<p className="px-2 text-gray-400 text-sm font-medium">
