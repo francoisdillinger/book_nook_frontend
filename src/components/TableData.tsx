@@ -249,31 +249,25 @@ export default function TableData({
 									))}
 								</div>
 								<div className="text-center w-1/3">
-									<p className="px-2 text-gray-400 text-sm font-medium">
+									<div className="px-2 text-gray-400 text-sm font-medium">
 										Customer Name:{" "}
 										<div className="text-gray-500 text-2xl font-normal">
 											{firstName + " " + lastName}
 										</div>
-									</p>
-									<p
-										className="px-2 text-gray-400 text-sm font-medium"
-										font-medium
-									>
+									</div>
+									<div className="px-2 text-gray-400 text-sm font-medium">
 										Address:{" "}
 										<div className="text-gray-500 text-2xl font-normal">
 											<div>123 Rockingham Rd</div>
 											<div>Birmingham AL, 35235</div>
 										</div>
-									</p>
-									<p
-										className="px-2 text-gray-400 text-sm font-medium"
-										font-medium
-									>
+									</div>
+									<div className="px-2 text-gray-400 text-sm font-medium">
 										Order Total:{" "}
 										<div className="text-gray-500 text-2xl font-normal">
 											${total.toFixed(2)}
 										</div>
-									</p>
+									</div>
 								</div>
 							</div>
 						</div>
