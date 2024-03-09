@@ -3,25 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-type TrimmedOrdersType = {
-	orderId: string;
-	userId: number;
-	bookId: number;
-	quantity: number;
-	orderDate: string;
-	orderAmount: number;
-	orderStatus: string;
-	user: {
-		userName: string;
-		firstName: string;
-		lastName: string;
-	};
-	book: {
-		bookTitle: string;
-		isbn: string;
-	};
-};
-
 type OrdersSortType = {
 	sortOption:
 		| "Date: Newest"
