@@ -197,7 +197,7 @@ export default function TableData({
 				>
 					<motion.div
 						initial={{ height: 0 }}
-						animate={{ height: expandSlide ? "18em" : "0em" }}
+						animate={{ height: expandSlide ? "28em" : "0em" }}
 						transition={
 							expandSlide
 								? {
@@ -218,15 +218,19 @@ export default function TableData({
 								Order Details:
 							</h1>
 							<div className="flex">
-								<div className="flex flex-col w-1/2">
-									<OrderedItem
-										imgageURL={alchemist}
-										bookTitle={"The Alchemist"}
-										quantity={4}
-										total={4.96}
-									/>
+								<div className="flex flex-col w-2/3">
+									{orders.map((order) =>
+										order.orders.map((order) => (
+											<OrderedItem
+												imgageURL={alchemist}
+												bookTitle={order.bookTitle}
+												quantity={order.quantity}
+												total={order.orderAmount}
+											/>
+										))
+									)}
 								</div>
-								<div className="text-center w-1/2">
+								<div className="text-center w-1/3">
 									<p className="px-2 text-gray-400 text-sm font-medium">
 										Customer Name:{" "}
 										<div className="text-gray-500 text-2xl font-normal">
