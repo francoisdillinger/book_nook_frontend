@@ -36,3 +36,14 @@ export type TrimmedOrdersType = {
 		isbn: string;
 	};
 };
+
+export type OrdersSortType = {
+	sortOption:
+		| "Date: Newest"
+		| "Date: Oldest"
+		| "Total: Ascending"
+		| "Total: Descending"
+		| "Status: Processing"
+		| "Status: Shipped"
+		| "Status: Delivered";
+};
