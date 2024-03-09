@@ -212,31 +212,56 @@ export default function TableData({
 						}
 						className={`relative overflow-hidden`}
 					>
-						<div className="w-3/4 m-auto p-8">
+						<div className="w-9/10 m-auto p-8">
 							<h1 className="text-gray-600 font-semibold text-3xl pb-4">
 								Order Details:
 							</h1>
 							<div className="flex">
-								<div className="flex items-center w-1/2">
-									<div className="w-20">
-										<img
-											src={alchemist}
-											alt=""
-										/>
-									</div>
-									<div className="px-8">
-										<h2 className="block text-gray-400 font-semibold text-2xl">
-											The Alchemist
-										</h2>
-										<div className="">
-											<p className="inline-block px-2 text-gray-500 text-lg">
-												Quantity: 4
-											</p>
-											<p className="inline-block px-2 text-gray-500 text-lg">
-												Amount: $ 4.96
-											</p>
+								<div className="flex flex-col w-1/2">
+									<div className="flex items-center justify-center py-2">
+										<div className="w-20">
+											<img
+												src={alchemist}
+												alt=""
+											/>
+										</div>
+										<div className="px-8">
+											<h2 className="block text-gray-400 font-semibold text-2xl">
+												The Alchemist
+											</h2>
+											<div className="">
+												<p className="inline-block px-2 text-gray-500 text-lg">
+													Quantity: 4
+												</p>
+												<p className="inline-block px-2 text-gray-500 text-lg">
+													Amount: $ 4.96
+												</p>
+											</div>
 										</div>
 									</div>
+									{/* //////////////////////////////////////////////////////////////////////// */}
+									<div className="flex items-center justify-center py-2">
+										<div className="w-20">
+											<img
+												src={alchemist}
+												alt=""
+											/>
+										</div>
+										<div className="px-8">
+											<h2 className="block text-gray-400 font-semibold text-2xl">
+												The Alchemist
+											</h2>
+											<div className="">
+												<p className="inline-block px-2 text-gray-500 text-lg">
+													Quantity: 4
+												</p>
+												<p className="inline-block px-2 text-gray-500 text-lg">
+													Amount: $ 4.96
+												</p>
+											</div>
+										</div>
+									</div>
+									{/* //////////////////////////////////////////////////////////////////////// */}
 								</div>
 								<div className="text-center w-1/2">
 									<p className="px-2 text-gray-400 text-sm font-medium">
