@@ -224,16 +224,16 @@ export default function TableData({
 									/>
 								</div>
 								<div className="px-8">
-									<div className="block text-gray-400 font-semibold text-2xl">
+									<h2 className="block text-gray-400 font-semibold text-2xl">
 										The Alchemist
-									</div>
+									</h2>
 									<div className="">
-										<div className="inline-block px-2 text-gray-500 text-lg">
+										<p className="inline-block px-2 text-gray-500 text-lg">
 											Quantity: 4
-										</div>
-										<div className="inline-block px-2 text-gray-500 text-lg">
+										</p>
+										<p className="inline-block px-2 text-gray-500 text-lg">
 											Amount: $ 4.96
-										</div>
+										</p>
 									</div>
 								</div>
 							</div>
