@@ -3,17 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-type OrdersSortType = {
-	sortOption:
-		| "Date: Newest"
-		| "Date: Oldest"
-		| "Total: Ascending"
-		| "Total: Descending"
-		| "Status: Processing"
-		| "Status: Shipped"
-		| "Status: Delivered";
-};
-
 type OrdersSearchType = {
 	option: "OrderId" | "User";
 	value: string;
