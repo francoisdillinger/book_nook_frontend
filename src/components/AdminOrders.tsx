@@ -3,11 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-type OrdersSearchType = {
-	option: "OrderId" | "User";
-	value: string;
-};
-
 const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
 	return [...orders.data.orders];
 };
