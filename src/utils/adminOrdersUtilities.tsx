@@ -52,3 +52,7 @@ export type OrdersSearchType = {
 	option: "OrderId" | "User";
 	value: string;
 };
+
+export const trimOrders = (orders: OrdersType): TrimmedOrdersType[] => {
+	return [...orders.data.orders];
+};
