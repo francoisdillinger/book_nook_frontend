@@ -3,20 +3,6 @@ import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 
-const searchedOrders = (
-	orders: ReformatedOrdersType[],
-	searchValues: OrdersSearchType
-) => {
-	return orders.filter((order) => {
-		if (searchValues.option === "OrderId") {
-			return order.orderId.includes(searchValues.value);
-		} else if (searchValues.option === "User") {
-			const name = order.firstName + " " + order.lastName;
-			return name.includes(searchValues.value);
-		}
-	});
-};
-
 export default function AdminOrders() {
 	const options = [
 		"Date: Newest",
