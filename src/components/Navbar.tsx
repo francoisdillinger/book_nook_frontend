@@ -251,9 +251,9 @@ export default function Navbar() {
 						</a>
 					</div>
 				</div>
-				<div className="flex md:hidden items-center w-full pb-2">
+				{/* <div className="flex md:hidden items-center w-full pb-2">
 					<SearchBar />
-				</div>
+				</div> */}
 			</div>
 		</nav>
 	);
