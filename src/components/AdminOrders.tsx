@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import TableData from "./TableData";
 import { orders_data, OrdersType } from "../data/orders_data";
 import SearchBar from "./SearchBar";
+import {
+	OrdersSearchType,
+	OrdersSortType,
+	ReformatedOrdersType,
+	reformateOrders,
+	searchedOrders,
+	sortOrders,
+	trimOrders,
+} from "../utils/adminOrdersUtilities";
 
 export default function AdminOrders() {
 	const options = [
