@@ -180,7 +180,7 @@ export default function AdminOrders() {
 					</select>
 				</div>
 			</div>
-			<div className="">
+			<div className="min-h-[660px]">
 				<table className="table-auto w-3/4 m-auto">
 					<thead className="bg-gray-100 text-gray-400 text-xl h-12">
 						<tr className="">
@@ -211,8 +211,8 @@ export default function AdminOrders() {
 					</tbody>
 				</table>
 			</div>
-			<div className="w-3/4 m-auto flex justify-end">
-				<div className="bg-gray-100 p-1 rounded-xl mt-2 shadow-sm">
+			<div className="w-3/4 m-auto flex justify-end mt-8 mb-8">
+				<div className="bg-gray-100 p-1 rounded-xl shadow-sm">
 					<button
 						onClick={handlePaginationDecrease}
 						className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
