@@ -127,9 +127,9 @@ export default function AdminOrders() {
 		setSearchValues({ ...searchValues, value: "" });
 	};
 	const handlePaginationDecrease = () => {
-		const inRange = (paginationIndex - 1) * 10 > 0;
-		const hasResults = paginationIndex * 10 > 0;
-		setPaginationIndex(inRange ? paginationIndex - 1 : paginationIndex);
+		const hasResults = (paginationIndex - 1) * 10 > 0;
+		// const hasResults = paginationIndex * 10 > 0;
+		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
 
 	const handlePaginationIncrease = () => {
