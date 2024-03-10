@@ -100,8 +100,8 @@ export default function AdminOrders() {
 		const range = getRange(paginationIndex, 10);
 		const orders = filterByRange(filteredOrders ? filteredOrders : [], range);
 		setDisplayedOrders(orders);
-		console.log("Range: ", range);
-		console.log("Orders: ", orders);
+		// console.log("Range: ", range);
+		// console.log("Orders: ", orders);
 	}, [paginationIndex, filteredOrders]);
 
 	const selectOptionsHandler = (
