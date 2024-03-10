@@ -48,7 +48,7 @@ const statusColor = (status: string, background: BackgroundType): string => {
 
 const calculateHeight = (numOfItems: number): string => {
 	const header = 5;
-	const customerDetails = 13;
+	const customerDetails = 15;
 	const bookHeight = 9;
 	const neededHeight =
 		numOfItems > 1
