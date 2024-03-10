@@ -22,8 +22,8 @@ import AdminOrders from "./components/AdminOrders";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar />
-			<HomePageContent /> */}
+			{/* <Navbar /> */}
+			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
