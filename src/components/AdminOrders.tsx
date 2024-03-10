@@ -12,6 +12,12 @@ import {
 	trimOrders,
 } from "../utils/adminOrdersUtilities";
 
+const getRange = (paginationIndex: number, numOfItems: number) => {
+	const start = (paginationIndex - 1) * numOfItems;
+	const end = paginationIndex * numOfItems - 1;
+	return [start, end];
+};
+
 export default function AdminOrders() {
 	const options = [
 		"Date: Newest",
@@ -54,6 +60,10 @@ export default function AdminOrders() {
 				: sortedOrders;
 		setDisplayedOrders(searchedResults);
 	}, [orders, searchValues, sortOption]);
+
+	useEffect(() => {
+		getRange(paginationIndex, 10);
+	}, [paginationIndex]);
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
