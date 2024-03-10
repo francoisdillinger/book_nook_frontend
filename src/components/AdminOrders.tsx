@@ -38,6 +38,7 @@ export default function AdminOrders() {
 		"Status: Shipped",
 		"Status: Delivered",
 	];
+	const numOfResults = 10;
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
 	const [filteredOrders, setFilteredOrders] = useState<
 		ReformatedOrdersType[] | null
@@ -99,7 +100,7 @@ export default function AdminOrders() {
 	}, [sortOption]);
 
 	useEffect(() => {
-		const range = getRange(paginationIndex, 10);
+		const range = getRange(paginationIndex, numOfResults);
 		const orders = filterByRange(filteredOrders ? filteredOrders : [], range);
 		setDisplayedOrders(orders);
 		// console.log("Range: ", range);
@@ -130,8 +131,8 @@ export default function AdminOrders() {
 	};
 	const handlePaginationDecrease = () => {
 		console.log("Decrease");
-		const hasResults = (paginationIndex - 1) * 10 > 0;
-		// const hasResults = paginationIndex * 10 > 0;
+		const hasResults = (paginationIndex - 1) * numOfResults > 0;
+		// const hasResults = paginationIndex * numOfResults > 0;
 		setDecreaseButtonDisabled(!hasResults);
 		setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
@@ -139,8 +140,9 @@ export default function AdminOrders() {
 
 	const handlePaginationIncrease = () => {
 		console.log("Increase");
-		const inRange = (paginationIndex + 1) * 10 < filteredOrders?.length;
-		const hasResults = paginationIndex * 10 < filteredOrders?.length;
+		const inRange =
+			(paginationIndex + 1) * numOfResults < filteredOrders?.length;
+		const hasResults = paginationIndex * numOfResults < filteredOrders?.length;
 		// console.log("In Range: ", inRange);
 		setDecreaseButtonDisabled(false);
 		setIncreaseButtonDiabled(!inRange);
