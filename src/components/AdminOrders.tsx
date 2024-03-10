@@ -212,20 +212,22 @@ export default function AdminOrders() {
 				</table>
 			</div>
 			<div className="w-3/4 m-auto flex justify-end">
-				<button
-					onClick={handlePaginationDecrease}
-					className="border-solid border p-1 text-sm font-medium enabled:border-gray-500 disabled:border-gray-400 enabled:text-gray-700 disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-					disabled={buttonDecreaseDisabled}
-				>
-					Prev
-				</button>
-				<button
-					onClick={handlePaginationIncrease}
-					className="border-solid border p-1 text-sm font-medium enabled:border-gray-500 disabled:border-gray-400 enabled:text-gray-700 disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-					disabled={buttonIncreaseDisabled}
-				>
-					Next
-				</button>
+				<div className="bg-gray-100 p-1 rounded-xl mt-2 shadow-sm">
+					<button
+						onClick={handlePaginationDecrease}
+						className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						disabled={buttonDecreaseDisabled}
+					>
+						Prev
+					</button>
+					<button
+						onClick={handlePaginationIncrease}
+						className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						disabled={buttonIncreaseDisabled}
+					>
+						Next
+					</button>
+				</div>
 			</div>
 		</div>
 	);
