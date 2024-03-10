@@ -126,7 +126,8 @@ export default function AdminOrders() {
 	const clickHandler = () => {
 		setSearchValues({ ...searchValues, value: "" });
 	};
-	const handlePaginationIncrease = () => {
+	const handlePaginationDecrease = () => {
+		console.log("Length: ", displayedOrders.length);
 		setPaginationIndex(paginationIndex - 1);
 	};
 
@@ -194,7 +195,7 @@ export default function AdminOrders() {
 			</div>
 			<div className="w-3/4 m-auto flex justify-end">
 				<div
-					onClick={handlePaginationIncrease}
+					onClick={handlePaginationDecrease}
 					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
 				>
 					Prev
