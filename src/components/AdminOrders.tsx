@@ -127,12 +127,16 @@ export default function AdminOrders() {
 		setSearchValues({ ...searchValues, value: "" });
 	};
 	const handlePaginationDecrease = () => {
-		console.log("Length: ", filteredOrders.length);
-		setPaginationIndex(paginationIndex - 1);
+		const inRange = (paginationIndex - 1) * 10 > 0;
+		const hasResults = paginationIndex * 10 > 0;
+		setPaginationIndex(inRange ? paginationIndex - 1 : paginationIndex);
 	};
 
 	const handlePaginationIncrease = () => {
-		setPaginationIndex(paginationIndex + 1);
+		const inRange = (paginationIndex + 1) * 10 < filteredOrders?.length;
+		const hasResults = paginationIndex * 10 < filteredOrders?.length;
+		// console.log("In Range: ", inRange);
+		setPaginationIndex(hasResults ? paginationIndex + 1 : paginationIndex);
 	};
 
 	// console.log("Trimmed: ", trimmmedOrders);
