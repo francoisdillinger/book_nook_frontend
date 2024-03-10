@@ -53,6 +53,8 @@ export default function AdminOrders() {
 		value: "",
 	});
 	const [paginationIndex, setPaginationIndex] = useState(1);
+	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
+	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 
 	useEffect(() => {
 		const trimmmedOrders = trimOrders(orders_data);
@@ -127,21 +129,29 @@ export default function AdminOrders() {
 		setSearchValues({ ...searchValues, value: "" });
 	};
 	const handlePaginationDecrease = () => {
+		console.log("Decrease");
 		const hasResults = (paginationIndex - 1) * 10 > 0;
 		// const hasResults = paginationIndex * 10 > 0;
+		setDecreaseButtonDisabled(!hasResults);
+		setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
 
 	const handlePaginationIncrease = () => {
+		console.log("Increase");
 		const inRange = (paginationIndex + 1) * 10 < filteredOrders?.length;
 		const hasResults = paginationIndex * 10 < filteredOrders?.length;
 		// console.log("In Range: ", inRange);
+		setDecreaseButtonDisabled(false);
+		setIncreaseButtonDiabled(!inRange);
 		setPaginationIndex(hasResults ? paginationIndex + 1 : paginationIndex);
 	};
 
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	// console.log("Sort by: ", sortOption);
+	console.log("Decrease Disabled: ", buttonDecreaseDisabled);
+	console.log("Increase Disabled: ", buttonIncreaseDisabled);
 	console.log(paginationIndex);
 	return (
 		<div className="">
@@ -202,18 +212,20 @@ export default function AdminOrders() {
 				</table>
 			</div>
 			<div className="w-3/4 m-auto flex justify-end">
-				<div
+				<button
 					onClick={handlePaginationDecrease}
-					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
+					className="border-solid border p-1 text-sm font-medium enabled:border-gray-500 disabled:border-gray-400 enabled:text-gray-700 disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+					disabled={buttonDecreaseDisabled}
 				>
 					Prev
-				</div>
-				<div
+				</button>
+				<button
 					onClick={handlePaginationIncrease}
-					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
+					className="border-solid border p-1 text-sm font-medium enabled:border-gray-500 disabled:border-gray-400 enabled:text-gray-700 disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+					disabled={buttonIncreaseDisabled}
 				>
 					Next
-				</div>
+				</button>
 			</div>
 		</div>
 	);
