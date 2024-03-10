@@ -127,8 +127,12 @@ export default function AdminOrders() {
 		setSearchValues({ ...searchValues, value: "" });
 	};
 	const handlePaginationDecrease = () => {
-		console.log("Length: ", displayedOrders.length);
+		console.log("Length: ", filteredOrders.length);
 		setPaginationIndex(paginationIndex - 1);
+	};
+
+	const handlePaginationIncrease = () => {
+		setPaginationIndex(paginationIndex + 1);
 	};
 
 	// console.log("Trimmed: ", trimmmedOrders);
@@ -201,7 +205,7 @@ export default function AdminOrders() {
 					Prev
 				</div>
 				<div
-					onClick={() => setPaginationIndex(paginationIndex + 1)}
+					onClick={handlePaginationIncrease}
 					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
 				>
 					Next
