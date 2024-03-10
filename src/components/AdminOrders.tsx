@@ -75,10 +75,18 @@ export default function AdminOrders() {
 	}, [orders, searchValues, sortOption]);
 
 	useEffect(() => {
+		// We need to reset paginationIndex since filtering may return less/no results.
+		// We may be on a page index that appears to show no results when there are some
+		// at an earlier page index.
 		setPaginationIndex(1);
 	}, [searchValues]);
 
 	useEffect(() => {
+		// We need to reset paginationIndex since filtering may return less/no results.
+		// We may be on a page index that appears to show no results when there are some
+		// at an earlier page index.
+		// Only needed for the following as they filter, sorting doesn't alter
+		// the number of results we have, just reorders them.
 		if (
 			sortOption.sortOption === "Status: Processing" ||
 			sortOption.sortOption === "Status: Shipped" ||
