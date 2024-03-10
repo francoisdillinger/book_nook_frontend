@@ -11,11 +11,21 @@ import {
 	sortOrders,
 	trimOrders,
 } from "../utils/adminOrdersUtilities";
+import { index } from "d3";
 
 const getRange = (paginationIndex: number, numOfItems: number) => {
 	const start = (paginationIndex - 1) * numOfItems;
 	const end = paginationIndex * numOfItems - 1;
 	return [start, end];
+};
+
+const filterByRange = (
+	orders: ReformatedOrdersType[],
+	range: number[]
+): ReformatedOrdersType[] => {
+	return orders.filter((order, index) => {
+		return index >= range[0] && index <= range[1];
+	});
 };
 
 export default function AdminOrders() {
@@ -29,6 +39,9 @@ export default function AdminOrders() {
 		"Status: Delivered",
 	];
 	const [orders, setOrders] = useState<ReformatedOrdersType[] | null>();
+	const [filteredOrders, setFilteredOrders] = useState<
+		ReformatedOrdersType[] | null
+	>();
 	const [sortOption, setSortOption] = useState<OrdersSortType>({
 		sortOption: "Date: Newest",
 	});
@@ -58,12 +71,30 @@ export default function AdminOrders() {
 			searchValues.value.length > 0
 				? searchedOrders(sortedOrders, searchValues)
 				: sortedOrders;
-		setDisplayedOrders(searchedResults);
+		setFilteredOrders(searchedResults);
 	}, [orders, searchValues, sortOption]);
 
 	useEffect(() => {
-		getRange(paginationIndex, 10);
-	}, [paginationIndex]);
+		setPaginationIndex(1);
+	}, [searchValues]);
+
+	useEffect(() => {
+		if (
+			sortOption.sortOption === "Status: Processing" ||
+			sortOption.sortOption === "Status: Shipped" ||
+			sortOption.sortOption === "Status: Delivered"
+		) {
+			setPaginationIndex(1);
+		}
+	}, [sortOption]);
+
+	useEffect(() => {
+		const range = getRange(paginationIndex, 10);
+		const orders = filterByRange(filteredOrders ? filteredOrders : [], range);
+		setDisplayedOrders(orders);
+		console.log("Range: ", range);
+		console.log("Orders: ", orders);
+	}, [paginationIndex, filteredOrders]);
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
