@@ -33,6 +33,7 @@ export default function AdminOrders() {
 		option: "OrderId",
 		value: "",
 	});
+	const [paginationIndex, setPaginationIndex] = useState(1);
 
 	useEffect(() => {
 		const trimmmedOrders = trimOrders(orders_data);
@@ -80,7 +81,7 @@ export default function AdminOrders() {
 	// console.log("Trimmed: ", trimmmedOrders);
 	// console.log("Orders: ", orderedByDate);
 	// console.log("Sort by: ", sortOption);
-	// console.log(displayedOrders);
+	console.log(paginationIndex);
 	return (
 		<div className="">
 			<div className="w-full p-4 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
@@ -138,6 +139,20 @@ export default function AdminOrders() {
 							))}
 					</tbody>
 				</table>
+			</div>
+			<div className="w-3/4 m-auto flex justify-end">
+				<div
+					onClick={() => setPaginationIndex(paginationIndex - 1)}
+					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
+				>
+					Prev
+				</div>
+				<div
+					onClick={() => setPaginationIndex(paginationIndex + 1)}
+					className="border-gray-500 border-solid border p-1 text-sm text-gray-700 font-medium cursor-pointer"
+				>
+					Next
+				</div>
 			</div>
 		</div>
 	);
