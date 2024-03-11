@@ -1,4 +1,4 @@
-type BooksType = {
+export type BooksType = {
 	data: {
 		books: {
 			bookTitle: string;
