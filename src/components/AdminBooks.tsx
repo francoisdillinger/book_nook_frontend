@@ -25,7 +25,7 @@ const trimOrders = (books: BooksType): TrimmedBookType[] => {
 	return [...books.data.books];
 };
 
-const searchedOrders = (
+const searchedBooks = (
 	books: TrimmedBookType[],
 	searchValues: BooksSearchType
 ) => {
@@ -44,6 +44,9 @@ const searchedOrders = (
 
 export default function AdminBooks() {
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
+	const [displayedBooks, setDisplayedBooks] = useState<
+		TrimmedBookType[] | null
+	>();
 	const [searchValues, setSearchValues] = useState<BooksSearchType>({
 		option: "ISBN",
 		value: "",
@@ -53,6 +56,14 @@ export default function AdminBooks() {
 		const reformatedBooks = trimOrders(books);
 		setTrimmedBooks(reformatedBooks);
 	}, [books]);
+
+	useEffect(() => {
+		const results = searchedBooks(
+			trimmedBooks ? trimmedBooks : [],
+			searchValues
+		);
+		setDisplayedBooks(results);
+	}, [searchValues]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
@@ -71,6 +82,7 @@ export default function AdminBooks() {
 
 	// console.log("Trimmed Books: ", trimmedBooks);
 	console.log("Seaching: ", searchValues);
+	console.log("Results: ", displayedBooks);
 	return (
 		<div>
 			<div className="w-full p-4 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
