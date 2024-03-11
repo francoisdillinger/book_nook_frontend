@@ -40,6 +40,10 @@ export default function AdminBooks() {
 		});
 	};
 
+	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchValues({ ...searchValues, value: event.target.value });
+	};
+
 	console.log("Trimmed Books: ", trimmedBooks);
 	return (
 		<div>
@@ -52,7 +56,7 @@ export default function AdminBooks() {
 						buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-logo rounded-r-lg border border-logo opacity-80 hover:opacity-100 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800"
 						values={searchValues}
 						optionsHandler={optionsHandler}
-						// inputHandler={inputHandler}
+						inputHandler={inputHandler}
 						// clickHandler={clickHandler}
 					/>
 				</div>
