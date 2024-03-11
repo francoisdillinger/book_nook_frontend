@@ -44,6 +44,10 @@ export default function AdminBooks() {
 		setSearchValues({ ...searchValues, value: event.target.value });
 	};
 
+	const clickHandler = () => {
+		setSearchValues({ ...searchValues, value: "" });
+	};
+
 	console.log("Trimmed Books: ", trimmedBooks);
 	return (
 		<div>
@@ -57,7 +61,7 @@ export default function AdminBooks() {
 						values={searchValues}
 						optionsHandler={optionsHandler}
 						inputHandler={inputHandler}
-						// clickHandler={clickHandler}
+						clickHandler={clickHandler}
 					/>
 				</div>
 				{/* <div className="">
