@@ -15,10 +15,31 @@ type TrimmedBookType = {
 	description: string;
 	inventoryCount: number;
 	isbn: string;
+	author: {
+		authorFirstName: string;
+		authorLastName: string;
+	};
 };
 
 const trimOrders = (books: BooksType): TrimmedBookType[] => {
 	return [...books.data.books];
+};
+
+const searchedOrders = (
+	books: TrimmedBookType[],
+	searchValues: BooksSearchType
+) => {
+	return books.filter((book) => {
+		if (searchValues.option === "ISBN") {
+			return book.isbn.includes(searchValues.value);
+		} else if (searchValues.option === "Author") {
+			const name =
+				book.author.authorFirstName + " " + book.author.authorLastName;
+			return name.includes(searchValues.value);
+		} else if (searchValues.option === "Title") {
+			return book.bookTitle.includes(searchValues.value);
+		}
+	});
 };
 
 export default function AdminBooks() {
