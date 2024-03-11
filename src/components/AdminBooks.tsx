@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { books, BooksType } from "../data/adminBooks";
 
 type TrimmedBookType = {
@@ -16,6 +16,13 @@ const trimOrders = (books: BooksType): TrimmedBookType[] => {
 };
 
 export default function AdminBooks() {
-	console.log(trimOrders(books));
+	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
+
+	useEffect(() => {
+		const reformatedBooks = trimOrders(books);
+		setTrimmedBooks(reformatedBooks);
+	}, [books]);
+
+	console.log("Trimmed Books: ", trimmedBooks);
 	return <>hi</>;
 }
