@@ -118,11 +118,13 @@ export default function TableData({
 							<div
 								ref={dropDownRef}
 								id="dropdownDivider"
-								className={`z-10 bg-gray-50 divide-y divide-white rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0`}
+								className={`z-10 bg-gray-50 divide-y divide-white rounded-lg shadow w-44 absolute top-full mt-2 right-0`}
+								// className={`z-10 bg-gray-50 divide-y divide-white rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0`}
 							>
 								{/* Dropdown items */}
 								<ul
-									className="py-2 text-sm text-gray-700 dark:text-gray-200"
+								className="py-2 text-sm text-gray-700"
+									// className="py-2 text-sm text-gray-700 dark:text-gray-200"
 									aria-labelledby="dropdownDividerButton"
 								>
 									<li
@@ -138,7 +140,8 @@ export default function TableData({
 												})
 											);
 										}}
-										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white cursor-pointer"
+										// className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Processing</span>
 									</li>
@@ -155,7 +158,8 @@ export default function TableData({
 												})
 											);
 										}}
-										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white cursor-pointer"
+										// className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Shipped</span>
 									</li>
@@ -172,7 +176,8 @@ export default function TableData({
 												})
 											);
 										}}
-										className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+										className="block px-4 py-2 hover:bg-white cursor-pointer"
+										// className="block px-4 py-2 hover:bg-white dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
 									>
 										<span className="px-1">Delivered</span>
 									</li>
