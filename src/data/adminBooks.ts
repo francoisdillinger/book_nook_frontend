@@ -1,4 +1,18 @@
-export const books = {
+type BooksType = {
+	data: {
+		books: {
+			bookTitle: string;
+			pageCount: number;
+			publishDate: string;
+			price: number;
+			description: string;
+			inventoryCount: number;
+			isbn: string;
+		}[];
+	};
+};
+
+export const books: BooksType = {
 	data: {
 		books: [
 			{
