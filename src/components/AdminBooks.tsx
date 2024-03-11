@@ -43,6 +43,7 @@ const searchedBooks = (
 };
 
 export default function AdminBooks() {
+	const options = ["Sort a-z: Title", "Sort a-z: Author"];
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [displayedBooks, setDisplayedBooks] = useState<
 		TrimmedBookType[] | null
@@ -50,6 +51,9 @@ export default function AdminBooks() {
 	const [searchValues, setSearchValues] = useState<BooksSearchType>({
 		option: "ISBN",
 		value: "",
+	});
+	const [sortOption, setSortOption] = useState<OrdersSortType>({
+		sortOption: "Sort a-z: Title",
 	});
 
 	useEffect(() => {
@@ -80,6 +84,14 @@ export default function AdminBooks() {
 		setSearchValues({ ...searchValues, value: "" });
 	};
 
+	const selectOptionsHandler = (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		setSortOption({
+			sortOption: event.target.value as OrdersSortType["sortOption"],
+		});
+	};
+
 	// console.log("Trimmed Books: ", trimmedBooks);
 	console.log("Seaching: ", searchValues);
 	console.log("Results: ", displayedBooks);
@@ -98,7 +110,7 @@ export default function AdminBooks() {
 						clickHandler={clickHandler}
 					/>
 				</div>
-				{/* <div className="">
+				<div className="">
 					<select
 						id="book-selector"
 						className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
@@ -108,7 +120,7 @@ export default function AdminBooks() {
 							<option key={option}>{option}</option>
 						))}
 					</select>
-				</div> */}
+				</div>
 			</div>
 		</div>
 	);
