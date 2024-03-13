@@ -7,6 +7,10 @@ type BooksSearchType = {
 	value: string;
 };
 
+type BooksSortType = {
+	sortOption: "Sort a-z: Title" | "Sort a-z: Author";
+};
+
 type TrimmedBookType = {
 	bookTitle: string;
 	pageCount: number;
@@ -52,7 +56,7 @@ export default function AdminBooks() {
 		option: "ISBN",
 		value: "",
 	});
-	const [sortOption, setSortOption] = useState<OrdersSortType>({
+	const [sortOption, setSortOption] = useState<BooksSortType>({
 		sortOption: "Sort a-z: Title",
 	});
 
