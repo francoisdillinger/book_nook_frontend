@@ -8,7 +8,11 @@ type BooksSearchType = {
 };
 
 type BooksSortType = {
-	sortOption: "Sort a-z: Title" | "Sort a-z: Author";
+	sortOption:
+		| "Sort a-z: Title"
+		| "Sort a-z: Author"
+		| "Publish Date: Newest First"
+		| "Publish Date: Oldest First";
 };
 
 type TrimmedBookType = {
@@ -47,7 +51,12 @@ const searchedBooks = (
 };
 
 export default function AdminBooks() {
-	const options = ["Sort a-z: Title", "Sort a-z: Author"];
+	const options = [
+		"Sort a-z: Title",
+		"Sort a-z: Author",
+		"Publish Date: Newest First",
+		"Publish Date: Oldest First",
+	];
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [displayedBooks, setDisplayedBooks] = useState<
 		TrimmedBookType[] | null
