@@ -11,6 +11,8 @@ type BooksSortType = {
 	sortOption:
 		| "Sort a-z: Title"
 		| "Sort a-z: Author"
+		| "Price: Ascending"
+		| "Price: Descending"
 		| "Publish Date: Newest First"
 		| "Publish Date: Oldest First";
 };
@@ -54,6 +56,8 @@ export default function AdminBooks() {
 	const options = [
 		"Sort a-z: Title",
 		"Sort a-z: Author",
+		"Price: Ascending",
+		"Price: Descending",
 		"Publish Date: Newest First",
 		"Publish Date: Oldest First",
 	];
