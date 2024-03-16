@@ -110,7 +110,7 @@ export default function AdminBooks() {
 	};
 
 	// console.log("Trimmed Books: ", trimmedBooks);
-	console.log("Seaching: ", searchValues);
+	// console.log("Seaching: ", searchValues);
 	console.log("Results: ", displayedBooks);
 	return (
 		<div>
