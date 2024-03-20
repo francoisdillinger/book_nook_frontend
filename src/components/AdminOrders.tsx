@@ -153,7 +153,7 @@ export default function AdminOrders() {
 	// console.log("Orders: ", orderedByDate);
 	// console.log("Sort by: ", sortOption);
 	// console.log("Decrease Disabled: ", buttonDecreaseDisabled);
-	console.log("Increase Disabled: ", buttonIncreaseDisabled);
+	// console.log("Increase Disabled: ", buttonIncreaseDisabled);
 	console.log(paginationIndex);
 	return (
 		<div className="">
