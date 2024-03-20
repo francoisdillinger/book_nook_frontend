@@ -67,8 +67,8 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 			});
 		case "Price: Ascending":
 			return [...orders].sort((a, b) => a.price - b.price);
-		// case "Total: Descending":
-		// 	return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
+		case "Price: Descending":
+			return [...orders].sort((a, b) => b.price - a.price);
 
 		// case "Status: Processing":
 		// 	return [...orders].filter((order) => order.orderStatus === "Processing");
@@ -181,7 +181,9 @@ export default function AdminBooks() {
 							" : " +
 							book.author.authorFirstName +
 							" " +
-							book.author.authorLastName}
+							book.author.authorLastName +
+							" : " +
+							book.price}
 					</li>
 				))}
 			</ul>
