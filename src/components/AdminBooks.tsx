@@ -55,11 +55,8 @@ const searchedBooks = (
 
 const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 	switch (sortOption.sortOption) {
-		// case "Date: Newest":
-		// 	return [...orders].sort(
-		// 		(a, b) =>
-		// 			new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
-		// 	);
+		case "Sort a-z: Title":
+			return [...orders].sort((a, b) => a.bookTitle.localeCompare(b.bookTitle));
 		// case "Date: Oldest":
 		// 	return [...orders].sort(
 		// 		(a, b) =>
@@ -115,7 +112,11 @@ export default function AdminBooks() {
 		setDisplayedBooks(results);
 	}, [searchValues, trimmedBooks]);
 
-	useEffect(() => {}, [sortOption]);
+	useEffect(() => {
+		setDisplayedBooks(
+			sortOrders(displayedBooks ? displayedBooks : [], sortOption)
+		);
+	}, [sortOption]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
