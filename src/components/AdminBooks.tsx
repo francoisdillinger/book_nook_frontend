@@ -80,8 +80,6 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 				(a, b) =>
 					new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime()
 			);
-		// case "Status: Delivered":
-		// 	return [...orders].filter((order) => order.orderStatus === "Delivered");
 		default:
 			return [...orders]; // Return unsorted if no match (or handle as needed)
 	}
