@@ -70,8 +70,11 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 		case "Price: Descending":
 			return [...orders].sort((a, b) => b.price - a.price);
 
-		// case "Status: Processing":
-		// 	return [...orders].filter((order) => order.orderStatus === "Processing");
+		case "Publish Date: Newest First":
+			return [...orders].sort(
+				(a, b) =>
+					new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+			);
 		// case "Status: Shipped":
 		// 	return [...orders].filter((order) => order.orderStatus === "Shipped");
 		// case "Status: Delivered":
