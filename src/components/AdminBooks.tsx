@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { books, BooksType } from "../data/adminBooks";
 import SearchBar from "./SearchBar";
+import { OrdersSortType } from "../utils/adminOrdersUtilities";
 
 type BooksSearchType = {
 	option: "ISBN" | "Author" | "Title";
