@@ -85,7 +85,7 @@ export default function AdminBooks() {
 			searchValues
 		);
 		setDisplayedBooks(results);
-	}, [searchValues]);
+	}, [searchValues, trimmedBooks]);
 
 	useEffect(() => {}, [sortOption]);
 
@@ -142,6 +142,11 @@ export default function AdminBooks() {
 					</select>
 				</div>
 			</div>
+			<ul>
+				{displayedBooks?.map((book) => (
+					<li>{book.bookTitle}</li>
+				))}
+			</ul>
 		</div>
 	);
 }
