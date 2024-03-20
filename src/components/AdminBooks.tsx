@@ -85,7 +85,7 @@ export default function AdminBooks() {
 			searchValues
 		);
 		setDisplayedBooks(results);
-	}, [searchValues]);
+	}, [searchValues, sortOption]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
