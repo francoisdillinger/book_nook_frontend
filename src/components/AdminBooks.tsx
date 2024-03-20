@@ -65,8 +65,8 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 					b.author.authorFirstName + " " + b.author.authorLastName;
 				return firstAuthor.localeCompare(secondAuthor);
 			});
-		// case "Total: Ascending":
-		// 	return [...orders].sort((a, b) => a.totalAmount - b.totalAmount);
+		case "Price: Ascending":
+			return [...orders].sort((a, b) => a.price - b.price);
 		// case "Total: Descending":
 		// 	return [...orders].sort((a, b) => b.totalAmount - a.totalAmount);
 
