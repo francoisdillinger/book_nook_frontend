@@ -106,7 +106,7 @@ export default function AdminBooks() {
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		setSortOption({
-			sortOption: event.target.value as OrdersSortType["sortOption"],
+			sortOption: event.target.value as BooksSortType["sortOption"],
 		});
 	};
 
