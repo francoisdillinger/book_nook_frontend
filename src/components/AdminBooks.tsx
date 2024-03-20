@@ -189,7 +189,7 @@ export default function AdminBooks() {
 							" " +
 							book.author.authorLastName +
 							" : " +
-							book.price}
+							book.publishDate}
 					</li>
 				))}
 			</ul>
