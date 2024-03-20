@@ -57,11 +57,14 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 	switch (sortOption.sortOption) {
 		case "Sort a-z: Title":
 			return [...orders].sort((a, b) => a.bookTitle.localeCompare(b.bookTitle));
-		// case "Date: Oldest":
-		// 	return [...orders].sort(
-		// 		(a, b) =>
-		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-		// 	);
+		case "Sort a-z: Author":
+			return [...orders].sort((a, b) => {
+				const firstAuthor =
+					a.author.authorFirstName + " " + a.author.authorLastName;
+				const secondAuthor =
+					b.author.authorFirstName + " " + b.author.authorLastName;
+				return firstAuthor.localeCompare(secondAuthor);
+			});
 		// case "Total: Ascending":
 		// 	return [...orders].sort((a, b) => a.totalAmount - b.totalAmount);
 		// case "Total: Descending":
@@ -173,7 +176,13 @@ export default function AdminBooks() {
 			</div>
 			<ul>
 				{displayedBooks?.map((book) => (
-					<li>{book.bookTitle}</li>
+					<li>
+						{book.bookTitle +
+							" : " +
+							book.author.authorFirstName +
+							" " +
+							book.author.authorLastName}
+					</li>
 				))}
 			</ul>
 		</div>
