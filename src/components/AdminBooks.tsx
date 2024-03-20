@@ -11,6 +11,7 @@ type BooksSearchType = {
 type BooksSortType = {
 	sortOption:
 		| "Sort a-z: Title"
+		| "Sort z-a: Title"
 		| "Sort a-z: Author"
 		| "Price: Ascending"
 		| "Price: Descending"
@@ -57,6 +58,8 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 	switch (sortOption.sortOption) {
 		case "Sort a-z: Title":
 			return [...orders].sort((a, b) => a.bookTitle.localeCompare(b.bookTitle));
+		case "Sort z-a: Title":
+			return [...orders].sort((a, b) => b.bookTitle.localeCompare(a.bookTitle));
 		case "Sort a-z: Author":
 			return [...orders].sort((a, b) => {
 				const firstAuthor =
@@ -88,6 +91,7 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 export default function AdminBooks() {
 	const options = [
 		"Sort a-z: Title",
+		"Sort z-a: Title",
 		"Sort a-z: Author",
 		"Price: Ascending",
 		"Price: Descending",
