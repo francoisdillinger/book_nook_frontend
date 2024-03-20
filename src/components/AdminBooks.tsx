@@ -130,7 +130,8 @@ export default function AdminBooks() {
 			trimmedBooks ? trimmedBooks : [],
 			searchValues
 		);
-		setDisplayedBooks(results);
+		const sortedResults = sortOrders(results ? results : [], sortOption);
+		setDisplayedBooks(sortedResults);
 	}, [searchValues, trimmedBooks]);
 
 	useEffect(() => {
