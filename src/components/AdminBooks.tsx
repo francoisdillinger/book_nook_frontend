@@ -13,6 +13,7 @@ type BooksSortType = {
 		| "Sort a-z: Title"
 		| "Sort z-a: Title"
 		| "Sort a-z: Author"
+		| "Sort z-a: Author"
 		| "Price: Ascending"
 		| "Price: Descending"
 		| "Publish Date: Newest First"
@@ -68,6 +69,14 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 					b.author.authorFirstName + " " + b.author.authorLastName;
 				return firstAuthor.localeCompare(secondAuthor);
 			});
+		case "Sort z-a: Author":
+			return [...orders].sort((a, b) => {
+				const firstAuthor =
+					a.author.authorFirstName + " " + a.author.authorLastName;
+				const secondAuthor =
+					b.author.authorFirstName + " " + b.author.authorLastName;
+				return secondAuthor.localeCompare(firstAuthor);
+			});
 		case "Price: Ascending":
 			return [...orders].sort((a, b) => a.price - b.price);
 		case "Price: Descending":
@@ -93,6 +102,7 @@ export default function AdminBooks() {
 		"Sort a-z: Title",
 		"Sort z-a: Title",
 		"Sort a-z: Author",
+		"Sort z-a: Author",
 		"Price: Ascending",
 		"Price: Descending",
 		"Publish Date: Newest First",
