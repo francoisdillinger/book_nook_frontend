@@ -112,7 +112,7 @@ export default function AdminBooks() {
 
 	// console.log("Trimmed Books: ", trimmedBooks);
 	// console.log("Seaching: ", searchValues);
-	// console.log("Results: ", displayedBooks);
+	console.log("Results: ", displayedBooks);
 	return (
 		<div>
 			<div className="w-full p-4 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
