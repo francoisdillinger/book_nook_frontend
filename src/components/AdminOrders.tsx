@@ -20,6 +20,26 @@ type OrderTotalsType = {
 	total: number;
 };
 
+const createOrderTotals = (orders: ReformatedOrdersType[]): OrderTotalsType => {
+	let orderTotals = { processed: 0, shipped: 0, delivered: 0, total: 0 };
+	orders.forEach((order) => {
+		switch (order.orderStatus) {
+			case "processed":
+				orderTotals.processed += 1;
+				break;
+			case "shipped":
+				orderTotals.shipped += 1;
+				break;
+			case "delivered":
+				orderTotals.delivered += 1;
+				break;
+			default:
+				break;
+		}
+	});
+	return { ...orderTotals, total: orders.length };
+};
+
 const getRange = (paginationIndex: number, numOfItems: number) => {
 	const start = (paginationIndex - 1) * numOfItems;
 	const end = paginationIndex * numOfItems - 1;
