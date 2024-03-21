@@ -11,7 +11,7 @@ import {
 	sortOrders,
 	trimOrders,
 } from "../utils/adminOrdersUtilities";
-import { index } from "d3";
+// import { index } from "d3";
 
 const getRange = (paginationIndex: number, numOfItems: number) => {
 	const start = (paginationIndex - 1) * numOfItems;
