@@ -136,6 +136,7 @@ export default function AdminOrders() {
 	useEffect(() => {
 		const range = getRange(paginationIndex, numOfResults);
 		const orders = filterByRange(filteredOrders ? filteredOrders : [], range);
+		setOrderTotals(createOrderTotals(filteredOrders ? filteredOrders : []));
 		setDisplayedOrders(orders);
 		// console.log("Range: ", range);
 		// console.log("Orders: ", orders);
