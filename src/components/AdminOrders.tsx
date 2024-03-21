@@ -13,6 +13,13 @@ import {
 } from "../utils/adminOrdersUtilities";
 // import { index } from "d3";
 
+type OrderTotalsType = {
+	processed: number;
+	shipped: number;
+	delivered: number;
+	total: number;
+};
+
 const getRange = (paginationIndex: number, numOfItems: number) => {
 	const start = (paginationIndex - 1) * numOfItems;
 	const end = paginationIndex * numOfItems - 1;
