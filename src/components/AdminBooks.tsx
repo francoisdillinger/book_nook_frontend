@@ -168,7 +168,7 @@ export default function AdminBooks() {
 	// console.log("Results: ", displayedBooks);
 	return (
 		<div>
-			<div className="w-full p-4 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
+			<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
 				<div className="w-full my-2 md:my-0 md:w-1/2">
 					<SearchBar
 						options={["ISBN", "Author", "Title"]}
@@ -192,6 +192,23 @@ export default function AdminBooks() {
 						))}
 					</select>
 				</div>
+			</div>
+			<div className="w-full px-4 md:w-3/4 md:m-auto md:p-0">
+				<button className="w-full md:w-32 flex items-center p-2 text-md font-medium h-full text-white bg-logo rounded-lg border border-logo opacity-80 hover:opacity-100 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						className="w-6 h-6 stroke-2 stroke-current"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M12 4.5v15m7.5-7.5h-15"
+						/>
+					</svg>
+					<span className="pl-2 pr-1">Add Book</span>
+				</button>
 			</div>
 			<ul>
 				{displayedBooks?.map((book) => (
