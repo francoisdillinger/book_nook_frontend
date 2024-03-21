@@ -136,11 +136,14 @@ export default function AdminOrders() {
 	useEffect(() => {
 		const range = getRange(paginationIndex, numOfResults);
 		const orders = filterByRange(filteredOrders ? filteredOrders : [], range);
-		setOrderTotals(createOrderTotals(filteredOrders ? filteredOrders : []));
 		setDisplayedOrders(orders);
 		// console.log("Range: ", range);
 		// console.log("Orders: ", orders);
 	}, [paginationIndex, filteredOrders]);
+
+	useEffect(() => {
+		setOrderTotals(createOrderTotals(filteredOrders ? filteredOrders : []));
+	}, [filteredOrders]);
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
