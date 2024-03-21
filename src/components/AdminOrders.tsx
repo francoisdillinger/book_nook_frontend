@@ -141,8 +141,9 @@ export default function AdminOrders() {
 	const handlePaginationIncrease = () => {
 		console.log("Increase");
 		const inRange =
-			(paginationIndex + 1) * numOfResults < filteredOrders?.length;
-		const hasResults = paginationIndex * numOfResults < filteredOrders?.length;
+			(paginationIndex + 1) * numOfResults < (filteredOrders?.length ?? 0);
+		const hasResults =
+			paginationIndex * numOfResults < (filteredOrders?.length ?? 0);
 		// console.log("In Range: ", inRange);
 		setDecreaseButtonDisabled(false);
 		setIncreaseButtonDiabled(!inRange);
