@@ -98,6 +98,7 @@ export default function AdminOrders() {
 		);
 		const reformattedOrders = reformateOrders(orderedByDate);
 		setOrders(reformattedOrders);
+		setOrderTotals(createOrderTotals(reformattedOrders));
 		setDisplayedOrders(reformattedOrders);
 	}, [orders_data]);
 
