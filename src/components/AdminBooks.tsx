@@ -184,7 +184,7 @@ export default function AdminBooks() {
 				<div className="">
 					<select
 						id="book-selector"
-						className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+						className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer"
 						onChange={(event) => selectOptionsHandler(event)}
 					>
 						{options.map((option) => (
@@ -194,7 +194,7 @@ export default function AdminBooks() {
 				</div>
 			</div>
 			<div className="w-full px-4 md:w-3/4 md:m-auto md:p-0">
-				<button className="w-full md:w-32 flex items-center p-2 text-md font-medium h-full text-white bg-logo rounded-lg border border-logo opacity-80 hover:opacity-100 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800">
+				<button className="w-full md:w-32 flex items-center p-2 text-md font-medium h-full text-white bg-logo rounded-lg border border-logo opacity-80 hover:opacity-100 active:scale-95 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
