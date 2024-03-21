@@ -206,7 +206,7 @@ export default function AdminOrders() {
 									total={order.totalAmount}
 									orderStatus={order.orderStatus}
 									userOrders={order.orders}
-									orders={orders}
+									orders={orders ? orders : []}
 									setOrders={setOrders}
 								/>
 							))}
