@@ -23,7 +23,7 @@ const filterByRange = (
 	orders: ReformatedOrdersType[],
 	range: number[]
 ): ReformatedOrdersType[] => {
-	return orders.filter((order, index) => {
+	return orders.filter((_, index) => {
 		return index >= range[0] && index <= range[1];
 	});
 };
