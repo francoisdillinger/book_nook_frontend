@@ -183,6 +183,20 @@ export default function AdminOrders() {
 					</select>
 				</div>
 			</div>
+			<div className="w-full flex-wrap flex gap-2 p-4 md:w-3/4 m-auto md:p-0 md:py-4">
+				<div className=" bg-red-100 rounded-md flex justify-center items-center h-20 basis-full sm:basis-1/2 md:basis-1/4 sm:h-32 flex-1 font-medium text-xl text-gray-500">
+					Processing Orders:{" "}
+				</div>
+				<div className=" bg-yellow-100 rounded-md flex justify-center items-center h-20 basis-full sm:basis-1/2 md:basis-1/4 sm:h-32 flex-1 font-medium text-xl text-gray-500">
+					Shipped Orders:{" "}
+				</div>
+				<div className=" bg-green-100 rounded-md flex justify-center items-center h-20 basis-full sm:basis-1/2 md:basis-1/4 sm:h-32 flex-1 font-medium text-xl text-gray-500">
+					Delivered Orders:{" "}
+				</div>
+				<div className=" bg-gray-100 rounded-md flex justify-center items-center h-20 basis-full sm:basis-1/2 md:basis-1/4 sm:h-32 flex-1 font-medium text-xl text-gray-500">
+					Total Orders:{" "}
+				</div>
+			</div>
 			<div className="min-h-[660px]">
 				<table className="table-auto w-3/4 m-auto">
 					<thead className="bg-gray-100 text-gray-400 text-xl h-12">
