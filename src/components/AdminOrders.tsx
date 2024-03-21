@@ -24,13 +24,13 @@ const createOrderTotals = (orders: ReformatedOrdersType[]): OrderTotalsType => {
 	let orderTotals = { processed: 0, shipped: 0, delivered: 0, total: 0 };
 	orders.forEach((order) => {
 		switch (order.orderStatus) {
-			case "processed":
+			case "Processing":
 				orderTotals.processed += 1;
 				break;
-			case "shipped":
+			case "Shipped":
 				orderTotals.shipped += 1;
 				break;
-			case "delivered":
+			case "Delivered":
 				orderTotals.delivered += 1;
 				break;
 			default:
