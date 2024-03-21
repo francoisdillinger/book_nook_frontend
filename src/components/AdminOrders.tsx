@@ -76,6 +76,12 @@ export default function AdminOrders() {
 	const [displayedOrders, setDisplayedOrders] = useState<
 		ReformatedOrdersType[] | null
 	>();
+	const [orderTotals, setOrderTotals] = useState<OrderTotalsType>({
+		processed: 0,
+		shipped: 0,
+		delivered: 0,
+		total: 0,
+	});
 	const [searchValues, setSearchValues] = useState<OrdersSearchType>({
 		option: "OrderId",
 		value: "",
