@@ -168,7 +168,7 @@ export default function AdminBooks() {
 	// console.log("Seaching: ", searchValues);
 	// console.log("Results: ", displayedBooks);
 	return (
-		<div>
+		<div className="pt-12 pb-12">
 			<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
 				<div className="w-full my-2 md:my-0 md:w-1/2">
 					<SearchBar
