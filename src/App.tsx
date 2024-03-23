@@ -23,7 +23,7 @@ import AdminBooks from "./components/AdminBooks";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
+			<Navbar />
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
@@ -35,7 +35,7 @@ export default function App() {
 			{/* <AdminOrders /> */}
 			<AdminBooks />
 			{/* <Scratch /> */}
-			{/* <Footer /> */}
+			<Footer />
 		</React.Fragment>
 	);
 }
