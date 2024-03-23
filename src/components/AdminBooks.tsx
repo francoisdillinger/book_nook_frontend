@@ -211,7 +211,7 @@ export default function AdminBooks() {
 					<span className="pl-2 pr-1">Add Book</span>
 				</button>
 			</div>
-			<ul className="w-11/12 md:w-3/4 m-auto pt-8 pb-8 flex flex-wrap gap-3 justify-center">
+			<ul className="w-11/12 md:w-3/4 m-auto pt-8 flex flex-wrap gap-3 justify-center">
 				{displayedBooks?.map((book) => (
 					<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
 						{/* {book.bookTitle +
