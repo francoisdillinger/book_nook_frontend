@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { books, BooksType } from "../data/adminBooks";
 import SearchBar from "./SearchBar";
+import alchemist from "../assets/alchemist.jpg";
 // import { OrdersSortType } from "../utils/adminOrdersUtilities";
 
 type BooksSearchType = {
@@ -210,16 +211,26 @@ export default function AdminBooks() {
 					<span className="pl-2 pr-1">Add Book</span>
 				</button>
 			</div>
-			<ul>
+			<ul className="w-11/12 md:w-3/4 m-auto pt-8 flex flex-wrap gap-3 justify-center">
 				{displayedBooks?.map((book) => (
-					<li>
-						{book.bookTitle +
+					<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
+						{/* {book.bookTitle +
 							" : " +
 							book.author.authorFirstName +
 							" " +
 							book.author.authorLastName +
 							" : " +
-							book.publishDate}
+							book.publishDate} */}
+						<div className="">
+							<img
+								className="w-4/5 m-auto"
+								src={alchemist}
+								alt={`Image for ${book.bookTitle}`}
+							/>
+						</div>
+						<div className="text-center font-semibold text-sm text-gray-500">
+							{book.bookTitle}
+						</div>
 					</li>
 				))}
 			</ul>
