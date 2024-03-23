@@ -30,7 +30,7 @@ export default function Footer() {
 					<div>
 						<h2 className="text-slate-900 font-bold text-lg mb-4">Follow Us</h2>
 						<div className="flex gap-3">
-							<div className="w-11 h-11 border rounded-lg flex justify-center items-center shadow-sm transition ease-in-out delay-100 hover:bg-blue-100 ">
+							<div className="cursor-pointer w-11 h-11 border rounded-lg flex justify-center items-center shadow-sm transition ease-in-out delay-100 hover:bg-blue-100 ">
 								{/* <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
 								<svg
 									className="h-6 fill-blue-700"
