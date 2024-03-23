@@ -193,7 +193,7 @@ export default function AdminOrders() {
 	// console.log("Sort by: ", sortOption);
 	// console.log("Decrease Disabled: ", buttonDecreaseDisabled);
 	// console.log("Increase Disabled: ", buttonIncreaseDisabled);
-	console.log(paginationIndex);
+	// console.log(paginationIndex);
 	return (
 		<div className="">
 			<div className="w-full flex-wrap flex gap-2 p-4 md:w-3/4 m-auto md:p-0 md:py-4">
