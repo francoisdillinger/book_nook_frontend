@@ -35,7 +35,7 @@ export default function App() {
 			{/* <AdminOrders /> */}
 			<AdminBooks />
 			{/* <Scratch /> */}
-			<Footer />
+			{/* <Footer /> */}
 		</React.Fragment>
 	);
 }
