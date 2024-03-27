@@ -26,7 +26,7 @@ export default function EditBook() {
 					Title
 				</label>
 				<input
-					className="block p-2.5 w-1/2 z-20 text-sm text-gray-900 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					className="block p-2.5 w-1/2 z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 					type="text"
 					name="title"
 					id="title"
@@ -40,6 +40,7 @@ export default function EditBook() {
 					Author First Name
 				</label>
 				<input
+					className="block p-2.5 w-1/2 z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 					type="text"
 					name="firstname"
 					id="firstname"
@@ -53,6 +54,7 @@ export default function EditBook() {
 					Author Last Name
 				</label>
 				<input
+					className="block p-2.5 w-1/2 z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 					type="text"
 					name="lastname"
 					id="lastname"
