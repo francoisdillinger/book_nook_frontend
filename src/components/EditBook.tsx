@@ -103,6 +103,22 @@ export default function EditBook() {
 					id="inventory"
 				/>
 			</div>
+			<div className="">
+				<label
+					htmlFor="pageCount"
+					className="block"
+				>
+					Page Count :
+				</label>
+				<input
+					className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					type="number"
+					min="0"
+					max="1000"
+					name="pageCount"
+					id="pageCount"
+				/>
+			</div>
 			{/* <div className="">
 				<label
 					htmlFor="firstname"
