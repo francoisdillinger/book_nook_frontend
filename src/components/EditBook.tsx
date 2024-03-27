@@ -3,21 +3,20 @@ import React, { useState } from "react";
 export default function EditBook() {
 	const [image, setImage] = useState<string>("");
 
-	const handleFileChange = (event) => {
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.files);
-		setImage(URL.createObjectURL(event.target.files[0]));
+		if (event.target.files && event.target.files.length > 0) {
+			setImage(URL.createObjectURL(event.target.files[0]));
+		}
 	};
 	return (
 		<React.Fragment>
-			{image ? (
-				<img
-					className="w-80"
-					src={image}
-					alt=""
-				/>
-			) : (
-				<></>
-			)}
+			<img
+				className="h-80"
+				src={image}
+				alt=""
+			/>
+
 			<form
 				action=""
 				className="w-11/12 md:w-1/2 m-auto font-medium text-gray-500 text-sm"
