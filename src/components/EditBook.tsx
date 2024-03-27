@@ -12,7 +12,7 @@ export default function EditBook() {
 					Book Image
 				</label>
 				<input
-					className=""
+					className="block file:p-3 file:bg-logo file:border-none file:text-gray-50 file:opacity-90 file:hover:opacity-100 file:cursor-pointer file:font-medium w-1/2 text-sm font-normal text-gray-500 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 					type="file"
 					name="image"
 					id="image"
