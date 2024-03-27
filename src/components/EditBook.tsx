@@ -2,7 +2,7 @@ export default function EditBook() {
 	return (
 		<form
 			action=""
-			className=""
+			className="w-3/4 m-auto"
 		>
 			<div className="">
 				<label
@@ -18,15 +18,26 @@ export default function EditBook() {
 				/>
 			</div>
 			<div className="">
-				<label htmlFor="title">Title</label>
+				<label
+					htmlFor="title"
+					className="block"
+				>
+					Title
+				</label>
 				<input
+					className="block p-2.5 w-1/2 z-20 text-sm text-gray-900 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 					type="text"
 					name="title"
 					id="title"
 				/>
 			</div>
 			<div className="">
-				<label htmlFor="firstname">Author First Name</label>
+				<label
+					htmlFor="firstname"
+					className="block"
+				>
+					Author First Name
+				</label>
 				<input
 					type="text"
 					name="firstname"
@@ -34,7 +45,12 @@ export default function EditBook() {
 				/>
 			</div>
 			<div className="">
-				<label htmlFor="lastname">Author Last Name</label>
+				<label
+					htmlFor="lastname"
+					className="block"
+				>
+					Author Last Name
+				</label>
 				<input
 					type="text"
 					name="lastname"
