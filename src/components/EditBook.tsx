@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 
 export default function EditBook() {
-	const [image, setImage] = useState<String>("");
+	const [image, setImage] = useState<string>("");
 	return (
 		<React.Fragment>
+			{image ? (
+				<img
+					src={image}
+					alt=""
+				/>
+			) : (
+				<></>
+			)}
 			<form
 				action=""
 				className="w-11/12 md:w-1/2 m-auto font-medium text-gray-500 text-sm"
