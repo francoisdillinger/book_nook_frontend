@@ -2,7 +2,7 @@ export default function EditBook() {
 	return (
 		<form
 			action=""
-			className="w-3/4 m-auto"
+			className="w-3/4 m-auto font-medium text-gray-500 text-sm"
 		>
 			<div className="">
 				<label
@@ -12,6 +12,7 @@ export default function EditBook() {
 					Book Image
 				</label>
 				<input
+					className=""
 					type="file"
 					name="image"
 					id="image"
