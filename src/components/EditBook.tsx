@@ -11,12 +11,15 @@ export default function EditBook() {
 	};
 	return (
 		<React.Fragment>
-			<img
-				className="h-80"
-				src={image}
-				alt=""
-			/>
-
+			{image ? (
+				<img
+					className="h-80"
+					src={image}
+					alt=""
+				/>
+			) : (
+				<></>
+			)}
 			<form
 				action=""
 				className="w-11/12 md:w-1/2 m-auto font-medium text-gray-500 text-sm"
