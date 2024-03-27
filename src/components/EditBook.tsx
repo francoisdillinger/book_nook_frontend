@@ -32,6 +32,77 @@ export default function EditBook() {
 					id="title"
 				/>
 			</div>
+			<div className="">
+				<label
+					htmlFor="isbn"
+					className="block"
+				>
+					ISBN
+				</label>
+				<input
+					className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					type="text"
+					name="isbn"
+					id="isbn"
+				/>
+			</div>
+			<div className="">
+				<label
+					htmlFor="price"
+					className="block"
+				>
+					Price
+				</label>
+				<input
+					className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					type="text"
+					name="price"
+					id="price"
+				/>
+			</div>
+			<div className="">
+				<label
+					htmlFor="publishedDate"
+					className="block"
+				>
+					Date Published
+				</label>
+				<input
+					className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					type="date"
+					name="publishedDate"
+					id="publishedDate"
+				/>
+			</div>
+			<div className="">
+				<label
+					htmlFor="description"
+					className="block"
+				>
+					Title
+				</label>
+				<textarea
+					className="block p-2.5 w-full h-48 lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					name="description"
+					id="description"
+				></textarea>
+			</div>
+			<div className="">
+				<label
+					htmlFor="inventory"
+					className="block"
+				>
+					Amount Added to Inventory (between 0 and 50) :
+				</label>
+				<input
+					className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+					type="number"
+					min="0"
+					max="50"
+					name="inventory"
+					id="inventory"
+				/>
+			</div>
 			{/* <div className="">
 				<label
 					htmlFor="firstname"
