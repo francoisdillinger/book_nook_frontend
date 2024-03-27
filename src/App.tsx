@@ -19,6 +19,7 @@ import AdminChart from "./components/ChartComponents/AdminChart";
 import AdminMenu from "./components/AdminMenu";
 import AdminOrders from "./components/AdminOrders";
 import AdminBooks from "./components/AdminBooks";
+import EditBook from "./components/EditBook";
 
 export default function App() {
 	return (
@@ -34,6 +35,7 @@ export default function App() {
 			</div> */}
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
+			<EditBook />
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
