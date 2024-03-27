@@ -11,17 +11,21 @@ export default function EditBook() {
 	};
 	return (
 		<React.Fragment>
-			{image ? (
-				<img
-					className="h-80"
-					src={image}
-					alt=""
-				/>
-			) : (
-				<div className="h-80 flex justify-center items-center font-semibold text-3xl text-gray-400">
-					Image Preview
-				</div>
-			)}
+			<div className="mt-10 mb-5">
+				{image ? (
+					<div className="flex justify-center">
+						<img
+							className="h-80"
+							src={image}
+							alt=""
+						/>
+					</div>
+				) : (
+					<div className="h-80 flex justify-center items-center font-semibold text-3xl text-gray-400">
+						Image Preview
+					</div>
+				)}
+			</div>
 			<form
 				action=""
 				className="w-11/12 md:w-1/2 m-auto mb-20 font-medium text-gray-500 text-sm"
