@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function EditBook() {
+	const [image, setImage] = useState<String>("");
 	return (
 		<React.Fragment>
 			<form
