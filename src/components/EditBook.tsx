@@ -5,6 +5,7 @@ export default function EditBook() {
 
 	const handleFileChange = (event) => {
 		console.log(event.target.files);
+		setImage(URL.createObjectURL(event.target.files[0]));
 	};
 	return (
 		<React.Fragment>
