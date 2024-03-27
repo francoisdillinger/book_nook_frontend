@@ -11,6 +11,7 @@ export default function EditBook() {
 		<React.Fragment>
 			{image ? (
 				<img
+					className="w-80"
 					src={image}
 					alt=""
 				/>
