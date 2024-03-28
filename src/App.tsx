@@ -24,7 +24,7 @@ import EditBook from "./components/EditBook";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
+			<Navbar />
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
@@ -37,7 +37,7 @@ export default function App() {
 			{/* <AdminBooks /> */}
 			<EditBook />
 			{/* <Scratch /> */}
-			{/* <Footer /> */}
+			<Footer />
 		</React.Fragment>
 	);
 }
