@@ -60,6 +60,20 @@ export default function AddBook() {
 						id="title"
 					/>
 				</div>
+				<div className="">
+					<label
+						htmlFor="isbn"
+						className="block"
+					>
+						ISBN
+					</label>
+					<input
+						className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+						type="text"
+						name="isbn"
+						id="isbn"
+					/>
+				</div>
 			</form>
 		</React.Fragment>
 	);
