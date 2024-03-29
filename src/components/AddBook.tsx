@@ -6,7 +6,7 @@ type TrimmedAuthorsType = {
 	authorLastName: string;
 };
 
-const trimOrders = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
+const trimAuthors = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
 	return [...authors.data.authors];
 };
 
@@ -21,7 +21,10 @@ export default function AddBook() {
 		}
 	};
 
-	useEffect(() => {}, [author_data]);
+	useEffect(() => {
+		const trimmedAuthors = trimAuthors(author_data);
+		setAuthors(trimmedAuthors);
+	}, [author_data]);
 
 	return (
 		<React.Fragment>
