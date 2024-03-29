@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { authors, AuthorsDataType } from "../data/authors";
 
+type TrimmedAuthorsType = {
+	firstName: string;
+	lastName: string;
+};
+
+const trimOrders = (books: AuthorsDataType): TrimmedAuthorsType[] => {
+	return [...books.data.books];
+};
+
 export default function AddBook() {
 	const [image, setImage] = useState<string>("");
 
