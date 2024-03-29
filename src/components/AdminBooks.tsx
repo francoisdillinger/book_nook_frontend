@@ -208,7 +208,7 @@ export default function AdminBooks() {
 							d="M12 4.5v15m7.5-7.5h-15"
 						/>
 					</svg>
-					<span className="pl-2 pr-1">Add Book</span>
+					<span className="pl-2 pr-1">Add New</span>
 				</button>
 			</div>
 			<ul className="w-11/12 md:w-3/4 m-auto pt-8 flex flex-wrap gap-3 justify-center">
