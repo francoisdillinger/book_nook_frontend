@@ -151,7 +151,7 @@ export default function EditBook() {
 						type="submit"
 						className="bg-logo p-3 rounded-md w-full md:w-1/2 text-gray-50 opacity-90 hover:opacity-100 cursor-pointer font-medium"
 					>
-						Submit
+						Update
 					</button>
 				</div>
 				{/* <div className="">
