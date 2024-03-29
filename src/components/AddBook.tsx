@@ -115,6 +115,22 @@ export default function AddBook() {
 						id="description"
 					></textarea>
 				</div>
+				<div className="">
+					<label
+						htmlFor="inventory"
+						className="block"
+					>
+						Amount Added to Inventory (between 0 and 50) :
+					</label>
+					<input
+						className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+						type="number"
+						min="0"
+						max="50"
+						name="inventory"
+						id="inventory"
+					/>
+				</div>
 			</form>
 		</React.Fragment>
 	);
