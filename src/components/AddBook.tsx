@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { authors, AuthorsDataType } from "../data/authors";
 
 export default function AddBook() {
 	const [image, setImage] = useState<string>("");
