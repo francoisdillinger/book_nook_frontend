@@ -7,7 +7,7 @@ export type AuthorsDataType = {
 	};
 };
 
-export const authors = {
+export const author_data = {
 	data: {
 		authors: [
 			{
