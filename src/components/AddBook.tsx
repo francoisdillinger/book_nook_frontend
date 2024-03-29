@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { authors, AuthorsDataType } from "../data/authors";
 
 type TrimmedAuthorsType = {
-	firstName: string;
-	lastName: string;
+	authorFirstName: string;
+	authorLastName: string;
 };
 
-const trimOrders = (books: AuthorsDataType): TrimmedAuthorsType[] => {
-	return [...books.data.books];
+const trimOrders = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
+	return [...authors.data.authors];
 };
 
 export default function AddBook() {
