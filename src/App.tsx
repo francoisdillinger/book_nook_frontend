@@ -20,11 +20,12 @@ import AdminMenu from "./components/AdminMenu";
 import AdminOrders from "./components/AdminOrders";
 import AdminBooks from "./components/AdminBooks";
 import EditBook from "./components/EditBook";
+import AddBook from "./components/AddBook";
 
 export default function App() {
 	return (
 		<React.Fragment>
-			<Navbar />
+			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
@@ -35,9 +36,10 @@ export default function App() {
 			</div> */}
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
-			<EditBook />
+			{/* <EditBook /> */}
+			<AddBook />
 			{/* <Scratch /> */}
-			<Footer />
+			{/* <Footer /> */}
 		</React.Fragment>
 	);
 }
