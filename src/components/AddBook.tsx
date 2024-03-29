@@ -27,6 +27,10 @@ export default function AddBook() {
 					</div>
 				)}
 			</div>
+			<form
+				action=""
+				className="w-11/12 md:w-1/2 m-auto mb-20 font-medium text-gray-500 text-sm"
+			></form>
 		</React.Fragment>
 	);
 }
