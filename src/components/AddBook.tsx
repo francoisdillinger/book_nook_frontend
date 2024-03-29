@@ -9,5 +9,24 @@ export default function AddBook() {
 			setImage(URL.createObjectURL(event.target.files[0]));
 		}
 	};
-	return <></>;
+	return (
+		<React.Fragment>
+			{" "}
+			<div className="mt-10 mb-5">
+				{image ? (
+					<div className="flex justify-center">
+						<img
+							className="h-80"
+							src={image}
+							alt=""
+						/>
+					</div>
+				) : (
+					<div className="h-80 flex justify-center items-center font-semibold text-3xl text-gray-400">
+						Image Preview
+					</div>
+				)}
+			</div>
+		</React.Fragment>
+	);
 }
