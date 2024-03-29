@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { authors, AuthorsDataType } from "../data/authors";
 
 type TrimmedAuthorsType = {
@@ -12,6 +12,7 @@ const trimOrders = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
 
 export default function AddBook() {
 	const [image, setImage] = useState<string>("");
+	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.files);
