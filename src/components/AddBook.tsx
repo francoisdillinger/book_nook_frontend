@@ -21,6 +21,12 @@ export default function AddBook() {
 		}
 	};
 
+	// const selectOptionsHandler = (
+	// 	event: React.ChangeEvent<HTMLSelectElement>
+	// ) => {
+
+	// };
+
 	useEffect(() => {
 		const trimmedAuthors = trimAuthors(author_data);
 		setAuthors(trimmedAuthors);
