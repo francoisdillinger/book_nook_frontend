@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { authors, AuthorsDataType } from "../data/authors";
+import { author_data, AuthorsDataType } from "../data/authors";
 
 type TrimmedAuthorsType = {
 	authorFirstName: string;
@@ -20,6 +20,9 @@ export default function AddBook() {
 			setImage(URL.createObjectURL(event.target.files[0]));
 		}
 	};
+
+	useEffect(() => {}, [author_data]);
+
 	return (
 		<React.Fragment>
 			{" "}
