@@ -4,6 +4,8 @@ import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
 
 export default function EditAuthor() {
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
+	const [firstName, setFirstName] = useState();
+	const [lastName, setLastName] = useState();
 
 	useEffect(() => {
 		const trimmedAuthors = trimAuthors(author_data);
@@ -13,9 +15,14 @@ export default function EditAuthor() {
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		console.log(event.target.value);
+		const name = event.target.value.split(" ");
+		setFirstName(name[0]);
+		setLastName(name[1]);
+		// console.log(name);
 	};
 
+	console.log(firstName);
+	console.log(lastName);
 	return (
 		<React.Fragment>
 			<form
