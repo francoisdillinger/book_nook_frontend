@@ -3,9 +3,12 @@ import React from "react";
 export default function AddAuthor() {
 	return (
 		<React.Fragment>
+			<h1 className="flex justify-center font-medium text-3xl text-gray-500 pt-10 pb-10">
+				Add your new Author below
+			</h1>
 			<form
 				action=""
-				className="w-11/12 md:w-1/2 m-auto mb-20 font-medium text-gray-500 text-sm"
+				className="w-11/12 md:w-1/2 m-auto mb-20 font-medium text-gray-500 text-sm md:pt-10 md:pb-20"
 			>
 				<div className="">
 					<label
