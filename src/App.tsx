@@ -32,7 +32,7 @@ export default function App() {
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
-			{/* <div className="bg-slate-100 w-3/4 m-auto">
+			{/* <div className="bg-slate-100  m-auto">
 				<AdminMenu />
 				<AdminChart />
 			</div> */}
@@ -40,8 +40,8 @@ export default function App() {
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
 			{/* <AddBook /> */}
-			{/* <AddAuthor /> */}
-			<EditAuthor />
+			<AddAuthor />
+			{/* <EditAuthor /> */}
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
