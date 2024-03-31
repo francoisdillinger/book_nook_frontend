@@ -140,7 +140,7 @@ export default function AddBook() {
 				</div>
 				<div className="">
 					<label
-						htmlFor="publishedDate"
+						htmlFor="author"
 						className="block"
 					>
 						Author
