@@ -40,8 +40,8 @@ export default function App() {
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
 			{/* <AddBook /> */}
-			<AddAuthor />
-			{/* <EditAuthor /> */}
+			{/* <AddAuthor /> */}
+			<EditAuthor />
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
