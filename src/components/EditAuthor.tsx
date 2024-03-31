@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { author_data, AuthorsDataType } from "../data/authors";
 import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
 
 export default function EditAuthor() {
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
+
+	useEffect(() => {
+		const trimmedAuthors = trimAuthors(author_data);
+		setAuthors(trimmedAuthors);
+	}, [author_data]);
+
 	return (
 		<React.Fragment>
 			<form
