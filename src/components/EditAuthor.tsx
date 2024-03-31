@@ -10,6 +10,12 @@ export default function EditAuthor() {
 		setAuthors(trimmedAuthors);
 	}, [author_data]);
 
+	const selectOptionsHandler = (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		console.log(event.target.value);
+	};
+
 	return (
 		<React.Fragment>
 			<form
@@ -21,14 +27,14 @@ export default function EditAuthor() {
 						htmlFor="author"
 						className="block"
 					>
-						Author
+						Authors
 					</label>
 					<select
 						id="author"
 						className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-						// onChange={(event) => selectOptionsHandler(event)}
+						onChange={(event) => selectOptionsHandler(event)}
 					>
-						<option value="">--- Select Author ---</option>
+						<option value="">--- Select Author to Edit---</option>
 						{authors?.map((author, index) => (
 							<option key={index}>
 								{author.authorFirstName + " " + author.authorLastName}
