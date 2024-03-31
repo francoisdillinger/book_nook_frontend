@@ -71,6 +71,7 @@ export default function EditAuthor() {
 						type="text"
 						name="firstname"
 						id="firstname"
+						key={firstName + "_first"}
 						defaultValue={firstName}
 					/>
 				</div>
@@ -86,6 +87,7 @@ export default function EditAuthor() {
 						type="text"
 						name="lastname"
 						id="lastname"
+						key={lastName + "_last"}
 						defaultValue={lastName}
 					/>
 				</div>
