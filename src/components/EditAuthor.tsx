@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { author_data, AuthorsDataType } from "../data/authors";
 import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
 
 export default function EditAuthor() {
+	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
 	return (
 		<React.Fragment>
 			<form
