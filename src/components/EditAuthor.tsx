@@ -4,8 +4,8 @@ import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
 
 export default function EditAuthor() {
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
-	const [firstName, setFirstName] = useState();
-	const [lastName, setLastName] = useState();
+	const [firstName, setFirstName] = useState<string>("");
+	const [lastName, setLastName] = useState<string>("");
 
 	useEffect(() => {
 		const trimmedAuthors = trimAuthors(author_data);
@@ -61,6 +61,7 @@ export default function EditAuthor() {
 						type="text"
 						name="firstname"
 						id="firstname"
+						defaultValue={firstName}
 					/>
 				</div>
 				<div className="">
@@ -75,6 +76,7 @@ export default function EditAuthor() {
 						type="text"
 						name="lastname"
 						id="lastname"
+						defaultValue={lastName}
 					/>
 				</div>
 				<div className="flex justify-center pt-4">
@@ -82,7 +84,7 @@ export default function EditAuthor() {
 						type="submit"
 						className="bg-logo p-3 rounded-md w-full md:w-1/2 text-gray-50 opacity-90 hover:opacity-100 cursor-pointer font-medium"
 					>
-						Add Author
+						Edit Author
 					</button>
 				</div>
 			</form>
