@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { author_data, AuthorsDataType } from "../data/authors";
 
-type TrimmedAuthorsType = {
+export type TrimmedAuthorsType = {
 	authorFirstName: string;
 	authorLastName: string;
 };
