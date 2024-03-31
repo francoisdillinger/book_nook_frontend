@@ -59,7 +59,7 @@ export default function EditBook() {
 						id="title"
 					/>
 				</div>
-				<div className="">
+				{/* <div className="">
 					<label
 						htmlFor="isbn"
 						className="block"
@@ -72,7 +72,7 @@ export default function EditBook() {
 						name="isbn"
 						id="isbn"
 					/>
-				</div>
+				</div> */}
 				<div className="">
 					<label
 						htmlFor="price"
