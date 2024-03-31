@@ -1,5 +1,7 @@
 import React from "react";
 import { author_data, AuthorsDataType } from "../data/authors";
+import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
+
 export default function EditAuthor() {
 	return (
 		<React.Fragment>
