@@ -146,7 +146,7 @@ export default function AddBook() {
 						Author
 					</label>
 					<select
-						id="book-selector"
+						id="author"
 						className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 						// onChange={(event) => selectOptionsHandler(event)}
 					>
