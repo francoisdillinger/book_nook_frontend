@@ -1,5 +1,5 @@
 import React from "react";
-
+import { author_data, AuthorsDataType } from "../data/authors";
 export default function EditAuthor() {
 	return (
 		<React.Fragment>
