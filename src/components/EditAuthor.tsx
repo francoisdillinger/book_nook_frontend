@@ -16,10 +16,17 @@ export default function EditAuthor() {
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		const name = event.target.value.split(" ");
-		setSelectedAuthor(event.target.value);
-		setFirstName(name[0]);
-		setLastName(name[1]);
+		const selectedAuthor = event.target.value;
+		setSelectedAuthor(selectedAuthor);
+
+		if (selectedAuthor !== "") {
+			const name = selectedAuthor.split(" ");
+			setFirstName(name[0]);
+			setLastName(name[1]);
+		} else {
+			setFirstName("");
+			setLastName("");
+		}
 
 		// console.log(name);
 	};
