@@ -21,6 +21,8 @@ import AdminOrders from "./components/AdminOrders";
 import AdminBooks from "./components/AdminBooks";
 import EditBook from "./components/EditBook";
 import AddBook from "./components/AddBook";
+import AddAuthor from "./components/AddAuthor";
+import EditAuthor from "./components/EditAuthor";
 
 export default function App() {
 	return (
@@ -37,7 +39,9 @@ export default function App() {
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
-			<AddBook />
+			{/* <AddBook /> */}
+			<AddAuthor />
+			<EditAuthor />
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
 		</React.Fragment>
