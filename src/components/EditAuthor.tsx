@@ -6,6 +6,7 @@ export default function EditAuthor() {
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");
+	const [selectedAuthor, setSelectedAuthor] = useState<string>("");
 
 	useEffect(() => {
 		const trimmedAuthors = trimAuthors(author_data);
@@ -16,8 +17,10 @@ export default function EditAuthor() {
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		const name = event.target.value.split(" ");
+		setSelectedAuthor(event.target.value);
 		setFirstName(name[0]);
 		setLastName(name[1]);
+
 		// console.log(name);
 	};
 
