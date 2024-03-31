@@ -6,7 +6,7 @@ export type TrimmedAuthorsType = {
 	authorLastName: string;
 };
 
-const trimAuthors = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
+export const trimAuthors = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
 	return [...authors.data.authors];
 };
 
