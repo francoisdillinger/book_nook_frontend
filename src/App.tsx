@@ -39,8 +39,8 @@ export default function App() {
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
-			{/* <AddBook /> */}
-			<AddAuthor />
+			<AddBook />
+			{/* <AddAuthor /> */}
 			{/* <EditAuthor /> */}
 			{/* <Scratch /> */}
 			{/* <Footer /> */}
