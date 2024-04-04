@@ -21,7 +21,7 @@ type BooksSortType = {
 		| "Publish Date: Oldest First";
 };
 
-type TrimmedBookType = {
+export type TrimmedBookType = {
 	bookTitle: string;
 	pageCount: number;
 	publishDate: string;
