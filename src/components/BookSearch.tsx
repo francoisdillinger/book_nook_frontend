@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { books, BooksType } from "../data/books";
+import { books, BooksType } from "../data/adminBooks";
+import { TrimmedBookType } from "./AdminBooks";
 
-export type BookType = {
-	bookTitle: string;
-	pageCount: number;
-	publishDate: string;
-	price: number;
-	description: string;
-	inventoryCount: number;
-	isbn: string;
+const trimOrders = (books: BooksType): TrimmedBookType[] => {
+	return [...books.data.books];
 };
 
 export default function BookSearch() {
-	const [books, setBooks] = useState<BookType[] | null>();
+	const [trimmedBooks, setBooks] = useState<TrimmedBookType[] | null>();
 
-	return <React.Fragment>hi</React.Fragment>;
+	useEffect(() => {
+		const reformatedBooks = trimOrders(books);
+		setBooks(reformatedBooks);
+	}, [books]);
+	return (
+		<React.Fragment>
+			{" "}
+			<div>
+				{trimmedBooks?.map((book) => (
+					<div>{book.bookTitle}</div>
+				))}
+			</div>
+		</React.Fragment>
+	);
 }
