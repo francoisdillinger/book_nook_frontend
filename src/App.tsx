@@ -23,23 +23,25 @@ import EditBook from "./components/EditBook";
 import AddBook from "./components/AddBook";
 import AddAuthor from "./components/AddAuthor";
 import EditAuthor from "./components/EditAuthor";
+import BookSearch from "./components/BookSearch";
 
 export default function App() {
 	return (
 		<React.Fragment>
 			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
+			<BookSearch />
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
 			{/* <div className="bg-slate-100  m-auto">
-				<AdminMenu />
+				<AdminMenu /> 
 				<AdminChart />
 			</div> */}
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
-			<AddBook />
+			{/* <AddBook /> */}
 			{/* <AddAuthor /> */}
 			{/* <EditAuthor /> */}
 			{/* <Scratch /> */}
