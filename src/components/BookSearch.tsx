@@ -15,7 +15,6 @@ export default function BookSearch() {
 	}, [books]);
 	return (
 		<React.Fragment>
-			{" "}
 			<div>
 				{trimmedBooks?.map((book) => (
 					<div>{book.bookTitle}</div>
