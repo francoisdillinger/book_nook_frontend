@@ -198,13 +198,6 @@ export default function BookSearch() {
 				<ul className="w-11/12 md:w-3/4 m-auto pt-8 flex flex-wrap gap-3 justify-center">
 					{displayedBooks?.map((book) => (
 						<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
-							{/* {book.bookTitle +
-							" : " +
-							book.author.authorFirstName +
-							" " +
-							book.author.authorLastName +
-							" : " +
-							book.publishDate} */}
 							<div className="">
 								<img
 									className="w-4/5 m-auto"
