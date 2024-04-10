@@ -28,7 +28,7 @@ import BookSearch from "./components/BookSearch";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
+			<Navbar />
 			{/* <HomePageContent /> */}
 			<BookSearch />
 			{/* <SideBarAdminMenu /> */}
