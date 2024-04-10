@@ -1,3 +1,11 @@
+export type GraphQL_Categories = {
+	data: {
+		categories: {
+			categoryName: string;
+		}[];
+	};
+};
+
 export const graphql_categories = {
 	data: {
 		categories: [
