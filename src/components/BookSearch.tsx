@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { books, BooksType } from "../data/adminBooks";
 import { TrimmedBookType } from "./AdminBooks";
+import {
+	GraphQL_Categories,
+	graphql_categories,
+} from "../data/graphql_categories";
 import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
 
