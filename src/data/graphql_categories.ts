@@ -6,7 +6,7 @@ export type GraphQL_Categories = {
 	};
 };
 
-export const graphql_categories = {
+export const graphql_categories: GraphQL_Categories = {
 	data: {
 		categories: [
 			{
