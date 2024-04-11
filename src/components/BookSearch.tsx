@@ -185,15 +185,20 @@ export default function BookSearch() {
 						/>
 					</div> */}
 					<div className="">
-						<select
-							id="book-selector"
-							className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer"
-							onChange={(event) => selectOptionsHandler(event)}
-						>
-							{options.map((option) => (
-								<option key={option}>{option}</option>
-							))}
-						</select>
+						<button className="w-full flex items-center md:w-fitfont-semibold py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer">
+							<span className="mx-2">Filter By</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								className="w-4 h-4 fill-none stroke-2 stroke-current ml-4"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m19.5 8.25-7.5 7.5-7.5-7.5"
+								/>
+							</svg>
+						</button>
 					</div>
 					<div className="">
 						<select
