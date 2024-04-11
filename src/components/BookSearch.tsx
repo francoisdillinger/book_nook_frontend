@@ -90,6 +90,7 @@ const trimOrders = (books: BooksType): TrimmedBookType[] => {
 
 export default function BookSearch() {
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
+	const [filteringCategories, setFilteringCategories] = useState();
 	const options = [
 		"Sort a-z: Title",
 		"Sort z-a: Title",
