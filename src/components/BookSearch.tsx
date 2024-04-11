@@ -8,6 +8,7 @@ import {
 import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
 import { categories_data } from "../data/categories_data";
+import { motion } from "framer-motion";
 
 type BooksSearchType = {
 	option: "ISBN" | "Author" | "Title";
@@ -93,7 +94,13 @@ const trimGQLCategories = (books: GraphQL_Categories): string[] => {
 	return [...books.data.categories.map((category) => category.categoryName)];
 };
 
+const calculateHeight = (numOfItems: number): string => {
+	const itemHeight = 2;
+	return numOfItems * itemHeight + "em";
+};
+
 export default function BookSearch() {
+	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [filteringCategories, setFilteringCategories] = useState<[] | string[]>(
 		[]
@@ -167,7 +174,12 @@ export default function BookSearch() {
 			sortOption: event.target.value as BooksSortType["sortOption"],
 		});
 	};
-	console.log("Categories: ", graphql_categories);
+
+	const handleExpandCategories = () => {
+		setExpandCategories((prevState) => !prevState);
+	};
+	// console.log("Categories: ", graphql_categories);
+	console.log("Expand Cats: ", expandCategories);
 	return (
 		<React.Fragment>
 			<div className="flex">
@@ -176,7 +188,10 @@ export default function BookSearch() {
 						Filters
 					</h1>
 					<div className="bg-white">
-						<div className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
+						<div
+							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
+							onClick={handleExpandCategories}
+						>
 							<span className="mx-2">Categories</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +205,7 @@ export default function BookSearch() {
 								/>
 							</svg>
 						</div>
-						<div className="pl-5 text-sm text-gray-400 pt-2">
+						<motion.div className="pl-5 text-sm text-gray-400 pt-2">
 							{filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
@@ -204,7 +219,7 @@ export default function BookSearch() {
 									<br></br>
 								</div>
 							))}
-						</div>
+						</motion.div>
 					</div>
 				</aside>
 				<div className="pt-6 pb-12 w-10/12">
