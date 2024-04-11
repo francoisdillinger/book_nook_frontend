@@ -170,45 +170,15 @@ export default function BookSearch() {
 	console.log("Categories: ", graphql_categories);
 	return (
 		<React.Fragment>
-			<aside className="bg-gray-100 px-2 md:w-2/12">
-				<div className="">
-					<div className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
-						<span className="mx-2">Categories</span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-							className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="m19.5 8.25-7.5 7.5-7.5-7.5"
-							/>
-						</svg>
-					</div>
-				</div>
-			</aside>
-			<div className="pt-12 pb-12 md:w-10/12">
-				<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
-					{/* <div className="w-full my-2 md:my-0 md:w-1/2">
-						<SearchBar
-							options={["ISBN", "Author", "Title"]}
-							placeHolder="Search by ISBN, Author, or Title"
-							selectStyles="font-semibold form-select block w-36 md:w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 hover:cursor-pointer sm:text-sm"
-							buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-logo rounded-r-lg border border-logo opacity-80 hover:opacity-100 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800"
-							values={searchValues}
-							optionsHandler={optionsHandler}
-							inputHandler={inputHandler}
-							clickHandler={clickHandler}
-						/>
-					</div> */}
-					{/* <div className="">
-						<button className="w-full flex items-center md:w-fitfont-semibold py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer">
-							<span className="mx-2">Filter By</span>
+			<div className="flex">
+				<aside className="bg-gray-100 px-2 w-2/12">
+					<div className="">
+						<div className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
+							<span className="mx-2">Categories</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
-								className="w-4 h-4 fill-none stroke-2 stroke-current ml-4"
+								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
 							>
 								<path
 									strokeLinecap="round"
@@ -216,57 +186,24 @@ export default function BookSearch() {
 									d="m19.5 8.25-7.5 7.5-7.5-7.5"
 								/>
 							</svg>
-						</button>
-					</div> */}
-					<div className="">
-						<select
-							id="book-selector"
-							className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer"
-							onChange={(event) => selectOptionsHandler(event)}
-						>
-							{options.map((option) => (
-								<option key={option}>{option}</option>
-							))}
-						</select>
-					</div>
-				</div>
-				{/* <div className="w-full px-4 md:w-3/4 md:m-auto md:p-0">
-					<button className="w-full md:w-32 flex items-center p-2 text-md font-medium h-full text-white bg-logo rounded-lg border border-logo opacity-80 hover:opacity-100 active:scale-95 dark:bg-logo dark:hover:opacity-100 dark:focus:ring-blue-800">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							className="w-6 h-6 stroke-2 stroke-current"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M12 4.5v15m7.5-7.5h-15"
-							/>
-						</svg>
-						<span className="pl-2 pr-1">Add New</span>
-					</button>
-				</div> */}
-				<div className="flex">
-					{/* <aside className="bg-gray-100 mt-8 px-2 rounded-md md:w-2/12">
-						<div className="">
-							<div className="w-full flex items-center justify-between mt-2 rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
-								<span className="mx-2">Categories</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="m19.5 8.25-7.5 7.5-7.5-7.5"
-									/>
-								</svg>
-							</div>
 						</div>
-					</aside> */}
-					<ul className="w-11/12 md:w-10/12 pt-8 flex flex-wrap gap-3 justify-center">
+					</div>
+				</aside>
+				<div className="pt-12 pb-12 w-10/12">
+					<div className="w-full px-4 pb-2 md:w-11/12 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
+						<div className="">
+							<select
+								id="book-selector"
+								className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer"
+								onChange={(event) => selectOptionsHandler(event)}
+							>
+								{options.map((option) => (
+									<option key={option}>{option}</option>
+								))}
+							</select>
+						</div>
+					</div>
+					<ul className=" pt-8 flex flex-wrap gap-3 justify-center">
 						{displayedBooks?.map((book) => (
 							<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
 								<div className="">
