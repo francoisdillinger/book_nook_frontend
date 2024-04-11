@@ -171,7 +171,7 @@ export default function BookSearch() {
 	return (
 		<React.Fragment>
 			<div className="pt-12 pb-12">
-				<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
+				<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
 					{/* <div className="w-full my-2 md:my-0 md:w-1/2">
 						<SearchBar
 							options={["ISBN", "Author", "Title"]}
@@ -184,6 +184,17 @@ export default function BookSearch() {
 							clickHandler={clickHandler}
 						/>
 					</div> */}
+					<div className="">
+						<select
+							id="book-selector"
+							className="w-full md:w-fitfont-semibold form-select block py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer"
+							onChange={(event) => selectOptionsHandler(event)}
+						>
+							{options.map((option) => (
+								<option key={option}>{option}</option>
+							))}
+						</select>
+					</div>
 					<div className="">
 						<select
 							id="book-selector"
