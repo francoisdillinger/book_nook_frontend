@@ -179,7 +179,7 @@ export default function BookSearch() {
 		setExpandCategories((prevState) => !prevState);
 	};
 	// console.log("Categories: ", graphql_categories);
-	console.log("Expand Cats: ", expandCategories);
+	// console.log("Expand Cats: ", expandCategories);
 	return (
 		<React.Fragment>
 			<div className="flex">
@@ -224,13 +224,13 @@ export default function BookSearch() {
 									<input
 										className="border-gray-50 rounded accent-logo cursor-pointer"
 										type="checkbox"
-										id="vehicle1"
-										name="vehicle1"
-										value="Bike"
+										id={category}
+										name={category}
+										value={category}
 										// disabled
 									/>
 									<label
-										htmlFor="vehicle1"
+										htmlFor={category}
 										// className="text-gray-300"
 									>
 										{" "}
