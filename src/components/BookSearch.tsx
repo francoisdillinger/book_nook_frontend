@@ -98,6 +98,7 @@ export default function BookSearch() {
 	const [filteringCategories, setFilteringCategories] = useState<[] | string[]>(
 		[]
 	);
+	const [filterBy, setFilterBy] = useState<[] | string[]>([]);
 	const options = [
 		"Sort a-z: Title",
 		"Sort z-a: Title",
@@ -125,7 +126,8 @@ export default function BookSearch() {
 	}, [books]);
 
 	useEffect(() => {
-		const trimmedCategories = tr;
+		const trimmedCategories = trimGQLCategories(graphql_categories);
+		setFilteringCategories(trimmedCategories);
 	}, [graphql_categories]);
 
 	useEffect(() => {
