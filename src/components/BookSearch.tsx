@@ -193,19 +193,32 @@ export default function BookSearch() {
 							onClick={handleExpandCategories}
 						>
 							<span className="mx-2">Categories</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
+							<motion.svg
+								xmlns="http://www.w3.org/2000/motion."
 								viewBox="0 0 24 24"
 								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
+								animate={{ rotate: expandCategories ? 180 : 0 }}
 							>
 								<path
 									strokeLinecap="round"
 									strokeLinejoin="round"
 									d="m19.5 8.25-7.5 7.5-7.5-7.5"
 								/>
-							</svg>
+							</motion.svg>
 						</div>
-						<motion.div className="pl-5 text-sm text-gray-400 pt-2">
+						<motion.div
+							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
+							initial={{ height: 0 }}
+							animate={{
+								height: expandCategories
+									? calculateHeight(filteringCategories.length)
+									: "0em",
+							}}
+							transition={{
+								duration: 0.5, // Adjust duration for ease effect
+								ease: "easeInOut", // Use an ease-in-out curve for closing
+							}}
+						>
 							{filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
