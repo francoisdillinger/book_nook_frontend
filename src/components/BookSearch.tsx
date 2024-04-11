@@ -95,7 +95,7 @@ const trimGQLCategories = (books: GraphQL_Categories): string[] => {
 
 export default function BookSearch() {
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
-	const [filteringCategories, setFilteringCategories] = useState<[] | [string]>(
+	const [filteringCategories, setFilteringCategories] = useState<[] | string[]>(
 		[]
 	);
 	const options = [
