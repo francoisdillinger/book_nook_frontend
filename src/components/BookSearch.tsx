@@ -170,8 +170,26 @@ export default function BookSearch() {
 	console.log("Categories: ", graphql_categories);
 	return (
 		<React.Fragment>
-			<div className="pt-12 pb-12">
-				<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
+			<aside className="bg-gray-100 px-2 md:w-2/12">
+				<div className="">
+					<div className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
+						<span className="mx-2">Categories</span>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="m19.5 8.25-7.5 7.5-7.5-7.5"
+							/>
+						</svg>
+					</div>
+				</div>
+			</aside>
+			<div className="pt-12 pb-12 md:w-10/12">
+				<div className="w-full px-4 pb-2 md:w-3/4 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
 					{/* <div className="w-full my-2 md:my-0 md:w-1/2">
 						<SearchBar
 							options={["ISBN", "Author", "Title"]}
@@ -184,7 +202,7 @@ export default function BookSearch() {
 							clickHandler={clickHandler}
 						/>
 					</div> */}
-					<div className="">
+					{/* <div className="">
 						<button className="w-full flex items-center md:w-fitfont-semibold py-2.5 px-3 border border-gray-300 bg-white text-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm hover:cursor-pointer">
 							<span className="mx-2">Filter By</span>
 							<svg
@@ -199,7 +217,7 @@ export default function BookSearch() {
 								/>
 							</svg>
 						</button>
-					</div>
+					</div> */}
 					<div className="">
 						<select
 							id="book-selector"
@@ -229,22 +247,42 @@ export default function BookSearch() {
 						<span className="pl-2 pr-1">Add New</span>
 					</button>
 				</div> */}
-				<ul className="w-11/12 md:w-3/4 m-auto pt-8 flex flex-wrap gap-3 justify-center">
-					{displayedBooks?.map((book) => (
-						<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
-							<div className="">
-								<img
-									className="w-4/5 m-auto"
-									src={alchemist}
-									alt={`Image for ${book.bookTitle}`}
-								/>
+				<div className="flex">
+					{/* <aside className="bg-gray-100 mt-8 px-2 rounded-md md:w-2/12">
+						<div className="">
+							<div className="w-full flex items-center justify-between mt-2 rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
+								<span className="mx-2">Categories</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="m19.5 8.25-7.5 7.5-7.5-7.5"
+									/>
+								</svg>
 							</div>
-							<div className="text-center font-semibold text-sm text-gray-500">
-								{book.bookTitle}
-							</div>
-						</li>
-					))}
-				</ul>
+						</div>
+					</aside> */}
+					<ul className="w-11/12 md:w-10/12 pt-8 flex flex-wrap gap-3 justify-center">
+						{displayedBooks?.map((book) => (
+							<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
+								<div className="">
+									<img
+										className="w-4/5 m-auto"
+										src={alchemist}
+										alt={`Image for ${book.bookTitle}`}
+									/>
+								</div>
+								<div className="text-center font-semibold text-sm text-gray-500">
+									{book.bookTitle}
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		</React.Fragment>
 	);
