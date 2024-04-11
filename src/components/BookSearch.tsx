@@ -172,7 +172,10 @@ export default function BookSearch() {
 		<React.Fragment>
 			<div className="flex">
 				<aside className="bg-gray-100 px-2 w-2/12">
-					<div className="">
+					<h1 className="pt-6 font-semibold text-xl text-gray-400 pl-5 pb-4">
+						Filters
+					</h1>
+					<div className="bg-white">
 						<div className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer">
 							<span className="mx-2">Categories</span>
 							<svg
@@ -187,9 +190,24 @@ export default function BookSearch() {
 								/>
 							</svg>
 						</div>
+						<div className="pl-5 text-sm text-gray-400">
+							{filteringCategories.map((category) => (
+								<div className="py-1 flex items-center justify-between">
+									<input
+										className="border-gray-50 rounded accent-logo cursor-pointer"
+										type="checkbox"
+										id="vehicle1"
+										name="vehicle1"
+										value="Bike"
+									/>
+									<label htmlFor="vehicle1"> {category}</label>
+									<br></br>
+								</div>
+							))}
+						</div>
 					</div>
 				</aside>
-				<div className="pt-12 pb-12 w-10/12">
+				<div className="pt-6 pb-12 w-10/12">
 					<div className="w-full px-4 pb-2 md:w-11/12 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
 						<div className="">
 							<select
