@@ -190,7 +190,7 @@ export default function BookSearch() {
 								/>
 							</svg>
 						</div>
-						<div className="pl-5 text-sm text-gray-400">
+						<div className="pl-5 text-sm text-gray-400 pt-2">
 							{filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
