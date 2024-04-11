@@ -227,8 +227,15 @@ export default function BookSearch() {
 										id="vehicle1"
 										name="vehicle1"
 										value="Bike"
+										// disabled
 									/>
-									<label htmlFor="vehicle1"> {category}</label>
+									<label
+										htmlFor="vehicle1"
+										// className="text-gray-300"
+									>
+										{" "}
+										{category}
+									</label>
 									<br></br>
 								</div>
 							))}
