@@ -7,6 +7,7 @@ import {
 } from "../data/graphql_categories";
 import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
+import { categories_data } from "../data/categories_data";
 
 type BooksSearchType = {
 	option: "ISBN" | "Author" | "Title";
@@ -88,6 +89,10 @@ const trimOrders = (books: BooksType): TrimmedBookType[] => {
 	return [...books.data.books];
 };
 
+const trimGQLCategories = (books: GraphQL_Categories): string[] => {
+	return [...books.data.categories.map((category) => category.categoryName)];
+};
+
 export default function BookSearch() {
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [filteringCategories, setFilteringCategories] = useState<[] | [string]>(
@@ -118,6 +123,10 @@ export default function BookSearch() {
 		const reformatedBooks = trimOrders(books);
 		setTrimmedBooks(reformatedBooks);
 	}, [books]);
+
+	useEffect(() => {
+		const trimmedCategories = tr;
+	}, [graphql_categories]);
 
 	useEffect(() => {
 		const results = searchedBooks(
@@ -156,7 +165,7 @@ export default function BookSearch() {
 			sortOption: event.target.value as BooksSortType["sortOption"],
 		});
 	};
-
+	console.log("Categories: ", graphql_categories);
 	return (
 		<React.Fragment>
 			<div className="pt-12 pb-12">
