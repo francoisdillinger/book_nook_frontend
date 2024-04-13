@@ -115,9 +115,9 @@ export default function BookSearch() {
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
-	const [filteringCategories, setFilteringCategories] = useState<[] | string[]>(
-		[]
-	);
+	const [filteringCategories, setFilteringCategories] = useState<
+		[] | FilterByCategoryType[]
+	>([]);
 	const [filterBy, setFilterBy] = useState<[] | string[]>([]);
 	const options = [
 		"Sort a-z: Title",
@@ -147,7 +147,8 @@ export default function BookSearch() {
 
 	useEffect(() => {
 		const trimmedCategories = trimGQLCategories(graphql_categories);
-		setFilteringCategories(trimmedCategories);
+		const categoriesWithBoolean = addFilterByBoolean(trimmedCategories);
+		setFilteringCategories(categoriesWithBoolean);
 	}, [graphql_categories]);
 
 	useEffect(() => {
@@ -195,6 +196,22 @@ export default function BookSearch() {
 	const handleExpandRatings = () => {
 		setExpandRatings((prevState) => !prevState);
 	};
+
+	const handleCategoriesClick = (categoryObject: FilterByCategoryType) => {
+		console.log(categoryObject);
+		setFilteringCategories(
+			filteringCategories.map((category) => {
+				if (category.categoryName === categoryObject.categoryName) {
+					return {
+						...category,
+						filterByCategory: !categoryObject.filterByCategory,
+					};
+				}
+				return category;
+			})
+		);
+		console.log(categoryObject);
+	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
 	return (
@@ -238,23 +255,24 @@ export default function BookSearch() {
 						>
 							{filteringCategories.map((category) => (
 								<div
-									key={category}
+									key={category.categoryName}
 									className="py-1 flex items-center justify-between"
 								>
 									<input
 										className="border-gray-50 rounded accent-logo cursor-pointer"
 										type="checkbox"
-										id={category}
-										name={category}
-										value={category}
+										id={category.categoryName}
+										name={category.categoryName}
+										value={category.categoryName}
+										onClick={() => handleCategoriesClick(category)}
 										// disabled
 									/>
 									<label
-										htmlFor={category}
+										htmlFor={category.categoryName}
 										// className="text-gray-300"
 									>
 										{" "}
-										{category}
+										{category.categoryName}
 									</label>
 									<br></br>
 								</div>
