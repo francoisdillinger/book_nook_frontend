@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
 import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
+import StaticStarRating from "./StaticStarRating";
 
 type BooksSearchType = {
 	option: "ISBN" | "Author" | "Title";
@@ -276,6 +277,7 @@ export default function BookSearch() {
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
+							<StaticStarRating bookRating={5} />
 							{/* {filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
