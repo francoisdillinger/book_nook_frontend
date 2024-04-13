@@ -21,13 +21,17 @@ type BooksSortType = {
 };
 
 export type TrimmedBookType = {
+	id?: string;
 	bookTitle: string;
-	pageCount: number;
+	pageCount?: number;
 	publishDate: string;
 	price: number;
-	description: string;
-	inventoryCount: number;
+	description?: string;
+	inventoryCount?: number;
 	isbn: string;
+	bookReviews?: {
+		rating: number;
+	}[];
 	author: {
 		authorFirstName: string;
 		authorLastName: string;
