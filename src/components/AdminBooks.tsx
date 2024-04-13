@@ -32,6 +32,11 @@ export type TrimmedBookType = {
 		authorFirstName: string;
 		authorLastName: string;
 	};
+	bookCategories?: {
+		category: {
+			categoryName: string;
+		};
+	}[];
 };
 
 const trimOrders = (books: BooksType): TrimmedBookType[] => {
