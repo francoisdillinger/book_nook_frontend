@@ -16,13 +16,6 @@ export default function StaticStarRating({ bookRating }: Rating) {
 						key={index}
 						aria-label={`Rate ${ratingVal} out of 5`}
 					>
-						<input
-							type="radio"
-							name="rating"
-							value={ratingVal}
-							onChange={() => setRating(ratingVal)}
-							className="sr-only" // This hides the radio button from view but keeps it accessible
-						/>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
