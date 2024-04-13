@@ -270,18 +270,39 @@ export default function BookSearch() {
 							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
 							initial={{ height: 0 }}
 							animate={{
-								height: expandRatings ? calculateHeight(5) : "0em",
+								height: expandRatings ? calculateHeight(6) : "0em",
 							}}
 							transition={{
 								duration: 0.3, // Adjust duration for ease effect
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
-							<StaticStarRating
-								rating={3}
-								width={6}
-								height={6}
-							/>
+							{[...Array(5)].map((_, index) => {
+								const actualIndex = index + 1;
+								return (
+									<div className="py-1 flex items-center justify-between">
+										<input
+											className="border-gray-50 rounded accent-logo cursor-pointer"
+											type="checkbox"
+											id={"rating-" + actualIndex}
+											name={"rating-" + actualIndex}
+											value={"rating-" + actualIndex}
+											// disabled
+										/>
+										<label
+											htmlFor={"rating" + actualIndex}
+											// className="text-gray-300"
+										>
+											<StaticStarRating
+												rating={actualIndex}
+												width={6}
+												height={6}
+											/>
+										</label>
+										<br></br>
+									</div>
+								);
+							})}
 						</motion.div>
 					</div>
 				</aside>
