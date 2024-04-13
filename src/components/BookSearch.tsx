@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { books, BooksType } from "../data/adminBooks";
+import {
+	booksWithCategories,
+	BookWithCategoriesType,
+} from "../data/booksWithCategories";
 import { TrimmedBookType } from "./AdminBooks";
 import {
 	GraphQL_Categories,
@@ -92,7 +96,7 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 	}
 };
 
-const trimOrders = (books: BooksType): TrimmedBookType[] => {
+const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
 	return [...books.data.books];
 };
 
@@ -141,7 +145,7 @@ export default function BookSearch() {
 	});
 
 	useEffect(() => {
-		const reformatedBooks = trimOrders(books);
+		const reformatedBooks = trimBooks(booksWithCategories);
 		setTrimmedBooks(reformatedBooks);
 	}, [books]);
 
@@ -165,6 +169,8 @@ export default function BookSearch() {
 			sortOrders(displayedBooks ? displayedBooks : [], sortOption)
 		);
 	}, [sortOption]);
+
+	useEffect(() => {}, [filteringCategories]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
