@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-interface Rating {
+type StaticStarRatingType = {
 	rating: number;
-}
+};
 
-export default function StaticStarRating({ rating }: Rating) {
+export default function StaticStarRating({ rating }: StaticStarRatingType) {
 	return (
 		<div className="flex">
 			{[...Array(5)].map((_, index) => {
