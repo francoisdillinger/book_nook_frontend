@@ -1,4 +1,27 @@
-export const booksWithCategories = {
+type BookWithCategoriesType = {
+	data: {
+		books: {
+			id: string;
+			bookTitle: string;
+			price: number;
+			isbn: string;
+			bookReviews: {
+				rating: number;
+			}[];
+			author: {
+				authorFirstName: string;
+				authorLastName: string;
+			};
+			bookCategories: {
+				category: {
+					categoryName: string;
+				};
+			}[];
+		}[];
+	};
+};
+
+export const booksWithCategories: BookWithCategoriesType = {
 	data: {
 		books: [
 			{
