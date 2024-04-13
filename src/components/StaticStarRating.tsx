@@ -2,9 +2,15 @@ import React, { useState } from "react";
 
 type StaticStarRatingType = {
 	rating: number;
+	width: number;
+	height: number;
 };
 
-export default function StaticStarRating({ rating }: StaticStarRatingType) {
+export default function StaticStarRating({
+	rating,
+	width,
+	height,
+}: StaticStarRatingType) {
 	return (
 		<div className="flex">
 			{[...Array(5)].map((_, index) => {
@@ -20,7 +26,7 @@ export default function StaticStarRating({ rating }: StaticStarRatingType) {
 							viewBox="0 0 24 24"
 							className={`${
 								ratingVal <= rating ? "fill-yellow-400" : "fill-gray-300"
-							} w-12 h-12`}
+							} ${"w-" + width} ${"h-" + height}`}
 						>
 							<path
 								fillRule="evenodd"
