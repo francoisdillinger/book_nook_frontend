@@ -100,6 +100,12 @@ const trimGQLCategories = (books: GraphQL_Categories): string[] => {
 	return [...books.data.categories.map((category) => category.categoryName)];
 };
 
+const addFilterByBoolean = (categories: string[]): FilterByCategoryType[] => {
+	return categories.map((category) => {
+		return { categoryName: category, filterByCategory: false };
+	});
+};
+
 const calculateHeight = (numOfItems: number): string => {
 	const itemHeight = 2;
 	return numOfItems * itemHeight + "em";
