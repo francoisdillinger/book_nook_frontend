@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 interface Rating {
-	bookRating: number;
+	rating: number;
 }
 
-export default function StaticStarRating({ bookRating }: Rating) {
-	const [rating, setRating] = useState<number>(bookRating);
+export default function StaticStarRating({ rating }: Rating) {
 	return (
 		<div className="flex">
 			{[...Array(5)].map((_, index) => {
