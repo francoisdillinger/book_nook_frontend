@@ -181,15 +181,6 @@ export default function BookSearch() {
 		console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
 
-	// useEffect(() => {
-	// 	const results = searchedBooks(
-	// 		trimmedBooks ? trimmedBooks : [],
-	// 		searchValues
-	// 	);
-	// 	const sortedResults = sortOrders(results ? results : [], sortOption);
-	// 	setDisplayedBooks(sortedResults);
-	// }, [searchValues, trimmedBooks]);
-
 	useEffect(() => {
 		setDisplayedBooks(
 			sortOrders(displayedBooks ? displayedBooks : [], sortOption)
