@@ -197,7 +197,7 @@ export default function BookSearch() {
 		setExpandRatings((prevState) => !prevState);
 	};
 
-	const handleCategoriesClick = (categoryObject: FilterByCategoryType) => {
+	const handleCategoriesChange = (categoryObject: FilterByCategoryType) => {
 		setFilteringCategories(
 			filteringCategories.map((category) =>
 				category.categoryName === categoryObject.categoryName
@@ -262,7 +262,7 @@ export default function BookSearch() {
 										name={category.categoryName}
 										value={category.categoryName}
 										checked={category.filterByCategory}
-										onClick={() => handleCategoriesClick(category)}
+										onChange={() => handleCategoriesChange(category)}
 										// disabled
 									/>
 									<label
