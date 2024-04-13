@@ -5,6 +5,7 @@ type BookWithCategoriesType = {
 			bookTitle: string;
 			price: number;
 			isbn: string;
+			publishDate: string;
 			bookReviews: {
 				rating: number;
 			}[];
@@ -29,6 +30,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Alchemist",
 				price: 14.95,
 				isbn: "9780062315007",
+				publishDate: "1988-05-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -70,6 +72,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Pride and Prejudice",
 				price: 9.99,
 				isbn: "9781503290563",
+				publishDate: "1813-01-28",
 				bookReviews: [
 					{
 						rating: 3,
@@ -116,6 +119,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Adventures of Huckleberry Finn",
 				price: 8.99,
 				isbn: "9780486400778",
+				publishDate: "1884-12-10",
 				bookReviews: [
 					{
 						rating: 4,
@@ -157,6 +161,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Mrs. Dalloway",
 				price: 7.99,
 				isbn: "9780156628709",
+				publishDate: "1925-05-14",
 				bookReviews: [
 					{
 						rating: 3,
@@ -193,6 +198,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Anna Karenina",
 				price: 12.99,
 				isbn: "9781400079988",
+				publishDate: "1877-04-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -234,6 +240,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Warrior of the Light",
 				price: 16.99,
 				isbn: "9780060527983",
+				publishDate: "2003-03-30",
 				bookReviews: [
 					{
 						rating: 3,
@@ -270,6 +277,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Emma",
 				price: 11.99,
 				isbn: "9780141439587",
+				publishDate: "1815-12-25",
 				bookReviews: [
 					{
 						rating: 4,
@@ -306,6 +314,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Life on the Mississippi",
 				price: 13.95,
 				isbn: "9780486414263",
+				publishDate: "1883-01-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -342,6 +351,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Orlando",
 				price: 14.95,
 				isbn: "9780156701600",
+				publishDate: "1928-10-11",
 				bookReviews: [
 					{
 						rating: 5,
@@ -378,6 +388,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Death of Ivan Ilyich",
 				price: 10,
 				isbn: "9780486435091",
+				publishDate: "1886-02-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -414,6 +425,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Brothers Karamazov",
 				price: 15.95,
 				isbn: "9780486437913",
+				publishDate: "1880-11-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -450,6 +462,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Notes from Underground",
 				price: 6.95,
 				isbn: "9780486270531",
+				publishDate: "1864-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -486,6 +499,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "For Whom the Bell Tolls",
 				price: 17,
 				isbn: "9780684803357",
+				publishDate: "1940-10-21",
 				bookReviews: [
 					{
 						rating: 4,
@@ -522,6 +536,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "A Farewell to Arms",
 				price: 16,
 				isbn: "9780142437339",
+				publishDate: "1929-09-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -558,6 +573,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Hobbit",
 				price: 14.99,
 				isbn: "9780547928227",
+				publishDate: "1937-09-21",
 				bookReviews: [
 					{
 						rating: 5,
@@ -599,6 +615,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Animal Farm",
 				price: 9.99,
 				isbn: "9780451526342",
+				publishDate: "1945-08-17",
 				bookReviews: [
 					{
 						rating: 4,
@@ -640,6 +657,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "As I Lay Dying",
 				price: 14.95,
 				isbn: "9780679732259",
+				publishDate: "1930-10-06",
 				bookReviews: [],
 				author: {
 					authorFirstName: "William",
@@ -668,6 +686,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Sound and the Fury",
 				price: 15,
 				isbn: "9780679732242",
+				publishDate: "1929-10-07",
 				bookReviews: [
 					{
 						rating: 4,
@@ -706,6 +725,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Murder on the Orient Express",
 				price: 14.99,
 				isbn: "9780062693662",
+				publishDate: "1934-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -739,6 +759,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Ulysses",
 				price: 23,
 				isbn: "9780141182803",
+				publishDate: "1922-02-02",
 				bookReviews: [
 					{
 						rating: 2,
@@ -769,6 +790,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Trial",
 				price: 12.95,
 				isbn: "9780805209990",
+				publishDate: "1925-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -807,6 +829,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Beloved",
 				price: 16,
 				isbn: "9781400033416",
+				publishDate: "1987-09-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -845,6 +868,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "One Hundred Years of Solitude",
 				price: 18.99,
 				isbn: "9780060883287",
+				publishDate: "1967-06-05",
 				bookReviews: [
 					{
 						rating: 3,
@@ -880,6 +904,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Norwegian Wood",
 				price: 15,
 				isbn: "9780375704024",
+				publishDate: "1987-09-04",
 				bookReviews: [
 					{
 						rating: 4,
@@ -915,6 +940,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "1Q84",
 				price: 22.95,
 				isbn: "9780307593313",
+				publishDate: "2009-05-29",
 				bookReviews: [
 					{
 						rating: 5,
@@ -950,6 +976,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Harry Potter and the Chamber of Secrets",
 				price: 12.99,
 				isbn: "9780439064873",
+				publishDate: "1998-07-02",
 				bookReviews: [
 					{
 						rating: 4,
@@ -985,6 +1012,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Stand",
 				price: 18,
 				isbn: "9780307743688",
+				publishDate: "1978-10-03",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1017,6 +1045,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "And Still I Rise",
 				price: 17,
 				isbn: "9780394502526",
+				publishDate: "1978-08-17",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1047,6 +1076,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Cat's Cradle",
 				price: 15.95,
 				isbn: "9780385333481",
+				publishDate: "1963-04-11",
 				bookReviews: [
 					{
 						rating: 3,
@@ -1074,6 +1104,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Go Set a Watchman",
 				price: 27.99,
 				isbn: "9780062409850",
+				publishDate: "2015-07-14",
 				bookReviews: [
 					{
 						rating: 3,
@@ -1106,6 +1137,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Fahrenheit 451",
 				price: 15.99,
 				isbn: "9781451673319",
+				publishDate: "1953-10-19",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1136,6 +1168,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The War of the Worlds",
 				price: 8.99,
 				isbn: "9780486295060",
+				publishDate: "1898-01-01",
 				bookReviews: [
 					{
 						rating: 2,
@@ -1163,6 +1196,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Tell-Tale Heart and Other Writings",
 				price: 6.95,
 				isbn: "9780553212280",
+				publishDate: "1982-10-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1190,6 +1224,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Selected Poems of Emily Dickinson",
 				price: 12,
 				isbn: "9780486411071",
+				publishDate: "2000-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1220,6 +1255,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Weary Blues",
 				price: 12,
 				isbn: "9780486454481",
+				publishDate: "1926-01-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -1252,6 +1288,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Collected Poems of Langston Hughes",
 				price: 22,
 				isbn: "9780679764083",
+				publishDate: "1994-10-31",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1295,6 +1332,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Bell Jar",
 				price: 17,
 				isbn: "9780060837020",
+				publishDate: "1963-01-14",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1333,6 +1371,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Brave New World",
 				price: 15.99,
 				isbn: "9780060850524",
+				publishDate: "1932-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1371,6 +1410,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Moby-Dick",
 				price: 18,
 				isbn: "9780142437247",
+				publishDate: "1851-10-18",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1409,6 +1449,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Little Women",
 				price: 12.95,
 				isbn: "9780147514011",
+				publishDate: "1868-09-30",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1447,6 +1488,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Picture of Dorian Gray",
 				price: 10.99,
 				isbn: "9780141439570",
+				publishDate: "1890-06-20",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1485,6 +1527,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Importance of Being Earnest",
 				price: 6.95,
 				isbn: "9780486264784",
+				publishDate: "1895-02-14",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1523,6 +1566,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Adventures of Sherlock Holmes",
 				price: 12.99,
 				isbn: "9780755334507",
+				publishDate: "1892-10-14",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1556,6 +1600,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Grapes of Wrath",
 				price: 14,
 				isbn: "9780143039433",
+				publishDate: "1939-04-14",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1594,6 +1639,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Great Gatsby",
 				price: 15,
 				isbn: "9780743273565",
+				publishDate: "1925-04-10",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1635,6 +1681,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "American Gods",
 				price: 19.99,
 				isbn: "9780062572233",
+				publishDate: "2001-06-19",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1673,6 +1720,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Do Androids Dream of Electric Sheep?",
 				price: 14.99,
 				isbn: "9780345404473",
+				publishDate: "1968-03-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1711,6 +1759,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Man in the High Castle",
 				price: 13.95,
 				isbn: "9780547572482",
+				publishDate: "1962-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1752,6 +1801,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Handmaid's Tale",
 				price: 15.95,
 				isbn: "9780385490818",
+				publishDate: "1985-04-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1790,6 +1840,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Oryx and Crake",
 				price: 16.95,
 				isbn: "9780385503853",
+				publishDate: "2003-05-06",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1828,6 +1879,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "My Name Is Red",
 				price: 17,
 				isbn: "9780375706851",
+				publishDate: "1998-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1869,6 +1921,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The House of the Spirits",
 				price: 18,
 				isbn: "9781501117015",
+				publishDate: "1982-10-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -1907,6 +1960,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Never Let Me Go",
 				price: 16,
 				isbn: "9781400078774",
+				publishDate: "2005-04-05",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1945,6 +1999,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Golden Notebook",
 				price: 18,
 				isbn: "9780060931407",
+				publishDate: "1962-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -1986,6 +2041,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Lolita",
 				price: 14.95,
 				isbn: "9780679723165",
+				publishDate: "1955-08-18",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2024,6 +2080,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Midnight's Children",
 				price: 19,
 				isbn: "9780812976533",
+				publishDate: "1981-04-18",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2062,6 +2119,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Road",
 				price: 15.95,
 				isbn: "9780307387899",
+				publishDate: "2006-09-26",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2103,6 +2161,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Catcher in the Rye",
 				price: 9.99,
 				isbn: "9780316769488",
+				publishDate: "1951-07-16",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2141,6 +2200,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Color Purple",
 				price: 18.99,
 				isbn: "9780151191536",
+				publishDate: "1982-06-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2179,6 +2239,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Things Fall Apart",
 				price: 12.99,
 				isbn: "9780385474542",
+				publishDate: "1958-06-17",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2220,6 +2281,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Diary of a Young Girl",
 				price: 10,
 				isbn: "9780553296983",
+				publishDate: "1947-06-25",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2258,6 +2320,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Jane Eyre",
 				price: 9.99,
 				isbn: "9780141441146",
+				publishDate: "1847-10-16",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2301,6 +2364,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Frankenstein",
 				price: 7.95,
 				isbn: "9780486282114",
+				publishDate: "1818-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2352,6 +2416,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Count of Monte Cristo",
 				price: 20,
 				isbn: "9780140449266",
+				publishDate: "1844-08-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2400,6 +2465,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "A Tale of Two Cities",
 				price: 14,
 				isbn: "9780141439600",
+				publishDate: "1859-04-30",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2443,6 +2509,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Jungle Book",
 				price: 12.99,
 				isbn: "9780141325293",
+				publishDate: "1894-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2489,6 +2556,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Madame Bovary",
 				price: 11.95,
 				isbn: "9780140449129",
+				publishDate: "1856-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2532,6 +2600,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Scarlet Letter",
 				price: 8.95,
 				isbn: "9780486280486",
+				publishDate: "1850-03-16",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2575,6 +2644,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Middlemarch",
 				price: 18,
 				isbn: "9780141439549",
+				publishDate: "1871-12-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2621,6 +2691,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "A Doll's House",
 				price: 9.99,
 				isbn: "9780486270623",
+				publishDate: "1879-12-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2664,6 +2735,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Tess of the d'Urbervilles",
 				price: 12,
 				isbn: "9780141439594",
+				publishDate: "1891-11-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2707,6 +2779,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Turn of the Screw",
 				price: 6.95,
 				isbn: "9780486266849",
+				publishDate: "1898-10-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2748,6 +2821,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Awakening",
 				price: 7.99,
 				isbn: "9780486277868",
+				publishDate: "1899-04-22",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2786,6 +2860,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Cherry Orchard",
 				price: 10,
 				isbn: "9780486275482",
+				publishDate: "1904-01-17",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2824,6 +2899,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Age of Innocence",
 				price: 14,
 				isbn: "9780486298030",
+				publishDate: "1920-09-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2864,6 +2940,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "In Search of Lost Time",
 				price: 100,
 				isbn: "9780679443654",
+				publishDate: "1913-11-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -2904,6 +2981,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Waste Land",
 				price: 12,
 				isbn: "9780141185154",
+				publishDate: "1922-10-15",
 				bookReviews: [
 					{
 						rating: 5,
@@ -2939,6 +3017,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Stranger",
 				price: 13.95,
 				isbn: "9780679720201",
+				publishDate: "1942-06-19",
 				bookReviews: [
 					{
 						rating: 4,
@@ -2974,6 +3053,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Waiting for Godot",
 				price: 14,
 				isbn: "9780571244591",
+				publishDate: "1953-01-05",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3009,6 +3089,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "On the Road",
 				price: 16,
 				isbn: "9780140283297",
+				publishDate: "1957-09-05",
 				bookReviews: [
 					{
 						rating: 3,
@@ -3044,6 +3125,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Naked Lunch",
 				price: 15.95,
 				isbn: "9780802122070",
+				publishDate: "1959-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3079,6 +3161,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Atonement",
 				price: 18.95,
 				isbn: "9780385721790",
+				publishDate: "2001-09-04",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3114,6 +3197,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The English Patient",
 				price: 14.95,
 				isbn: "9780679745204",
+				publishDate: "1992-11-05",
 				bookReviews: [
 					{
 						rating: 3,
@@ -3146,6 +3230,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Sense of an Ending",
 				price: 14.95,
 				isbn: "9780307957122",
+				publishDate: "2011-08-04",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3178,6 +3263,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Unbearable Lightness of Being",
 				price: 18,
 				isbn: "9780060932138",
+				publishDate: "1984-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3210,6 +3296,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Infinite Jest",
 				price: 20,
 				isbn: "9780316066525",
+				publishDate: "1996-02-01",
 				bookReviews: [
 					{
 						rating: 2,
@@ -3242,6 +3329,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Tale of Genji",
 				price: 25,
 				isbn: "9780679417385",
+				publishDate: "1001-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3277,6 +3365,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "A Room with a View",
 				price: 12,
 				isbn: "9780141183297",
+				publishDate: "1908-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3312,6 +3401,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The End of the Affair",
 				price: 14.95,
 				isbn: "9780141441122",
+				publishDate: "1951-01-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -3344,6 +3434,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Henderson the Rain King",
 				price: 16,
 				isbn: "9780140189421",
+				publishDate: "1959-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3376,6 +3467,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "A Good Man Is Hard to Find",
 				price: 15,
 				isbn: "9780156364652",
+				publishDate: "1955-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3414,6 +3506,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Death of a Naturalist",
 				price: 12,
 				isbn: "9780571230839",
+				publishDate: "1966-01-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -3447,6 +3540,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Omeros",
 				price: 18,
 				isbn: "9780374523503",
+				publishDate: "1990-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3485,6 +3579,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Magic Mountain",
 				price: 20,
 				isbn: "9780679772873",
+				publishDate: "1924-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3523,6 +3618,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Ficciones",
 				price: 15,
 				isbn: "9780802130303",
+				publishDate: "1944-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3561,6 +3657,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Invisible Cities",
 				price: 14,
 				isbn: "9780156453806",
+				publishDate: "1972-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3599,6 +3696,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Blindness",
 				price: 16,
 				isbn: "9780156007757",
+				publishDate: "1995-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3637,6 +3735,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "If This Is a Man",
 				price: 14.95,
 				isbn: "9780349100135",
+				publishDate: "1947-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3669,6 +3768,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Name of the Rose",
 				price: 18.95,
 				isbn: "9780151446476",
+				publishDate: "1980-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3710,6 +3810,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "White Teeth",
 				price: 14,
 				isbn: "9780375703867",
+				publishDate: "2000-01-01",
 				bookReviews: [
 					{
 						rating: 3,
@@ -3751,6 +3852,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "My Brilliant Friend",
 				price: 17,
 				isbn: "9781609450786",
+				publishDate: "2011-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3783,6 +3885,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Americanah",
 				price: 16,
 				isbn: "9780307455925",
+				publishDate: "2013-05-14",
 				bookReviews: [],
 				author: {
 					authorFirstName: "Chimamanda Ngozi",
@@ -3811,6 +3914,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Underground Railroad",
 				price: 16.95,
 				isbn: "9780385542364",
+				publishDate: "2016-08-02",
 				bookReviews: [
 					{
 						rating: 5,
@@ -3852,6 +3956,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Nausea",
 				price: 15.95,
 				isbn: "9780811220309",
+				publishDate: "1938-01-01",
 				bookReviews: [],
 				author: {
 					authorFirstName: "Jean-Paul",
@@ -3880,6 +3985,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Second Sex",
 				price: 20,
 				isbn: "9780307277787",
+				publishDate: "1949-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3918,6 +4024,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Charlie and the Chocolate Factory",
 				price: 7.99,
 				isbn: "9780142410318",
+				publishDate: "1964-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3950,6 +4057,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Talented Mr. Ripley",
 				price: 14,
 				isbn: "9780393332148",
+				publishDate: "1955-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -3991,6 +4099,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Night",
 				price: 9.95,
 				isbn: "9780374500016",
+				publishDate: "1956-01-01",
 				bookReviews: [
 					{
 						rating: 5,
@@ -4026,6 +4135,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Where the Wild Things Are",
 				price: 8.99,
 				isbn: "9780064431781",
+				publishDate: "1963-11-09",
 				bookReviews: [
 					{
 						rating: 3,
@@ -4061,6 +4171,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "In the Night Kitchen",
 				price: 7.99,
 				isbn: "9780060266684",
+				publishDate: "1970-10-28",
 				bookReviews: [
 					{
 						rating: 5,
@@ -4102,6 +4213,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Giving Tree",
 				price: 10.99,
 				isbn: "9780060256654",
+				publishDate: "1964-10-07",
 				bookReviews: [
 					{
 						rating: 5,
@@ -4135,6 +4247,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Where the Sidewalk Ends",
 				price: 12.99,
 				isbn: "9780060256692",
+				publishDate: "1974-01-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -4165,6 +4278,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Shadow of the Wind",
 				price: 16.95,
 				isbn: "9780143034902",
+				publishDate: "2001-10-16",
 				bookReviews: [],
 				author: {
 					authorFirstName: "Carlos Ruiz",
@@ -4193,6 +4307,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Angel's Game",
 				price: 17.99,
 				isbn: "9780142020161",
+				publishDate: "2008-06-24",
 				bookReviews: [
 					{
 						rating: 4,
@@ -4234,6 +4349,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Da Vinci Code",
 				price: 9.99,
 				isbn: "9780307277671",
+				publishDate: "2003-03-18",
 				bookReviews: [
 					{
 						rating: 2,
@@ -4270,6 +4386,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Angels & Demons",
 				price: 10.99,
 				isbn: "9780671027360",
+				publishDate: "2000-04-01",
 				bookReviews: [
 					{
 						rating: 4,
@@ -4297,6 +4414,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "The Dutch House",
 				price: 16.99,
 				isbn: "9780062963680",
+				publishDate: "2019-09-24",
 				bookReviews: [
 					{
 						rating: 5,
@@ -4333,6 +4451,7 @@ export const booksWithCategories: BookWithCategoriesType = {
 				bookTitle: "Commonwealth",
 				price: 15.95,
 				isbn: "9780062491817",
+				publishDate: "2016-09-13",
 				bookReviews: [
 					{
 						rating: 2,
