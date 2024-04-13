@@ -196,29 +196,6 @@ export default function BookSearch() {
 		);
 	}, [sortOption]);
 
-	// useEffect(() => {
-	// 	const results = searchedBooks(
-	// 		trimmedBooks ? trimmedBooks : [],
-	// 		searchValues
-	// 	);
-	// 	const sortedResults = sortOrders(results ? results : [], sortOption);
-	// 	console.log("Displayed Books: ", displayedBooks);
-	// 	const activeFilters = filteringCategories
-	// 		.filter((category) => category.filterByCategory)
-	// 		.map((filter) => filter.categoryName);
-
-	// 	if (activeFilters.length > 0) {
-	// 		const filteredBooks = sortedResults!.filter((book) =>
-	// 			book.bookCategories?.some((category) =>
-	// 				activeFilters.includes(category.category.categoryName)
-	// 			)
-	// 		);
-
-	// 		console.log("Filtered Books: ", filteredBooks);
-	// 		setDisplayedBooks(filteredBooks);
-	// 	}
-	// }, [filteringCategories]);
-
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
 			option: event.target.value as "ISBN" | "Author" | "Title",
