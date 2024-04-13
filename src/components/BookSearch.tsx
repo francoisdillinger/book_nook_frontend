@@ -11,6 +11,11 @@ import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
 import StaticStarRating from "./StaticStarRating";
 
+type FilterByCategoryType = {
+	categoryName: string;
+	filterByCategory: boolean;
+};
+
 type BooksSearchType = {
 	option: "ISBN" | "Author" | "Title";
 	value: string;
