@@ -198,19 +198,16 @@ export default function BookSearch() {
 	};
 
 	const handleCategoriesClick = (categoryObject: FilterByCategoryType) => {
-		console.log(categoryObject);
 		setFilteringCategories(
-			filteringCategories.map((category) => {
-				if (category.categoryName === categoryObject.categoryName) {
-					return {
-						...category,
-						filterByCategory: !categoryObject.filterByCategory,
-					};
-				}
-				return category;
-			})
+			filteringCategories.map((category) =>
+				category.categoryName === categoryObject.categoryName
+					? {
+							...category,
+							filterByCategory: !category.filterByCategory,
+					  }
+					: category
+			)
 		);
-		console.log(categoryObject);
 	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
