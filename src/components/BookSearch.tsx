@@ -247,12 +247,12 @@ export default function BookSearch() {
 							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
 							onClick={handleExpandCategories}
 						>
-							<span className="mx-2">Categories</span>
+							<span className="mx-2">Ratings</span>
 							<motion.svg
 								xmlns="http://www.w3.org/2000/motion."
 								viewBox="0 0 24 24"
 								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
-								animate={{ rotate: expandCategories ? 180 : 0 }}
+								animate={{ rotate: expandRatings ? 180 : 0 }}
 							>
 								<path
 									strokeLinecap="round"
@@ -265,7 +265,7 @@ export default function BookSearch() {
 							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
 							initial={{ height: 0 }}
 							animate={{
-								height: expandCategories
+								height: expandRatings
 									? calculateHeight(filteringCategories.length)
 									: "0em",
 							}}
