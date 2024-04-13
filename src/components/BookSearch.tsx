@@ -188,7 +188,7 @@ export default function BookSearch() {
 					<h1 className="pt-6 font-semibold text-xl text-gray-400 pl-5 pb-4">
 						Filters
 					</h1>
-					<div className="bg-white">
+					<div className="bg-white mb-2">
 						<div
 							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
 							onClick={handleExpandCategories}
@@ -274,7 +274,7 @@ export default function BookSearch() {
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
-							{filteringCategories.map((category) => (
+							{/* {filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
 										className="border-gray-50 rounded accent-logo cursor-pointer"
@@ -293,7 +293,7 @@ export default function BookSearch() {
 									</label>
 									<br></br>
 								</div>
-							))}
+							))} */}
 						</motion.div>
 					</div>
 				</aside>
