@@ -184,19 +184,7 @@ export const graphql_categories: GraphQL_Categories = {
 				categoryName: "Classical Literature",
 			},
 			{
-				categoryName: "Self-Help",
-			},
-			{
-				categoryName: "Literary Realism",
-			},
-			{
-				categoryName: "Detective Fiction",
-			},
-			{
 				categoryName: "War Fiction",
-			},
-			{
-				categoryName: "Science Fiction",
 			},
 			{
 				categoryName: "Fantasy Adventure",
@@ -233,9 +221,6 @@ export const graphql_categories: GraphQL_Categories = {
 			},
 			{
 				categoryName: "Urban Fantasy",
-			},
-			{
-				categoryName: "Mythology",
 			},
 			{
 				categoryName: "Fairy Tales",
