@@ -309,21 +309,25 @@ export default function BookSearch() {
 						>
 							{[...Array(5)].map((_, index) => {
 								const actualIndex = index + 1;
+								const key = "Star-Rating-" + actualIndex;
+								// console.log(key);
 								return (
 									<div
-										key={"Star-Rating-" + actualIndex}
+										key={key}
 										className="py-1 flex items-center justify-between"
 									>
 										<input
 											className="border-gray-50 rounded accent-logo cursor-pointer"
 											type="checkbox"
 											id={"rating-" + actualIndex}
-											name={"rating-" + actualIndex}
+											name="rating"
 											value={"rating-" + actualIndex}
+											aria-labelledby={"label-rating-" + actualIndex}
 											// disabled
 										/>
 										<label
 											htmlFor={"rating" + actualIndex}
+											id={"label-rating-" + actualIndex}
 											// className="text-gray-300"
 										>
 											<StaticStarRating
