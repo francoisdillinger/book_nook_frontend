@@ -269,12 +269,10 @@ export default function BookSearch() {
 							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
 							initial={{ height: 0 }}
 							animate={{
-								height: expandRatings
-									? calculateHeight(filteringCategories.length)
-									: "0em",
+								height: expandRatings ? calculateHeight(5) : "0em",
 							}}
 							transition={{
-								duration: 0.5, // Adjust duration for ease effect
+								duration: 0.3, // Adjust duration for ease effect
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
