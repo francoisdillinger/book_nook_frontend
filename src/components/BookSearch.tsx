@@ -179,6 +179,10 @@ export default function BookSearch() {
 	const handleExpandCategories = () => {
 		setExpandCategories((prevState) => !prevState);
 	};
+
+	const handleExpandRatings = () => {
+		setExpandRatings((prevState) => !prevState);
+	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
 	return (
@@ -245,7 +249,7 @@ export default function BookSearch() {
 					<div className="bg-white">
 						<div
 							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
-							onClick={handleExpandCategories}
+							onClick={handleExpandRatings}
 						>
 							<span className="mx-2">Ratings</span>
 							<motion.svg
