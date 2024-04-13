@@ -1,4 +1,4 @@
-type BookWithCategoriesType = {
+export type BookWithCategoriesType = {
 	data: {
 		books: {
 			id: string;
