@@ -264,6 +264,7 @@ export default function BookSearch() {
 										id={category.categoryName}
 										name={category.categoryName}
 										value={category.categoryName}
+										checked={category.filterByCategory}
 										onClick={() => handleCategoriesClick(category)}
 										// disabled
 									/>
