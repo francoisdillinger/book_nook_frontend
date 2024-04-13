@@ -156,13 +156,39 @@ export default function BookSearch() {
 	}, [graphql_categories]);
 
 	useEffect(() => {
-		const results = searchedBooks(
-			trimmedBooks ? trimmedBooks : [],
-			searchValues
-		);
-		const sortedResults = sortOrders(results ? results : [], sortOption);
-		setDisplayedBooks(sortedResults);
-	}, [searchValues, trimmedBooks]);
+		// Step 1: Apply Search
+		const searchedResults = searchedBooks(trimmedBooks || [], searchValues);
+
+		// Step 2: Apply Sort
+		const sortedResults = sortOrders(searchedResults, sortOption);
+
+		// Step 3: Apply Filter
+		const activeFilters = filteringCategories
+			.filter((category) => category.filterByCategory)
+			.map((filter) => filter.categoryName);
+
+		const finalDisplayedBooks =
+			activeFilters.length > 0
+				? sortedResults.filter((book) =>
+						book.bookCategories?.some((category) =>
+							activeFilters.includes(category.category.categoryName)
+						)
+				  )
+				: sortedResults; // If no filters are selected, show all sorted (and searched) books
+
+		// Step 4: Update displayed books
+		setDisplayedBooks(finalDisplayedBooks);
+		console.log("Displayed Books: ", finalDisplayedBooks);
+	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
+
+	// useEffect(() => {
+	// 	const results = searchedBooks(
+	// 		trimmedBooks ? trimmedBooks : [],
+	// 		searchValues
+	// 	);
+	// 	const sortedResults = sortOrders(results ? results : [], sortOption);
+	// 	setDisplayedBooks(sortedResults);
+	// }, [searchValues, trimmedBooks]);
 
 	useEffect(() => {
 		setDisplayedBooks(
@@ -170,7 +196,28 @@ export default function BookSearch() {
 		);
 	}, [sortOption]);
 
-	useEffect(() => {}, [filteringCategories]);
+	// useEffect(() => {
+	// 	const results = searchedBooks(
+	// 		trimmedBooks ? trimmedBooks : [],
+	// 		searchValues
+	// 	);
+	// 	const sortedResults = sortOrders(results ? results : [], sortOption);
+	// 	console.log("Displayed Books: ", displayedBooks);
+	// 	const activeFilters = filteringCategories
+	// 		.filter((category) => category.filterByCategory)
+	// 		.map((filter) => filter.categoryName);
+
+	// 	if (activeFilters.length > 0) {
+	// 		const filteredBooks = sortedResults!.filter((book) =>
+	// 			book.bookCategories?.some((category) =>
+	// 				activeFilters.includes(category.category.categoryName)
+	// 			)
+	// 		);
+
+	// 		console.log("Filtered Books: ", filteredBooks);
+	// 		setDisplayedBooks(filteredBooks);
+	// 	}
+	// }, [filteringCategories]);
 
 	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValues({
