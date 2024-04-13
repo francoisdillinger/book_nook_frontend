@@ -277,27 +277,11 @@ export default function BookSearch() {
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
-							<StaticStarRating rating={3} />
-							{/* {filteringCategories.map((category) => (
-								<div className="py-1 flex items-center justify-between">
-									<input
-										className="border-gray-50 rounded accent-logo cursor-pointer"
-										type="checkbox"
-										id={category}
-										name={category}
-										value={category}
-										// disabled
-									/>
-									<label
-										htmlFor={category}
-										// className="text-gray-300"
-									>
-										{" "}
-										{category}
-									</label>
-									<br></br>
-								</div>
-							))} */}
+							<StaticStarRating
+								rating={3}
+								width={6}
+								height={6}
+							/>
 						</motion.div>
 					</div>
 				</aside>
