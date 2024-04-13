@@ -284,7 +284,7 @@ export default function BookSearch() {
 								const actualIndex = index + 1;
 								return (
 									<div
-										key={index}
+										key={"Star-Rating-" + actualIndex}
 										className="py-1 flex items-center justify-between"
 									>
 										<input
