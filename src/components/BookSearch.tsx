@@ -181,26 +181,26 @@ export default function BookSearch() {
 		console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
 
-	useEffect(() => {
-		setDisplayedBooks(
-			sortOrders(displayedBooks ? displayedBooks : [], sortOption)
-		);
-	}, [sortOption]);
+	// useEffect(() => {
+	// 	setDisplayedBooks(
+	// 		sortOrders(displayedBooks ? displayedBooks : [], sortOption)
+	// 	);
+	// }, [sortOption]);
 
-	const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValues({
-			option: event.target.value as "ISBN" | "Author" | "Title",
-			value: "",
-		});
-	};
+	// const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setSearchValues({
+	// 		option: event.target.value as "ISBN" | "Author" | "Title",
+	// 		value: "",
+	// 	});
+	// };
 
-	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValues({ ...searchValues, value: event.target.value });
-	};
+	// const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setSearchValues({ ...searchValues, value: event.target.value });
+	// };
 
-	const clickHandler = () => {
-		setSearchValues({ ...searchValues, value: "" });
-	};
+	// const clickHandler = () => {
+	// 	setSearchValues({ ...searchValues, value: "" });
+	// };
 
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
