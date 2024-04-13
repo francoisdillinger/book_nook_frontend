@@ -242,6 +242,60 @@ export default function BookSearch() {
 							))}
 						</motion.div>
 					</div>
+					<div className="bg-white">
+						<div
+							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
+							onClick={handleExpandCategories}
+						>
+							<span className="mx-2">Categories</span>
+							<motion.svg
+								xmlns="http://www.w3.org/2000/motion."
+								viewBox="0 0 24 24"
+								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
+								animate={{ rotate: expandCategories ? 180 : 0 }}
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m19.5 8.25-7.5 7.5-7.5-7.5"
+								/>
+							</motion.svg>
+						</div>
+						<motion.div
+							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
+							initial={{ height: 0 }}
+							animate={{
+								height: expandCategories
+									? calculateHeight(filteringCategories.length)
+									: "0em",
+							}}
+							transition={{
+								duration: 0.5, // Adjust duration for ease effect
+								ease: "easeInOut", // Use an ease-in-out curve for closing
+							}}
+						>
+							{filteringCategories.map((category) => (
+								<div className="py-1 flex items-center justify-between">
+									<input
+										className="border-gray-50 rounded accent-logo cursor-pointer"
+										type="checkbox"
+										id={category}
+										name={category}
+										value={category}
+										// disabled
+									/>
+									<label
+										htmlFor={category}
+										// className="text-gray-300"
+									>
+										{" "}
+										{category}
+									</label>
+									<br></br>
+								</div>
+							))}
+						</motion.div>
+					</div>
 				</aside>
 				<div className="pt-6 pb-12 w-10/12">
 					<div className="w-full px-4 pb-2 md:w-11/12 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
