@@ -277,7 +277,7 @@ export default function BookSearch() {
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
-							<StaticStarRating bookRating={5} />
+							<StaticStarRating rating={3} />
 							{/* {filteringCategories.map((category) => (
 								<div className="py-1 flex items-center justify-between">
 									<input
