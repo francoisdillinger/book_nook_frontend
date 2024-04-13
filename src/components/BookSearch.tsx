@@ -226,7 +226,10 @@ export default function BookSearch() {
 							}}
 						>
 							{filteringCategories.map((category) => (
-								<div className="py-1 flex items-center justify-between">
+								<div
+									key={category}
+									className="py-1 flex items-center justify-between"
+								>
 									<input
 										className="border-gray-50 rounded accent-logo cursor-pointer"
 										type="checkbox"
@@ -280,7 +283,10 @@ export default function BookSearch() {
 							{[...Array(5)].map((_, index) => {
 								const actualIndex = index + 1;
 								return (
-									<div className="py-1 flex items-center justify-between">
+									<div
+										key={index}
+										className="py-1 flex items-center justify-between"
+									>
 										<input
 											className="border-gray-50 rounded accent-logo cursor-pointer"
 											type="checkbox"
