@@ -116,6 +116,7 @@ const calculateHeight = (numOfItems: number): string => {
 };
 
 export default function BookSearch() {
+	const numOfResults = 10;
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
 	const [rating, setRating] = useState<number>(1);
