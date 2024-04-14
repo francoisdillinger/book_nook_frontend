@@ -134,10 +134,13 @@ export default function BookSearch() {
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
 	const [rating, setRating] = useState<number>(1);
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
+	const [displayedBooks, setDisplayedBooks] = useState<
+		TrimmedBookType[] | null
+	>();
 	const [filteringCategories, setFilteringCategories] = useState<
 		[] | FilterByCategoryType[]
 	>([]);
-	const [filterBy, setFilterBy] = useState<[] | string[]>([]);
+	// const [filterBy, setFilterBy] = useState<[] | string[]>([]);
 	const options = [
 		"Sort a-z: Title",
 		"Sort z-a: Title",
@@ -148,9 +151,7 @@ export default function BookSearch() {
 		"Publish Date: Newest First",
 		"Publish Date: Oldest First",
 	];
-	const [displayedBooks, setDisplayedBooks] = useState<
-		TrimmedBookType[] | null
-	>();
+
 	const [searchValues, setSearchValues] = useState<BooksSearchType>({
 		option: "ISBN",
 		value: "",
@@ -202,7 +203,14 @@ export default function BookSearch() {
 				  )
 				: ratingsFilteredResults; // If no filters are selected, show all sorted (and searched) books
 
-		// Step 4: Update displayed books
+		// Step 5: Set books to be displayed on proper pagination
+		// const range = getRange(paginationIndex, numOfResults);
+		// const booksInRange = filterByRange(
+		// 	finalDisplayedBooks ? finalDisplayedBooks : [],
+		// 	range
+		// );
+
+		// Step 6: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
 		console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories, rating]);
@@ -218,11 +226,14 @@ export default function BookSearch() {
 
 	useEffect(() => {
 		const range = getRange(paginationIndex, numOfResults);
-		const orders = filterByRange(displayedBooks ? displayedBooks : [], range);
-		setDisplayedOrders(orders);
+		const booksInRange = filterByRange(
+			displayedBooks ? displayedBooks : [],
+			range
+		);
+		// setDisplayedBooks(booksInRange);
 		// console.log("Range: ", range);
 		// console.log("Orders: ", orders);
-	}, [paginationIndex, displayedBooks]);
+	}, [paginationIndex]);
 
 	// useEffect(() => {
 	// 	setDisplayedBooks(
