@@ -260,6 +260,15 @@ export default function BookSearch() {
 		// console.log("Clicked Rating: ", rating);
 		setRating(rating);
 	};
+
+	const handlePaginationDecrease = () => {
+		console.log("Decrease");
+		const hasResults = (paginationIndex - 1) * numOfResults > 0;
+		// const hasResults = paginationIndex * numOfResults > 0;
+		setDecreaseButtonDisabled(!hasResults);
+		setIncreaseButtonDiabled(false);
+		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
+	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
 	return (
