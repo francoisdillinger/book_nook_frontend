@@ -233,7 +233,7 @@ export default function BookSearch() {
 			displayedBooks ? displayedBooks : [],
 			range
 		);
-		// setDisplayedBooks(booksInRange);
+		setPaginatedBooks(booksInRange);
 		// console.log("Range: ", range);
 		// console.log("Orders: ", orders);
 	}, [paginationIndex]);
