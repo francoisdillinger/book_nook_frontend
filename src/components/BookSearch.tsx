@@ -128,7 +128,7 @@ const filterByRange = (
 export default function BookSearch() {
 	const numOfResults = 10;
 	const [paginationIndex, setPaginationIndex] = useState(1);
-	const [inRange, setInRange] = useState<boolean>(false);
+	// const [inRange, setInRange] = useState<boolean>(false);
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
 	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
@@ -183,7 +183,6 @@ export default function BookSearch() {
 		const sortedResults = sortOrders(searchedResults, sortOption);
 
 		// Step 3: Apply Ratings Filter
-
 		const ratingsFilteredResults = sortedResults.filter((book) => {
 			let ratings = 0;
 			book.bookReviews?.map((review) => (ratings += review.rating));
