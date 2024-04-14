@@ -303,14 +303,9 @@ export default function BookSearch() {
 	};
 
 	const handlePaginationIncrease = () => {
-		console.log("Increase");
-		// const inRange =
-		// 	(paginationIndex + 1) * numOfResults < (displayedBooks?.length ?? 0);
+		// console.log("Increase");
 		const hasResults =
 			paginationIndex * numOfResults < (displayedBooks?.length ?? 0);
-		// console.log("In Range: ", inRange);
-		// setDecreaseButtonDisabled(false);
-		// setIncreaseButtonDiabled(!inRange);
 		setPaginationIndex(hasResults ? paginationIndex + 1 : paginationIndex);
 	};
 	// console.log("Categories: ", graphql_categories);
