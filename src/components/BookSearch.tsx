@@ -297,10 +297,7 @@ export default function BookSearch() {
 		console.log("Decrease");
 		// Using 2 here due to asynchronous setters, I need 1 but it won't be set yet
 		const hasResults = (paginationIndex - 2) * numOfResults > 0;
-		console.log("PaginationIndex: ", paginationIndex);
-		// const hasResults = paginationIndex * numOfResults > 0;
 		setDecreaseButtonDisabled(!hasResults);
-		console.log("Setting disabled to: ", !hasResults);
 		setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
