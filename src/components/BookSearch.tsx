@@ -137,6 +137,9 @@ export default function BookSearch() {
 	const [displayedBooks, setDisplayedBooks] = useState<
 		TrimmedBookType[] | null
 	>();
+	const [paginatedBooks, setPaginatedBooks] = useState<
+		TrimmedBookType[] | null
+	>();
 	const [filteringCategories, setFilteringCategories] = useState<
 		[] | FilterByCategoryType[]
 	>([]);
