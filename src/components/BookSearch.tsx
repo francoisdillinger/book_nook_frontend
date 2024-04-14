@@ -241,27 +241,6 @@ export default function BookSearch() {
 		setIncreaseButtonDiabled(!paginationRange);
 	}, [paginationIndex, displayedBooks]);
 
-	// useEffect(() => {
-	// 	setDisplayedBooks(
-	// 		sortOrders(displayedBooks ? displayedBooks : [], sortOption)
-	// 	);
-	// }, [sortOption]);
-
-	// const optionsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setSearchValues({
-	// 		option: event.target.value as "ISBN" | "Author" | "Title",
-	// 		value: "",
-	// 	});
-	// };
-
-	// const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setSearchValues({ ...searchValues, value: event.target.value });
-	// };
-
-	// const clickHandler = () => {
-	// 	setSearchValues({ ...searchValues, value: "" });
-	// };
-
 	const selectOptionsHandler = (
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
@@ -310,8 +289,8 @@ export default function BookSearch() {
 	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
-	console.log("Num of Books: ", displayedBooks?.length);
-	console.log("Pagination: ", paginationIndex);
+	// console.log("Num of Books: ", displayedBooks?.length);
+	// console.log("Pagination: ", paginationIndex);
 	return (
 		<React.Fragment>
 			<div className="flex min-h-screen">
