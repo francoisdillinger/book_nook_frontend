@@ -451,7 +451,7 @@ export default function BookSearch() {
 					<div className="w-3/4 m-auto flex justify-end mt-8 mb-8">
 						<div className="bg-gray-100 p-1 rounded-xl shadow-sm">
 							<button
-								// onClick={handlePaginationDecrease}
+								onClick={handlePaginationDecrease}
 								className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
 								// disabled={buttonDecreaseDisabled}
 							>
