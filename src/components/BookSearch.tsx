@@ -128,6 +128,7 @@ const filterByRange = (
 export default function BookSearch() {
 	const numOfResults = 10;
 	const [paginationIndex, setPaginationIndex] = useState(1);
+	const [inRange, setInRange] = useState<boolean>(false);
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
 	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
@@ -228,14 +229,16 @@ export default function BookSearch() {
 	}, [filteringCategories, rating]);
 
 	useEffect(() => {
+		const paginationRange =
+			paginationIndex * numOfResults < (displayedBooks?.length ?? 0);
 		const range = getRange(paginationIndex, numOfResults);
 		const booksInRange = filterByRange(
 			displayedBooks ? displayedBooks : [],
 			range
 		);
 		setPaginatedBooks(booksInRange);
-		// console.log("Range: ", range);
-		// console.log("Orders: ", orders);
+		setDecreaseButtonDisabled(paginationIndex === 1 ? true : false);
+		setIncreaseButtonDiabled(!paginationRange);
 	}, [paginationIndex, displayedBooks]);
 
 	// useEffect(() => {
@@ -296,25 +299,26 @@ export default function BookSearch() {
 	const handlePaginationDecrease = () => {
 		console.log("Decrease");
 		// Using 2 here due to asynchronous setters, I need 1 but it won't be set yet
-		const hasResults = (paginationIndex - 2) * numOfResults > 0;
-		setDecreaseButtonDisabled(!hasResults);
-		setIncreaseButtonDiabled(false);
+		const hasResults = (paginationIndex - 1) * numOfResults > 0;
+		// setDecreaseButtonDisabled(!hasResults);
+		// setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
 
 	const handlePaginationIncrease = () => {
 		console.log("Increase");
-		const inRange =
-			(paginationIndex + 1) * numOfResults < (displayedBooks?.length ?? 0);
+		// const inRange =
+		// 	(paginationIndex + 1) * numOfResults < (displayedBooks?.length ?? 0);
 		const hasResults =
 			paginationIndex * numOfResults < (displayedBooks?.length ?? 0);
 		// console.log("In Range: ", inRange);
-		setDecreaseButtonDisabled(false);
-		setIncreaseButtonDiabled(!inRange);
+		// setDecreaseButtonDisabled(false);
+		// setIncreaseButtonDiabled(!inRange);
 		setPaginationIndex(hasResults ? paginationIndex + 1 : paginationIndex);
 	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
+	console.log("Num of Books: ", displayedBooks?.length);
 	console.log("Pagination: ", paginationIndex);
 	return (
 		<React.Fragment>
