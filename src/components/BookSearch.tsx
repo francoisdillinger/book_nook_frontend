@@ -116,6 +116,15 @@ const calculateHeight = (numOfItems: number): string => {
 	return numOfItems * itemHeight + "em";
 };
 
+const filterByRange = (
+	orders: TrimmedBookType[],
+	range: number[]
+): TrimmedBookType[] => {
+	return orders.filter((_, index) => {
+		return index >= range[0] && index <= range[1];
+	});
+};
+
 export default function BookSearch() {
 	const numOfResults = 10;
 	const [paginationIndex, setPaginationIndex] = useState(1);
