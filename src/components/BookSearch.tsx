@@ -14,6 +14,7 @@ import alchemist from "../assets/alchemist.jpg";
 import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
 import StaticStarRating from "./StaticStarRating";
+import { getRange } from "./AdminOrders";
 
 type FilterByCategoryType = {
 	categoryName: string;
@@ -205,6 +206,14 @@ export default function BookSearch() {
 		// the number of results we have, just reorders them.
 		setPaginationIndex(1);
 	}, [filteringCategories, rating]);
+
+	useEffect(() => {
+		const range = getRange(paginationIndex, numOfResults);
+		const orders = filterByRange(displayedBooks ? displayedBooks : [], range);
+		setDisplayedOrders(orders);
+		// console.log("Range: ", range);
+		// console.log("Orders: ", orders);
+	}, [paginationIndex, displayedBooks]);
 
 	// useEffect(() => {
 	// 	setDisplayedBooks(
