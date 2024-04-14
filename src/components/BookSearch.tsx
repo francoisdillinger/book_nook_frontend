@@ -234,11 +234,78 @@ export default function BookSearch() {
 	// console.log("Expand Cats: ", expandCategories);
 	return (
 		<React.Fragment>
-			<div className="flex">
+			<div className="flex min-h-screen">
 				<aside className="bg-gray-100 px-2 w-2/12">
 					<h1 className="pt-6 font-semibold text-xl text-gray-400 pl-5 pb-4">
 						Filters
 					</h1>
+					<div className="bg-white mb-2">
+						<div
+							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
+							onClick={handleExpandRatings}
+						>
+							<span className="mx-2">Ratings</span>
+							<motion.svg
+								xmlns="http://www.w3.org/2000/motion."
+								viewBox="0 0 24 24"
+								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
+								animate={{ rotate: expandRatings ? 180 : 0 }}
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m19.5 8.25-7.5 7.5-7.5-7.5"
+								/>
+							</motion.svg>
+						</div>
+						<motion.div
+							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
+							initial={{ height: 0 }}
+							animate={{
+								height: expandRatings ? calculateHeight(6) : "0em",
+							}}
+							transition={{
+								duration: 0.3, // Adjust duration for ease effect
+								ease: "easeInOut", // Use an ease-in-out curve for closing
+							}}
+						>
+							{[...Array(4)].map((_, index) => {
+								const actualIndex = index + 1;
+								const key = "Star-Rating-" + actualIndex;
+								// console.log(key);
+								return (
+									<div
+										key={key}
+										className="py-2 flex items-center justify-between cursor-pointer hover:scale-105"
+									>
+										{/* <input
+											className="border-gray-50 rounded accent-logo cursor-pointer"
+											type="checkbox"
+											id={"rating-" + actualIndex}
+											name="rating"
+											value={"rating-" + actualIndex}
+											aria-labelledby={"label-rating-" + actualIndex}
+											// disabled
+										/> */}
+										<label
+											// htmlFor={"rating" + actualIndex}
+											id={"label-rating-" + actualIndex}
+											// className="text-gray-300"
+											className="cursor-pointer flex"
+										>
+											<StaticStarRating
+												rating={actualIndex}
+												width={5}
+												height={5}
+											/>
+											<span className="font-semibold">& Up</span>
+										</label>
+										<br></br>
+									</div>
+								);
+							})}
+						</motion.div>
+					</div>
 					<div className="bg-white mb-2">
 						<div
 							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
@@ -296,71 +363,6 @@ export default function BookSearch() {
 									<br></br>
 								</div>
 							))}
-						</motion.div>
-					</div>
-					<div className="bg-white">
-						<div
-							className="w-full flex items-center justify-between rounded-md py-2.5 px-3 border-bottom border-gray-300 bg-white text-gray-400  shadow-sm sm:text-sm hover:cursor-pointer"
-							onClick={handleExpandRatings}
-						>
-							<span className="mx-2">Ratings</span>
-							<motion.svg
-								xmlns="http://www.w3.org/2000/motion."
-								viewBox="0 0 24 24"
-								className="w-4 h-4 fill-none stroke-2 stroke-current mx-2"
-								animate={{ rotate: expandRatings ? 180 : 0 }}
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="m19.5 8.25-7.5 7.5-7.5-7.5"
-								/>
-							</motion.svg>
-						</div>
-						<motion.div
-							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
-							initial={{ height: 0 }}
-							animate={{
-								height: expandRatings ? calculateHeight(6) : "0em",
-							}}
-							transition={{
-								duration: 0.3, // Adjust duration for ease effect
-								ease: "easeInOut", // Use an ease-in-out curve for closing
-							}}
-						>
-							{[...Array(5)].map((_, index) => {
-								const actualIndex = index + 1;
-								const key = "Star-Rating-" + actualIndex;
-								// console.log(key);
-								return (
-									<div
-										key={key}
-										className="py-1 flex items-center justify-between"
-									>
-										<input
-											className="border-gray-50 rounded accent-logo cursor-pointer"
-											type="checkbox"
-											id={"rating-" + actualIndex}
-											name="rating"
-											value={"rating-" + actualIndex}
-											aria-labelledby={"label-rating-" + actualIndex}
-											// disabled
-										/>
-										<label
-											htmlFor={"rating" + actualIndex}
-											id={"label-rating-" + actualIndex}
-											// className="text-gray-300"
-										>
-											<StaticStarRating
-												rating={actualIndex}
-												width={6}
-												height={6}
-											/>
-										</label>
-										<br></br>
-									</div>
-								);
-							})}
 						</motion.div>
 					</div>
 				</aside>
