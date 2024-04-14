@@ -207,14 +207,7 @@ export default function BookSearch() {
 				  )
 				: ratingsFilteredResults; // If no filters are selected, show all sorted (and searched) books
 
-		// Step 5: Set books to be displayed on proper pagination
-		// const range = getRange(paginationIndex, numOfResults);
-		// const booksInRange = filterByRange(
-		// 	finalDisplayedBooks ? finalDisplayedBooks : [],
-		// 	range
-		// );
-
-		// Step 6: Update displayed books
+		// Step 5: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
 		// console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories, rating]);
