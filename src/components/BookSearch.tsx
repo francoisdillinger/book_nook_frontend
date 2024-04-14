@@ -453,7 +453,7 @@ export default function BookSearch() {
 							<button
 								onClick={handlePaginationDecrease}
 								className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-								// disabled={buttonDecreaseDisabled}
+								disabled={buttonDecreaseDisabled}
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
