@@ -197,6 +197,15 @@ export default function BookSearch() {
 		console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories, rating]);
 
+	useEffect(() => {
+		// We need to reset paginationIndex since filtering may return less/no results.
+		// We may be on a page index that appears to show no results when there are some
+		// at an earlier page index.
+		// Only needed for the following as they filter, sorting doesn't alter
+		// the number of results we have, just reorders them.
+		setPaginationIndex(1);
+	}, [filteringCategories, rating]);
+
 	// useEffect(() => {
 	// 	setDisplayedBooks(
 	// 		sortOrders(displayedBooks ? displayedBooks : [], sortOption)
