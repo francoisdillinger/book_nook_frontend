@@ -215,7 +215,7 @@ export default function BookSearch() {
 
 		// Step 6: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
-		console.log("Displayed Books: ", finalDisplayedBooks);
+		// console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories, rating]);
 
 	useEffect(() => {
@@ -225,7 +225,6 @@ export default function BookSearch() {
 		// Only needed for the following as they filter, sorting doesn't alter
 		// the number of results we have, just reorders them.
 		setPaginationIndex(1);
-		setDecreaseButtonDisabled(true);
 	}, [filteringCategories, rating]);
 
 	useEffect(() => {
@@ -296,7 +295,9 @@ export default function BookSearch() {
 
 	const handlePaginationDecrease = () => {
 		console.log("Decrease");
-		const hasResults = (paginationIndex - 1) * numOfResults > 0;
+		// Using 2 here due to asynchronous setters, I need 1 but it won't be set yet
+		const hasResults = (paginationIndex - 2) * numOfResults > 0;
+		console.log("PaginationIndex: ", paginationIndex);
 		// const hasResults = paginationIndex * numOfResults > 0;
 		setDecreaseButtonDisabled(!hasResults);
 		console.log("Setting disabled to: ", !hasResults);
