@@ -119,6 +119,7 @@ export default function BookSearch() {
 	const numOfResults = 10;
 	const [paginationIndex, setPaginationIndex] = useState(1);
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
+	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
 	const [rating, setRating] = useState<number>(1);
