@@ -169,7 +169,8 @@ export default function AdminOrders() {
 	};
 	const handlePaginationDecrease = () => {
 		console.log("Decrease");
-		const hasResults = (paginationIndex - 1) * numOfResults > 0;
+		// Using 2 here due to asynchronous setters, I need 1 but it won't be set yet
+		const hasResults = (paginationIndex - 2) * numOfResults > 0;
 		// const hasResults = paginationIndex * numOfResults > 0;
 		setDecreaseButtonDisabled(!hasResults);
 		setIncreaseButtonDiabled(false);
