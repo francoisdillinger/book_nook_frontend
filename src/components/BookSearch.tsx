@@ -163,7 +163,9 @@ export default function BookSearch() {
 		// Step 2: Apply Sort
 		const sortedResults = sortOrders(searchedResults, sortOption);
 
-		// Step 3: Apply Categories Filter
+		// Step 3: Apply Ratings Filter
+
+		// Step 4: Apply Categories Filter
 		const activeFilters = filteringCategories
 			.filter((category) => category.filterByCategory)
 			.map((filter) => filter.categoryName);
