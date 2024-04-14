@@ -118,6 +118,7 @@ const calculateHeight = (numOfItems: number): string => {
 export default function BookSearch() {
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
+	const [rating, setRating] = useState<number>(1);
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [filteringCategories, setFilteringCategories] = useState<
 		[] | FilterByCategoryType[]
@@ -230,6 +231,11 @@ export default function BookSearch() {
 			)
 		);
 	};
+
+	const handleRatingsClick = (rating: number) => {
+		// console.log("Clicked Rating: ", rating);
+		setRating(rating);
+	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
 	return (
@@ -277,6 +283,7 @@ export default function BookSearch() {
 									<div
 										key={key}
 										className="py-2 flex items-center justify-between cursor-pointer hover:scale-105"
+										onClick={() => handleRatingsClick(actualIndex)}
 									>
 										{/* <input
 											className="border-gray-50 rounded accent-logo cursor-pointer"
