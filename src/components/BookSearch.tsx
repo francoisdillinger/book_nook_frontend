@@ -165,6 +165,14 @@ export default function BookSearch() {
 
 		// Step 3: Apply Ratings Filter
 
+		const ratingsFilteredResults = sortedResults.filter((book) => {
+			let ratings = 0;
+			book.bookReviews?.map((review) => (ratings += review.rating));
+			const totalRating = Math.floor((ratings / book.bookReviews!.length) | 1);
+			return totalRating >= rating;
+			// console.log("Total Rating: ", totalRating);
+		});
+
 		// Step 4: Apply Categories Filter
 		const activeFilters = filteringCategories
 			.filter((category) => category.filterByCategory)
@@ -172,17 +180,17 @@ export default function BookSearch() {
 
 		const finalDisplayedBooks =
 			activeFilters.length > 0
-				? sortedResults.filter((book) =>
+				? ratingsFilteredResults.filter((book) =>
 						book.bookCategories?.some((category) =>
 							activeFilters.includes(category.category.categoryName)
 						)
 				  )
-				: sortedResults; // If no filters are selected, show all sorted (and searched) books
+				: ratingsFilteredResults; // If no filters are selected, show all sorted (and searched) books
 
 		// Step 4: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
 		console.log("Displayed Books: ", finalDisplayedBooks);
-	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
+	}, [searchValues, trimmedBooks, sortOption, filteringCategories, rating]);
 
 	// useEffect(() => {
 	// 	setDisplayedBooks(
