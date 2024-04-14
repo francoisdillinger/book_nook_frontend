@@ -269,6 +269,18 @@ export default function BookSearch() {
 		setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
+
+	const handlePaginationIncrease = () => {
+		console.log("Increase");
+		const inRange =
+			(paginationIndex + 1) * numOfResults < (displayedBooks?.length ?? 0);
+		const hasResults =
+			paginationIndex * numOfResults < (displayedBooks?.length ?? 0);
+		// console.log("In Range: ", inRange);
+		setDecreaseButtonDisabled(false);
+		setIncreaseButtonDiabled(!inRange);
+		setPaginationIndex(hasResults ? paginationIndex + 1 : paginationIndex);
+	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
 	return (
