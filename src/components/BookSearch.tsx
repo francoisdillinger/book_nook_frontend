@@ -163,7 +163,7 @@ export default function BookSearch() {
 		// Step 2: Apply Sort
 		const sortedResults = sortOrders(searchedResults, sortOption);
 
-		// Step 3: Apply Filter
+		// Step 3: Apply Categories Filter
 		const activeFilters = filteringCategories
 			.filter((category) => category.filterByCategory)
 			.map((filter) => filter.categoryName);
@@ -179,7 +179,7 @@ export default function BookSearch() {
 
 		// Step 4: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
-		// console.log("Displayed Books: ", finalDisplayedBooks);
+		console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
 
 	// useEffect(() => {
