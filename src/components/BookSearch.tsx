@@ -126,7 +126,7 @@ const filterByRange = (
 };
 
 export default function BookSearch() {
-	const numOfResults = 10;
+	const numOfResults = 8;
 	const [paginationIndex, setPaginationIndex] = useState(1);
 	// const [inRange, setInRange] = useState<boolean>(false);
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
