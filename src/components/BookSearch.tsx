@@ -168,6 +168,7 @@ export default function BookSearch() {
 		const ratingsFilteredResults = sortedResults.filter((book) => {
 			let ratings = 0;
 			book.bookReviews?.map((review) => (ratings += review.rating));
+			// The 'or 1' is so books with no ratings are still returned if book has no ratings when rating === 1
 			const totalRating = Math.floor((ratings / book.bookReviews!.length) | 1);
 			return totalRating >= rating;
 			// console.log("Total Rating: ", totalRating);
