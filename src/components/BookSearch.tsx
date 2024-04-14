@@ -465,7 +465,7 @@ export default function BookSearch() {
 						</div>
 					</div>
 					<ul className=" pt-8 flex flex-wrap gap-3 justify-center">
-						{displayedBooks?.map((book) => (
+						{paginatedBooks?.map((book) => (
 							<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
 								<div className="">
 									<img
