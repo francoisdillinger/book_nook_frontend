@@ -414,6 +414,46 @@ export default function BookSearch() {
 							</li>
 						))}
 					</ul>
+					<div className="w-3/4 m-auto flex justify-end mt-8 mb-8">
+						<div className="bg-gray-100 p-1 rounded-xl shadow-sm">
+							<button
+								// onClick={handlePaginationDecrease}
+								className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+								// disabled={buttonDecreaseDisabled}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									className="w-6 h-6 stroke-2 stroke-current"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M15.75 19.5 8.25 12l7.5-7.5"
+									/>
+								</svg>
+							</button>
+							<button
+								// onClick={handlePaginationIncrease}
+								className="border-solid border p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+								// disabled={buttonIncreaseDisabled}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									className="w-6 h-6 stroke-2 stroke-current"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="m8.25 4.5 7.5 7.5-7.5 7.5"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</React.Fragment>
