@@ -128,7 +128,7 @@ const filterByRange = (
 export default function BookSearch() {
 	const numOfResults = 10;
 	const [paginationIndex, setPaginationIndex] = useState(1);
-	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
+	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(true);
 	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 	const [expandCategories, setExpandCategories] = useState<boolean>(false);
 	const [expandRatings, setExpandRatings] = useState<boolean>(false);
@@ -225,6 +225,7 @@ export default function BookSearch() {
 		// Only needed for the following as they filter, sorting doesn't alter
 		// the number of results we have, just reorders them.
 		setPaginationIndex(1);
+		setDecreaseButtonDisabled(true);
 	}, [filteringCategories, rating]);
 
 	useEffect(() => {
@@ -236,7 +237,7 @@ export default function BookSearch() {
 		setPaginatedBooks(booksInRange);
 		// console.log("Range: ", range);
 		// console.log("Orders: ", orders);
-	}, [paginationIndex]);
+	}, [paginationIndex, displayedBooks]);
 
 	// useEffect(() => {
 	// 	setDisplayedBooks(
@@ -298,6 +299,7 @@ export default function BookSearch() {
 		const hasResults = (paginationIndex - 1) * numOfResults > 0;
 		// const hasResults = paginationIndex * numOfResults > 0;
 		setDecreaseButtonDisabled(!hasResults);
+		console.log("Setting disabled to: ", !hasResults);
 		setIncreaseButtonDiabled(false);
 		setPaginationIndex(hasResults ? paginationIndex - 1 : paginationIndex);
 	};
@@ -315,6 +317,7 @@ export default function BookSearch() {
 	};
 	// console.log("Categories: ", graphql_categories);
 	// console.log("Expand Cats: ", expandCategories);
+	console.log("Pagination: ", paginationIndex);
 	return (
 		<React.Fragment>
 			<div className="flex min-h-screen">
