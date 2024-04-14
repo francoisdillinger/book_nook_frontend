@@ -40,7 +40,7 @@ const createOrderTotals = (orders: ReformatedOrdersType[]): OrderTotalsType => {
 	return { ...orderTotals, total: orders.length };
 };
 
-const getRange = (paginationIndex: number, numOfItems: number) => {
+export const getRange = (paginationIndex: number, numOfItems: number) => {
 	const start = (paginationIndex - 1) * numOfItems;
 	const end = paginationIndex * numOfItems - 1;
 	return [start, end];
