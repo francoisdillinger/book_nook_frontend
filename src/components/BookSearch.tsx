@@ -179,7 +179,7 @@ export default function BookSearch() {
 
 		// Step 4: Update displayed books
 		setDisplayedBooks(finalDisplayedBooks);
-		console.log("Displayed Books: ", finalDisplayedBooks);
+		// console.log("Displayed Books: ", finalDisplayedBooks);
 	}, [searchValues, trimmedBooks, sortOption, filteringCategories]);
 
 	// useEffect(() => {
