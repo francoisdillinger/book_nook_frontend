@@ -11,7 +11,7 @@ import {
 } from "../data/graphql_categories";
 import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
-import { categories_data } from "../data/categories_data";
+// import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
 import StaticStarRating from "./StaticStarRating";
 import { getRange } from "./AdminOrders";
