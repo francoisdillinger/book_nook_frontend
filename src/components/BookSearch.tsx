@@ -9,7 +9,7 @@ import {
 	GraphQL_Categories,
 	graphql_categories,
 } from "../data/graphql_categories";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import alchemist from "../assets/alchemist.jpg";
 // import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
