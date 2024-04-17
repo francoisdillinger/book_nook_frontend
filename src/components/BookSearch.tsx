@@ -330,15 +330,6 @@ export default function BookSearch() {
 										className="py-2 flex items-center justify-between cursor-pointer hover:scale-105"
 										onClick={() => handleRatingsClick(actualIndex)}
 									>
-										{/* <input
-											className="border-gray-50 rounded accent-logo cursor-pointer"
-											type="checkbox"
-											id={"rating-" + actualIndex}
-											name="rating"
-											value={"rating-" + actualIndex}
-											aria-labelledby={"label-rating-" + actualIndex}
-											// disabled
-										/> */}
 										<label
 											// htmlFor={"rating" + actualIndex}
 											id={"label-rating-" + actualIndex}
