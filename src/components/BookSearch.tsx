@@ -375,7 +375,7 @@ export default function BookSearch() {
 								height: expandCategories ? "42em" : "0em",
 							}}
 							transition={{
-								duration: 0.5, // Adjust duration for ease effect
+								duration: 0.2, // Adjust duration for ease effect
 								ease: "easeInOut", // Use an ease-in-out curve for closing
 							}}
 						>
