@@ -433,8 +433,44 @@ export default function BookSearch() {
 										alt={`Image for ${book.bookTitle}`}
 									/>
 								</div>
-								<div className="text-center font-semibold text-sm text-gray-500 pl-4">
-									<h1 className="text-2xl">{book.bookTitle}</h1>
+								<div className="w-1/2 font-semibold text-sm pl-4 flex flex-col justify-between">
+									<div>
+										<h1 className="text-2xl text-gray-500">{book.bookTitle}</h1>
+										<h2 className="text-gray-400 pb-2">
+											{book.author.authorFirstName +
+												" " +
+												book.author.authorLastName}
+										</h2>
+										<span>
+											{" "}
+											<StaticStarRating
+												rating={Math.floor(
+													book.bookReviews!.reduce(
+														(accumulator, review) =>
+															accumulator + review.rating,
+														0
+													)
+												)}
+												width={7}
+												height={7}
+											/>
+										</span>
+									</div>
+									<div className="flex flex-wrap">
+										{book.bookCategories?.map((category) => (
+											<div className="p-2 bg-logo opacity-90 m-1 rounded-lg text-gray-50 text-xs">
+												{category.category.categoryName}
+											</div>
+										))}
+									</div>
+								</div>
+								<div className="w-1/2 flex flex-col items-end">
+									<h3 className="text-logo text-2xl pb-2">
+										${book.price.toFixed(2)}
+									</h3>
+									<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center">
+										Add To Cart
+									</div>
 								</div>
 							</li>
 						))}
