@@ -408,7 +408,10 @@ export default function BookSearch() {
 					</div>
 				</aside>
 				<div className="pt-6 pb-12 w-10/12">
-					<div className="w-full px-4 pb-2 md:w-11/12 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-end">
+					<div className="w-full px-4 pb-2 md:w-11/12 m-auto md:p-0 md:py-4 flex-wrap md:flex md:justify-between">
+						<div>
+							<h1 className="font-semibold text-3xl text-gray-400">Results:</h1>
+						</div>
 						<div className="">
 							<select
 								id="book-selector"
