@@ -425,16 +425,16 @@ export default function BookSearch() {
 					</div>
 					<ul className=" pt-8 flex flex-wrap gap-3 justify-center">
 						{paginatedBooks?.map((book) => (
-							<li className="w-56 cursor-pointer bg-gray-100 pt-3 pb-1 rounded-lg">
+							<li className="w-10/12 flex cursor-pointer bg-gray-100 rounded-lg p-4">
 								<div className="">
 									<img
-										className="w-4/5 m-auto"
+										className="w-28"
 										src={alchemist}
 										alt={`Image for ${book.bookTitle}`}
 									/>
 								</div>
-								<div className="text-center font-semibold text-sm text-gray-500">
-									{book.bookTitle}
+								<div className="text-center font-semibold text-sm text-gray-500 pl-4">
+									<h1 className="text-2xl">{book.bookTitle}</h1>
 								</div>
 							</li>
 						))}
