@@ -369,12 +369,10 @@ export default function BookSearch() {
 							</motion.svg>
 						</div>
 						<motion.div
-							className="pl-5 text-sm text-gray-400 relative overflow-hidden"
+							className="pl-5 text-sm text-gray-400 relative overflow-y-scroll"
 							initial={{ height: 0 }}
 							animate={{
-								height: expandCategories
-									? calculateHeight(filteringCategories.length)
-									: "0em",
+								height: expandCategories ? "42em" : "0em",
 							}}
 							transition={{
 								duration: 0.5, // Adjust duration for ease effect
