@@ -131,8 +131,8 @@ export default function BookSearch() {
 	// const [inRange, setInRange] = useState<boolean>(false);
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
 	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
-	const [expandCategories, setExpandCategories] = useState<boolean>(false);
-	const [expandRatings, setExpandRatings] = useState<boolean>(false);
+	const [expandCategories, setExpandCategories] = useState<boolean>(true);
+	const [expandRatings, setExpandRatings] = useState<boolean>(true);
 	const [rating, setRating] = useState<number>(1);
 	const [trimmedBooks, setTrimmedBooks] = useState<TrimmedBookType[] | null>();
 	const [displayedBooks, setDisplayedBooks] = useState<
