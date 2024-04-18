@@ -423,8 +423,8 @@ export default function BookSearch() {
 					</div>
 					<ul className=" pt-8 flex flex-wrap gap-3 justify-center">
 						{paginatedBooks?.map((book) => (
-							<li className="w-10/12 flex cursor-pointer bg-gray-50 rounded-lg p-4 shadow-sm">
-								<div className="">
+							<li className="w-10/12 flex  bg-gray-50 rounded-lg p-4 shadow-sm">
+								<div className="cursor-pointer">
 									<img
 										className="w-28"
 										src={alchemist}
@@ -466,7 +466,7 @@ export default function BookSearch() {
 									<h3 className="text-logo text-2xl pb-2">
 										${book.price.toFixed(2)}
 									</h3>
-									<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center">
+									<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer">
 										Add To Cart
 									</div>
 								</div>
