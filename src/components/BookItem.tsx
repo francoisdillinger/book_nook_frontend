@@ -27,21 +27,21 @@ export default function BookItem() {
 	// console.log(bookItem);
 	return (
 		<React.Fragment>
-			<div className="w-10/12 m-auto flex pt-12">
-				<div className="w-1/4">
+			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12">
+				<div className="w-1/2 md:w-1/4 m-auto">
 					<img
 						className=""
 						src={alchemist}
 						alt={`Image for ${bookItem?.bookTitle}`}
 					/>
 				</div>
-				<div className="w-1/2 flex flex-col justify-between px-8">
-					<div>
+				<div className="w-full md:w-1/2 flex flex-col justify-between px-8">
+					<div className="text-center md:text-left">
 						<h1 className="text-5xl text-gray-500">{bookItem?.bookTitle}</h1>
 						<h2 className="text-2xl text-gray-400 pb-2">
 							{book.author.authorFirstName + " " + book.author.authorLastName}
 						</h2>
-						<div className="flex items-center">
+						<div className="flex items-center justify-center md:justify-start">
 							<p className="text-2xl text-gray-500">{bookRating}</p>
 							<span className="pl-2">
 								<StaticStarRating
@@ -56,7 +56,7 @@ export default function BookItem() {
 						</div>
 					</div>
 					<div className="pb-6">
-						<p className="text-xl text-gray-500 pb-8">
+						<p className="text-xl text-gray-500 pb-8 xl:pb-24">
 							{bookItem?.description}
 						</p>
 						<div className="flex flex-wrap">
@@ -68,7 +68,7 @@ export default function BookItem() {
 						</div>
 					</div>
 				</div>
-				<div className="w-1/4 ">
+				<div className="w-full md:w-1/4 ">
 					<div className="bg-gray-100 rounded-lg w-full flex flex-col items-center pb-8">
 						<h3 className="text-logo text-4xl pt-8 pb-16">
 							${book.price.toFixed(2)}
