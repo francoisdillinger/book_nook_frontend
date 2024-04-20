@@ -12,13 +12,16 @@ export default function BookItem() {
 	// console.log(bookItem);
 	return (
 		<React.Fragment>
-			<div className="w-10/12 m-auto">
+			<div className="w-10/12 m-auto flex">
 				<div className="w-72">
 					<img
 						className=""
 						src={alchemist}
 						alt={`Image for ${bookItem?.bookTitle}`}
 					/>
+				</div>
+				<div>
+					<h1 className="text-5xl text-gray-500">{bookItem?.bookTitle}</h1>
 				</div>
 			</div>
 		</React.Fragment>
