@@ -32,6 +32,7 @@ export type TrimmedBookType = {
 	bookReviews?: {
 		rating: number;
 		review?: string;
+		shortReview?: string;
 	}[];
 	author: {
 		authorFirstName: string;
