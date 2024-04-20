@@ -24,13 +24,15 @@ import AddBook from "./components/AddBook";
 import AddAuthor from "./components/AddAuthor";
 import EditAuthor from "./components/EditAuthor";
 import BookSearch from "./components/BookSearch";
+import BookItem from "./components/BookItem";
 
 export default function App() {
 	return (
 		<React.Fragment>
 			<Navbar />
 			{/* <HomePageContent /> */}
-			<BookSearch />
+			{/* <BookSearch /> */}
+			<BookItem />
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
@@ -45,7 +47,7 @@ export default function App() {
 			{/* <AddAuthor /> */}
 			{/* <EditAuthor /> */}
 			{/* <Scratch /> */}
-			<Footer />
+			{/* <Footer /> */}
 		</React.Fragment>
 	);
 }
