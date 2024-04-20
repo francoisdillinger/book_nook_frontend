@@ -4,18 +4,25 @@ import { book } from "../data/bookItem";
 import alchemist from "../assets/alchemist.jpg";
 import StaticStarRating from "./StaticStarRating";
 
+const totalRating = (book: TrimmedBookType): number => {
+	const length = book.bookReviews ? book.bookReviews?.length : 1;
+	const totalRating = book.bookReviews
+		? book.bookReviews.reduce(
+				(accumulator, review) => accumulator + review.rating,
+				0
+		  )
+		: 1;
+
+	return parseFloat((totalRating / length).toFixed(1));
+};
+
 export default function BookItem() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
 
 	useEffect(() => {
-		const length = book.bookReviews ? book.bookReviews?.length : 1;
-		const totalRating = book.bookReviews!.reduce(
-			(accumulator, review) => accumulator + review.rating,
-			0
-		);
 		setBookItem(book);
-		setBookRating(parseFloat((totalRating / length).toFixed(1)));
+		setBookRating(totalRating(book));
 	}, [book]);
 	// console.log(bookItem);
 	return (
@@ -34,14 +41,17 @@ export default function BookItem() {
 						{book.author.authorFirstName + " " + book.author.authorLastName}
 					</h2>
 					<div className="flex items-center">
-						<h3 className="text-2xl text-gray-500">{bookRating}</h3>
-						<span className="">
+						<p className="text-2xl text-gray-500">{bookRating}</p>
+						<span className="pl-2">
 							<StaticStarRating
 								rating={bookRating}
 								width={7}
 								height={7}
 							/>
 						</span>
+						<p className="text-lg text-gray-400 font-medium pl-6">
+							{bookItem?.bookReviews?.length} ratings
+						</p>
 					</div>
 				</div>
 			</div>
