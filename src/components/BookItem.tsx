@@ -12,9 +12,10 @@ export default function BookItem() {
 	// console.log(bookItem);
 	return (
 		<React.Fragment>
-			<div className="">
-				<div>
+			<div className="w-10/12 m-auto">
+				<div className="w-72">
 					<img
+						// className="w-44"
 						src={alchemist}
 						alt={`Image for ${bookItem?.bookTitle}`}
 					/>
