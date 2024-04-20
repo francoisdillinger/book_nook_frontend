@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-	booksWithCategories,
-	BookWithCategoriesType,
-} from "../data/booksWithCategories";
 import { TrimmedBookType } from "./AdminBooks";
 
 export default function BookItem() {
