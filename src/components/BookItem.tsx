@@ -22,6 +22,9 @@ export default function BookItem() {
 				</div>
 				<div>
 					<h1 className="text-5xl text-gray-500">{bookItem?.bookTitle}</h1>
+					<h2 className="text-2xl text-gray-400 pb-2">
+						{book.author.authorFirstName + " " + book.author.authorLastName}
+					</h2>
 				</div>
 			</div>
 		</React.Fragment>
