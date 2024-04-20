@@ -15,7 +15,7 @@ export default function BookItem() {
 			0
 		);
 		setBookItem(book);
-		setBookRating(Math.floor(totalRating / length));
+		setBookRating(parseFloat((totalRating / length).toFixed(1)));
 	}, [book]);
 	// console.log(bookItem);
 	return (
@@ -34,7 +34,7 @@ export default function BookItem() {
 						{book.author.authorFirstName + " " + book.author.authorLastName}
 					</h2>
 					<div className="flex items-center">
-						<h3 className="">{bookRating}</h3>
+						<h3 className="text-2xl text-gray-500">{bookRating}</h3>
 						<span className="">
 							<StaticStarRating
 								rating={bookRating}
