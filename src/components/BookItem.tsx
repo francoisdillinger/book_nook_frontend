@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function BookItem() {
-	return <></>;
+	return <React.Fragment></React.Fragment>;
 }
