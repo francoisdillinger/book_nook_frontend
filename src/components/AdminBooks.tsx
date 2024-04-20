@@ -31,6 +31,7 @@ export type TrimmedBookType = {
 	isbn: string;
 	bookReviews?: {
 		rating: number;
+		review?: string;
 	}[];
 	author: {
 		authorFirstName: string;
