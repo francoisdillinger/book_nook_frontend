@@ -35,7 +35,7 @@ export default function BookItem() {
 						alt={`Image for ${bookItem?.bookTitle}`}
 					/>
 				</div>
-				<div className="w-1/2 flex flex-col justify-between">
+				<div className="w-1/2 flex flex-col justify-between px-8">
 					<div>
 						<h1 className="text-5xl text-gray-500">{bookItem?.bookTitle}</h1>
 						<h2 className="text-2xl text-gray-400 pb-2">
@@ -55,8 +55,17 @@ export default function BookItem() {
 							</p>
 						</div>
 					</div>
-					<div>
-						<p className="text-lg text-gray-500">{bookItem?.description}</p>
+					<div className="pb-6">
+						<p className="text-xl text-gray-500 pb-8">
+							{bookItem?.description}
+						</p>
+						<div className="flex flex-wrap">
+							{bookItem?.bookCategories?.map((category) => (
+								<div className="p-2 bg-logo opacity-90 m-1 rounded-lg text-gray-50 text-md">
+									{category.category.categoryName}
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
