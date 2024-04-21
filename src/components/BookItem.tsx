@@ -42,7 +42,7 @@ export default function BookItem() {
 							{book.author.authorFirstName + " " + book.author.authorLastName}
 						</h2>
 						<div className="flex items-center justify-center md:justify-start">
-							<p className="text-2xl text-gray-500">{bookRating}</p>
+							<p className="text-xl text-gray-500">{bookRating}</p>
 							<span className="pl-2">
 								<StaticStarRating
 									rating={bookRating}
