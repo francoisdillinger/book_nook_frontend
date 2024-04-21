@@ -70,7 +70,7 @@ export default function BookItem() {
 				</div>
 				<div className="w-full md:w-1/4 ">
 					<div className="bg-gray-100 rounded-lg w-full flex flex-col items-center pb-8">
-						<h3 className="text-logo text-4xl pt-8 pb-16">
+						<h3 className="text-logo text-3xl pt-8 pb-16">
 							${book.price.toFixed(2)}
 						</h3>
 						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer">
