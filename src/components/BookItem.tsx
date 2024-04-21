@@ -50,7 +50,7 @@ export default function BookItem() {
 									height={7}
 								/>
 							</span>
-							<p className="text-lg text-gray-400 font-medium pl-6">
+							<p className="text-md text-gray-400 font-medium pl-6">
 								{bookItem?.bookReviews?.length} ratings
 							</p>
 						</div>
