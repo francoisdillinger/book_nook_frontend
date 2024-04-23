@@ -79,11 +79,9 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-600 font-bold text-xl">Inventory</h2>
-					{/* <p className="text-sm mx-2 mb-2 md:p-2 text-slate-400">
-						Shop with assurance at BookNook, as we offer a hassle-free return
-						guarantee, ensuring your satisfaction and peace of mind with every
-						purchase.
-					</p> */}
+					<p className="text-sm mx-2 mb-2 md:p-2 text-slate-400">
+						{bookItem ? bookItem.inventoryCount : "None"}
+					</p>
 				</div>
 			</div>
 		</div>
