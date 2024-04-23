@@ -113,18 +113,19 @@ export default function BookItem() {
 					understanding of life's mysteries. Through Santiago's adventures
 					across deserts and bustling marketplaces, Coelho weaves a narrative
 					that resonates with themes of courage, perseverance, and the
-					transformative power of faith. <br /> As Santiago navigates the twists
-					and turns of his journey, he learns to listen to the whispers of his
-					heart and decipher the omens that guide him toward his Personal
-					Legend. Through encounters with wise sages, enigmatic mystics, and
-					ordinary people who impart extraordinary wisdom, Santiago gains a
-					deeper understanding of the interconnectedness of all things and the
-					universal language of the soul. "The Alchemist" is a timeless fable
-					that invites readers to embark on their own quest for purpose and
-					meaning, reminding them that the true treasure lies not in the
-					destination, but in the journey itself. With its lyrical prose and
-					profound insights, Coelho's masterpiece continues to inspire readers
-					to follow their dreams and pursue the path of their own destiny.
+					transformative power of faith. <br />
+					<br /> As Santiago navigates the twists and turns of his journey, he
+					learns to listen to the whispers of his heart and decipher the omens
+					that guide him toward his Personal Legend. Through encounters with
+					wise sages, enigmatic mystics, and ordinary people who impart
+					extraordinary wisdom, Santiago gains a deeper understanding of the
+					interconnectedness of all things and the universal language of the
+					soul. "The Alchemist" is a timeless fable that invites readers to
+					embark on their own quest for purpose and meaning, reminding them that
+					the true treasure lies not in the destination, but in the journey
+					itself. With its lyrical prose and profound insights, Coelho's
+					masterpiece continues to inspire readers to follow their dreams and
+					pursue the path of their own destiny.
 				</p>
 			</div>
 		</React.Fragment>
