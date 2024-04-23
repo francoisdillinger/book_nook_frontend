@@ -25,7 +25,7 @@ export default {
 			},
 			colors: {
 				logo: "#D86464",
-				logoLight: "#f8d1cf",
+				logoLight: "#fbe0df",
 			},
 		},
 	},
