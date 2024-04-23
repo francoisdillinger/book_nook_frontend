@@ -8,6 +8,8 @@ export const book: TrimmedBookType = {
 	price: 14.95,
 	description:
 		"A philosophical book that tells the story of Santiago, an Andalusian shepherd boy who yearns to travel in search of a worldly treasure.",
+	longDescription:
+		"The Alchemist by Paulo Coelho is a timeless tale of adventure, self-discovery, and the pursuit of one's dreams. Set in the exotic landscapes of Andalusia, Spain, the story follows Santiago, a young shepherd boy who embarks on a journey to find his Personal Legend, his true calling in life. Along the way, Santiago encounters a series of obstacles and challenges that test his courage, determination, and faith in the universe.\n\nGuided by a recurring dream and the wisdom of a mysterious king, Santiago learns the importance of listening to his heart and following the signs that lead him toward his destiny. As he travels through deserts, oases, and bustling marketplaces, Santiago encounters a colorful cast of characters who impart valuable lessons and insights, including a wise alchemist who teaches him the secrets of the universe.",
 	inventoryCount: 12,
 	isbn: "9780062315007",
 	bookReviews: [
