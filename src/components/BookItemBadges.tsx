@@ -1,3 +1,9 @@
+import { TrimmedBookType } from "./AdminBooks";
+
+type BookItemBadgesType = {
+	bookItem: TrimmedBookType;
+};
+
 export default function BookItemBadges() {
 	return (
 		<div className="bg-gray-100">
@@ -16,11 +22,7 @@ export default function BookItemBadges() {
 						</svg>
 					</div>
 					<h2 className="text-gray-600 font-bold text-xl">ISBN</h2>
-					{/* <p className="text-sm mx-2 mb-2 md:p-2 text-slate-400">
-						Leverage our Quick Delivery service and receive your books with
-						unparalleled speed, offering you a seamless and enjoyable BookNook
-						experience.
-					</p> */}
+					<p className="text-sm mx-2 mb-2 md:p-2 text-slate-400"></p>
 				</div>
 				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
