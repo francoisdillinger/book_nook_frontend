@@ -96,7 +96,7 @@ export default function BookItem() {
 					</div>
 				</div>
 			</div>
-			<BookItemBadges />
+			<BookItemBadges bookItem={bookItem} />
 		</React.Fragment>
 	);
 }
