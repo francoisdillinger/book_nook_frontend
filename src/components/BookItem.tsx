@@ -69,15 +69,15 @@ export default function BookItem() {
 					</div>
 				</div>
 				<div className="w-full md:w-1/4 ">
-					<div className="bg-gray-100 rounded-t-lg w-full flex flex-col items-center h-1/2">
-						<h3 className="text-logo text-3xl pt-8 pb-16">
+					<div className="py-4 md:py-0 bg-gray-100 rounded-t-lg w-full flex flex-col items-center h-1/2">
+						<h3 className="text-logo text-3xl pt-8 pb-12">
 							${book.price.toFixed(2)}
 						</h3>
 						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer">
 							Add To Cart
 						</div>
 					</div>
-					<div className="h-1/2 bg-logoLight rounded-b-lg flex flex-col items-center justify-center">
+					<div className="h-1/2 py-4 md:py-0 bg-logoLight rounded-b-lg flex flex-col items-center justify-center">
 						<h3 className="text-xl font-medium text-gray-500 mb-6">
 							Add to Wishlist
 						</h3>
