@@ -27,6 +27,7 @@ export type TrimmedBookType = {
 	publishDate: string;
 	price: number;
 	description?: string;
+	longDescription?: string;
 	inventoryCount?: number;
 	isbn: string;
 	bookReviews?: {
