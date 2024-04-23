@@ -97,6 +97,36 @@ export default function BookItem() {
 				</div>
 			</div>
 			<BookItemBadges bookItem={bookItem} />
+			<div className="p-8">
+				<h2 className="text-4xl text-gray-500 font-medium text-center pb-8">
+					Synopsis
+				</h2>
+				<p className="">
+					"The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
+					readers to the sun-drenched landscapes of Andalusia, Spain. At its
+					core, the story follows Santiago, a young shepherd boy who embarks on
+					a profound journey of self-discovery and enlightenment. Driven by an
+					unwavering desire to pursue his dreams, Santiago sets out on a quest
+					to uncover the secrets of the universe and fulfill his destiny. Along
+					the way, he encounters a diverse array of characters and experiences,
+					each offering valuable insights and lessons that shape his
+					understanding of life's mysteries. Through Santiago's adventures
+					across deserts and bustling marketplaces, Coelho weaves a narrative
+					that resonates with themes of courage, perseverance, and the
+					transformative power of faith. <br /> As Santiago navigates the twists
+					and turns of his journey, he learns to listen to the whispers of his
+					heart and decipher the omens that guide him toward his Personal
+					Legend. Through encounters with wise sages, enigmatic mystics, and
+					ordinary people who impart extraordinary wisdom, Santiago gains a
+					deeper understanding of the interconnectedness of all things and the
+					universal language of the soul. "The Alchemist" is a timeless fable
+					that invites readers to embark on their own quest for purpose and
+					meaning, reminding them that the true treasure lies not in the
+					destination, but in the journey itself. With its lyrical prose and
+					profound insights, Coelho's masterpiece continues to inspire readers
+					to follow their dreams and pursue the path of their own destiny.
+				</p>
+			</div>
 		</React.Fragment>
 	);
 }
