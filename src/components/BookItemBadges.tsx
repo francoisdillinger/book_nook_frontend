@@ -4,7 +4,7 @@ type BookItemBadgesType = {
 	bookItem: TrimmedBookType;
 };
 
-export default function BookItemBadges() {
+export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 	return (
 		<div className="bg-gray-100">
 			<div className="flex flex-wrap w-10/12 m-auto p-8">
