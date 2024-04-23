@@ -8,7 +8,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 	return (
 		<div className="bg-gray-100">
 			<div className="flex flex-wrap w-10/12 m-auto p-8">
-				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
+				<div className="w-full pb-8 md:pb-0 md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						{bookItem ? bookItem.isbn : "None"}
 					</p>
 				</div>
-				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
+				<div className="w-full pb-8 md:pb-0 md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						{bookItem ? bookItem.pageCount : "None"}
 					</p>
 				</div>
-				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
+				<div className="w-full pb-8 md:pb-0 md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						{bookItem ? bookItem.publishDate : "None"}
 					</p>
 				</div>
-				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
+				<div className="w-full pb-8 md:pb-0 md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
