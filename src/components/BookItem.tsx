@@ -101,7 +101,7 @@ export default function BookItem() {
 				<h2 className="text-4xl text-gray-500 font-medium text-center pb-8">
 					Synopsis
 				</h2>
-				<p className="">
+				<p className="text-lg text-gray-500">
 					"The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
 					readers to the sun-drenched landscapes of Andalusia, Spain. At its
 					core, the story follows Santiago, a young shepherd boy who embarks on
