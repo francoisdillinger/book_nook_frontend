@@ -102,7 +102,15 @@ export default function BookItem() {
 					Synopsis
 				</h2>
 				<p className="text-lg text-gray-500">
-					{book ? book.longDescription : " "}
+					{book
+						? book.longDescription?.split("\n").map((line) => (
+								<span>
+									{line}
+									<br />
+									<br />
+								</span>
+						  ))
+						: " "}
 					{/* "The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
 					readers to the sun-drenched landscapes of Andalusia, Spain. At its
 					core, the story follows Santiago, a young shepherd boy who embarks on
