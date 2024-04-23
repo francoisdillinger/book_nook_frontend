@@ -22,7 +22,9 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-600 font-bold text-xl">ISBN</h2>
-					<p className="text-sm mx-2 mb-2 md:p-2 text-slate-400"></p>
+					<p className="text-sm mx-2 mb-2 md:p-2 text-slate-400">
+						{bookItem ? bookItem.isbn : "None"}
+					</p>
 				</div>
 				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg ">
