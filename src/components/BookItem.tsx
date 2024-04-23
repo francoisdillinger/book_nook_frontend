@@ -77,14 +77,14 @@ export default function BookItem() {
 							Add To Cart
 						</div>
 					</div>
-					<div className="h-1/2 bg-logoLight rounded-b-lg">
-						<h3 className="text-xl font-medium text-gray-500">
+					<div className="h-1/2 bg-logoLight rounded-b-lg flex flex-col items-center justify-center">
+						<h3 className="text-xl font-medium text-gray-500 mb-6">
 							Add to Wishlist
 						</h3>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							className="w-6 h-6 fill-gray-100 stroke-2 stroke-gray-500"
+							className={`w-12 h-12 fill-gray-100 stroke stroke-gray-500`}
 						>
 							<path
 								strokeLinecap="round"
