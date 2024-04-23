@@ -69,7 +69,7 @@ export default function BookItem() {
 					</div>
 				</div>
 				<div className="w-full md:w-1/4 ">
-					<div className="bg-gray-100 rounded-lg w-full flex flex-col items-center h-1/2">
+					<div className="bg-gray-100 rounded-t-lg w-full flex flex-col items-center h-1/2">
 						<h3 className="text-logo text-3xl pt-8 pb-16">
 							${book.price.toFixed(2)}
 						</h3>
@@ -77,7 +77,7 @@ export default function BookItem() {
 							Add To Cart
 						</div>
 					</div>
-					<div></div>
+					<div className="h-1/2 bg-rose-200 rounded-b-lg"></div>
 				</div>
 			</div>
 		</React.Fragment>
