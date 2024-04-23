@@ -1,7 +1,7 @@
 import { TrimmedBookType } from "./AdminBooks";
 
 type BookItemBadgesType = {
-	bookItem: TrimmedBookType | null;
+	bookItem: TrimmedBookType | null | undefined;
 };
 
 export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
