@@ -3,6 +3,7 @@ import { TrimmedBookType } from "./AdminBooks";
 import { book } from "../data/bookItem";
 import alchemist from "../assets/alchemist.jpg";
 import StaticStarRating from "./StaticStarRating";
+import BookItemBadges from "./BookItemBadges";
 
 const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -27,7 +28,7 @@ export default function BookItem() {
 	// console.log(bookItem);
 	return (
 		<React.Fragment>
-			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12">
+			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12 pb-8">
 				<div className="w-1/2 md:w-1/4 m-auto">
 					<img
 						className=""
@@ -95,6 +96,7 @@ export default function BookItem() {
 					</div>
 				</div>
 			</div>
+			<BookItemBadges />
 		</React.Fragment>
 	);
 }
