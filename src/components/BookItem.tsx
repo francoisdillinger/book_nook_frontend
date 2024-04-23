@@ -102,7 +102,8 @@ export default function BookItem() {
 					Synopsis
 				</h2>
 				<p className="text-lg text-gray-500">
-					"The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
+					{book ? book.longDescription : " "}
+					{/* "The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
 					readers to the sun-drenched landscapes of Andalusia, Spain. At its
 					core, the story follows Santiago, a young shepherd boy who embarks on
 					a profound journey of self-discovery and enlightenment. Driven by an
@@ -125,7 +126,7 @@ export default function BookItem() {
 					the true treasure lies not in the destination, but in the journey
 					itself. With its lyrical prose and profound insights, Coelho's
 					masterpiece continues to inspire readers to follow their dreams and
-					pursue the path of their own destiny.
+					pursue the path of their own destiny. */}
 				</p>
 			</div>
 		</React.Fragment>
