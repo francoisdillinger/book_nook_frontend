@@ -77,7 +77,11 @@ export default function BookItem() {
 							Add To Cart
 						</div>
 					</div>
-					<div className="h-1/2 bg-logoLight rounded-b-lg"></div>
+					<div className="h-1/2 bg-logoLight rounded-b-lg">
+						<h3 className="text-xl font-medium text-gray-500">
+							Add to Wishlist
+						</h3>
+					</div>
 				</div>
 			</div>
 		</React.Fragment>
