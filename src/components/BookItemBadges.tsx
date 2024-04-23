@@ -1,6 +1,6 @@
 export default function BookItemBadges() {
 	return (
-		<div className="bg-red-50">
+		<div className="bg-gray-100">
 			<div className="flex flex-wrap w-10/12 m-auto p-8">
 				<div className="md:w-1/2 lg:w-1/4 text-center p-2">
 					<div className="md:p-2 inline-block rounded-lg md:m-4">
