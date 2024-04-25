@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import useGetWindowSize from "../hooks/useGetWindowSize";
 import RecommendedBookDetails from "./RecommendedBookDetails";
-import { books } from "../data/books";
+import { oldBooks } from "../data/oldBooks";
 
 export default function RecomendedSlider() {
 	const [counter, setCount] = useState(0);
@@ -43,7 +43,7 @@ export default function RecomendedSlider() {
 	}, [centerBookOffset]);
 
 	const handleIncrement = () => {
-		if (counter < books.length - visibleBooks + centerBookOffset)
+		if (counter < oldBooks.length - visibleBooks + centerBookOffset)
 			setCount(counter + 1);
 		//   console.log(`Counder: ${counter}`)
 		//   console.log(`center Book offset: ${centerBookOffset}`)
@@ -96,7 +96,7 @@ export default function RecomendedSlider() {
 	};
 
 	const transitionStyles = useMemo(
-		() => books.map((_, index) => getTransitionStyles(index)),
+		() => oldBooks.map((_, index) => getTransitionStyles(index)),
 		[counter, windowSize]
 	);
 
@@ -141,7 +141,7 @@ export default function RecomendedSlider() {
 							transition: "transform 0.5s ease-in-out",
 						}}
 					>
-						{books.map((book, index) => (
+						{oldBooks.map((book, index) => (
 							<div
 								key={index}
 								className={`min-w-full md:min-w-1/3 lg:min-w-1/5`}
