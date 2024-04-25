@@ -16,7 +16,7 @@ export default function HomePageContent() {
 			<NewArrivals />
 			<HomeBadges />
 			<CategoriesSlider />
-			{/* <RecommendedSlider /> */}
+			<RecommendedSlider />
 			<HomeBookTestimonials />
 			<HomeStatsBadges />
 			<BlogSection />
