@@ -25,7 +25,6 @@ export default function BookItem() {
 		setBookItem(book);
 		setBookRating(totalRating(book));
 	}, [book]);
-	// console.log(bookItem);
 	return (
 		<React.Fragment>
 			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12 pb-8">
