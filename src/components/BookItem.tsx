@@ -102,13 +102,15 @@ export default function BookItem() {
 				</h2>
 				<p className="text-lg text-gray-500">
 					{book
-						? book.longDescription?.split("\n").map((line) => (
-								<span className="pl-8">
-									{line}
-									<br />
-									<br />
-								</span>
-						  ))
+						? "\"The Alchemist\" is a spellbinding tale of a young Andalusian shepherd named Santiago who yearns for adventure and treasures beyond the mundane routine of his pastoral life. Paulo Coelho's masterpiece takes you on an enchanting journey of self-discovery, as Santiago dreams of a hidden treasure near the Egyptian pyramids. Guided by a mysterious dream interpreter and a series of omens, Santiago decides to defy his fate and follow his dream, setting off on an expedition from his native Spain to the exotic markets of Tangiers and across the Egyptian desert. \n\nThe narrative is a rich tapestry of encounters and experiences that Santiago faces along his path. He meets an ageless alchemist who guides him towards spiritual enlightenment, a beautiful Englishwoman who shares his love for the desert, and a wise king who instills in him the importance of following one's Personal Legend. The novel interweaves elements of magic, mysticism, and philosophy, subtly alluding to the timeless wisdom of listening to our hearts and recognizing opportunity as it unfolds before us. \n\n\"The Alchemist\" is not just a novel; it's a journey of self-discovery, a guide to following your heart and fulfilling your destiny. It celebrates the idea that the universe conspires in helping those in pursuit of their dreams. Every twist and turn in Santiago's journey symbolizes life's trials and tribulations, teaching invaluable lessons about hope, love, and self-belief. Coelho's evocative prose and profound wisdom make \"The Alchemist\" a truly transformative reading experience that will certainly touch the hearts of those who dare to dream."
+								.split("\n")
+								.map((line) => (
+									<span className="pl-8">
+										{line}
+										<br />
+										{/* <br /> */}
+									</span>
+								))
 						: " "}
 					{/* "The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
 					readers to the sun-drenched landscapes of Andalusia, Spain. At its
@@ -134,6 +136,18 @@ export default function BookItem() {
 					itself. With its lyrical prose and profound insights, Coelho's
 					masterpiece continues to inspire readers to follow their dreams and
 					pursue the path of their own destiny. */}
+					{/* "\nThe Alchemist by Paulo Coelho is a captivating and thought-provoking 
+					novel that will take readers on a journey of self-discovery and personal growth. 
+					Set in the exotic and mysterious land of Egypt, the story follows the journey 
+					of a young shepherd named Santiago as he embarks on a quest to fulfill his destiny 
+					and find his true purpose in life.\n\nAs Santiago travels through the desert, 
+					he encounters a wise alchemist who teaches him the ways of the universe and the 
+					power of following one's dreams. Along the way, he faces challenges and obstacles 
+					that test his faith and determination. With beautiful prose and rich symbolism, 
+					Coelho weaves a tale that explores the themes of courage, perseverance, and the 
+					pursuit of one's personal legend. The Alchemist is a timeless masterpiece that 
+					will leave readers inspired and enlightened, making it a must-read for anyone 
+					seeking a deeper understanding of life's journey." */}
 				</p>
 			</div>
 		</React.Fragment>
