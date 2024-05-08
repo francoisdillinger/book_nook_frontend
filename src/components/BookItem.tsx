@@ -101,16 +101,14 @@ export default function BookItem() {
 					Synopsis
 				</h2>
 				<p className="text-lg text-gray-500">
-					{book
-						? "\"The Alchemist\" is a spellbinding tale of a young Andalusian shepherd named Santiago who yearns for adventure and treasures beyond the mundane routine of his pastoral life. Paulo Coelho's masterpiece takes you on an enchanting journey of self-discovery, as Santiago dreams of a hidden treasure near the Egyptian pyramids. Guided by a mysterious dream interpreter and a series of omens, Santiago decides to defy his fate and follow his dream, setting off on an expedition from his native Spain to the exotic markets of Tangiers and across the Egyptian desert. \n\nThe narrative is a rich tapestry of encounters and experiences that Santiago faces along his path. He meets an ageless alchemist who guides him towards spiritual enlightenment, a beautiful Englishwoman who shares his love for the desert, and a wise king who instills in him the importance of following one's Personal Legend. The novel interweaves elements of magic, mysticism, and philosophy, subtly alluding to the timeless wisdom of listening to our hearts and recognizing opportunity as it unfolds before us. \n\n\"The Alchemist\" is not just a novel; it's a journey of self-discovery, a guide to following your heart and fulfilling your destiny. It celebrates the idea that the universe conspires in helping those in pursuit of their dreams. Every twist and turn in Santiago's journey symbolizes life's trials and tribulations, teaching invaluable lessons about hope, love, and self-belief. Coelho's evocative prose and profound wisdom make \"The Alchemist\" a truly transformative reading experience that will certainly touch the hearts of those who dare to dream."
-								.split("\n")
-								.map((line) => (
-									<span className="pl-8">
-										{line}
-										<br />
-										{/* <br /> */}
-									</span>
-								))
+					{book.longDescription
+						? book.longDescription.split("\n").map((line) => (
+								<span className="pl-8">
+									{line}
+									<br />
+									{/* <br /> */}
+								</span>
+						  ))
 						: " "}
 					{/* "The Alchemist" by Paulo Coelho is a mesmerizing tale that transports
 					readers to the sun-drenched landscapes of Andalusia, Spain. At its
