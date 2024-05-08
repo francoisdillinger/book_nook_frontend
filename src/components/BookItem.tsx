@@ -57,7 +57,7 @@ export default function BookItem() {
 					</div>
 					<div className="pb-6">
 						<p className="text-lg text-gray-500 pb-8 xl:pb-24">
-							{bookItem?.description}
+							{bookItem?.shortDescription}
 						</p>
 						<div className="flex flex-wrap">
 							{bookItem?.bookCategories?.map((category) => (
