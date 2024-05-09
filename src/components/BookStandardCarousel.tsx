@@ -14,6 +14,12 @@ export default function BookStandardCarousel() {
 	const [carouselBooks, setCarouselBooks] = useState<
 		TrimmedBookType[] | null
 	>();
+
+	useEffect(() => {
+		const trimmedBooks = trimBooks(booksWithCategories);
+		setCarouselBooks(trimmedBooks.slice(0, 9));
+	}, [booksWithCategories]);
+
 	const increaseIndexHandler = () => {
 		// Come back and set this to be dynamic depending on window size
 		if (carouselIndex < 8) {
