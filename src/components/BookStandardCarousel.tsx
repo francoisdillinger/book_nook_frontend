@@ -45,8 +45,6 @@ export default function BookStandardCarousel() {
 		}
 	}, [windowSize]);
 
-	console.log("Index: ", maxIndex);
-
 	const increaseIndexHandler = () => {
 		if (carouselIndex < maxIndex) {
 			setCarouselIndex(carouselIndex + 1);
