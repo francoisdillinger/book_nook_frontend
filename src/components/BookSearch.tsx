@@ -446,13 +446,7 @@ export default function BookSearch() {
 										<span>
 											{" "}
 											<StaticStarRating
-												rating={Math.floor(
-													book.bookReviews!.reduce(
-														(accumulator, review) =>
-															accumulator + review.rating,
-														0
-													)
-												)}
+												rating={totalRating(book)}
 												width={7}
 												height={7}
 											/>
