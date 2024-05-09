@@ -38,7 +38,6 @@ export default function BookItem() {
 		setBookItem(book);
 		setBookRating(totalRating(book));
 	}, [book]);
-	// console.log("Carousel: ", carouselIndex);
 
 	useEffect(() => {
 		const trimmedBooks = trimBooks(booksWithCategories);
