@@ -29,7 +29,7 @@ import BookItem from "./components/BookItem";
 export default function App() {
 	return (
 		<React.Fragment>
-			{/* <Navbar /> */}
+			<Navbar />
 			{/* <HomePageContent /> */}
 			{/* <BookSearch /> */}
 			<BookItem />
@@ -47,7 +47,7 @@ export default function App() {
 			{/* <AddAuthor /> */}
 			{/* <EditAuthor /> */}
 			{/* <Scratch /> */}
-			{/* <Footer /> */}
+			<Footer />
 		</React.Fragment>
 	);
 }
