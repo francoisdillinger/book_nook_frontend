@@ -145,6 +145,7 @@ export default function BookItem() {
 					</div>
 					{book?.bookReviews?.map((review, index) => (
 						<BookReview
+							key={index}
 							rating={review.rating}
 							review={review.review}
 							shortReview={review.shortReview}
