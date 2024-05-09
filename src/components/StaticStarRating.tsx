@@ -24,7 +24,7 @@ export default function StaticStarRating({
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							className={`cursor-pointer ${
+							className={` ${
 								ratingVal <= rating ? "fill-yellow-400" : "fill-gray-300"
 							} ${"w-" + width} ${"h-" + height}`}
 						>
