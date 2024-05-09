@@ -121,6 +121,24 @@ export default function BookItem() {
 				</p>
 			</div>
 			<BookStandardCarousel />
+			<section className="p-8">
+				<h2 className="text-4xl text-gray-500 font-medium text-center pb-4">
+					Customer Reviews
+				</h2>
+				<div className="flex items-center justify-center">
+					<p className="text-xl text-gray-500">{bookRating}</p>
+					<span className="pl-2">
+						<StaticStarRating
+							rating={bookRating}
+							width={7}
+							height={7}
+						/>
+					</span>
+					<p className="text-md text-gray-400 font-medium pl-6">
+						{bookItem?.bookReviews?.length} ratings
+					</p>
+				</div>
+			</section>
 		</React.Fragment>
 	);
 }
