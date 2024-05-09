@@ -40,7 +40,7 @@ export default function AddReview() {
 							id="image"
 						/>
 					</div> */}
-					<div className="">
+					{/* <div className="">
 						<label
 							htmlFor="title"
 							className="block"
@@ -53,8 +53,8 @@ export default function AddReview() {
 							name="title"
 							id="title"
 						/>
-					</div>
-					<div className="">
+					</div> */}
+					{/* <div className="">
 						<label
 							htmlFor="isbn"
 							className="block"
@@ -67,8 +67,8 @@ export default function AddReview() {
 							name="isbn"
 							id="isbn"
 						/>
-					</div>
-					<div className="">
+					</div> */}
+					{/* <div className="">
 						<label
 							htmlFor="price"
 							className="block"
@@ -81,8 +81,8 @@ export default function AddReview() {
 							name="price"
 							id="price"
 						/>
-					</div>
-					<div className="">
+					</div> */}
+					{/* <div className="">
 						<label
 							htmlFor="publishedDate"
 							className="block"
@@ -95,7 +95,7 @@ export default function AddReview() {
 							name="publishedDate"
 							id="publishedDate"
 						/>
-					</div>
+					</div> */}
 					<div className="">
 						<label
 							htmlFor="description"
@@ -129,7 +129,7 @@ export default function AddReview() {
 							))}
 						</select>
 					</div> */}
-					<div className="">
+					{/* <div className="">
 						<label
 							htmlFor="inventory"
 							className="block"
@@ -144,8 +144,8 @@ export default function AddReview() {
 							name="inventory"
 							id="inventory"
 						/>
-					</div>
-					<div className="">
+					</div> */}
+					{/* <div className="">
 						<label
 							htmlFor="pageCount"
 							className="block"
@@ -160,13 +160,13 @@ export default function AddReview() {
 							name="pageCount"
 							id="pageCount"
 						/>
-					</div>
+					</div> */}
 					<div className="flex justify-center pt-4">
 						<button
 							type="submit"
 							className="bg-logo p-3 rounded-md w-full md:w-1/2 text-gray-50 opacity-90 hover:opacity-100 cursor-pointer font-medium"
 						>
-							Add Book
+							Add Review
 						</button>
 					</div>
 				</form>
