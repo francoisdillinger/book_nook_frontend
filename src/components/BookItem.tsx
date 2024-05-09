@@ -107,8 +107,11 @@ export default function BookItem() {
 				</h2>
 				<p className="text-lg text-gray-500">
 					{book.longDescription
-						? book.longDescription.split("\n").map((line) => (
-								<span className="pl-8">
+						? book.longDescription.split("\n").map((line, index) => (
+								<span
+									key={index}
+									className="pl-8"
+								>
 									{line}
 									<br />
 									{/* <br /> */}
