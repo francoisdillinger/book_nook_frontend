@@ -1,5 +1,6 @@
 import React from "react";
 import StaticStarRating from "./StaticStarRating";
+import memers from "../assets/memers.jpg";
 
 type BookReviewType = {
 	rating?: number;
@@ -32,10 +33,10 @@ export default function BookReview({
 						alt=""
 					/>
 					<div className="pl-4">
-						<h1 className="text-gray-500 font-medium pl-1">{user.userName}</h1>
+						<h1 className="text-gray-500 font-medium pl-1">{user!.userName}</h1>
 						<span className="">
 							<StaticStarRating
-								rating={rating}
+								rating={rating ? rating : 0}
 								width={6}
 								height={6}
 							/>
