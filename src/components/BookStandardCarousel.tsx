@@ -37,5 +37,5 @@ export default function BookStandardCarousel() {
 			setCarouselIndex(carouselIndex - 1);
 		}
 	};
-	return <></>;
+	return <React.Fragment></React.Fragment>;
 }
