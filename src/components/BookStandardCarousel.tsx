@@ -7,6 +7,7 @@ import {
 	booksWithCategories,
 	BookWithCategoriesType,
 } from "../data/booksWithCategories";
+import { totalRating } from "./BookItem";
 
 export default function BookStandardCarousel() {
 	return <></>;
