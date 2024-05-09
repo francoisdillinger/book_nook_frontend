@@ -22,10 +22,6 @@ export const totalRating = (book: TrimmedBookType): number => {
 	return parseFloat((totalRating / length).toFixed(1));
 };
 
-const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
-	return [...books.data.books];
-};
-
 export default function BookItem() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
