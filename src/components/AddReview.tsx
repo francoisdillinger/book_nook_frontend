@@ -24,7 +24,7 @@ export default function AddReview() {
 					action=""
 					className=" font-medium text-gray-500 text-sm"
 				>
-					<div className="">
+					{/* <div className="">
 						<label
 							htmlFor="image"
 							className="block"
@@ -38,7 +38,7 @@ export default function AddReview() {
 							name="image"
 							id="image"
 						/>
-					</div>
+					</div> */}
 					<div className="">
 						<label
 							htmlFor="title"
@@ -108,7 +108,7 @@ export default function AddReview() {
 							id="description"
 						></textarea>
 					</div>
-					<div className="">
+					{/* <div className="">
 						<label
 							htmlFor="author"
 							className="block"
@@ -127,7 +127,7 @@ export default function AddReview() {
 								</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					<div className="">
 						<label
 							htmlFor="inventory"
