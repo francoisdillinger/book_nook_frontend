@@ -54,8 +54,6 @@ export default function BookStandardCarousel() {
 	};
 
 	const decreaseIndexHandler = () => {
-		// Come back and set this to be dynamic depending on window size
-
 		if (carouselIndex > minIndex) {
 			setCarouselIndex(carouselIndex - 1);
 		}
