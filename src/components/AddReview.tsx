@@ -25,77 +25,6 @@ export default function AddReview() {
 					action=""
 					className=" font-medium text-gray-500 text-sm"
 				>
-					{/* <div className="">
-						<label
-							htmlFor="image"
-							className="block"
-						>
-							Book Image
-						</label>
-						<input
-							onChange={handleFileChange}
-							className="block file:p-3 file:bg-logo file:border-none file:text-gray-50 file:opacity-90 file:hover:opacity-100 file:cursor-pointer file:font-medium w-full lg:w-full text-sm font-normal text-gray-500 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="file"
-							name="image"
-							id="image"
-						/>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="title"
-							className="block"
-						>
-							Title
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="text"
-							name="title"
-							id="title"
-						/>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="isbn"
-							className="block"
-						>
-							ISBN
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="text"
-							name="isbn"
-							id="isbn"
-						/>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="price"
-							className="block"
-						>
-							Price
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="text"
-							name="price"
-							id="price"
-						/>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="publishedDate"
-							className="block"
-						>
-							Date Published
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="date"
-							name="publishedDate"
-							id="publishedDate"
-						/>
-					</div> */}
 					<div className="">
 						<label
 							htmlFor="review"
@@ -109,58 +38,6 @@ export default function AddReview() {
 							id="review"
 						></textarea>
 					</div>
-					{/* <div className="">
-						<label
-							htmlFor="author"
-							className="block"
-						>
-							Author
-						</label>
-						<select
-							id="author"
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							// onChange={(event) => selectOptionsHandler(event)}
-						>
-							<option value="">--- Select Author ---</option>
-							{authors?.map((author, index) => (
-								<option key={index}>
-									{author.authorFirstName + " " + author.authorLastName}
-								</option>
-							))}
-						</select>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="inventory"
-							className="block"
-						>
-							Amount Added to Inventory (between 0 and 50) :
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="number"
-							min="0"
-							max="50"
-							name="inventory"
-							id="inventory"
-						/>
-					</div> */}
-					{/* <div className="">
-						<label
-							htmlFor="pageCount"
-							className="block"
-						>
-							Page Count :
-						</label>
-						<input
-							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							type="number"
-							min="0"
-							max="1000"
-							name="pageCount"
-							id="pageCount"
-						/>
-					</div> */}
 					<div className="flex justify-center pt-4">
 						<button
 							type="submit"
