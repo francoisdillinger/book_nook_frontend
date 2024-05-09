@@ -4,11 +4,6 @@ import { book } from "../data/bookItem";
 import alchemist from "../assets/alchemist.jpg";
 import StaticStarRating from "./StaticStarRating";
 import BookItemBadges from "./BookItemBadges";
-import { motion } from "framer-motion";
-import {
-	booksWithCategories,
-	BookWithCategoriesType,
-} from "../data/booksWithCategories";
 import BookStandardCarousel from "./BookStandardCarousel";
 
 export const totalRating = (book: TrimmedBookType): number => {
