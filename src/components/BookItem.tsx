@@ -82,7 +82,7 @@ export default function BookItem() {
 						<h3 className="text-logo text-3xl pt-8 pb-12">
 							${book.price.toFixed(2)}
 						</h3>
-						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer">
+						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer ease-in-out duration-300">
 							Add To Cart
 						</div>
 					</div>
