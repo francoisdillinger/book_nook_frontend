@@ -8,7 +8,9 @@ export default function EditReview() {
 		<React.Fragment>
 			{" "}
 			<div className="w-11/12 md:w-1/2 bg-white md:bg-gray-100 md:rounded-lg md:mt-16 p-8  m-auto mb-20">
-				<h1 className="text-gray-500 text-3xl text-center">Book Review</h1>
+				<h1 className="text-gray-500 text-3xl text-center">
+					Editing Book Review
+				</h1>
 				<div className="mt-10 mb-5">
 					{alchemist ? (
 						<div className="flex justify-center">
@@ -77,7 +79,7 @@ export default function EditReview() {
 							type="submit"
 							className="bg-logo p-3 rounded-md w-full md:w-1/2 text-gray-50 opacity-90 hover:opacity-100 cursor-pointer font-medium"
 						>
-							Add Review
+							Edit Review
 						</button>
 					</div>
 				</form>
