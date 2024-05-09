@@ -181,7 +181,7 @@ export default function BookItem() {
 			</div>
 			<div className="overflow-hidden relative">
 				<button
-					onClick={increaseIndexHandler}
+					onClick={decreaseIndexHandler}
 					className="absolute z-10 left-2 md:left-4 lg:left-2 xl:left-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
 				>
 					<svg
@@ -223,13 +223,7 @@ export default function BookItem() {
 										<span>
 											{" "}
 											<StaticStarRating
-												rating={Math.floor(
-													book.bookReviews!.reduce(
-														(accumulator, review) =>
-															accumulator + review.rating,
-														0
-													)
-												)}
+												rating={totalRating(book)}
 												width={7}
 												height={7}
 											/>
@@ -244,7 +238,7 @@ export default function BookItem() {
 					))}
 				</div>
 				<button
-					onClick={decreaseIndexHandler}
+					onClick={increaseIndexHandler}
 					className="absolute z-10 right-2 md:right-4 lg:right-2 xl:right-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
 				>
 					<svg
