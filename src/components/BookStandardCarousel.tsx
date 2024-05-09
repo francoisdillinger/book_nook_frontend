@@ -48,8 +48,6 @@ export default function BookStandardCarousel() {
 	console.log("Index: ", maxIndex);
 
 	const increaseIndexHandler = () => {
-		// Come back and set this to be dynamic depending on window size
-
 		if (carouselIndex < maxIndex) {
 			setCarouselIndex(carouselIndex + 1);
 		}
