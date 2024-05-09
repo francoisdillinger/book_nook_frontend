@@ -26,6 +26,7 @@ import EditAuthor from "./components/EditAuthor";
 import BookSearch from "./components/BookSearch";
 import BookItem from "./components/BookItem";
 import AddReview from "./components/AddReview";
+import EditReview from "./components/EditReview";
 
 export default function App() {
 	return (
@@ -34,7 +35,8 @@ export default function App() {
 			{/* <HomePageContent /> */}
 			{/* <BookSearch /> */}
 			{/* <BookItem /> */}
-			<AddReview />
+			{/* <AddReview /> */}
+			<EditReview />
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
