@@ -10,7 +10,7 @@ import {
 	BookWithCategoriesType,
 } from "../data/booksWithCategories";
 
-const totalRating = (book: TrimmedBookType): number => {
+export const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
 	const totalRating = book.bookReviews
 		? book.bookReviews.reduce(
