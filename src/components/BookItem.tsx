@@ -43,7 +43,7 @@ export default function BookItem() {
 		const trimmedBooks = trimBooks(booksWithCategories);
 		setCarouselBooks(trimmedBooks.slice(0, 9));
 	}, [booksWithCategories]);
-	// console.log("SLiced: ", carouselBooks);
+
 	const increaseIndexHandler = () => {
 		if (carouselIndex < 8) {
 			setCarouselIndex(carouselIndex + 1);
