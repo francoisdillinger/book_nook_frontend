@@ -16,6 +16,7 @@ const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
 
 export default function BookStandardCarousel() {
 	const windowSize = useGetWindowSize();
+	const [maxIndex, setMaxIndex] = useState<number>(0);
 	const [carouselIndex, setCarouselIndex] = useState<number>(0);
 	const [carouselBooks, setCarouselBooks] = useState<
 		TrimmedBookType[] | null
@@ -26,8 +27,28 @@ export default function BookStandardCarousel() {
 		setCarouselBooks(trimmedBooks.slice(0, 9));
 	}, [booksWithCategories]);
 
+	useEffect(() => {
+		switch (windowSize) {
+			case "small":
+			case "medium":
+				setMaxIndex(8);
+				setCarouselIndex(Math.min(carouselIndex, 8));
+				break;
+			case "large":
+			case "xLarge":
+				setMaxIndex(10);
+				setCarouselIndex(Math.min(carouselIndex, 10));
+				break;
+			default:
+				break;
+		}
+	}, [windowSize]);
+
+	console.log("Index: ", maxIndex);
+
 	const increaseIndexHandler = () => {
 		// Come back and set this to be dynamic depending on window size
+
 		if (carouselIndex < 8) {
 			setCarouselIndex(carouselIndex + 1);
 		}
