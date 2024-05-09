@@ -26,8 +26,10 @@ export default function AddReview() {
 					action=""
 					className=" font-medium text-gray-500 text-sm"
 				>
-					<DynamicStarRating />
-					<div className="">
+					<div className="p-2">
+						<DynamicStarRating />
+					</div>
+					<div className="p-2">
 						<label
 							htmlFor="title"
 							className="block"
@@ -41,7 +43,7 @@ export default function AddReview() {
 							id="title"
 						/>
 					</div>
-					<div className="">
+					<div className="p-2">
 						<label
 							htmlFor="review"
 							className="block"
