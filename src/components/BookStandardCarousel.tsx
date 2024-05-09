@@ -32,13 +32,13 @@ export default function BookStandardCarousel() {
 		switch (windowSize) {
 			case "small":
 			case "medium":
-				setMaxIndex(8);
-				setCarouselIndex(Math.min(carouselIndex, 8));
+				setMaxIndex(7);
+				setCarouselIndex(Math.min(carouselIndex, 7));
 				break;
 			case "large":
 			case "xLarge":
-				setMaxIndex(10);
-				setCarouselIndex(Math.min(carouselIndex, 10));
+				setMaxIndex(6);
+				setCarouselIndex(Math.min(carouselIndex, 6));
 				break;
 			default:
 				break;
