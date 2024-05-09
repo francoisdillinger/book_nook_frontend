@@ -1,6 +1,21 @@
 import React from "react";
 import StaticStarRating from "./StaticStarRating";
-export default function BookReview() {
+
+type BookReviewType = {
+	rating: number;
+	review: string;
+	shortReview: string;
+	user: {
+		userName: string;
+	};
+};
+
+export default function BookReview({
+	rating,
+	review,
+	shortReview,
+	user,
+}: BookReviewType) {
 	return (
 		<React.Fragment>
 			<div
@@ -14,12 +29,10 @@ export default function BookReview() {
 						alt=""
 					/>
 					<div className="pl-4">
-						<h1 className="text-gray-500 font-medium pl-1">
-							{review.user?.userName}
-						</h1>
+						<h1 className="text-gray-500 font-medium pl-1">{user.userName}</h1>
 						<span className="">
 							<StaticStarRating
-								rating={review.rating}
+								rating={rating}
 								width={6}
 								height={6}
 							/>
@@ -30,8 +43,8 @@ export default function BookReview() {
 					</div>
 				</div>
 				<div className="text-center">
-					<h2 className="text-2xl text-gray-500 pb-4">{review.shortReview}</h2>
-					<p className="text-lg text-gray-600 font-light">{review.review}</p>
+					<h2 className="text-2xl text-gray-500 pb-4">{shortReview}</h2>
+					<p className="text-lg text-gray-600 font-light">{review}</p>
 				</div>
 			</div>
 		</React.Fragment>
