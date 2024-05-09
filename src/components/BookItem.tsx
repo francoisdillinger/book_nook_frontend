@@ -9,6 +9,7 @@ import {
 	booksWithCategories,
 	BookWithCategoriesType,
 } from "../data/booksWithCategories";
+import BookStandardCarousel from "./BookStandardCarousel";
 
 export const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -118,6 +119,7 @@ export default function BookItem() {
 						: " "}
 				</p>
 			</div>
+			<BookStandardCarousel />
 		</React.Fragment>
 	);
 }
