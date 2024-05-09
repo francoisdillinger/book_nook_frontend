@@ -1,4 +1,5 @@
 import React from "react";
+import alchemist from "../assets/alchemist.jpg";
 
 export default function AddReview() {
 	return (
@@ -6,17 +7,17 @@ export default function AddReview() {
 			{" "}
 			<div className="w-11/12 md:w-1/2 bg-white md:bg-gray-100 md:rounded-lg md:mt-16 p-8  m-auto mb-20">
 				<div className="mt-10 mb-5">
-					{image ? (
+					{alchemist ? (
 						<div className="flex justify-center">
 							<img
 								className="h-80"
-								src={image}
+								src={alchemist}
 								alt=""
 							/>
 						</div>
 					) : (
 						<div className="h-80 flex justify-center items-center font-semibold text-3xl text-gray-400">
-							Image Preview
+							No Image
 						</div>
 					)}
 				</div>
