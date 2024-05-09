@@ -142,6 +142,9 @@ export default function BookItem() {
 						<p className="text-md text-gray-400 font-medium pl-6">
 							{bookItem?.bookReviews?.length} ratings
 						</p>
+						<div className="bg-logo shadow-md cursor-pointer text-gray-100 p-2 rounded-lg ml-4 hover:bg-logoLight hover:text-gray-600 hover:scale-105 ease-in-out duration-300">
+							Leave Review
+						</div>
 					</div>
 					{book?.bookReviews?.map((review, index) => (
 						<BookReview
