@@ -60,6 +60,9 @@ export default function BookStandardCarousel() {
 	};
 	return (
 		<React.Fragment>
+			<h1 className="text-4xl text-gray-500 font-medium text-center pb-4 bg-logoLight pt-8">
+				Latest Releases
+			</h1>
 			<div className="overflow-hidden relative">
 				<button
 					onClick={decreaseIndexHandler}
