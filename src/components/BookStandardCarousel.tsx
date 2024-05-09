@@ -85,7 +85,7 @@ export default function BookStandardCarousel() {
 					{carouselBooks?.map((book) => (
 						<motion.div
 							key={book.id}
-							className="h-64 min-w-1/2 lg:min-w-1/3 bg-logoLight inline-block p-4"
+							className="h-64 min-w-1/2 lg:min-w-1/3 bg-logoLight inline-block p-2"
 							animate={{ translateX: -100 * carouselIndex + "%" }}
 						>
 							<div className="h-full flex justify-center items-center bg-white rounded-lg shadow">
@@ -139,6 +139,7 @@ export default function BookStandardCarousel() {
 					</svg>
 				</button>
 			</div>
+			<div className="h-12 bg-logoLight"></div>
 		</React.Fragment>
 	);
 }
