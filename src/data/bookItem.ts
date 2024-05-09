@@ -18,24 +18,36 @@ export const book: TrimmedBookType = {
 			review:
 				"The Alchemist is an incredible journey of self-discovery and following one's dreams. Highly recommend it!",
 			shortReview: "Incredible journey!",
+			user: {
+				userName: "booklover1",
+			},
 		},
 		{
 			rating: 4,
 			review:
 				"The Alchemist is a thought-provoking book that teaches valuable life lessons. It's definitely worth reading.",
 			shortReview: "Thought-provoking!",
+			user: {
+				userName: "bibliophile",
+			},
 		},
 		{
 			rating: 5,
 			review:
 				"The Alchemist is a masterpiece! It's beautifully written and deeply moving. A must-read for everyone!",
 			shortReview: "A masterpiece!",
+			user: {
+				userName: "avidreader7",
+			},
 		},
 		{
 			rating: 3,
 			review:
 				"The Alchemist has some good moments, but overall, I found it to be a bit too preachy for my taste.",
 			shortReview: "Bit too preachy.",
+			user: {
+				userName: "litlover88",
+			},
 		},
 	],
 	author: {
