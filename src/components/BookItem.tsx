@@ -63,7 +63,10 @@ export default function BookItem() {
 						</p>
 						<div className="flex flex-wrap">
 							{bookItem?.bookCategories?.map((category) => (
-								<div className="p-2 bg-logo opacity-90 m-1 rounded-lg text-gray-50 text-sm">
+								<div
+									key={category.category.categoryName}
+									className="p-2 bg-logo opacity-90 m-1 rounded-lg text-gray-50 text-sm"
+								>
 									{category.category.categoryName}
 								</div>
 							))}
