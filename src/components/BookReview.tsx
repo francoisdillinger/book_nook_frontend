@@ -22,10 +22,7 @@ export default function BookReview({
 	const formattedDate = now.toLocaleDateString("en-US", options);
 	return (
 		<React.Fragment>
-			<div
-				key={index}
-				className="p-8"
-			>
+			<div className="p-8">
 				<div className="flex items-center p-2">
 					<img
 						className="w-16 rounded-full shadow-lg"
