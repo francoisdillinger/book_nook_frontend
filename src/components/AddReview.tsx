@@ -1,5 +1,6 @@
 import React from "react";
 import alchemist from "../assets/alchemist.jpg";
+import DynamicStarRating from "./DynamicStarRating";
 
 export default function AddReview() {
 	return (
@@ -25,6 +26,7 @@ export default function AddReview() {
 					action=""
 					className=" font-medium text-gray-500 text-sm"
 				>
+					<DynamicStarRating />
 					<div className="">
 						<label
 							htmlFor="review"
