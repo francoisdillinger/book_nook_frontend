@@ -15,6 +15,7 @@ import alchemist from "../assets/alchemist.jpg";
 import { motion } from "framer-motion";
 import StaticStarRating from "./StaticStarRating";
 import { getRange } from "./AdminOrders";
+import { totalRating } from "./BookItem";
 
 type FilterByCategoryType = {
 	categoryName: string;
