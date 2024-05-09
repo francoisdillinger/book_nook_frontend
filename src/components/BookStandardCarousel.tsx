@@ -10,6 +10,10 @@ import {
 import { totalRating } from "./BookItem";
 
 export default function BookStandardCarousel() {
+	const [carouselIndex, setCarouselIndex] = useState<number>(0);
+	const [carouselBooks, setCarouselBooks] = useState<
+		TrimmedBookType[] | null
+	>();
 	const increaseIndexHandler = () => {
 		// Come back and set this to be dynamic depending on window size
 		if (carouselIndex < 8) {
