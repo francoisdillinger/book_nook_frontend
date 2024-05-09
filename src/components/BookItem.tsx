@@ -29,20 +29,11 @@ const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
 export default function BookItem() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
-	const [carouselIndex, setCarouselIndex] = useState<number>(0);
-	const [carouselBooks, setCarouselBooks] = useState<
-		TrimmedBookType[] | null
-	>();
 
 	useEffect(() => {
 		setBookItem(book);
 		setBookRating(totalRating(book));
 	}, [book]);
-
-	useEffect(() => {
-		const trimmedBooks = trimBooks(booksWithCategories);
-		setCarouselBooks(trimmedBooks.slice(0, 9));
-	}, [booksWithCategories]);
 
 	return (
 		<React.Fragment>
