@@ -16,6 +16,9 @@ export default function BookReview({
 	shortReview,
 	user,
 }: BookReviewType) {
+	const now = new Date();
+	const options = { year: "numeric", month: "long", day: "numeric" };
+	const formattedDate = now.toLocaleDateString("en-US", options);
 	return (
 		<React.Fragment>
 			<div
