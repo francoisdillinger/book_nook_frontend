@@ -142,18 +142,6 @@ export default function BookItem() {
 								</span>
 						  ))
 						: " "}
-					{/* "\nThe Alchemist by Paulo Coelho is a captivating and thought-provoking 
-					novel that will take readers on a journey of self-discovery and personal growth. 
-					Set in the exotic and mysterious land of Egypt, the story follows the journey 
-					of a young shepherd named Santiago as he embarks on a quest to fulfill his destiny 
-					and find his true purpose in life.\n\nAs Santiago travels through the desert, 
-					he encounters a wise alchemist who teaches him the ways of the universe and the 
-					power of following one's dreams. Along the way, he faces challenges and obstacles 
-					that test his faith and determination. With beautiful prose and rich symbolism, 
-					Coelho weaves a tale that explores the themes of courage, perseverance, and the 
-					pursuit of one's personal legend. The Alchemist is a timeless masterpiece that 
-					will leave readers inspired and enlightened, making it a must-read for anyone 
-					seeking a deeper understanding of life's journey." */}
 				</p>
 			</div>
 			<div className="overflow-hidden relative">
