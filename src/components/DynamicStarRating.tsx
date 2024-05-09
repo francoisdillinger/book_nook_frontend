@@ -12,6 +12,7 @@ export default function DynamicStarRating() {
 				return (
 					<label
 						key={index}
+						htmlFor="rating"
 						aria-label={`Rate ${ratingVal} out of 5`}
 					>
 						<input
