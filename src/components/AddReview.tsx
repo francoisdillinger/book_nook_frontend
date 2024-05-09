@@ -1,5 +1,6 @@
 import React from "react";
 import alchemist from "../assets/alchemist.jpg";
+import memers from "../assets/memers.jpg";
 import DynamicStarRating from "./DynamicStarRating";
 
 export default function AddReview() {
@@ -7,6 +8,7 @@ export default function AddReview() {
 		<React.Fragment>
 			{" "}
 			<div className="w-11/12 md:w-1/2 bg-white md:bg-gray-100 md:rounded-lg md:mt-16 p-8  m-auto mb-20">
+				<h1 className="text-gray-500 text-3xl text-center">Book Review</h1>
 				<div className="mt-10 mb-5">
 					{alchemist ? (
 						<div className="flex justify-center">
@@ -27,6 +29,20 @@ export default function AddReview() {
 					className=" font-medium text-gray-500 text-sm"
 				>
 					<div className="p-2">
+						<h2 className="pb-2">Reviewing as</h2>
+						<div className="flex items-center">
+							<img
+								className="w-12 rounded-full shadow-lg"
+								src={memers}
+								alt=""
+							/>
+							<div className="pl-4">
+								<h2 className="text-gray-500 text-xl pl-1">{"Memers"}</h2>
+							</div>
+						</div>
+					</div>
+					<div className="p-2">
+						Rating
 						<DynamicStarRating />
 					</div>
 					<div className="p-2">
