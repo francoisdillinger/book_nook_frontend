@@ -8,12 +8,14 @@ import {
 	BookWithCategoriesType,
 } from "../data/booksWithCategories";
 import { totalRating } from "./BookItem";
+import useGetWindowSize from "../hooks/useGetWindowSize";
 
 const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
 	return [...books.data.books];
 };
 
 export default function BookStandardCarousel() {
+	const windowSize = useGetWindowSize();
 	const [carouselIndex, setCarouselIndex] = useState<number>(0);
 	const [carouselBooks, setCarouselBooks] = useState<
 		TrimmedBookType[] | null
