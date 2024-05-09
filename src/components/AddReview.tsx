@@ -29,6 +29,20 @@ export default function AddReview() {
 					<DynamicStarRating />
 					<div className="">
 						<label
+							htmlFor="title"
+							className="block"
+						>
+							Title
+						</label>
+						<input
+							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+							type="text"
+							name="title"
+							id="title"
+						/>
+					</div>
+					<div className="">
+						<label
 							htmlFor="review"
 							className="block"
 						>
