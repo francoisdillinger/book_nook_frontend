@@ -5,6 +5,9 @@ import alchemist from "../assets/alchemist.jpg";
 import StaticStarRating from "./StaticStarRating";
 import BookItemBadges from "./BookItemBadges";
 import BookStandardCarousel from "./BookStandardCarousel";
+import memers from "../assets/memers.jpg";
+import marms from "../assets/marms.jpg";
+import purpur from "../assets/purpur.jpg";
 
 export const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -122,21 +125,65 @@ export default function BookItem() {
 			</div>
 			<BookStandardCarousel />
 			<section className="p-8">
-				<h2 className="text-4xl text-gray-500 font-medium text-center pb-4">
-					Customer Reviews
-				</h2>
-				<div className="flex items-center justify-center">
-					<p className="text-xl text-gray-500">{bookRating}</p>
-					<span className="pl-2">
-						<StaticStarRating
-							rating={bookRating}
-							width={7}
-							height={7}
-						/>
-					</span>
-					<p className="text-md text-gray-400 font-medium pl-6">
-						{bookItem?.bookReviews?.length} ratings
-					</p>
+				<div>
+					<h2 className="text-4xl text-gray-500 font-medium text-center pb-4">
+						Customer Reviews
+					</h2>
+					<div className="flex items-center justify-center">
+						<p className="text-xl text-gray-500">{bookRating}</p>
+						<span className="pl-2">
+							<StaticStarRating
+								rating={bookRating}
+								width={7}
+								height={7}
+							/>
+						</span>
+						<p className="text-md text-gray-400 font-medium pl-6">
+							{bookItem?.bookReviews?.length} ratings
+						</p>
+					</div>
+					{book?.bookReviews?.map((review, index) => {
+						const now = new Date();
+						const options = { year: "numeric", month: "long", day: "numeric" };
+						const formattedDate = now.toLocaleDateString("en-US", options);
+						return (
+							<div
+								key={index}
+								className="p-8"
+							>
+								<div className="flex items-center p-2">
+									<img
+										className="w-16 rounded-full shadow-lg"
+										src={memers}
+										alt=""
+									/>
+									<div className="pl-4">
+										<h1 className="text-gray-500 font-medium pl-1">
+											{review.user?.userName}
+										</h1>
+										<span className="">
+											<StaticStarRating
+												rating={review.rating}
+												width={6}
+												height={6}
+											/>
+										</span>
+										<p className="text-sm text-gray-400 pl-1">
+											Reviewed on {formattedDate}
+										</p>
+									</div>
+								</div>
+								<div className="text-center">
+									<h2 className="text-2xl text-gray-500 pb-4">
+										{review.shortReview}
+									</h2>
+									<p className="text-lg text-gray-600 font-light">
+										{review.review}
+									</p>
+								</div>
+							</div>
+						);
+					})}
 				</div>
 			</section>
 		</React.Fragment>
