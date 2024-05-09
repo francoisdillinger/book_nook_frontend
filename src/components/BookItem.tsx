@@ -45,12 +45,14 @@ export default function BookItem() {
 	}, [booksWithCategories]);
 
 	const increaseIndexHandler = () => {
+		// Come back and set this to be dynamic depending on window size
 		if (carouselIndex < 8) {
 			setCarouselIndex(carouselIndex + 1);
 		}
 	};
 
 	const decreaseIndexHandler = () => {
+		// Come back and set this to be dynamic depending on window size
 		if (carouselIndex > 0) {
 			setCarouselIndex(carouselIndex - 1);
 		}
