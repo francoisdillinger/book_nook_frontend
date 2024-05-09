@@ -4,6 +4,11 @@ import { book } from "../data/bookItem";
 import alchemist from "../assets/alchemist.jpg";
 import StaticStarRating from "./StaticStarRating";
 import BookItemBadges from "./BookItemBadges";
+import { motion } from "framer-motion";
+import {
+	booksWithCategories,
+	BookWithCategoriesType,
+} from "../data/booksWithCategories";
 
 const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -17,14 +22,40 @@ const totalRating = (book: TrimmedBookType): number => {
 	return parseFloat((totalRating / length).toFixed(1));
 };
 
+const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
+	return [...books.data.books];
+};
+
 export default function BookItem() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
+	const [carouselIndex, setCarouselIndex] = useState<number>(0);
+	const [carouselBooks, setCarouselBooks] = useState<
+		TrimmedBookType[] | null
+	>();
 
 	useEffect(() => {
 		setBookItem(book);
 		setBookRating(totalRating(book));
 	}, [book]);
+	console.log("Carousel: ", carouselIndex);
+
+	useEffect(() => {
+		const trimmedBooks = trimBooks(booksWithCategories);
+		setCarouselBooks(trimmedBooks.slice(0, 9));
+	}, [booksWithCategories]);
+	console.log("SLiced: ", carouselBooks);
+	const increaseIndexHandler = () => {
+		if (carouselIndex < 8) {
+			setCarouselIndex(carouselIndex + 1);
+		}
+	};
+
+	const decreaseIndexHandler = () => {
+		if (carouselIndex > 0) {
+			setCarouselIndex(carouselIndex - 1);
+		}
+	};
 	return (
 		<React.Fragment>
 			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12 pb-8">
@@ -147,6 +178,88 @@ export default function BookItem() {
 					will leave readers inspired and enlightened, making it a must-read for anyone 
 					seeking a deeper understanding of life's journey." */}
 				</p>
+			</div>
+			<div className="overflow-hidden relative">
+				<button
+					onClick={increaseIndexHandler}
+					className="absolute z-10 left-2 md:left-4 lg:left-2 xl:left-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200"
+					>
+						<path
+							fillRule="evenodd"
+							d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+							clipRule="evenodd"
+						/>
+					</svg>
+				</button>
+				<div className="flex">
+					{carouselBooks?.map((book) => (
+						<motion.div
+							key={book.id}
+							className="h-64 min-w-1/2 lg:min-w-1/3 bg-logoLight inline-block"
+							animate={{ translateX: -100 * carouselIndex + "%" }}
+						>
+							<div className="h-full flex justify-center items-center">
+								<div className="cursor-pointer">
+									<img
+										className="h-52"
+										src={alchemist}
+										alt={`Image for ${book.bookTitle}`}
+									/>
+								</div>
+								<div className="w-1/2 font-semibold text-sm pl-4 flex flex-col justify-between">
+									<div>
+										<h1 className="text-2xl text-gray-500">{book.bookTitle}</h1>
+										<h2 className="text-gray-400 pb-2">
+											{book.author.authorFirstName +
+												" " +
+												book.author.authorLastName}
+										</h2>
+										<span>
+											{" "}
+											<StaticStarRating
+												rating={Math.floor(
+													book.bookReviews!.reduce(
+														(accumulator, review) =>
+															accumulator + review.rating,
+														0
+													)
+												)}
+												width={7}
+												height={7}
+											/>
+										</span>
+										<h3 className="text-logo text-2xl pb-2">
+											${book.price.toFixed(2)}
+										</h3>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+					))}
+				</div>
+				<button
+					onClick={decreaseIndexHandler}
+					className="absolute z-10 right-2 md:right-4 lg:right-2 xl:right-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200"
+					>
+						<path
+							fillRule="evenodd"
+							d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z"
+							clipRule="evenodd"
+						/>
+					</svg>
+				</button>
 			</div>
 		</React.Fragment>
 	);
