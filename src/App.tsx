@@ -31,8 +31,8 @@ export default function App() {
 		<React.Fragment>
 			{/* <Navbar /> */}
 			{/* <HomePageContent /> */}
-			{/* <BookSearch /> */}
-			<BookItem />
+			<BookSearch />
+			{/* <BookItem /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
