@@ -44,19 +44,6 @@ export default function BookItem() {
 		setCarouselBooks(trimmedBooks.slice(0, 9));
 	}, [booksWithCategories]);
 
-	const increaseIndexHandler = () => {
-		// Come back and set this to be dynamic depending on window size
-		if (carouselIndex < 8) {
-			setCarouselIndex(carouselIndex + 1);
-		}
-	};
-
-	const decreaseIndexHandler = () => {
-		// Come back and set this to be dynamic depending on window size
-		if (carouselIndex > 0) {
-			setCarouselIndex(carouselIndex - 1);
-		}
-	};
 	return (
 		<React.Fragment>
 			<div className="w-10/12 m-auto flex flex-col md:flex-row pt-12 pb-8">
