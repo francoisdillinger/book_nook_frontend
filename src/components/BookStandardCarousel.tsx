@@ -42,13 +42,13 @@ export default function BookStandardCarousel() {
 			<div className="overflow-hidden relative">
 				<button
 					onClick={decreaseIndexHandler}
-					className="absolute z-10 left-2 md:left-4 lg:left-2 xl:left-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
+					className="absolute z-10 left-2 md:left-4 lg:left-2 xl:left-6 bg-logoLight shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
-						className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200"
+						className="w-6 h-6 text-gray-400 hover:text-gray-600 duration-200"
 					>
 						<path
 							fillRule="evenodd"
@@ -61,10 +61,10 @@ export default function BookStandardCarousel() {
 					{carouselBooks?.map((book) => (
 						<motion.div
 							key={book.id}
-							className="h-64 min-w-1/2 lg:min-w-1/3 bg-logoLight inline-block"
+							className="h-64 min-w-1/2 lg:min-w-1/3 bg-logoLight inline-block p-4"
 							animate={{ translateX: -100 * carouselIndex + "%" }}
 						>
-							<div className="h-full flex justify-center items-center">
+							<div className="h-full flex justify-center items-center bg-white rounded-lg shadow">
 								<div className="cursor-pointer">
 									<img
 										className="h-52"
@@ -99,13 +99,13 @@ export default function BookStandardCarousel() {
 				</div>
 				<button
 					onClick={increaseIndexHandler}
-					className="absolute z-10 right-2 md:right-4 lg:right-2 xl:right-6 bg-white shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
+					className="absolute z-10 right-2 md:right-4 lg:right-2 xl:right-6 bg-logoLight shadow-md p-2 rounded m-2 top-1/2 transform -translate-y-1/2 hover:scale-110 active:scale-95 duration-300"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
-						className="w-6 h-6 text-amber-600 hover:text-amber-800 duration-200"
+						className="w-6 h-6 text-gray-400 hover:text-gray-600 duration-200"
 					>
 						<path
 							fillRule="evenodd"
