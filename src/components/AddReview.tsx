@@ -98,15 +98,15 @@ export default function AddReview() {
 					</div> */}
 					<div className="">
 						<label
-							htmlFor="description"
+							htmlFor="review"
 							className="block"
 						>
-							Title
+							Review
 						</label>
 						<textarea
 							className="block p-2.5 w-full h-48 lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
-							name="description"
-							id="description"
+							name="review"
+							id="review"
 						></textarea>
 					</div>
 					{/* <div className="">
