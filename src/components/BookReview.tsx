@@ -1,4 +1,5 @@
 import React from "react";
+import StaticStarRating from "./StaticStarRating";
 export default function BookReview() {
 	return (
 		<React.Fragment>
