@@ -29,6 +29,8 @@ export default function BookStandardCarousel() {
 	}, [booksWithCategories]);
 
 	useEffect(() => {
+		// This effect is to monitor window size and reset the carouselIndex depending on window size.
+		// This ensures the carousel will never have empty slots if window is resized at end of carousel.
 		switch (windowSize) {
 			case "small":
 			case "medium":
