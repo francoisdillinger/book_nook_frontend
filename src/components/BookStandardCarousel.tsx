@@ -9,6 +9,10 @@ import {
 } from "../data/booksWithCategories";
 import { totalRating } from "./BookItem";
 
+const trimBooks = (books: BookWithCategoriesType): TrimmedBookType[] => {
+	return [...books.data.books];
+};
+
 export default function BookStandardCarousel() {
 	const [carouselIndex, setCarouselIndex] = useState<number>(0);
 	const [carouselBooks, setCarouselBooks] = useState<
