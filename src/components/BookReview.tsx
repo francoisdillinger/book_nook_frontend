@@ -2,10 +2,10 @@ import React from "react";
 import StaticStarRating from "./StaticStarRating";
 
 type BookReviewType = {
-	rating: number;
-	review: string;
-	shortReview: string;
-	user: {
+	rating?: number;
+	review?: string;
+	shortReview?: string;
+	user?: {
 		userName: string;
 	};
 };
