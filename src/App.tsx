@@ -27,6 +27,7 @@ import BookSearch from "./components/BookSearch";
 import BookItem from "./components/BookItem";
 import AddReview from "./components/AddReview";
 import EditReview from "./components/EditReview";
+import SignUpForm from "./components/SignUpForm";
 
 export default function App() {
 	return (
@@ -36,7 +37,8 @@ export default function App() {
 			{/* <BookSearch /> */}
 			{/* <BookItem /> */}
 			{/* <AddReview /> */}
-			<EditReview />
+			{/* <EditReview /> */}
+			<SignUpForm />
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
