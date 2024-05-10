@@ -50,16 +50,30 @@ export default function Profile() {
 					</div>
 					<div className="">
 						<label
-							htmlFor="title"
+							htmlFor="firstName"
 							className="block"
 						>
-							Title
+							First Name
 						</label>
 						<input
 							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
 							type="text"
-							name="title"
-							id="title"
+							name="firstName"
+							id="firstName"
+						/>
+					</div>
+					<div className="">
+						<label
+							htmlFor="lastName"
+							className="block"
+						>
+							Last Name
+						</label>
+						<input
+							className="block p-2.5 w-full lg:w-full z-20 text-sm font-normal text-gray-700 rounded-md bg-gray-50 border border-gray-300 focus:ring-blue-300 focus:border-blue-300 focus-visible:outline-none"
+							type="text"
+							name="lastName"
+							id="lastName"
 						/>
 					</div>
 					<div className="flex justify-center pt-4">
@@ -67,7 +81,7 @@ export default function Profile() {
 							type="submit"
 							className="bg-logo p-3 rounded-md w-full md:w-1/2 text-gray-50 opacity-90 hover:opacity-100 cursor-pointer font-medium"
 						>
-							Add Book
+							Update Profile
 						</button>
 					</div>
 				</form>
