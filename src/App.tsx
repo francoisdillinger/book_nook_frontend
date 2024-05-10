@@ -28,6 +28,8 @@ import BookItem from "./components/BookItem";
 import AddReview from "./components/AddReview";
 import EditReview from "./components/EditReview";
 import SignUpForm from "./components/SignUpForm";
+import LoginForm from "./components/LoginForm";
+import Profile from "./components/Profile";
 
 export default function App() {
 	return (
@@ -38,7 +40,9 @@ export default function App() {
 			{/* <BookItem /> */}
 			{/* <AddReview /> */}
 			{/* <EditReview /> */}
-			<SignUpForm />
+			{/* <SignUpForm /> */}
+			{/* <LoginForm /> */}
+			<Profile />
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
