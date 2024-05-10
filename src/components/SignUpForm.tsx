@@ -3,7 +3,7 @@ import React from "react";
 export default function SignUpForm() {
 	return (
 		<React.Fragment>
-			<div className="p-6 space-y-4 md:space-y-6 sm:p-8 md:w-3/4 lg:w-1/2 m-auto">
+			<div className="p-6 space-y-4 md:space-y-6 sm:p-8 md:w-3/4 lg:w-1/2 m-auto bg-gray-100 rounded-lg mt-12 mb-12">
 				<h1 className="text-xl px-2 font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-white">
 					Register for your account
 				</h1>
