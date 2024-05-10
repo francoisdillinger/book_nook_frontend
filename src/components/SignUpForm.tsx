@@ -3,7 +3,7 @@ import React from "react";
 export default function SignUpForm() {
 	return (
 		<React.Fragment>
-			<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+			<div className="p-6 space-y-4 md:space-y-6 sm:p-8 md:w-3/4 lg:w-1/2 m-auto">
 				<h1 className="text-xl px-2 font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					Register for your account
 				</h1>
@@ -120,7 +120,7 @@ export default function SignUpForm() {
 					</div>
 					<button
 						type="submit"
-						className="w-full text-white bg-blue-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+						className="w-full text-white bg-logo hover:scale-105 transition focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
 					>
 						Sign up
 					</button>
