@@ -1,4 +1,4 @@
-export type UserOrderType = {
+export type UserOrdersType = {
 	id: string;
 	orders: {
 		orderId: string;
@@ -12,7 +12,7 @@ export type UserOrderType = {
 	}[];
 };
 
-export const order: UserOrderType = {
+export const orders: UserOrderType = {
 	id: "3e4992a5-bde8-4df2-ae06-051d0b7a1805",
 	orders: [
 		{
