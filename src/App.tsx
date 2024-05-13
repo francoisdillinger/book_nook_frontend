@@ -44,7 +44,7 @@ export default function App() {
 			{/* <SignUpForm /> */}
 			{/* <LoginForm /> */}
 			{/* <Profile /> */}
-			<UserOrders />
+			{/* <UserOrders /> */}
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
@@ -52,7 +52,7 @@ export default function App() {
 				<AdminMenu /> 
 				<AdminChart />
 			</div> */}
-			{/* <AdminOrders /> */}
+			<AdminOrders />
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
 			{/* <AddBook /> */}
