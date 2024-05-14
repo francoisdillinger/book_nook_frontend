@@ -12,7 +12,7 @@ export type UserOrdersType = {
 	}[];
 };
 
-export const orders: UserOrderType = {
+export const orders: UserOrdersType = {
 	id: "3e4992a5-bde8-4df2-ae06-051d0b7a1805",
 	orders: [
 		{
