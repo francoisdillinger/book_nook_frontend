@@ -196,7 +196,7 @@ export default function AdminOrders() {
 	// console.log("Increase Disabled: ", buttonIncreaseDisabled);
 	// console.log(paginationIndex);
 	return (
-		<div className="">
+		<div className="pt-8">
 			<div className="w-full flex-wrap flex gap-2 p-4 md:w-3/4 m-auto md:p-0 md:py-4">
 				<div className=" bg-red-100 rounded-md flex justify-center items-center h-20 basis-full sm:basis-1/2 md:basis-1/4 sm:h-32 flex-1 font-medium text-xl text-gray-500">
 					Processing Orders: {orderTotals.processed}
