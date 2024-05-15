@@ -56,7 +56,7 @@ export default function BookReview({
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
-								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500"
+								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500 cursor-pointer hover:scale-110 active:scale-100 ease-in-out duration-300"
 							>
 								<path
 									strokeLinecap="round"
@@ -74,7 +74,7 @@ export default function BookReview({
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
-								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500"
+								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500 cursor-pointer hover:scale-110 active:scale-100 ease-in-out duration-300"
 							>
 								<path
 									strokeLinecap="round"
