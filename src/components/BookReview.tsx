@@ -22,7 +22,7 @@ export default function BookReview({
 	const formattedDate = now.toLocaleDateString("en-US", options);
 	return (
 		<React.Fragment>
-			<div className="p-8">
+			<div className="p-8 w-10/12 m-auto">
 				<div className="flex items-center p-2">
 					<img
 						className="w-16 rounded-full shadow-lg"
@@ -47,17 +47,16 @@ export default function BookReview({
 					<h2 className="text-2xl text-gray-500 pb-4">{shortReview}</h2>
 					<p className="text-lg text-gray-600 font-light">{review}</p>
 				</div>
-				<div className="flex justify-end lg:mr-24 xl:mr-48">
+				<div className="flex justify-end  pt-4">
 					<div className="p-2 ">
 						<div className="flex flex-col justify-center items-center">
-							<div className="pb-2">Helpful</div>
+							<div className="pb-2 text-gray-400 text-xs font-bold">
+								Helpful
+							</div>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
 								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="w-6 h-6"
+								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500"
 							>
 								<path
 									strokeLinecap="round"
@@ -69,14 +68,13 @@ export default function BookReview({
 					</div>
 					<div className="p-2">
 						<div className="flex flex-col justify-center items-center">
-							<div className="pb-2">Not Helpful</div>
+							<div className="pb-2 text-gray-400 text-xs font-bold">
+								Not Helpful
+							</div>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
 								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="w-6 h-6"
+								className="w-6 h-6 fill-none stroke-[1.5px] stroke-gray-500"
 							>
 								<path
 									strokeLinecap="round"
