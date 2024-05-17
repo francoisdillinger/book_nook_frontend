@@ -78,8 +78,8 @@ export default function BookItem() {
 					</div>
 				</div>
 				<div className="w-full md:w-1/4 ">
-					<div className="py-4 md:py-0 bg-gray-100 rounded-t-lg w-full flex flex-col items-center h-1/2">
-						<h3 className="text-logo text-3xl pt-8 pb-12">
+					<div className="py-4 md:py-0 bg-gray-100 rounded-t-lg w-full flex flex-col items-center justify-center h-1/2">
+						<h3 className="text-logo text-3xl pb-4">
 							${book.price.toFixed(2)}
 						</h3>
 						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer ease-in-out duration-300">
