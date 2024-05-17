@@ -87,7 +87,7 @@ export default function BookItem() {
 						</div>
 					</div>
 					<div className="h-1/2 py-4 md:py-0 bg-logoLight rounded-b-lg flex flex-col items-center justify-center">
-						<h3 className="text-xl font-medium text-gray-500 mb-6">
+						<h3 className="text-xl font-medium text-gray-500 pb-4">
 							Add to Wishlist
 						</h3>
 						<svg
