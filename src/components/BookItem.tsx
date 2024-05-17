@@ -93,7 +93,7 @@ export default function BookItem() {
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							className={`w-12 h-12 fill-gray-100 stroke stroke-gray-500`}
+							className={`w-12 h-12 fill-gray-100 stroke stroke-gray-500 hover:scale-110 active:scale-100 ease-in-out duration-300 cursor-pointer`}
 						>
 							<path
 								strokeLinecap="round"
