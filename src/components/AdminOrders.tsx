@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TableData from "./TableData";
-import { orders_data, OrdersType } from "../data/orders_data";
+import { orders_data } from "../data/orders_data";
 import SearchBar from "./SearchBar";
 import {
 	OrdersSearchType,
