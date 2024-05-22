@@ -11,7 +11,6 @@ import {
 	sortOrders,
 	trimOrders,
 } from "../utils/adminOrdersUtilities";
-// import { index } from "d3";
 
 type OrderTotalsType = {
 	processed: number;
