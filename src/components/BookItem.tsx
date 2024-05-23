@@ -7,7 +7,7 @@ import BookItemBadges from "./BookItemBadges";
 import BookStandardCarousel from "./BookStandardCarousel";
 // import memers from "../assets/memers.jpg";
 // import marms from "../assets/marms.jpg";
-// import purpur from "../assets/purpur.jpg";
+
 import BookReview from "./BookReview";
 
 export const totalRating = (book: TrimmedBookType): number => {
