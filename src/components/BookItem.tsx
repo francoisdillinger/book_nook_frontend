@@ -6,7 +6,6 @@ import StaticStarRating from "./StaticStarRating";
 import BookItemBadges from "./BookItemBadges";
 import BookStandardCarousel from "./BookStandardCarousel";
 // import memers from "../assets/memers.jpg";
-// import marms from "../assets/marms.jpg";
 
 import BookReview from "./BookReview";
 
