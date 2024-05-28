@@ -115,7 +115,6 @@ export default function BookItem() {
 								>
 									{line}
 									<br />
-									{/* <br /> */}
 								</span>
 						  ))
 						: " "}
