@@ -52,7 +52,6 @@ export default function RecomendedSlider() {
 	const handleDecrement = () => {
 		if (counter > -centerBookOffset) setCount(counter - 1);
 		//   console.log(`Counder: ${counter}`)
-		//   console.log(`center Book offset: ${centerBookOffset}`)
 	};
 
 	const getTransitionStyles = (index: number): string => {
