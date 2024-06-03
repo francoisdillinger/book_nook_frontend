@@ -45,7 +45,6 @@ export default function RecomendedSlider() {
 	const handleIncrement = () => {
 		if (counter < oldBooks.length - visibleBooks + centerBookOffset)
 			setCount(counter + 1);
-		//   console.log(`Counder: ${counter}`)
 	};
 
 	const handleDecrement = () => {
