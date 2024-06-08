@@ -15,8 +15,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "day"
-							? "bg-white rounded-full text-logo shadow-md "
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md "
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("day")}
 				>
@@ -25,8 +25,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "week"
-							? "bg-white rounded-full text-logo shadow-md"
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md"
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("week")}
 				>
@@ -35,8 +35,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "month"
-							? "bg-white rounded-full text-logo shadow-md"
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md"
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("month")}
 				>
@@ -45,8 +45,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "half-year"
-							? "bg-white rounded-full text-logo shadow-md"
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md"
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("half-year")}
 				>
@@ -55,8 +55,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "year"
-							? "bg-white rounded-full text-logo shadow-md"
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md"
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("year")}
 				>
@@ -65,8 +65,8 @@ export default function ChartTimePeriodButtons({
 				<button
 					className={`p-2 w-16 ${
 						timeFilter === "max"
-							? "bg-white rounded-full text-logo shadow-md"
-							: "bg-slate-100 rounded-full text-neutral-600"
+							? "bg-gray-100 rounded-full text-logo shadow-md"
+							: " text-neutral-600"
 					}`}
 					onClick={() => setTimeFilter("max")}
 				>
