@@ -3,14 +3,16 @@ import Select, { OptionProps, components } from "react-select";
 const customStyles = {
 	control: (provided) => ({
 		...provided,
+		backgroundColor: "rgb(243 244 246)",
 		borderColor: "#fff",
 		borderRadius: "25px",
+		padding: "0.2em",
 	}),
 	option: (provided, state) => ({
 		...provided,
 		backgroundColor: "white",
-		":active": { backgroundColor: "#f1f5f9" },
-		":hover": { backgroundColor: "#f1f5f9" },
+		":active": { backgroundColor: "rgb(243 244 246)" },
+		":hover": { backgroundColor: "rgb(243 244 246)" },
 	}),
 };
 
