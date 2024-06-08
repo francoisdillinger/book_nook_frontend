@@ -38,7 +38,7 @@ export default function App() {
 			<Navbar />
 			{/* <HomePageContent /> */}
 			{/* <BookSearch /> */}
-			<BookItem />
+			{/* <BookItem /> */}
 			{/* <AddReview /> */}
 			{/* <EditReview /> */}
 			{/* <SignUpForm /> */}
@@ -48,10 +48,10 @@ export default function App() {
 			{/* <SideBarAdminMenu /> */}
 			{/* <AdminHome /> */}
 
-			{/* <div className="bg-slate-100  m-auto">
-				<AdminMenu /> 
+			<div className="  m-auto">
+				{/* <AdminMenu /> */}
 				<AdminChart />
-			</div> */}
+			</div>
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}
 			{/* <EditBook /> */}
