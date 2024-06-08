@@ -14,7 +14,7 @@ export default function TotalsComponent({
 	previousPeriod,
 }: TotalsType) {
 	return (
-		<div className="bg-slate-100 rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
+		<div className="bg-gray-100 rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
 			<div className="flex flex-col items-start">
 				<h1 className="text-slate-600 font-bold text-lg">{title}</h1>
 				<div className="flex items-center my-2">
