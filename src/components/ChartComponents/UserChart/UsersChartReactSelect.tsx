@@ -14,6 +14,10 @@ const customStyles = {
 		":active": { backgroundColor: "rgb(243 244 246)" },
 		":hover": { backgroundColor: "rgb(243 244 246)" },
 	}),
+	singleValue: (provided) => ({
+		...provided,
+		color: "rgb(107 114 128)", // Set the color for the selected value
+	}),
 };
 
 const Option = (props: OptionProps) => {
