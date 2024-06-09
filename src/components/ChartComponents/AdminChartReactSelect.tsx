@@ -6,13 +6,17 @@ const customStyles = {
 		backgroundColor: "rgb(243 244 246)",
 		borderColor: "#fff",
 		borderRadius: "25px",
-		padding: "0.2em",
+		// padding: "0.2em",
 	}),
 	option: (provided, state) => ({
 		...provided,
 		backgroundColor: "white",
 		":active": { backgroundColor: "rgb(243 244 246)" },
 		":hover": { backgroundColor: "rgb(243 244 246)" },
+	}),
+	singleValue: (provided) => ({
+		...provided,
+		color: "rgb(107 114 128)", // Set the color for the selected value
 	}),
 };
 
@@ -24,7 +28,7 @@ const Option = (props: OptionProps) => {
 					className="h-6 w-6 rounded-full mr-2"
 					style={{ backgroundColor: props.data.color }}
 				></div>
-				<div className="text-neutral-600">{props.data.label}</div>
+				<div className="text-gray-500">{props.data.label}</div>
 			</div>
 		</components.Option>
 	);
