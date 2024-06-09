@@ -248,7 +248,7 @@ export default function CategoriesAdminChart({
 				</div>
 			</div>
 			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4">
-				<div className="bg-white rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
+				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
 					<ResponsiveSVGContainer>
 						<CategoriesAdminBarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
@@ -264,7 +264,7 @@ export default function CategoriesAdminChart({
 						/>
 					</ResponsiveSVGContainer>
 				</div>
-				<div className="bg-white rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
+				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
 					<ResponsiveSVGContainer>
 						<CategoriesAdminPieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
