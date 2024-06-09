@@ -41,7 +41,9 @@ const YAxis = ({ yScale, graphWidth, hasData, graphHeight }: YAxisProps) => {
 			.attr("y", (d) => d.y)
 			.attr("width", graphWidth)
 			.attr("height", (d) => d.height)
-			.attr("fill", (d, i) => (i % 2 === 0 ? "#f1f5f9" : "none"));
+			.attr("fill", (d, i) =>
+				i % 2 === 0 ? "rgb(255,255,255)" : "rgb(243 244 246)"
+			);
 	}, [hasData, yScale, graphWidth]);
 
 	useEffect(() => {
