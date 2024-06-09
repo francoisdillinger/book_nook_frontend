@@ -222,7 +222,7 @@ export default function CategoriesAdminChart({
 						focusedCategory={""}
 					/>
 				</div> */}
-				<div className="bg-white rounded-lg my-2 pt-2 w-full">
+				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full">
 					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
 					<div className=" flex justify-center mt-10 md:mt-0">
