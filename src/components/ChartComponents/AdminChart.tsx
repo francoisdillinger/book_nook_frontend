@@ -148,7 +148,7 @@ export default function AdminChart() {
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
-					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
+					<div className="flex w-full justify-start h-20 items-center gap-4 lg:w-1/2 xl:h-fit">
 						<AdminChartReactSelect
 							placeHolder={filterChart}
 							filterChart={filter}
@@ -195,6 +195,7 @@ export default function AdminChart() {
 					</div>
 				</div>{" "}
 			</div>
+
 			<div className="mr-4">
 				<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 					<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
@@ -228,6 +229,49 @@ export default function AdminChart() {
 							change={avgBookOrder ? avgBookOrder.totalAverage : 0}
 							previousPeriod={previousTime(timeFilter)}
 						/>
+					</div>
+				</div>
+				<div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
+					<div className="w-1/2 flex justify-between m-auto">
+						<button
+							// onClick={handlePaginationDecrease}
+							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+							// disabled={buttonDecreaseDisabled}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								className="w-6 h-6 stroke-2 stroke-current"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M15.75 19.5 8.25 12l7.5-7.5"
+								/>
+							</svg>
+						</button>
+						<div className="flex justify-center items-center text-gray-500 text-sm font-semibold">
+							Displaying Authors 1-5 out of 12 Total Authors
+						</div>
+						<button
+							// onClick={handlePaginationIncrease}
+							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+							// disabled={buttonIncreaseDisabled}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								className="w-6 h-6 stroke-2 stroke-current"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m8.25 4.5 7.5 7.5-7.5 7.5"
+								/>
+							</svg>
+						</button>
 					</div>
 				</div>
 				{filterChart === "Users" && (
