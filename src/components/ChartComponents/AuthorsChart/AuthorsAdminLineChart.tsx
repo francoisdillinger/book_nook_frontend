@@ -5,7 +5,6 @@ import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
 import { MarginType } from "../AdminChart";
-// import { getFilteredCategoriesData } from "../../../utils/categoriesAdminChartUtilities";
 import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
@@ -177,13 +176,6 @@ export default function AuthorsAdminLineChart({
 		useState<CombinedAuthorsOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-	// console.log(
-	// 	"-------------------------------------------------------------------------"
-	// );
-	// console.log(
-	// 	"-------------------------------------------------------------------------"
-	// );
-	// console.log("Categories: ", categories);
 
 	useEffect(() => {
 		const trimmedAuthors = trimAuthorsData(authors);
