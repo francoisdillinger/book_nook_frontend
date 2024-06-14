@@ -250,7 +250,6 @@ export default function AuthorsAdminLineChart({
 		() => (allQuantities ? d3.max(allQuantities) : 0),
 		[allQuantities]
 	);
-	// console.log("Max Quantity: ", maxQuantity);
 	const x = useMemo(
 		() => d3.scaleTime().domain(domain).range([0, graphWidth]),
 		[domain, graphWidth]
