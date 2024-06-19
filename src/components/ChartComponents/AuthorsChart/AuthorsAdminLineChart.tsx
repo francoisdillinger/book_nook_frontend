@@ -223,8 +223,7 @@ export default function AuthorsAdminLineChart({
 		);
 	}, [authors, timeFilter]);
 	// console.log("Authors: ", authors);
-	// console.log("All Dates: ", allDates);
-	// console.log("All Quantities: ", allQuantities);
+
 	console.log("Has Data: ", hasData);
 
 	const parsedDates = useMemo(
