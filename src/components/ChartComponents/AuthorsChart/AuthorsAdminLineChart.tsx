@@ -222,7 +222,6 @@ export default function AuthorsAdminLineChart({
 			)
 		);
 	}, [authors, timeFilter]);
-	// console.log("Authors: ", authors);
 
 	console.log("Has Data: ", hasData);
 
