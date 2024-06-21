@@ -183,7 +183,7 @@ export default function AuthorsAdminLineChart({
 		const combinedOrders = combineOrders(combinedAuthorName);
 		const sortedCombinedOrders = sortOrders(combinedOrders);
 		// setOrderedAuthorsData(sortedCombinedOrders);
-		// console.log("Combined Names: ", combinedAuthorName);
+
 		// console.log("Combined Orders: ", combinedOrders);
 		// console.log("Orders Sorted: ", sortedCombinedOrders);
 		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
