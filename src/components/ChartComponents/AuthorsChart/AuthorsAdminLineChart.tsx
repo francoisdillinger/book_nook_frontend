@@ -183,7 +183,6 @@ export default function AuthorsAdminLineChart({
 		const combinedOrders = combineOrders(combinedAuthorName);
 		const sortedCombinedOrders = sortOrders(combinedOrders);
 
-		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
 		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
 		// const categoryArray = filteredCategories.categories.map((category) => ({
 		// .authorName: category.authorName,
