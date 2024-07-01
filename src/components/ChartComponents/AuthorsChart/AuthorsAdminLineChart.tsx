@@ -9,7 +9,6 @@ import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
 
-// export const filterOutEmptyCategories = (
 // 	categories: ReformattedCategoriesBooksType
 // ): ReformattedCategoriesBooksType => {
 // 	return {
