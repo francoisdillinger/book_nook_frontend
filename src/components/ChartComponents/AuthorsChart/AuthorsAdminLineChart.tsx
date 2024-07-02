@@ -9,7 +9,6 @@ import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
 
-// 	categories: ReformattedCategoriesBooksType
 // ): ReformattedCategoriesBooksType => {
 // 	return {
 // 		categories: categories.categories.filter(
