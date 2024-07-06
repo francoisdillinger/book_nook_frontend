@@ -9,7 +9,6 @@ import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
 
-// 	return {
 // 		categories: categories.categories.filter(
 // 			(category) => category.orders.length > 0
 // 		),
