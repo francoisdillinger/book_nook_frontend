@@ -26,6 +26,8 @@ import { filterOutInactiveUsers } from "./UserChart/UsersAdminLineChart";
 import TotalsComponent from "./TotalsComponent";
 import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
 import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
+// import { authors_data } from "../../data/authors_data";
+import { authors_data } from "../../data/authors_data";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -311,6 +313,7 @@ export default function AdminChart() {
 				)}
 				{filterChart === "Authors" && (
 					<AuthorsAdminChart
+						chartData={authors_data}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
