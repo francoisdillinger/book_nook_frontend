@@ -141,7 +141,7 @@ export default function AdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
-	// console.log("Filter: ", filterChart);
+	console.log("ChartData: ", authors_data);
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
