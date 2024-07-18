@@ -8,6 +8,7 @@ import { MarginType } from "../AdminChart";
 import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
+import { v4 as uuidv4 } from "uuid";
 
 // 	};
 // };
@@ -54,6 +55,7 @@ export const combineOrders = (
 						return {
 							bookTitle: book.bookTitle,
 							...order,
+							uniqueId: uuidv4(),
 						};
 					});
 				})
@@ -113,6 +115,7 @@ type CombinedAuthorNameType = {
 export type CombinedAuthorsOrdersType = {
 	authorName: string;
 	orders: {
+		uniqueId: string;
 		bookTitle: string;
 		orderId: string;
 		userId: number;
@@ -364,7 +367,9 @@ export default function AuthorsAdminLineChart({
 										// console.log("cy: ", y(order.quantity));
 										return (
 											<motion.circle
-												key={order.orderId}
+												// The issue of one or two circles not resetting use due to a few duplicate keys
+												// so I added a uuid as a uniqueId field on the order.
+												key={order.uniqueId}
 												className="cursor-pointer"
 												stroke={"white"}
 												strokeWidth={2}
