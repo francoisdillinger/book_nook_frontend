@@ -87,7 +87,7 @@ type TrimmedAuthorsDataType = {
 			bookTitle: string;
 			bookOrders: {
 				orderId: string;
-				userId: number;
+				userId: string;
 				bookId: number;
 				quantity: number;
 				orderDate: string;
@@ -103,7 +103,7 @@ type CombinedAuthorNameType = {
 		bookTitle: string;
 		bookOrders: {
 			orderId: string;
-			userId: number;
+			userId: string;
 			bookId: number;
 			quantity: number;
 			orderDate: string;
@@ -118,7 +118,7 @@ export type CombinedAuthorsOrdersType = {
 		uniqueId: string;
 		bookTitle: string;
 		orderId: string;
-		userId: number;
+		userId: string;
 		bookId: number;
 		quantity: number;
 		orderDate: string;
