@@ -5,6 +5,7 @@ import ResponsiveSVGContainer from "../../ResponsiveSVGContainer";
 import { MarginType } from "../AdminChart";
 import AuthorsAdminLineChart from "./AuthorsAdminLineChart";
 import { authors_data } from "../../../data/authors_data";
+import { AuthorsDataType } from "../../../data/authors_data";
 import AuthorsAdminBarChart from "./AuthorsAdminBarChart";
 import AuthorsAdminPieChart from "./AuthorsAdminPieChart";
 // import {
@@ -90,6 +91,7 @@ import AuthorsAdminPieChart from "./AuthorsAdminPieChart";
 // };
 
 type AuthorsAdminChartType = {
+	chartData: AuthorsDataType;
 	margin: MarginType;
 	timeFilter: string;
 	setTimeFilter: Function;
@@ -110,6 +112,7 @@ type AuthorsAdminChartType = {
 };
 
 export default function AuthorsAdminChart({
+	chartData,
 	margin,
 	timeFilter,
 	// setTimeFilter,
@@ -138,7 +141,7 @@ export default function AuthorsAdminChart({
 							<ResponsiveSVGContainer>
 								<AuthorsAdminLineChart
 									//height and width are provided by the <ResponsiveSVGContainer>
-									authors={authors_data}
+									authors={chartData}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -164,7 +167,7 @@ export default function AuthorsAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={authors_data}
+							authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
@@ -179,7 +182,7 @@ export default function AuthorsAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={authors_data}
+							authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
