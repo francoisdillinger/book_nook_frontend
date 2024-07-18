@@ -86,6 +86,7 @@ export const reformatCategoriesBooks = (
 };
 
 type CategoriesAdminChartType = {
+	chartData: CategoriesDataType;
 	margin: MarginType;
 	timeFilter: string;
 	setTimeFilter: Function;
@@ -106,6 +107,7 @@ type CategoriesAdminChartType = {
 };
 
 export default function CategoriesAdminChart({
+	chartData,
 	margin,
 	timeFilter,
 	// setTimeFilter,
@@ -230,7 +232,7 @@ export default function CategoriesAdminChart({
 							<ResponsiveSVGContainer>
 								<CategoriesAdminLineChart
 									//height and width are provided by the <ResponsiveSVGContainer>
-									categories={categories_data}
+									categories={chartData}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -256,7 +258,7 @@ export default function CategoriesAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							categories={categories_data}
+							categories={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
@@ -271,7 +273,7 @@ export default function CategoriesAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							categories={categories_data}
+							categories={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
