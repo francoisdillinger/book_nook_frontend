@@ -28,6 +28,7 @@ import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
 import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
 // import { authors_data } from "../../data/authors_data";
 import { authors_data } from "../../data/authors_data";
+import { categories_data } from "../../data/categories_data";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -277,7 +278,7 @@ export default function AdminChart() {
 						timeFilter={timeFilter}
 						tooltip={tooltip}
 						setTooltip={setTooltip}
-						users={users}
+						chartData={users}
 						colorScale={colorScale}
 						hasData={hasData}
 						setHasData={setHasData}
@@ -293,6 +294,7 @@ export default function AdminChart() {
 				)}
 				{filterChart === "Categories" && (
 					<CategoriesAdminChart
+						chartData={categories_data}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
