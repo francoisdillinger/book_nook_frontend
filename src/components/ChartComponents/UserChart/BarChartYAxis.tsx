@@ -21,6 +21,7 @@ const BarChartYAxis = ({
 		yAxisGroup.selectAll(".y-axis-line").remove();
 
 		const yAxis = axisLeft(yScale).ticks(5);
+		// console.log("yScale: ", yScale);
 		yAxisGroup.call(yAxis);
 		// Remove the axis line (the '.domain')
 		yAxisGroup.select(".domain").remove();

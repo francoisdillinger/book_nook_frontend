@@ -45,10 +45,7 @@ export const getRange = (paginationIndex: number, numOfItems: number) => {
 	return [start, end];
 };
 
-const filterByRange = (
-	orders: ReformatedOrdersType[],
-	range: number[]
-): ReformatedOrdersType[] => {
+export const filterByRange = <T,>(orders: T[], range: number[]): T[] => {
 	return orders.filter((_, index) => {
 		return index >= range[0] && index <= range[1];
 	});

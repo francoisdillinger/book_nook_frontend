@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
@@ -38,6 +38,8 @@ const reduceOrderQuantities = (
 // };
 
 type AuthorsAdminBarChartType = {
+	paginatedList: CombinedAuthorsOrdersType[];
+	allQuantities: number[];
 	margin: MarginType;
 	timeFilter: string;
 	width?: number;
@@ -52,6 +54,8 @@ type AuthorsAdminBarChartType = {
 };
 
 export default function AuthorsAdminBarChart({
+	paginatedList,
+	allQuantities,
 	margin,
 	timeFilter,
 	width = 0,
@@ -110,26 +114,43 @@ export default function AuthorsAdminBarChart({
 		setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 	}, [graphWidth, timeFilter]);
 
+	// const y = d3
+	// 	.scaleLinear()
+	// 	.domain([
+	// 		0,
+	// 		d3.max(
+	// 			reducedAuthorsData
+	// 				? reducedAuthorsData
+	// 						.map((author) => author.totalBooksOrdered)
+	// 						.filter((value) => value !== undefined && !isNaN(value))
+	// 				: [0]
+	// 		) || 0,
+	// 	])
+	// 	.range([graphHeight, 0]);
+
 	const y = d3
 		.scaleLinear()
 		.domain([
 			0,
 			d3.max(
-				reducedAuthorsData
-					? reducedAuthorsData
-							.map((author) => author.totalBooksOrdered)
-							.filter((value) => value !== undefined) // Filter out undefined values
-					: []
-			) as number, // Cast the result as number to eliminate type errors
+				paginatedList
+					? paginatedList
+							.map((author) => author.totalItems)
+							.filter((value) => value !== undefined && !isNaN(value))
+					: [0]
+			) || 0,
 		])
 		.range([graphHeight, 0]);
+
+	// const y = d3
+	// 	.scaleLinear()
+	// 	.domain([0, 100]) // Test with a fixed domain
+	// 	.range([graphHeight, 0]);
 
 	const x = d3
 		.scaleBand()
 		.domain(
-			reducedAuthorsData
-				? reducedAuthorsData.map((author) => author.authorName)
-				: []
+			paginatedList ? paginatedList.map((author) => author.authorName) : []
 		)
 		.range([0, graphWidth])
 		.paddingInner(0.1);
@@ -149,7 +170,7 @@ export default function AuthorsAdminBarChart({
 						<BarChartXAxis
 							xScale={x}
 							height={graphHeight}
-							ticks={reducedAuthorsData?.length || 0}
+							ticks={paginatedList?.length || 0}
 							width={graphWidth}
 						/>
 					)}
@@ -161,22 +182,36 @@ export default function AuthorsAdminBarChart({
 						/>
 					)}
 					{hasData ? (
-						reducedAuthorsData != undefined &&
-						reducedAuthorsData!.map((author, index) => {
+						paginatedList != undefined &&
+						paginatedList!.map((author, index) => {
 							const color = colorScale(index.toString());
-							const barHeight = graphHeight - y(author.totalBooksOrdered);
+
+							const barHeight =
+								author.totalItems !== undefined && !isNaN(author.totalItems)
+									? graphHeight - y(author.totalItems)
+									: 0;
+							// console.log("Author:", author);
+							// console.log("PaginatedAuthor: ", paginatedList[index]);
+							// console.log("Total Items:", author.totalItems);
+							// console.log("y(author.totalItems):", y(author.totalItems));
+							// console.log("graphHeight:", graphHeight);
+							// console.log(
+							// 	"Calculated barHeight:",
+							// 	graphHeight - y(author.totalItems)
+							// );
 							// This is to prevent empty categories from throwing errors.
 							// If this item has no book orders then it is rendered as
 							// an empty rect, but framer motion tries to animate it and
 							// causes a bunch of errors to be thrown. This does not effect
 							// the actual application but blows up the console.
-							if (author.totalBooksOrdered === 0) return;
+							// if (author.totalItems === 0) return;
+							if (author.totalItems === 0) return;
 							return (
 								<motion.rect
-									initial={{ height: 0, y: graphHeight }}
+									initial={{ height: 0, y: graphHeight ? graphHeight : 0 }}
 									animate={{
 										height: barHeight,
-										y: y(author.totalBooksOrdered),
+										y: y(author.totalItems),
 									}}
 									transition={{
 										duration: 0.5,
@@ -189,6 +224,7 @@ export default function AuthorsAdminBarChart({
 									width={x.bandwidth()}
 									height={barHeight}
 									x={x(author.authorName)}
+									// y={y(author.totalItems)}
 									fill={
 										focusedCategory === author.authorName ||
 										focusedCategory === ""
@@ -215,7 +251,7 @@ export default function AuthorsAdminBarChart({
 													<span className="text-slate-600 font-bold">
 														Total Quantity:
 													</span>{" "}
-													{author.totalBooksOrdered.toString()}
+													{author.totalItems.toString()}
 												</div>
 											</div>
 										);

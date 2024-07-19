@@ -35,6 +35,8 @@ const reduceOrderQuantities = (
 // };
 
 type AuthorsAdminPieChartType = {
+	paginatedList: CombinedAuthorsOrdersType[];
+	pageIndex: number;
 	timeFilter: string;
 	width?: number;
 	height?: number;
@@ -48,6 +50,8 @@ type AuthorsAdminPieChartType = {
 };
 
 const AuthorsAdminPieChart = ({
+	paginatedList,
+	pageIndex,
 	timeFilter,
 	width = 0,
 	height = 0,
@@ -110,12 +114,12 @@ const AuthorsAdminPieChart = ({
 		setKey((prevKey) => prevKey + 1);
 	}, [timeFilter]);
 	// console.log("Key: ", key);
-	console.log("Total Order Count: ", totalOrderCount);
+	// console.log("Total Order Count: ", totalOrderCount);
 	const pie = useMemo(() => {
 		return d3
-			.pie<ReducedAuthorsDataType>()
+			.pie<CombinedAuthorsOrdersType>()
 			.sort(null)
-			.value((d) => d.totalBooksOrdered);
+			.value((d) => d.totalItems);
 	}, [graphWidth, reducedAuthorsData]);
 
 	const radius = useMemo(() => {
@@ -125,7 +129,7 @@ const AuthorsAdminPieChart = ({
 
 	const arcPath = useMemo(() => {
 		return d3
-			.arc<d3.PieArcDatum<ReducedAuthorsDataType>>()
+			.arc<d3.PieArcDatum<CombinedAuthorsOrdersType>>()
 			.outerRadius(radius)
 			.innerRadius(radius / 1.8);
 	}, [radius, reducedAuthorsData]);
@@ -145,7 +149,7 @@ const AuthorsAdminPieChart = ({
 							textAnchor="middle"
 							className="fill-current text-neutral-500 text-2xl  lg:text-base xl:text-xl"
 						>
-							Percentage of Orders By Author
+							Percentage of Total Orders
 						</text>
 					)}
 					{hasData ? (
@@ -190,7 +194,7 @@ const AuthorsAdminPieChart = ({
 						</React.Fragment>
 					)}
 					<motion.g
-						key={key}
+						key={pageIndex}
 						animate={{
 							rotate:
 								key > 2
@@ -203,14 +207,14 @@ const AuthorsAdminPieChart = ({
 						}}
 					>
 						{hasData &&
-							reducedAuthorsData != undefined &&
-							pie(reducedAuthorsData)!.map((author, index) => {
+							paginatedList != undefined &&
+							pie(paginatedList)!.map((author, index) => {
 								const color = colorScale(index.toString());
 								// console.log("Category: ", author);
 								// This is to override a bug where orders of 0 are still shown
 								// on the chart, but filtering them changes the index #'s so
 								// the colors change as well. I'll come back to this.
-								if (author.data.totalBooksOrdered === 0) return;
+								if (author.data.totalItems === 0) return;
 								return (
 									<motion.path
 										key={author.data.authorName}
@@ -250,7 +254,7 @@ const AuthorsAdminPieChart = ({
 														<span className="text-slate-600 font-bold">
 															Total Quantity:
 														</span>{" "}
-														{author.data.totalBooksOrdered.toString()}
+														{author.data.totalItems.toString()}
 													</div>
 												</div>
 											);

@@ -26,6 +26,7 @@ import {
 import TotalsComponent from "../TotalsComponent";
 
 type UsersAdminChartType = {
+	chartData: UsersType;
 	margin: MarginType;
 	timeFilter: string;
 	setTimeFilter: Function;
@@ -33,7 +34,6 @@ type UsersAdminChartType = {
 	height: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	users: UsersType;
 	colorScale: Function;
 	hasData: number;
 	setHasData: Function;
@@ -51,7 +51,7 @@ export default function UsersAdminChart({
 	// height,
 	tooltip,
 	setTooltip,
-	users,
+	chartData,
 	colorScale,
 	hasData,
 	setHasData,
@@ -162,7 +162,7 @@ export default function UsersAdminChart({
 									timeFilter={timeFilter}
 									tooltip={tooltip}
 									setTooltip={setTooltip}
-									users={users}
+									users={chartData}
 									colorScale={colorScale}
 									hasData={hasData}
 									setHasData={setHasData}
@@ -184,7 +184,7 @@ export default function UsersAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							users={users}
+							users={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedUser={focusedUser}
@@ -199,7 +199,7 @@ export default function UsersAdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							users={users}
+							users={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedUser={focusedUser}

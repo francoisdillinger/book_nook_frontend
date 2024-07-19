@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import { users } from "../../data/users";
-// import ReactSelect from "./ReactSelect";
 import ChartTimePeriodButtons from "../ChartTimePeriodButtons";
-// import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
 import UsersAdminChart from "./UserChart/UsersAdminChart";
-// import UsersAdminBarChart from "./UserChart/UsersAdminBarChart";
-// import UsersAdminPieChart from "./UserChart/UsersAdminPieChart";
-// import ResponsiveSVGContainer from "../ResponsiveSVGContainer";
 import AdminChartReactSelect from "./AdminChartReactSelect";
 import UsersChartReactSelect from "./UserChart/UsersChartReactSelect";
 import CategoriesAdminChart from "./CategoriesChart/CategoriesAdminChart";
@@ -31,6 +26,18 @@ import { filterOutInactiveUsers } from "./UserChart/UsersAdminLineChart";
 import TotalsComponent from "./TotalsComponent";
 import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
 import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
+// import { authors_data } from "../../data/authors_data";
+import { authors_data } from "../../data/authors_data";
+import { categories_data } from "../../data/categories_data";
+import { usePagination } from "../../hooks/usePagination";
+import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
+import {
+	trimAuthorsData,
+	combineName,
+	combineOrders,
+	sortOrders,
+	CombinedAuthorsOrdersType,
+} from "./AuthorsChart/AuthorsAdminLineChart";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -83,6 +90,7 @@ export default function AdminChart() {
 	const [avgSale, setAvgSale] = useState<AverageSalesType>();
 	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
 	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
+
 	// const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 
 	useEffect(() => {
@@ -143,12 +151,13 @@ export default function AdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
-	// console.log("Filter: ", filterChart);
+
+	// console.log("ChartData: ", authors_data);
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 				<div className=" rounded-lg w-full flex flex-wrap md:justify-between lg:flex-nowrap xl:h-20 xl:items-center">
-					<div className="flex w-full justify-start h-20 items-center gap-4  lg:w-1/2 xl:h-fit">
+					<div className="flex w-full justify-start h-20 items-center gap-4 lg:w-1/2 xl:h-fit">
 						<AdminChartReactSelect
 							placeHolder={filterChart}
 							filterChart={filter}
@@ -195,6 +204,7 @@ export default function AdminChart() {
 					</div>
 				</div>{" "}
 			</div>
+
 			<div className="mr-4">
 				<div className="flex flex-wrap lg:ml-20 xl:ml-18">
 					<div className="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-4 box-border justify-between mt-4 mb-2">
@@ -230,13 +240,56 @@ export default function AdminChart() {
 						/>
 					</div>
 				</div>
+				{/* <div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
+					<div className="w-1/2 flex justify-between m-auto">
+						<button
+							onClick={decreasePageIndex}
+							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+							disabled={pageIndex === 1}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								className="w-6 h-6 stroke-2 stroke-current"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M15.75 19.5 8.25 12l7.5-7.5"
+								/>
+							</svg>
+						</button>
+						<div className="flex justify-center items-center text-gray-500 text-sm font-semibold">
+							Page {pageIndex} of {totalPages}
+						</div>
+						<button
+							onClick={increasePageIndex}
+							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+							disabled={pageIndex === totalPages}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								className="w-6 h-6 stroke-2 stroke-current"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m8.25 4.5 7.5 7.5-7.5 7.5"
+								/>
+							</svg>
+						</button>
+					</div>
+				</div> */}
 				{filterChart === "Users" && (
 					<UsersAdminChart
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
 						setTooltip={setTooltip}
-						users={users}
+						chartData={users}
 						colorScale={colorScale}
 						hasData={hasData}
 						setHasData={setHasData}
@@ -252,6 +305,7 @@ export default function AdminChart() {
 				)}
 				{filterChart === "Categories" && (
 					<CategoriesAdminChart
+						chartData={categories_data}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
@@ -272,6 +326,7 @@ export default function AdminChart() {
 				)}
 				{filterChart === "Authors" && (
 					<AuthorsAdminChart
+						chartData={authors_data}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
