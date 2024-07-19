@@ -38,6 +38,7 @@ const reduceOrderQuantities = (
 // };
 
 type AuthorsAdminBarChartType = {
+	paginatedList: CombinedAuthorsOrdersType[];
 	margin: MarginType;
 	timeFilter: string;
 	width?: number;
@@ -52,6 +53,7 @@ type AuthorsAdminBarChartType = {
 };
 
 export default function AuthorsAdminBarChart({
+	paginatedList,
 	margin,
 	timeFilter,
 	width = 0,
@@ -127,13 +129,11 @@ export default function AuthorsAdminBarChart({
 	const x = d3
 		.scaleBand()
 		.domain(
-			reducedAuthorsData
-				? reducedAuthorsData.map((author) => author.authorName)
-				: []
+			paginatedList ? paginatedList.map((author) => author.authorName) : []
 		)
 		.range([0, graphWidth])
 		.paddingInner(0.1);
-
+	console.log("BarChartList: ", paginatedList);
 	return (
 		<React.Fragment>
 			<svg
@@ -161,22 +161,22 @@ export default function AuthorsAdminBarChart({
 						/>
 					)}
 					{hasData ? (
-						reducedAuthorsData != undefined &&
-						reducedAuthorsData!.map((author, index) => {
+						paginatedList != undefined &&
+						paginatedList!.map((author, index) => {
 							const color = colorScale(index.toString());
-							const barHeight = graphHeight - y(author.totalBooksOrdered);
+							const barHeight = graphHeight - y(author.totalItems);
 							// This is to prevent empty categories from throwing errors.
 							// If this item has no book orders then it is rendered as
 							// an empty rect, but framer motion tries to animate it and
 							// causes a bunch of errors to be thrown. This does not effect
 							// the actual application but blows up the console.
-							if (author.totalBooksOrdered === 0) return;
+							if (author.totalItems === 0) return;
 							return (
 								<motion.rect
 									initial={{ height: 0, y: graphHeight }}
 									animate={{
 										height: barHeight,
-										y: y(author.totalBooksOrdered),
+										y: y(author.totalItems),
 									}}
 									transition={{
 										duration: 0.5,
@@ -215,7 +215,7 @@ export default function AuthorsAdminBarChart({
 													<span className="text-slate-600 font-bold">
 														Total Quantity:
 													</span>{" "}
-													{author.totalBooksOrdered.toString()}
+													{author.totalItems.toString()}
 												</div>
 											</div>
 										);
