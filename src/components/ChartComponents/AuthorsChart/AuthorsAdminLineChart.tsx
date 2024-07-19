@@ -143,6 +143,9 @@ export type ReducedAuthorsDataType = {
 };
 
 type AuthorsAdminLineChartType = {
+	paginatedList: CombinedAuthorsOrdersType[];
+	allDates: string[];
+	allQuantities: number[];
 	margin: MarginType;
 	timeFilter: string;
 	width?: number;
@@ -159,6 +162,9 @@ type AuthorsAdminLineChartType = {
 };
 
 export default function AuthorsAdminLineChart({
+	allDates,
+	allQuantities,
+	paginatedList,
 	margin,
 	timeFilter,
 	width = 0,
@@ -179,59 +185,59 @@ export default function AuthorsAdminLineChart({
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const [orderedAuthorsData, setOrderedAuthorsData] =
-		useState<CombinedAuthorsOrdersType[]>();
-	const [allDates, setAllDates] = useState<string[]>([]);
-	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-	const {
-		setPaginateThisList,
-		pageIndex,
-		paginatedList,
-		increasePageIndex,
-		decreasePageIndex,
-		totalPages,
-	} = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
+	// const [orderedAuthorsData, setOrderedAuthorsData] =
+	// 	useState<CombinedAuthorsOrdersType[]>();
+	// const [allDates, setAllDates] = useState<string[]>([]);
+	// const [allQuantities, setAllQuantinties] = useState<number[]>([]);
+	// const {
+	// 	setPaginateThisList,
+	// 	pageIndex,
+	// 	paginatedList,
+	// 	increasePageIndex,
+	// 	decreasePageIndex,
+	// 	totalPages,
+	// } = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
 
-	useEffect(() => {
-		const trimmedAuthors = trimAuthorsData(authors);
-		const combinedAuthorName = combineName(trimmedAuthors);
-		const combinedOrders = combineOrders(combinedAuthorName);
-		const sortedCombinedOrders = sortOrders(combinedOrders);
+	// useEffect(() => {
+	// 	const trimmedAuthors = trimAuthorsData(authors);
+	// 	const combinedAuthorName = combineName(trimmedAuthors);
+	// 	const combinedOrders = combineOrders(combinedAuthorName);
+	// 	const sortedCombinedOrders = sortOrders(combinedOrders);
 
-		// .authorName: category.authorName,
-		// 	orders: category.orders.sort(
-		// 		(a, b) =>
-		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-		// 	),
-		// }));
-		const filteredAuthorsChart = getFilteredAuthorsData(
-			timeFilter,
-			sortedCombinedOrders
-		);
-		const flattenedDates = filteredAuthorsChart.flatMap(
-			(author: CombinedAuthorsOrdersType) => {
-				return author.orders.map((order) => order.orderDate);
-			}
-		);
-		const flattenedQuanities = filteredAuthorsChart.flatMap(
-			(author: CombinedAuthorsOrdersType) => {
-				return author.orders.map((order) => order.quantity);
-			}
-		);
-		const uniqueDates = [...new Set(flattenedDates)];
-		const uniqueQuantities = [...new Set(flattenedQuanities)];
-		setAllDates(uniqueDates);
-		setAllQuantinties(uniqueQuantities);
-		setOrderedAuthorsData(filteredAuthorsChart);
-		setPaginateThisList(filteredAuthorsChart);
-		setSelectOptions(filteredAuthorsChart);
-		setHasData(
-			filteredAuthorsChart.reduce(
-				(accumulator, author) => accumulator + author.orders.length,
-				0
-			)
-		);
-	}, [authors, timeFilter]);
+	// 	// .authorName: category.authorName,
+	// 	// 	orders: category.orders.sort(
+	// 	// 		(a, b) =>
+	// 	// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+	// 	// 	),
+	// 	// }));
+	// 	const filteredAuthorsChart = getFilteredAuthorsData(
+	// 		timeFilter,
+	// 		sortedCombinedOrders
+	// 	);
+	// 	const flattenedDates = filteredAuthorsChart.flatMap(
+	// 		(author: CombinedAuthorsOrdersType) => {
+	// 			return author.orders.map((order) => order.orderDate);
+	// 		}
+	// 	);
+	// 	const flattenedQuanities = filteredAuthorsChart.flatMap(
+	// 		(author: CombinedAuthorsOrdersType) => {
+	// 			return author.orders.map((order) => order.quantity);
+	// 		}
+	// 	);
+	// 	const uniqueDates = [...new Set(flattenedDates)];
+	// 	const uniqueQuantities = [...new Set(flattenedQuanities)];
+	// 	setAllDates(uniqueDates);
+	// 	setAllQuantinties(uniqueQuantities);
+	// 	setOrderedAuthorsData(filteredAuthorsChart);
+	// 	setPaginateThisList(filteredAuthorsChart);
+	// 	setSelectOptions(filteredAuthorsChart);
+	// 	setHasData(
+	// 		filteredAuthorsChart.reduce(
+	// 			(accumulator, author) => accumulator + author.orders.length,
+	// 			0
+	// 		)
+	// 	);
+	// }, [authors, timeFilter]);
 
 	// console.log("OrderedData: ", orderedAuthorsData);
 	// console.log("Range: ", getRange(2, 10));
@@ -306,7 +312,7 @@ export default function AuthorsAdminLineChart({
 					focusedCategory={""}
 				/>
 			</div> */}
-			<div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
+			{/* <div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
 				<div className="w-1/2 flex justify-between m-auto">
 					<button
 						onClick={decreasePageIndex}
@@ -348,7 +354,7 @@ export default function AuthorsAdminLineChart({
 						</svg>
 					</button>
 				</div>
-			</div>
+			</div> */}
 
 			<svg
 				ref={svgLineChartRef}
