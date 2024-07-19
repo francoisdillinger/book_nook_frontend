@@ -10,6 +10,8 @@ const filterByRange = <T>(items: T[], range: number[]): T[] => {
 	return items.slice(range[0], range[1]);
 };
 
+// Currenting being used in the following components:
+// <AuthorsAdminChart/>
 export const usePagination = <T>(listToPaginate: T[], itemsPerPage: number) => {
 	const [paginateThisList, setPaginateThisList] = useState<T[]>(listToPaginate);
 	const [pageIndex, setPageIndex] = useState(1);
