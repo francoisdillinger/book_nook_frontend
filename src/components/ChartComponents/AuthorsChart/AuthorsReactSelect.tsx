@@ -40,7 +40,7 @@ const AuthorsChartReactSelect = ({
 	setFocusedUser,
 	focusedAuthor,
 }) => {
-	console.log("Options: ", options);
+	// console.log("Options: ", options);
 	const selectOptions = options
 		.map((option, index) => {
 			return {
@@ -53,7 +53,7 @@ const AuthorsChartReactSelect = ({
 		.filter((option) => option.orders > 0);
 
 	const handleChange = (option) => {
-		console.log(option);
+		// console.log(option);
 		setFocusedUser(option.name);
 	};
 
