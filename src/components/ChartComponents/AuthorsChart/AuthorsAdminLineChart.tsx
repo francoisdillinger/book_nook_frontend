@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
+import { usePagination } from "../../../hooks/usePagination";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
@@ -9,6 +10,7 @@ import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
 import { v4 as uuidv4 } from "uuid";
+import { getRange, filterByRange } from "../../AdminOrders";
 
 // 	};
 // };
@@ -95,7 +97,7 @@ type TrimmedAuthorsDataType = {
 			bookOrders: {
 				orderId: string;
 				userId: string;
-				bookId: number;
+				bookId: string;
 				quantity: number;
 				orderDate: string;
 				orderAmount: number;
@@ -111,7 +113,7 @@ type CombinedAuthorNameType = {
 		bookOrders: {
 			orderId: string;
 			userId: string;
-			bookId: number;
+			bookId: string;
 			quantity: number;
 			orderDate: string;
 			orderAmount: number;
@@ -128,7 +130,7 @@ export type CombinedAuthorsOrdersType = {
 		bookTitle: string;
 		orderId: string;
 		userId: string;
-		bookId: number;
+		bookId: string;
 		quantity: number;
 		orderDate: string;
 		orderAmount: number;
@@ -181,6 +183,14 @@ export default function AuthorsAdminLineChart({
 		useState<CombinedAuthorsOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
+	const {
+		setPaginateThisList,
+		pageIndex,
+		paginatedList,
+		increasePageIndex,
+		decreasePageIndex,
+		totalPages,
+	} = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
 
 	useEffect(() => {
 		const trimmedAuthors = trimAuthorsData(authors);
@@ -213,6 +223,7 @@ export default function AuthorsAdminLineChart({
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
 		setOrderedAuthorsData(filteredAuthorsChart);
+		setPaginateThisList(filteredAuthorsChart);
 		setSelectOptions(filteredAuthorsChart);
 		setHasData(
 			filteredAuthorsChart.reduce(
@@ -222,7 +233,14 @@ export default function AuthorsAdminLineChart({
 		);
 	}, [authors, timeFilter]);
 
-	console.log("OrderedData: ", orderedAuthorsData);
+	// console.log("OrderedData: ", orderedAuthorsData);
+	// console.log("Range: ", getRange(2, 10));
+	// console.log(
+	// 	"filteredRange: ",
+	// 	filterByRange(orderedAuthorsData!, getRange(2, 10))
+	// );
+
+	console.log("PaginatedList: ", paginatedList);
 
 	const parsedDates = useMemo(
 		() =>
@@ -288,6 +306,49 @@ export default function AuthorsAdminLineChart({
 					focusedCategory={""}
 				/>
 			</div> */}
+			<div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
+				<div className="w-1/2 flex justify-between m-auto">
+					<button
+						onClick={decreasePageIndex}
+						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						disabled={pageIndex === 1}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							className="w-6 h-6 stroke-2 stroke-current"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M15.75 19.5 8.25 12l7.5-7.5"
+							/>
+						</svg>
+					</button>
+					<div className="flex justify-center items-center text-gray-500 text-sm font-semibold">
+						Page {pageIndex} of {totalPages}
+					</div>
+					<button
+						onClick={increasePageIndex}
+						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						disabled={pageIndex === totalPages}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							className="w-6 h-6 stroke-2 stroke-current"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="m8.25 4.5 7.5 7.5-7.5 7.5"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
 
 			<svg
 				ref={svgLineChartRef}
@@ -316,8 +377,8 @@ export default function AuthorsAdminLineChart({
 						/>
 					)}
 					{hasData ? (
-						orderedAuthorsData != undefined &&
-						orderedAuthorsData.map((author, index) => {
+						paginatedList != undefined &&
+						paginatedList.map((author, index) => {
 							const color = colorScale(index.toString());
 							// console.log("Color: ", color);
 							// console.log("Category: ", category);
