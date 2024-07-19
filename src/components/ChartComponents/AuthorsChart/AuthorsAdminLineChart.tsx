@@ -47,11 +47,16 @@ export const combineOrders = (
 	authors: CombinedAuthorNameType[]
 ): CombinedAuthorsOrdersType[] => {
 	return authors.map((author) => {
+		let totalAmount = 0;
+		let totalItems = 0;
 		return {
 			authorName: author.authorName,
+
 			orders: author.books
 				.map((book) => {
 					return book.bookOrders.map((order) => {
+						totalAmount += order.orderAmount;
+						totalItems += order.quantity;
 						return {
 							bookTitle: book.bookTitle,
 							...order,
@@ -60,6 +65,8 @@ export const combineOrders = (
 					});
 				})
 				.flat(),
+			totalAmount: parseFloat(totalAmount.toFixed(2)),
+			totalItems: totalItems,
 		};
 	});
 };
@@ -69,7 +76,7 @@ export const sortOrders = (
 ): CombinedAuthorsOrdersType[] => {
 	return authors.map((author) => {
 		return {
-			authorName: author.authorName,
+			...author,
 			orders: author.orders.sort((a, b) => {
 				return (
 					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
@@ -114,6 +121,8 @@ type CombinedAuthorNameType = {
 
 export type CombinedAuthorsOrdersType = {
 	authorName: string;
+	totalAmount: number;
+	totalItems: number;
 	orders: {
 		uniqueId: string;
 		bookTitle: string;
@@ -213,7 +222,7 @@ export default function AuthorsAdminLineChart({
 		);
 	}, [authors, timeFilter]);
 
-	console.log("Has Data: ", hasData);
+	console.log("OrderedData: ", orderedAuthorsData);
 
 	const parsedDates = useMemo(
 		() =>
