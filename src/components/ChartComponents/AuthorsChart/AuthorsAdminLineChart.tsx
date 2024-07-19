@@ -246,7 +246,7 @@ export default function AuthorsAdminLineChart({
 	// 	filterByRange(orderedAuthorsData!, getRange(2, 10))
 	// );
 
-	console.log("PaginatedList: ", paginatedList);
+	// console.log("PaginatedList: ", paginatedList);
 
 	const parsedDates = useMemo(
 		() =>
