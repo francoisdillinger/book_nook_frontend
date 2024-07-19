@@ -229,7 +229,7 @@ export default function AdminChart() {
 						/>
 					</div>
 				</div>
-				<div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
+				{/* <div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
 					<div className="w-1/2 flex justify-between m-auto">
 						<button
 							// onClick={handlePaginationDecrease}
@@ -271,7 +271,7 @@ export default function AdminChart() {
 							</svg>
 						</button>
 					</div>
-				</div>
+				</div> */}
 				{filterChart === "Users" && (
 					<UsersAdminChart
 						margin={margin}
