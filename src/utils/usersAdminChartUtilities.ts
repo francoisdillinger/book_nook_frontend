@@ -86,7 +86,7 @@ const processDataForLineChart = (
 		const aggregatedOrders = Object.values(aggregationByDateAndId).sort(
 			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
 		);
-		console.log("Pre-Agg: ", total);
+		// console.log("Pre-Agg: ", total);
 		return {
 			userName: user.userName,
 			orders: aggregatedOrders,
