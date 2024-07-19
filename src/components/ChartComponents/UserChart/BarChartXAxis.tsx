@@ -22,7 +22,7 @@ const BarChartXAxis = ({
 
 	useEffect(() => {
 		const xScaleNumeric = xScale as unknown as AxisScale<number>;
-		console.log("ticks: ", ticks);
+		// console.log("ticks: ", ticks);
 		const xAxis = axisBottom(xScaleNumeric).ticks(ticks);
 
 		const transition = select(ref.current)
