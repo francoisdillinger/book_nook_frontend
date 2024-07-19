@@ -29,6 +29,15 @@ import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
 // import { authors_data } from "../../data/authors_data";
 import { authors_data } from "../../data/authors_data";
 import { categories_data } from "../../data/categories_data";
+import { usePagination } from "../../hooks/usePagination";
+import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
+import {
+	trimAuthorsData,
+	combineName,
+	combineOrders,
+	sortOrders,
+	CombinedAuthorsOrdersType,
+} from "./AuthorsChart/AuthorsAdminLineChart";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -81,6 +90,7 @@ export default function AdminChart() {
 	const [avgSale, setAvgSale] = useState<AverageSalesType>();
 	const [totalBooks, setTotalBooks] = useState<TotalBooksType>();
 	const [avgBookOrder, setAvgBookOrder] = useState<AverageBooksType>();
+
 	// const [filtered, setFiltered] = useState<ProcessedUserType[]>();
 
 	useEffect(() => {
@@ -141,6 +151,7 @@ export default function AdminChart() {
 			window.removeEventListener("click", onGlobalClick);
 		};
 	}, []);
+
 	console.log("ChartData: ", authors_data);
 	return (
 		<React.Fragment>
@@ -232,9 +243,9 @@ export default function AdminChart() {
 				{/* <div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
 					<div className="w-1/2 flex justify-between m-auto">
 						<button
-							// onClick={handlePaginationDecrease}
+							onClick={decreasePageIndex}
 							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-							// disabled={buttonDecreaseDisabled}
+							disabled={pageIndex === 1}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -250,12 +261,12 @@ export default function AdminChart() {
 							</svg>
 						</button>
 						<div className="flex justify-center items-center text-gray-500 text-sm font-semibold">
-							Displaying Authors 1-5 out of 12 Total Authors
+							Page {pageIndex} of {totalPages}
 						</div>
 						<button
-							// onClick={handlePaginationIncrease}
+							onClick={increasePageIndex}
 							className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-							// disabled={buttonIncreaseDisabled}
+							disabled={pageIndex === totalPages}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
