@@ -152,7 +152,7 @@ export default function AdminChart() {
 		};
 	}, []);
 
-	console.log("ChartData: ", authors_data);
+	// console.log("ChartData: ", authors_data);
 	return (
 		<React.Fragment>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
