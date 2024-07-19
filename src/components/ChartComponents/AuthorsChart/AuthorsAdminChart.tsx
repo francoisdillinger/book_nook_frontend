@@ -167,6 +167,7 @@ export default function AuthorsAdminChart({
 			timeFilter,
 			sortedCombinedOrders
 		);
+		console.log("FIlteredChart: ", filteredAuthorsChart);
 		const flattenedDates = filteredAuthorsChart.flatMap(
 			(author: CombinedAuthorsOrdersType) => {
 				return author.orders.map((order) => order.orderDate);
@@ -183,7 +184,7 @@ export default function AuthorsAdminChart({
 		setAllQuantinties(uniqueQuantities);
 		setOrderedAuthorsData(filteredAuthorsChart);
 		setPaginateThisList(filteredAuthorsChart);
-		setSelectOptions(filteredAuthorsChart);
+		// setSelectOptions(paginatedList);
 		setHasData(
 			filteredAuthorsChart.reduce(
 				(accumulator, author) => accumulator + author.orders.length,
@@ -191,6 +192,11 @@ export default function AuthorsAdminChart({
 			)
 		);
 	}, [authors_data, timeFilter]);
+
+	useEffect(() => {
+		setSelectOptions(paginatedList);
+	}, [paginatedList]);
+	// console.log("AdminPaginatedList: ", paginatedList);
 
 	return (
 		<React.Fragment>
@@ -272,6 +278,7 @@ export default function AuthorsAdminChart({
 						<AuthorsAdminBarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
+							allQuantities={allQuantities}
 							margin={margin}
 							timeFilter={timeFilter}
 							tooltip={tooltip}
