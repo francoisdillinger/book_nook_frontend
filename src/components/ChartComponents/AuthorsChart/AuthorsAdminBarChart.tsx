@@ -208,11 +208,11 @@ export default function AuthorsAdminBarChart({
 							if (author.totalItems === 0) return;
 							return (
 								<motion.rect
-									// initial={{ height: 0, y: graphHeight ? graphHeight : 0 }}
-									// animate={{
-									// 	height: barHeight,
-									// 	y: y(author.totalItems),
-									// }}
+									initial={{ height: 0, y: graphHeight ? graphHeight : 0 }}
+									animate={{
+										height: barHeight,
+										y: y(author.totalItems),
+									}}
 									transition={{
 										duration: 0.5,
 										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
@@ -224,7 +224,7 @@ export default function AuthorsAdminBarChart({
 									width={x.bandwidth()}
 									height={barHeight}
 									x={x(author.authorName)}
-									y={y(author.totalItems)}
+									// y={y(author.totalItems)}
 									fill={
 										focusedCategory === author.authorName ||
 										focusedCategory === ""
