@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
 import XAxis from "../../XAxis";
 import YAxis from "../../YAxis";
-import { MarginType } from "../AdminChart";
+import { MarginType } from "../../AdminHome";
 import { AuthorsDataType } from "../../../data/authors_data";
-import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
-import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
+// import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
+// import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
 import { v4 as uuidv4 } from "uuid";
 import { getRange, filterByRange } from "../../AdminOrders";
 
@@ -48,6 +48,7 @@ export const combineName = (
 export const combineOrders = (
 	authors: CombinedAuthorNameType[]
 ): CombinedAuthorsOrdersType[] => {
+	console.log("authors: ", authors);
 	return authors.map((author) => {
 		let totalAmount = 0;
 		let totalItems = 0;
@@ -496,6 +497,12 @@ export default function AuthorsAdminLineChart({
 																	Quantity:
 																</span>{" "}
 																{order.quantity}
+															</div>
+															<div>
+																<span className="text-slate-600 font-bold">
+																	Amount:
+																</span>{" "}
+																{order.orderAmount}
 															</div>
 														</div>
 													);
