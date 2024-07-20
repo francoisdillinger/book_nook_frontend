@@ -142,6 +142,12 @@ const AuthorsAdminPieChart = ({
 			>
 				<g transform={`translate(${graphWidth / 2}, ${graphHeight / 2})`}>
 					{" "}
+					<circle
+						cx={0}
+						cy={0}
+						r={radius * 1.05}
+						fill="white"
+					/>
 					{hasData && (
 						<text
 							x={0}
