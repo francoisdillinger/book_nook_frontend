@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "../ChartToolTip";
 import BarChartXAxis from "../UserChart/BarChartXAxis";
 import BarChartYAxis from "../UserChart/BarChartYAxis";
-import { MarginType } from "../AdminChart";
+import { MarginType } from "../../AdminHome";
 import { AuthorsDataType } from "../../../data/authors_data";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import {
@@ -261,6 +261,12 @@ export default function AuthorsAdminBarChart({
 														Total Quantity:
 													</span>{" "}
 													{author.totalItems.toString()}
+												</div>
+												<div>
+													<span className="text-slate-600 font-bold">
+														Amount:
+													</span>{" "}
+													${author.totalAmount}
 												</div>
 											</div>
 										);
