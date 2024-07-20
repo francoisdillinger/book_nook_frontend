@@ -25,7 +25,7 @@ import {
 import { filterOutInactiveUsers } from "./UserChart/UsersAdminLineChart";
 import TotalsComponent from "./TotalsComponent";
 import AuthorsAdminChart from "./AuthorsChart/AuthorsAdminChart";
-import AuthorsChartReactSelect from "./AuthorsChart/AuthorsReactSelect";
+import AuthorsChartReactSelect from "./AuthorsChart/AuthorsChartReactSelect";
 // import { authors_data } from "../../data/authors_data";
 import { authors_data } from "../../data/authors_data";
 import { categories_data } from "../../data/categories_data";
