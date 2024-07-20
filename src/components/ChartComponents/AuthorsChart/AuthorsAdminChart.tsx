@@ -16,6 +16,8 @@ import AuthorsAdminBarChart from "./AuthorsAdminBarChart";
 import AuthorsAdminPieChart from "./AuthorsAdminPieChart";
 import { usePagination } from "../../../hooks/usePagination";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
+import SimpleSelect from "../../SimpleSelect";
+import { sortListBySelectOption } from "../../../utils/sortingUtilities";
 // import {
 // 	AverageBooksType,
 // 	AverageSalesType,
@@ -142,6 +144,15 @@ export default function AuthorsAdminChart({
 		useState<CombinedAuthorsOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
+	const [sortOption, setSortOption] = useState<string>("Sort: A-Z");
+	const options = [
+		"Sort: A-Z",
+		"Sort: Z-A",
+		"Total Items: Ascending",
+		"Total Items: Descending",
+		"Total $ Amount: Ascending",
+		"Total $ Amount: Descending",
+	];
 	const {
 		setPaginateThisList,
 		pageIndex,
@@ -183,7 +194,9 @@ export default function AuthorsAdminChart({
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
 		setOrderedAuthorsData(filteredAuthorsChart);
-		setPaginateThisList(filteredAuthorsChart);
+		setPaginateThisList(
+			sortListBySelectOption(filteredAuthorsChart, sortOption)
+		);
 		// setSelectOptions(paginatedList);
 		setHasData(
 			filteredAuthorsChart.reduce(
@@ -191,7 +204,7 @@ export default function AuthorsAdminChart({
 				0
 			)
 		);
-	}, [authors_data, timeFilter]);
+	}, [authors_data, timeFilter, sortOption]);
 
 	useEffect(() => {
 		setSelectOptions(paginatedList);
@@ -200,11 +213,17 @@ export default function AuthorsAdminChart({
 
 	return (
 		<React.Fragment>
-			<div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
-				<div className="w-1/2 flex justify-between m-auto">
+			<div className="bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg mt-2 flex justify-between pt-4">
+				<div className="ml-20">
+					<SimpleSelect
+						options={options}
+						setSortOption={setSortOption}
+					/>
+				</div>
+				<div className="w-44 flex justify-between mr-4 bg-white p-1 rounded-md">
 					<button
 						onClick={decreasePageIndex}
-						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						className=" p-1 m-1 rounded-md text-sm font-medium bg-gray-100 enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
 						disabled={pageIndex === 1}
 					>
 						<svg
@@ -225,7 +244,7 @@ export default function AuthorsAdminChart({
 					</div>
 					<button
 						onClick={increasePageIndex}
-						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
+						className=" p-1 m-1 rounded-md text-sm font-medium bg-gray-100 enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
 						disabled={pageIndex === totalPages}
 					>
 						<svg
@@ -244,7 +263,7 @@ export default function AuthorsAdminChart({
 				</div>
 			</div>
 			<div className="flex flex-wrap lg:ml-20 xl:ml-18">
-				<div className="bg-gray-100 rounded-b-lg pt-2 w-full">
+				<div className="bg-gray-100 rounded-b-lg w-full">
 					{/* Note to self: Yes, this component rerenders when tooltip appears and disappears */}
 					<ChartToolTip tooltip={tooltip} />
 					<div className=" flex justify-center mt-10 md:mt-0">
