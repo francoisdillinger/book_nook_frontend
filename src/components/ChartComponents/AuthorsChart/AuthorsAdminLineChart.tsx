@@ -275,12 +275,12 @@ export default function AuthorsAdminLineChart({
 		() => d3.scaleTime().domain(domain).range([0, graphWidth]),
 		[domain, graphWidth]
 	);
-
+	const topPadding = 0.5;
 	const y = useMemo(
 		() =>
 			d3
 				.scaleLinear()
-				.domain([0, Number(maxQuantity) ?? 0])
+				.domain([0, Number(maxQuantity) + topPadding ?? 0])
 				.range([graphHeight, 0]),
 		[maxQuantity, graphHeight]
 	);
