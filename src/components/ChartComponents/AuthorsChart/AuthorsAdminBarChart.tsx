@@ -70,7 +70,9 @@ export default function AuthorsAdminBarChart({
 }: AuthorsAdminBarChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
-	const graphHeight = svgHeight - margin.top - margin.bottom;
+	const additionalPadding = 20;
+	const graphHeight =
+		svgHeight - margin.top - margin.bottom + additionalPadding;
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const [reducedAuthorsData, setReducedAuthorsData] =
 		useState<ReducedAuthorsDataType[]>();
@@ -127,18 +129,18 @@ export default function AuthorsAdminBarChart({
 	// 		) || 0,
 	// 	])
 	// 	.range([graphHeight, 0]);
-
+	const topPadding = 5;
 	const y = d3
 		.scaleLinear()
 		.domain([
 			0,
-			d3.max(
+			(d3.max(
 				paginatedList
 					? paginatedList
 							.map((author) => author.totalItems)
 							.filter((value) => value !== undefined && !isNaN(value))
 					: [0]
-			) || 0,
+			) || 0) + topPadding,
 		])
 		.range([graphHeight, 0]);
 
@@ -166,6 +168,13 @@ export default function AuthorsAdminBarChart({
 					height={graphHeight}
 					transform={`translate(${margin.left},${10})`}
 				>
+					<rect
+						x="0"
+						y="0"
+						width={graphWidth}
+						height={graphHeight}
+						fill="white"
+					/>
 					{hasData && (
 						<BarChartXAxis
 							xScale={x}
