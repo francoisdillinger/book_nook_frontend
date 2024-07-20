@@ -40,13 +40,18 @@ const BarChartXAxis = ({
 			.selectAll("text")
 			.attr(
 				"transform",
-				`${
-					width < 700 || ticks > 15
-						? `${ticks > 15 ? "rotate(-30)" : "rotate(-15)"}`
-						: "rotate(0)"
-				}`
+
+				"rotate(-10)"
 			)
-			.attr("text-anchor", `${width < 700 || ticks > 15 ? "end" : "middle"}`);
+			// .attr(
+			// 	"transform",
+			// 	`${
+			// 		width < 700 || ticks > 15
+			// 			? `${ticks > 15 ? "rotate(-30)" : "rotate(-15)"}`
+			// 			: "rotate(0)"
+			// 	}`
+			// )
+			.attr("text-anchor", `${width < 700 || ticks > 15 ? "end" : "end"}`);
 	}, [xScale, width]);
 
 	return (
