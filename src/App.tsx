@@ -46,11 +46,11 @@ export default function App() {
 			{/* <Profile /> */}
 			{/* <UserOrders /> */}
 			{/* <SideBarAdminMenu /> */}
-			{/* <AdminHome /> */}
+			<AdminHome />
 
 			<div className="  m-auto">
 				{/* <AdminMenu /> */}
-				<AdminChart />
+				{/* <AdminChart /> */}
 			</div>
 			{/* <AdminOrders /> */}
 			{/* <AdminBooks /> */}

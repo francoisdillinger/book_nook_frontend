@@ -20,7 +20,6 @@ const YAxis = ({ yScale, graphWidth, hasData, graphHeight }: YAxisProps) => {
 
 		const stripesGroup = select(stripesRef.current);
 		stripesGroup.selectAll(".zebra-stripe").remove(); // Clear previous stripes
-
 		const tickValues = yScale.ticks(5);
 		const stripesData = tickValues.slice(0, -1).map((tick, i) => {
 			const y1 = yScale(tick);
@@ -32,18 +31,21 @@ const YAxis = ({ yScale, graphWidth, hasData, graphHeight }: YAxisProps) => {
 		});
 
 		// Append zebra stripes
-		stripesGroup
-			.selectAll(".zebra-stripe")
-			.data(stripesData)
-			.join("rect")
-			.attr("class", "zebra-stripe")
-			.attr("x", 0)
-			.attr("y", (d) => d.y)
-			.attr("width", graphWidth)
-			.attr("height", (d) => d.height)
-			.attr("fill", (d, i) =>
-				i % 2 === 0 ? "rgb(255,255,255)" : "rgb(243 244 246)"
-			);
+		// stripesGroup
+		// 	.selectAll(".zebra-stripe")
+		// 	.data(stripesData)
+		// 	.join("rect")
+		// 	.attr("class", "zebra-stripe")
+		// 	.attr("x", 0)
+		// 	.attr("y", (d) => d.y)
+		// 	.attr("width", graphWidth)
+		// 	.attr("height", (d) => d.height)
+		// 	.attr("fill", (d, i) =>
+		// 		i % 2 === 0 ? "rgb(255,255,255)" : "rgb(255,255,255)"
+		// 	);
+		// .attr("fill", (d, i) =>
+		// 	i % 2 === 0 ? "rgb(255,255,255)" : "rgb(243 244 246)"
+		// );
 	}, [hasData, yScale, graphWidth]);
 
 	useEffect(() => {
@@ -85,6 +87,13 @@ const YAxis = ({ yScale, graphWidth, hasData, graphHeight }: YAxisProps) => {
 				Books Per Order
 			</text>
 			<g className="y-axis-container">
+				<rect
+					x="0"
+					y="0"
+					width={graphWidth}
+					height={graphHeight}
+					fill="white"
+				/>
 				<g
 					ref={stripesRef}
 					className="zebra-stripes"

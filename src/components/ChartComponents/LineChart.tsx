@@ -1,60 +1,33 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
-import { usePagination } from "../../../hooks/usePagination";
+import React, { useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import { TooltipStateType } from "../ChartToolTip";
-import XAxis from "../../XAxis";
-import YAxis from "../../YAxis";
-import { MarginType } from "../../AdminHome";
-import { AuthorsDataType } from "../../../data/authors_data";
-// import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
-// import CategoriesChartReactSelect from "../CategoriesChart/CategoriesChartReactSelect";
+import { TooltipStateType } from "./ChartToolTip";
+import XAxis from "./../XAxis";
+import YAxis from "./../YAxis";
+import { MarginType } from "../AdminHome";
+import { AuthorsDataType } from "../../data/authors_data";
 import { v4 as uuidv4 } from "uuid";
-import { getRange, filterByRange } from "../../AdminOrders";
+import { ChartDataType } from "../../utils/junk";
 
-// 	};
-// };
-export const trimAuthorsData = (
-	authors: AuthorsDataType
-): TrimmedAuthorsDataType => {
-	return {
-		authors: authors.data.authors.map((author) => author),
-	};
-};
+// let totalAmount = 0;
+// let totalItems = 0;
+// totalAmount += order.orderAmount;
+// totalItems += order.quantity;
+// totalAmount: parseFloat(totalAmount.toFixed(2)),
+// totalItems: totalItems,
 
-export const combineName = (
-	authors: TrimmedAuthorsDataType
-): CombinedAuthorNameType[] => {
-	return authors.authors.map((author) => {
-		return {
-			authorName: author.authorFirstName + " " + author.authorLastName,
-			books: author.books,
-		};
-	});
-};
-
-// We need to reformat 'authors' so that each object has an authorName and then a list of all book orders rather than each book individually
-
-// export const filterOutEmptyAuthors = (
-// 	authors: CombinedAuthorNameType[]
-// ): CombinedAuthorNameType[] => {
-// 	return authors.map((author) => {
-// 		return author.books.filter((book) => {
-// 			return book.bookOrders.
-// 		})
-// 	})
+// export const combineOrders = (data: ChartDataType[]) => {
+// 	console.log("data: ", data);
 // };
 
 export const combineOrders = (
-	authors: CombinedAuthorNameType[]
-): CombinedAuthorsOrdersType[] => {
-	console.log("authors: ", authors);
+	authors: ChartDataType[]
+): CombinedChartDataOrdersType[] => {
+	let totalAmount = 0;
+	let totalItems = 0;
 	return authors.map((author) => {
-		let totalAmount = 0;
-		let totalItems = 0;
 		return {
-			authorName: author.authorName,
-
+			name: author.name,
 			orders: author.books
 				.map((book) => {
 					return book.bookOrders.map((order) => {
@@ -74,13 +47,45 @@ export const combineOrders = (
 	});
 };
 
-export const sortOrders = (
-	authors: CombinedAuthorsOrdersType[]
-): CombinedAuthorsOrdersType[] => {
-	return authors.map((author) => {
+// data.map((item) => {
+//     return {
+//         name: item.name,
+//         orders: item.books.flatMap((book) => {
+//             if (!Array.isArray(book.bookOrders)) {
+//                 console.error(
+//                     `Expected bookOrders to be an array, but got ${typeof book.bookOrders}`
+//                 );
+//                 return [];
+//             }
+//             return book.bookOrders.map((order) => {
+//                 return {
+//                     bookTitle: book.bookTitle,
+//                     ...order,
+//                     uniqueId: uuidv4(),
+//                 };
+//             });
+//         }),
+//     };
+// });
+
+export const combineName = (
+	authors: TrimmedAuthorsDataType
+): CombinedAuthorNameType[] => {
+	return authors.authors.map((author) => {
 		return {
-			...author,
-			orders: author.orders.sort((a, b) => {
+			authorName: author.authorFirstName + " " + author.authorLastName,
+			books: author.books,
+		};
+	});
+};
+
+export const sortOrders = (
+	data: CombinedChartDataOrdersType[]
+): CombinedChartDataOrdersType[] => {
+	return data.map((item) => {
+		return {
+			...item,
+			orders: item.orders.sort((a, b) => {
 				return (
 					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
 				);
@@ -107,7 +112,7 @@ type TrimmedAuthorsDataType = {
 	}[];
 };
 
-type CombinedAuthorNameType = {
+export type CombinedAuthorNameType = {
 	authorName: string;
 	books: {
 		bookTitle: string;
@@ -122,8 +127,8 @@ type CombinedAuthorNameType = {
 	}[];
 };
 
-export type CombinedAuthorsOrdersType = {
-	authorName: string;
+export type CombinedChartDataOrdersType = {
+	name: string;
 	totalAmount: number;
 	totalItems: number;
 	orders: {
@@ -144,7 +149,7 @@ export type ReducedAuthorsDataType = {
 };
 
 type AuthorsAdminLineChartType = {
-	paginatedList: CombinedAuthorsOrdersType[];
+	paginatedList: CombinedChartDataOrdersType[];
 	allDates: string[];
 	allQuantities: number[];
 	margin: MarginType;
@@ -162,21 +167,17 @@ type AuthorsAdminLineChartType = {
 	doesToolTipOverflowWindow: Function;
 };
 
-export default function AuthorsAdminLineChart({
+export default function LineChart({
 	allDates,
 	allQuantities,
 	paginatedList,
 	margin,
-	timeFilter,
 	width = 0,
 	height = 0,
 	tooltip,
 	setTooltip,
-	authors,
 	colorScale,
 	hasData,
-	setHasData,
-	setSelectOptions,
 	focusedCategory,
 	doesToolTipOverflowWindow,
 }: AuthorsAdminLineChartType) {
@@ -186,68 +187,6 @@ export default function AuthorsAdminLineChart({
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	// const [orderedAuthorsData, setOrderedAuthorsData] =
-	// 	useState<CombinedAuthorsOrdersType[]>();
-	// const [allDates, setAllDates] = useState<string[]>([]);
-	// const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-	// const {
-	// 	setPaginateThisList,
-	// 	pageIndex,
-	// 	paginatedList,
-	// 	increasePageIndex,
-	// 	decreasePageIndex,
-	// 	totalPages,
-	// } = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
-
-	// useEffect(() => {
-	// 	const trimmedAuthors = trimAuthorsData(authors);
-	// 	const combinedAuthorName = combineName(trimmedAuthors);
-	// 	const combinedOrders = combineOrders(combinedAuthorName);
-	// 	const sortedCombinedOrders = sortOrders(combinedOrders);
-
-	// 	// .authorName: category.authorName,
-	// 	// 	orders: category.orders.sort(
-	// 	// 		(a, b) =>
-	// 	// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-	// 	// 	),
-	// 	// }));
-	// 	const filteredAuthorsChart = getFilteredAuthorsData(
-	// 		timeFilter,
-	// 		sortedCombinedOrders
-	// 	);
-	// 	const flattenedDates = filteredAuthorsChart.flatMap(
-	// 		(author: CombinedAuthorsOrdersType) => {
-	// 			return author.orders.map((order) => order.orderDate);
-	// 		}
-	// 	);
-	// 	const flattenedQuanities = filteredAuthorsChart.flatMap(
-	// 		(author: CombinedAuthorsOrdersType) => {
-	// 			return author.orders.map((order) => order.quantity);
-	// 		}
-	// 	);
-	// 	const uniqueDates = [...new Set(flattenedDates)];
-	// 	const uniqueQuantities = [...new Set(flattenedQuanities)];
-	// 	setAllDates(uniqueDates);
-	// 	setAllQuantinties(uniqueQuantities);
-	// 	setOrderedAuthorsData(filteredAuthorsChart);
-	// 	setPaginateThisList(filteredAuthorsChart);
-	// 	setSelectOptions(filteredAuthorsChart);
-	// 	setHasData(
-	// 		filteredAuthorsChart.reduce(
-	// 			(accumulator, author) => accumulator + author.orders.length,
-	// 			0
-	// 		)
-	// 	);
-	// }, [authors, timeFilter]);
-
-	// console.log("OrderedData: ", orderedAuthorsData);
-	// console.log("Range: ", getRange(2, 10));
-	// console.log(
-	// 	"filteredRange: ",
-	// 	filterByRange(orderedAuthorsData!, getRange(2, 10))
-	// );
-
-	// console.log("PaginatedList: ", paginatedList);
 
 	const parsedDates = useMemo(
 		() =>
@@ -305,58 +244,6 @@ export default function AuthorsAdminLineChart({
 	);
 	return (
 		<React.Fragment>
-			{/* <div className="w-full flex justify-end">
-				<CategoriesChartReactSelect
-					options={[]}
-					colorScale={colorScale}
-					setFocusedUser={() => {}}
-					focusedCategory={""}
-				/>
-			</div> */}
-			{/* <div className=" bg-gray-100 lg:ml-20 xl:ml-18 rounded-t-lg pt-3 mt-2">
-				<div className="w-1/2 flex justify-between m-auto">
-					<button
-						onClick={decreasePageIndex}
-						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-						disabled={pageIndex === 1}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							className="w-6 h-6 stroke-2 stroke-current"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M15.75 19.5 8.25 12l7.5-7.5"
-							/>
-						</svg>
-					</button>
-					<div className="flex justify-center items-center text-gray-500 text-sm font-semibold">
-						Page {pageIndex} of {totalPages}
-					</div>
-					<button
-						onClick={increasePageIndex}
-						className=" p-1 m-1 rounded-md text-sm font-medium bg-white enabled:active:scale-90 enabled:shadow-sm disabled:shadow-none enabled:text-logo disabled:text-gray-400  enabled:cursor-pointer diabled:cursor-default"
-						disabled={pageIndex === totalPages}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							className="w-6 h-6 stroke-2 stroke-current"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="m8.25 4.5 7.5 7.5-7.5 7.5"
-							/>
-						</svg>
-					</button>
-				</div>
-			</div> */}
-
 			<svg
 				ref={svgLineChartRef}
 				width={svgWidth}
@@ -385,12 +272,12 @@ export default function AuthorsAdminLineChart({
 					)}
 					{hasData ? (
 						paginatedList != undefined &&
-						paginatedList.map((author, index) => {
+						paginatedList.map((dataPoint, index) => {
 							const color = colorScale(index.toString());
 							// console.log("Color: ", color);
 							// console.log("Category: ", category);
 							const linePath = theLine(
-								author.orders.map((order) => [
+								dataPoint.orders.map((order) => [
 									new Date(order.orderDate).getTime(), // Convert Date string to Date object and then get the time
 									order.quantity,
 								])
@@ -401,16 +288,16 @@ export default function AuthorsAdminLineChart({
 							// This prevents framer motion errors from blowing up
 							// the console when no orders are present as it tries
 							// to create a path from empty points.
-							if (author.orders.length === 0) return;
+							if (dataPoint.orders.length === 0) return;
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
 									<motion.path
-										key={author.authorName}
+										key={dataPoint.name}
 										initial={{
 											d:
 												bottomLineGenerator(
-													author.orders.map((order) => [
+													dataPoint.orders.map((order) => [
 														new Date(order.orderDate).getTime(),
 														order.quantity,
 													])
@@ -427,19 +314,19 @@ export default function AuthorsAdminLineChart({
 										fill="none"
 										strokeWidth={2}
 										stroke={
-											focusedCategory === author.authorName ||
+											focusedCategory === dataPoint.name ||
 											focusedCategory === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === author.authorName ||
+											focusedCategory === dataPoint.name ||
 											focusedCategory === ""
 												? 0.8
 												: 0.1
 										}
 									/>
-									{author.orders.map((order) => {
+									{dataPoint.orders.map((order) => {
 										// console.log("Order Quantity: ", order.quantity);
 										// console.log("cy: ", y(order.quantity));
 										return (
@@ -464,13 +351,13 @@ export default function AuthorsAdminLineChart({
 												}}
 												r={6}
 												fill={
-													focusedCategory === author.authorName ||
+													focusedCategory === dataPoint.name ||
 													focusedCategory === ""
 														? color
 														: "gray"
 												}
 												opacity={
-													focusedCategory === author.authorName ||
+													focusedCategory === dataPoint.name ||
 													focusedCategory === ""
 														? 1
 														: 0.1
@@ -502,7 +389,7 @@ export default function AuthorsAdminLineChart({
 																<span className="text-slate-600 font-bold">
 																	Amount:
 																</span>{" "}
-																{order.orderAmount}
+																${order.orderAmount}
 															</div>
 														</div>
 													);
