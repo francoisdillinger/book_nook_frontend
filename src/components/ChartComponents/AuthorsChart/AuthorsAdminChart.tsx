@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChartToolTip from "../ChartToolTip";
 import { TooltipStateType } from "../ChartToolTip";
 import ResponsiveSVGContainer from "../../ResponsiveSVGContainer";
-import { MarginType } from "../AdminChart";
+import { MarginType } from "../../AdminHome";
 import AuthorsAdminLineChart, {
 	CombinedAuthorsOrdersType,
 	combineName,
@@ -166,6 +166,7 @@ export default function AuthorsAdminChart({
 		const trimmedAuthors = trimAuthorsData(authors_data);
 		const combinedAuthorName = combineName(trimmedAuthors);
 		const combinedOrders = combineOrders(combinedAuthorName);
+		console.log(combinedOrders);
 		const sortedCombinedOrders = sortOrders(combinedOrders);
 
 		// .authorName: category.authorName,
