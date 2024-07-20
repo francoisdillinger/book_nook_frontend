@@ -6,7 +6,7 @@ const customStyles = {
 		backgroundColor: "rgb(243 244 246)",
 		borderColor: "#fff",
 		borderRadius: "25px",
-		// padding: "0.2em",
+		padding: "0.2em",
 	}),
 	option: (provided, state) => ({
 		...provided,
