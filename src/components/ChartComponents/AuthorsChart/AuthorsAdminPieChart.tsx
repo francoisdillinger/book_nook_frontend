@@ -262,6 +262,12 @@ const AuthorsAdminPieChart = ({
 														</span>{" "}
 														{author.data.totalItems.toString()}
 													</div>
+													<div>
+														<span className="text-slate-600 font-bold">
+															Amount:
+														</span>{" "}
+														${author.data.totalAmount}
+													</div>
 												</div>
 											);
 											setTooltip({
