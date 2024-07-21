@@ -19,6 +19,8 @@ import LineChart, {
 	combineOrders,
 	sortOrders,
 } from "./LineChart";
+import BarChart from "./BarChat";
+import PieChart from "./PieChart";
 
 type AdminChartType = {
 	chartData: AuthorsDataType;
@@ -234,8 +236,8 @@ export default function AdminChart({
 			</div>
 			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4">
 				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
-					{/* <ResponsiveSVGContainer>
-						<AuthorsAdminBarChart
+					<ResponsiveSVGContainer>
+						<BarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
 							allQuantities={allQuantities}
@@ -249,11 +251,11 @@ export default function AdminChart({
 							focusedCategory={focusedCategory}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
-					</ResponsiveSVGContainer> */}
+					</ResponsiveSVGContainer>
 				</div>
 				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
-					{/* <ResponsiveSVGContainer>
-						<AuthorsAdminPieChart
+					<ResponsiveSVGContainer>
+						<PieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
 							pageIndex={pageIndex}
@@ -266,7 +268,7 @@ export default function AdminChart({
 							focusedCategory={focusedCategory}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
-					</ResponsiveSVGContainer> */}
+					</ResponsiveSVGContainer>
 				</div>
 			</div>
 		</React.Fragment>
