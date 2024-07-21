@@ -143,12 +143,17 @@ export type CombinedChartDataOrdersType = {
 	}[];
 };
 
-export type ReducedAuthorsDataType = {
-	authorName: string;
+// export type ReducedAuthorsDataType = {
+// 	authorName: string;
+// 	totalBooksOrdered: number;
+// };
+
+export type ReducedChartDataType = {
+	name: string;
 	totalBooksOrdered: number;
 };
 
-type AuthorsAdminLineChartType = {
+type LineChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	allDates: string[];
 	allQuantities: number[];
@@ -180,7 +185,7 @@ export default function LineChart({
 	hasData,
 	focusedCategory,
 	doesToolTipOverflowWindow,
-}: AuthorsAdminLineChartType) {
+}: LineChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
