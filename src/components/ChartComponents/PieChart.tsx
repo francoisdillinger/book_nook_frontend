@@ -99,8 +99,8 @@ export default function PieChart({
 		// setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 		setKey((prevKey) => prevKey + 1);
 	}, [timeFilter, paginatedList]);
-	console.log("Total Order Count: ", totalOrderCount);
-	console.log("PageKey: ", key);
+	// console.log("Total Order Count: ", totalOrderCount);
+	// console.log("PageKey: ", key);
 	// console.log("Key: ", key);
 	// console.log("Total Order Count: ", totalOrderCount);
 	const pie = useMemo(() => {
