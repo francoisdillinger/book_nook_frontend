@@ -15,7 +15,14 @@ import {
 	transformAuthorsToChartDataFormat,
 	transformCategoriesToChartDataFormat,
 } from "../../utils/transformData";
-import { sortOrders } from "../../utils/sortingUtilities";
+import { sortListBySelectOption, sortOrders } from "../../utils/sortData";
+import {
+	getFlattenedDates,
+	getFlattenedQuantities,
+	getTimeFilteredData,
+	getUniqueDatas,
+	getUniqueQuantities,
+} from "../../utils/getData";
 
 type AdminChartType = {
 	// chartData: AuthorsDataType | CategoriesDataType;
@@ -82,7 +89,7 @@ export default function AdminChart({
 	focusedCategory,
 	focusedUser,
 }: AdminChartType) {
-	const [orderedChartsData, setOrderedAuthorsData] =
+	const [orderedChartsData, setOrderedData] =
 		useState<CombinedChartDataOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
@@ -105,12 +112,13 @@ export default function AdminChart({
 	} = usePagination(orderedChartsData ? orderedChartsData : [], 10);
 
 	useEffect(() => {
-		console.log("ChartFilter: ", chartFilter);
+		// console.log("ChartFilter: ", chartFilter);
 		let data;
 		if (chartFilter === "Authors") {
 			data = transformAuthorsToChartDataFormat(chartData);
 		} else if (chartFilter === "Categories") {
 			data = transformCategoriesToChartDataFormat(chartData);
+			console.log("Data: ", data);
 		}
 		// const trimmedAuthors = trimAuthorsData(authors_data);
 		// const combinedAuthorName = combineName(trimmedAuthors);
@@ -120,36 +128,28 @@ export default function AdminChart({
 		// // console.log(combinedOrders);
 		// console.log("trans", transformedChartData);
 		const sortedCombinedOrders = sortOrders(data!);
-		console.log("Data: ", data);
-		// const timeFilteredChartData = getTimeFilteredData(
-		// 	timeFilter,
-		// 	sortedCombinedOrders
-		// );
-		// const flattenedDates = timeFilteredChartData.flatMap(
-		// 	(data: CombinedChartDataOrdersType) => {
-		// 		return data.orders.map((order) => order.orderDate);
-		// 	}
-		// );
-		// const flattenedQuanities = timeFilteredChartData.flatMap(
-		// 	(data: CombinedChartDataOrdersType) => {
-		// 		return data.orders.map((order) => order.quantity);
-		// 	}
-		// );
-		// const uniqueDates = [...new Set(flattenedDates)];
-		// const uniqueQuantities = [...new Set(flattenedQuanities)];
-		// setAllDates(uniqueDates);
-		// setAllQuantinties(uniqueQuantities);
-		// setOrderedAuthorsData(timeFilteredChartData);
-		// setPaginateThisList(
-		// 	sortListBySelectOption(timeFilteredChartData, sortOption)
-		// );
-		// setHasData(
-		// 	timeFilteredChartData.reduce(
-		// 		(accumulator, item) => accumulator + item.orders.length,
-		// 		0
-		// 	)
-		// );
-	}, [authors_data, timeFilter, sortOption]);
+		// console.log("Data: ", data);
+		const timeFilteredChartData = getTimeFilteredData(
+			timeFilter,
+			sortedCombinedOrders
+		);
+		const flattenedDates = getFlattenedDates(timeFilteredChartData);
+		const flattenedQuanities = getFlattenedQuantities(timeFilteredChartData);
+		const uniqueDates = getUniqueDatas(flattenedDates);
+		const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
+		setAllDates(uniqueDates);
+		setAllQuantinties(uniqueQuantities);
+		setOrderedData(timeFilteredChartData);
+		setPaginateThisList(
+			sortListBySelectOption(timeFilteredChartData, sortOption)
+		);
+		setHasData(
+			timeFilteredChartData.reduce(
+				(accumulator, item) => accumulator + item.orders.length,
+				0
+			)
+		);
+	}, [timeFilter, sortOption]);
 
 	useEffect(() => {
 		setSelectOptions(paginatedList);
