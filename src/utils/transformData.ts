@@ -87,9 +87,9 @@ export const transformCategoriesToChartDataFormat = (
 export const combineOrders = (
 	chartData: ChartDataType[]
 ): CombinedChartDataOrdersType[] => {
-	let totalAmount = 0;
-	let totalItems = 0;
 	return chartData.map((item) => {
+		let totalAmount = 0;
+		let totalItems = 0;
 		return {
 			name: item.name,
 			orders: item.books
