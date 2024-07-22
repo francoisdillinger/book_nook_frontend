@@ -1,19 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
 import { TooltipStateType } from "./ChartToolTip";
-import { getFilteredCategoriesData } from "../../utils/categoriesAdminChartUtilities";
-import { AuthorsDataType } from "../../data/authors_data";
-import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
-import {
-	// CombinedAuthorsOrdersType,
-	// ReducedAuthorsDataType,
-	// trimAuthorsData,
-	combineName,
-	combineOrders,
-	sortOrders,
-} from "./LineChart";
-import { reduceOrderQuantities } from "./BarChat";
 import { CombinedChartDataOrdersType } from "./LineChart";
 
 // const reduceOrderQuantities = (
@@ -38,7 +26,7 @@ import { CombinedChartDataOrdersType } from "./LineChart";
 
 type PieChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
-	pageIndex: number;
+	// pageIndex: number;
 	timeFilter: string;
 	width?: number;
 	height?: number;
@@ -53,7 +41,7 @@ type PieChartType = {
 
 export default function PieChart({
 	paginatedList,
-	pageIndex,
+	// pageIndex,
 	timeFilter,
 	width = 0,
 	height = 0,
@@ -110,7 +98,9 @@ export default function PieChart({
 		// setReducedCategoriesData(reducedData);
 		// setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 		setKey((prevKey) => prevKey + 1);
-	}, [timeFilter]);
+	}, [timeFilter, paginatedList]);
+	console.log("Total Order Count: ", totalOrderCount);
+	console.log("PageKey: ", key);
 	// console.log("Key: ", key);
 	// console.log("Total Order Count: ", totalOrderCount);
 	const pie = useMemo(() => {
@@ -168,7 +158,7 @@ export default function PieChart({
 								? parseFloat(
 										(
 											((paginatedList?.find(
-												(author) => author.name === focusedCategory
+												(data) => data.name === focusedCategory
 											)?.totalItems || 0) /
 												totalOrderCount) *
 											100
@@ -198,7 +188,7 @@ export default function PieChart({
 						</React.Fragment>
 					)}
 					<motion.g
-						key={pageIndex}
+						key={key}
 						animate={{
 							rotate:
 								key > 2
@@ -212,17 +202,17 @@ export default function PieChart({
 					>
 						{hasData &&
 							paginatedList != undefined &&
-							pie(paginatedList)!.map((author, index) => {
+							pie(paginatedList)!.map((item, index) => {
 								const color = colorScale(index.toString());
-								// console.log("Category: ", author);
+								// console.log("Category: ", item);
 								// This is to override a bug where orders of 0 are still shown
 								// on the chart, but filtering them changes the index #'s so
 								// the colors change as well. I'll come back to this.
-								if (author.data.totalItems === 0) return;
+								if (item.data.totalItems === 0) return;
 								return (
 									<motion.path
-										key={author.data.name}
-										d={arcPath(author) || ""}
+										key={item.data.name}
+										d={arcPath(item) || ""}
 										stroke={"white"}
 										strokeWidth={2}
 										transition={{
@@ -233,13 +223,13 @@ export default function PieChart({
 											stiffness: 100, // Adjust stiffness for more or less bounce
 										}}
 										fill={
-											focusedCategory === author.data.name ||
+											focusedCategory === item.data.name ||
 											focusedCategory === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === author.data.name ||
+											focusedCategory === item.data.name ||
 											focusedCategory === ""
 												? 1
 												: 0.2
@@ -252,19 +242,19 @@ export default function PieChart({
 														<span className="text-slate-600 font-bold">
 															Author Name:
 														</span>{" "}
-														{author.data.name}
+														{item.data.name}
 													</div>
 													<div>
 														<span className="text-slate-600 font-bold">
 															Total Quantity:
 														</span>{" "}
-														{author.data.totalItems.toString()}
+														{item.data.totalItems.toString()}
 													</div>
 													<div>
 														<span className="text-slate-600 font-bold">
 															Amount:
 														</span>{" "}
-														${author.data.totalAmount}
+														${item.data.totalAmount}
 													</div>
 												</div>
 											);
