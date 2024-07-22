@@ -133,10 +133,10 @@ export type CombinedChartDataOrdersType = {
 	totalItems: number;
 	orders: {
 		uniqueId: string;
-		bookTitle: string;
+		bookTitle?: string;
 		orderId: string;
-		userId: string;
-		bookId: string;
+		userId?: string;
+		bookId?: string;
 		quantity: number;
 		orderDate: string;
 		orderAmount: number;
@@ -368,7 +368,7 @@ export default function LineChart({
 														: 0.1
 												}
 												onMouseEnter={(e) => {
-													console.log(e);
+													// console.log(e);
 													const { x, y } = doesToolTipOverflowWindow(e);
 													const content = (
 														<div>
