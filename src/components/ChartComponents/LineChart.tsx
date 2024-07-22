@@ -20,32 +20,32 @@ import { ChartDataType } from "../../utils/junk";
 // 	console.log("data: ", data);
 // };
 
-export const combineOrders = (
-	authors: ChartDataType[]
-): CombinedChartDataOrdersType[] => {
-	let totalAmount = 0;
-	let totalItems = 0;
-	return authors.map((author) => {
-		return {
-			name: author.name,
-			orders: author.books
-				.map((book) => {
-					return book.bookOrders.map((order) => {
-						totalAmount += order.orderAmount;
-						totalItems += order.quantity;
-						return {
-							bookTitle: book.bookTitle,
-							...order,
-							uniqueId: uuidv4(),
-						};
-					});
-				})
-				.flat(),
-			totalAmount: parseFloat(totalAmount.toFixed(2)),
-			totalItems: totalItems,
-		};
-	});
-};
+// export const combineOrders = (
+// 	authors: ChartDataType[]
+// ): CombinedChartDataOrdersType[] => {
+// 	let totalAmount = 0;
+// 	let totalItems = 0;
+// 	return authors.map((author) => {
+// 		return {
+// 			name: author.name,
+// 			orders: author.books
+// 				.map((book) => {
+// 					return book.bookOrders.map((order) => {
+// 						totalAmount += order.orderAmount;
+// 						totalItems += order.quantity;
+// 						return {
+// 							bookTitle: book.bookTitle,
+// 							...order,
+// 							uniqueId: uuidv4(),
+// 						};
+// 					});
+// 				})
+// 				.flat(),
+// 			totalAmount: parseFloat(totalAmount.toFixed(2)),
+// 			totalItems: totalItems,
+// 		};
+// 	});
+// };
 
 // data.map((item) => {
 //     return {
@@ -68,16 +68,16 @@ export const combineOrders = (
 //     };
 // });
 
-export const combineName = (
-	authors: TrimmedAuthorsDataType
-): CombinedAuthorNameType[] => {
-	return authors.authors.map((author) => {
-		return {
-			authorName: author.authorFirstName + " " + author.authorLastName,
-			books: author.books,
-		};
-	});
-};
+// export const combineName = (
+// 	authors: TrimmedAuthorsDataType
+// ): CombinedAuthorNameType[] => {
+// 	return authors.authors.map((author) => {
+// 		return {
+// 			authorName: author.authorFirstName + " " + author.authorLastName,
+// 			books: author.books,
+// 		};
+// 	});
+// };
 
 export const sortOrders = (
 	data: CombinedChartDataOrdersType[]
@@ -94,23 +94,23 @@ export const sortOrders = (
 	});
 };
 
-type TrimmedAuthorsDataType = {
-	authors: {
-		authorFirstName: string;
-		authorLastName: string;
-		books: {
-			bookTitle: string;
-			bookOrders: {
-				orderId: string;
-				userId: string;
-				bookId: string;
-				quantity: number;
-				orderDate: string;
-				orderAmount: number;
-			}[];
-		}[];
-	}[];
-};
+// type TrimmedAuthorsDataType = {
+// 	authors: {
+// 		authorFirstName: string;
+// 		authorLastName: string;
+// 		books: {
+// 			bookTitle: string;
+// 			bookOrders: {
+// 				orderId: string;
+// 				userId: string;
+// 				bookId: string;
+// 				quantity: number;
+// 				orderDate: string;
+// 				orderAmount: number;
+// 			}[];
+// 		}[];
+// 	}[];
+// };
 
 export type CombinedAuthorNameType = {
 	authorName: string;
@@ -163,7 +163,7 @@ type LineChartType = {
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	authors: AuthorsDataType;
+	// authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
 	setHasData: Function;
