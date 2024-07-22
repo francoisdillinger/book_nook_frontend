@@ -5,25 +5,22 @@ import ResponsiveSVGContainer from "./../ResponsiveSVGContainer";
 import { MarginType } from "../AdminHome";
 import { authors_data } from "../../data/authors_data";
 import { AuthorsDataType } from "../../data/authors_data";
+import { CategoriesDataType } from "../../data/categories_data";
 import { usePagination } from "../../hooks/usePagination";
-import { getTimeFilteredData } from "../../utils/adminChartUtilities";
 import SimpleSelect from "../SimpleSelect";
-import { sortListBySelectOption } from "../../utils/sortingUtilities";
-import {
-	transformAuthorsDataToChartData,
-	trimAuthorsData,
-} from "../../utils/junk";
-import LineChart, {
-	CombinedChartDataOrdersType,
-	combineName,
-	combineOrders,
-	sortOrders,
-} from "./LineChart";
+import LineChart, { CombinedChartDataOrdersType } from "./LineChart";
 import BarChart from "./BarChat";
 import PieChart from "./PieChart";
+import {
+	transformAuthorsToChartDataFormat,
+	transformCategoriesToChartDataFormat,
+} from "../../utils/transformData";
+import { sortOrders } from "../../utils/sortingUtilities";
 
 type AdminChartType = {
-	chartData: AuthorsDataType;
+	// chartData: AuthorsDataType | CategoriesDataType;
+	chartData: any;
+	chartFilter: string;
 	margin: MarginType;
 	timeFilter: string;
 	setTimeFilter: Function;
@@ -43,21 +40,21 @@ type AdminChartType = {
 	// selectOptions: string;
 };
 
-type CombinedOrdersType = {
-	name: string;
-	totalAmount: number;
-	totalItems: number;
-	orders: {
-		uniqueId: string;
-		bookTitle: string;
-		orderId: string;
-		userId: string;
-		bookId: string;
-		quantity: number;
-		orderDate: string;
-		orderAmount: number;
-	}[];
-};
+// type CombinedOrdersType = {
+// 	name: string;
+// 	totalAmount: number;
+// 	totalItems: number;
+// 	orders: {
+// 		uniqueId: string;
+// 		bookTitle: string;
+// 		orderId: string;
+// 		userId: string;
+// 		bookId: string;
+// 		quantity: number;
+// 		orderDate: string;
+// 		orderAmount: number;
+// 	}[];
+// };
 
 // const trimChartData = (authors: AuthorsDataType): TrimmedAuthorsDataType => {
 // 	return {
@@ -67,6 +64,7 @@ type CombinedOrdersType = {
 
 export default function AdminChart({
 	chartData,
+	chartFilter,
 	margin,
 	timeFilter,
 	// setTimeFilter,
@@ -84,7 +82,7 @@ export default function AdminChart({
 	focusedCategory,
 	focusedUser,
 }: AdminChartType) {
-	const [orderedAuthorsData, setOrderedAuthorsData] =
+	const [orderedChartsData, setOrderedAuthorsData] =
 		useState<CombinedChartDataOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
@@ -104,49 +102,53 @@ export default function AdminChart({
 		increasePageIndex,
 		decreasePageIndex,
 		totalPages,
-	} = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
+	} = usePagination(orderedChartsData ? orderedChartsData : [], 10);
 
 	useEffect(() => {
-		const trimmedAuthors = trimAuthorsData(authors_data);
-		const combinedAuthorName = combineName(trimmedAuthors);
-
-		const transformedChartData =
-			transformAuthorsDataToChartData(combinedAuthorName);
-		const combinedOrders = combineOrders(transformedChartData);
-		// console.log(combinedOrders);
-		console.log("trans", transformedChartData);
-
-		const sortedCombinedOrders = sortOrders(combinedOrders);
-		const timeFilteredChartData = getTimeFilteredData(
-			timeFilter,
-			sortedCombinedOrders
-		);
-
-		const flattenedDates = timeFilteredChartData.flatMap(
-			(data: CombinedChartDataOrdersType) => {
-				return data.orders.map((order) => order.orderDate);
-			}
-		);
-		const flattenedQuanities = timeFilteredChartData.flatMap(
-			(data: CombinedChartDataOrdersType) => {
-				return data.orders.map((order) => order.quantity);
-			}
-		);
-		const uniqueDates = [...new Set(flattenedDates)];
-		const uniqueQuantities = [...new Set(flattenedQuanities)];
-		setAllDates(uniqueDates);
-		setAllQuantinties(uniqueQuantities);
-		setOrderedAuthorsData(timeFilteredChartData);
-		setPaginateThisList(
-			sortListBySelectOption(timeFilteredChartData, sortOption)
-		);
-
-		setHasData(
-			timeFilteredChartData.reduce(
-				(accumulator, item) => accumulator + item.orders.length,
-				0
-			)
-		);
+		console.log("ChartFilter: ", chartFilter);
+		let data;
+		if (chartFilter === "Authors") {
+			data = transformAuthorsToChartDataFormat(chartData);
+		} else if (chartFilter === "Categories") {
+			data = transformCategoriesToChartDataFormat(chartData);
+		}
+		// const trimmedAuthors = trimAuthorsData(authors_data);
+		// const combinedAuthorName = combineName(trimmedAuthors);
+		// const transformedChartData =
+		// 	transformAuthorsDataToChartData(combinedAuthorName);
+		// const combinedOrders = combineOrders(transformedChartData);
+		// // console.log(combinedOrders);
+		// console.log("trans", transformedChartData);
+		const sortedCombinedOrders = sortOrders(data!);
+		console.log("Data: ", data);
+		// const timeFilteredChartData = getTimeFilteredData(
+		// 	timeFilter,
+		// 	sortedCombinedOrders
+		// );
+		// const flattenedDates = timeFilteredChartData.flatMap(
+		// 	(data: CombinedChartDataOrdersType) => {
+		// 		return data.orders.map((order) => order.orderDate);
+		// 	}
+		// );
+		// const flattenedQuanities = timeFilteredChartData.flatMap(
+		// 	(data: CombinedChartDataOrdersType) => {
+		// 		return data.orders.map((order) => order.quantity);
+		// 	}
+		// );
+		// const uniqueDates = [...new Set(flattenedDates)];
+		// const uniqueQuantities = [...new Set(flattenedQuanities)];
+		// setAllDates(uniqueDates);
+		// setAllQuantinties(uniqueQuantities);
+		// setOrderedAuthorsData(timeFilteredChartData);
+		// setPaginateThisList(
+		// 	sortListBySelectOption(timeFilteredChartData, sortOption)
+		// );
+		// setHasData(
+		// 	timeFilteredChartData.reduce(
+		// 		(accumulator, item) => accumulator + item.orders.length,
+		// 		0
+		// 	)
+		// );
 	}, [authors_data, timeFilter, sortOption]);
 
 	useEffect(() => {
@@ -217,7 +219,7 @@ export default function AdminChart({
 									paginatedList={paginatedList}
 									allDates={allDates}
 									allQuantities={allQuantities}
-									authors={chartData}
+									// authors={chartData}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -245,7 +247,7 @@ export default function AdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={chartData}
+							// authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
@@ -262,7 +264,7 @@ export default function AdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={chartData}
+							// authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
