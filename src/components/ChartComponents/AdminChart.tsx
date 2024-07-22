@@ -3,25 +3,32 @@ import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
 import ResponsiveSVGContainer from "./../ResponsiveSVGContainer";
 import { MarginType } from "../AdminHome";
-import { authors_data } from "../../data/authors_data";
-import { AuthorsDataType } from "../../data/authors_data";
 import { usePagination } from "../../hooks/usePagination";
-import { getTimeFilteredData } from "../../utils/adminChartUtilities";
 import SimpleSelect from "../SimpleSelect";
-import { sortListBySelectOption } from "../../utils/sortingUtilities";
+import LineChart, { CombinedChartDataOrdersType } from "./LineChart";
+import BarChart from "./BarChat";
+import PieChart from "./PieChart";
 import {
-	transformAuthorsDataToChartData,
-	trimAuthorsData,
-} from "../../utils/junk";
-import LineChart, {
-	CombinedChartDataOrdersType,
-	combineName,
-	combineOrders,
-	sortOrders,
-} from "./LineChart";
+	aggregateOrdersByOrderId,
+	combineUserOrders,
+	transformAuthorsToChartDataFormat,
+	transformCategoriesToChartDataFormat,
+	transformUsersToChartDataFormat,
+	trimUserData,
+} from "../../utils/transformData";
+import { sortListBySelectOption, sortOrders } from "../../utils/sortData";
+import {
+	getFlattenedDates,
+	getFlattenedQuantities,
+	getUniqueDatas,
+	getUniqueQuantities,
+} from "../../utils/getData";
+import { filterByTime, filterOutInactiveUsers } from "../../utils/filterData";
 
 type AdminChartType = {
-	chartData: AuthorsDataType;
+	// chartData: AuthorsDataType | CategoriesDataType;
+	chartData: any;
+	chartFilter: string;
 	margin: MarginType;
 	timeFilter: string;
 	setTimeFilter: Function;
@@ -41,21 +48,21 @@ type AdminChartType = {
 	// selectOptions: string;
 };
 
-type CombinedOrdersType = {
-	name: string;
-	totalAmount: number;
-	totalItems: number;
-	orders: {
-		uniqueId: string;
-		bookTitle: string;
-		orderId: string;
-		userId: string;
-		bookId: string;
-		quantity: number;
-		orderDate: string;
-		orderAmount: number;
-	}[];
-};
+// type CombinedOrdersType = {
+// 	name: string;
+// 	totalAmount: number;
+// 	totalItems: number;
+// 	orders: {
+// 		uniqueId: string;
+// 		bookTitle: string;
+// 		orderId: string;
+// 		userId: string;
+// 		bookId: string;
+// 		quantity: number;
+// 		orderDate: string;
+// 		orderAmount: number;
+// 	}[];
+// };
 
 // const trimChartData = (authors: AuthorsDataType): TrimmedAuthorsDataType => {
 // 	return {
@@ -65,6 +72,7 @@ type CombinedOrdersType = {
 
 export default function AdminChart({
 	chartData,
+	chartFilter,
 	margin,
 	timeFilter,
 	// setTimeFilter,
@@ -82,7 +90,7 @@ export default function AdminChart({
 	focusedCategory,
 	focusedUser,
 }: AdminChartType) {
-	const [orderedAuthorsData, setOrderedAuthorsData] =
+	const [orderedChartsData, setOrderedData] =
 		useState<CombinedChartDataOrdersType[]>();
 	const [allDates, setAllDates] = useState<string[]>([]);
 	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
@@ -102,50 +110,51 @@ export default function AdminChart({
 		increasePageIndex,
 		decreasePageIndex,
 		totalPages,
-	} = usePagination(orderedAuthorsData ? orderedAuthorsData : [], 10);
+	} = usePagination(orderedChartsData ? orderedChartsData : [], 10);
 
 	useEffect(() => {
-		const trimmedAuthors = trimAuthorsData(authors_data);
-		const combinedAuthorName = combineName(trimmedAuthors);
+		// console.log("ChartFilter: ", chartFilter);
+		let data;
+		if (chartFilter === "Authors") {
+			data = transformAuthorsToChartDataFormat(chartData);
+		} else if (chartFilter === "Categories") {
+			data = transformCategoriesToChartDataFormat(chartData);
+			console.log("Data: ", data);
+		} else if (chartFilter === "Users") {
+			data = transformUsersToChartDataFormat(chartData);
+			console.log("Users: ", chartData);
+			console.log("Data: ", data);
+		}
+		// const trimmedAuthors = trimAuthorsData(authors_data);
+		// const combinedAuthorName = combineName(trimmedAuthors);
+		// const transformedChartData =
+		// 	transformAuthorsDataToChartData(combinedAuthorName);
+		// const combinedOrders = combineOrders(transformedChartData);
+		// // console.log(combinedOrders);
+		// console.log("trans", transformedChartData);
 
-		const transformedChartData =
-			transformAuthorsDataToChartData(combinedAuthorName);
-		const combinedOrders = combineOrders(transformedChartData);
-		// console.log(combinedOrders);
-		console.log("trans", transformedChartData);
-
-		const sortedCombinedOrders = sortOrders(combinedOrders);
-		const timeFilteredChartData = getTimeFilteredData(
+		const sortedCombinedOrders = sortOrders(data!);
+		const timeFilteredChartData = filterByTime(
 			timeFilter,
 			sortedCombinedOrders
 		);
-
-		const flattenedDates = timeFilteredChartData.flatMap(
-			(data: CombinedChartDataOrdersType) => {
-				return data.orders.map((order) => order.orderDate);
-			}
-		);
-		const flattenedQuanities = timeFilteredChartData.flatMap(
-			(data: CombinedChartDataOrdersType) => {
-				return data.orders.map((order) => order.quantity);
-			}
-		);
-		const uniqueDates = [...new Set(flattenedDates)];
-		const uniqueQuantities = [...new Set(flattenedQuanities)];
+		const flattenedDates = getFlattenedDates(timeFilteredChartData);
+		const flattenedQuanities = getFlattenedQuantities(timeFilteredChartData);
+		const uniqueDates = getUniqueDatas(flattenedDates);
+		const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
 		setAllDates(uniqueDates);
 		setAllQuantinties(uniqueQuantities);
-		setOrderedAuthorsData(timeFilteredChartData);
+		setOrderedData(timeFilteredChartData);
 		setPaginateThisList(
 			sortListBySelectOption(timeFilteredChartData, sortOption)
 		);
-
 		setHasData(
 			timeFilteredChartData.reduce(
 				(accumulator, item) => accumulator + item.orders.length,
 				0
 			)
 		);
-	}, [authors_data, timeFilter, sortOption]);
+	}, [timeFilter, sortOption]);
 
 	useEffect(() => {
 		setSelectOptions(paginatedList);
@@ -215,7 +224,7 @@ export default function AdminChart({
 									paginatedList={paginatedList}
 									allDates={allDates}
 									allQuantities={allQuantities}
-									authors={chartData}
+									// authors={chartData}
 									margin={margin}
 									timeFilter={timeFilter}
 									tooltip={tooltip}
@@ -234,8 +243,8 @@ export default function AdminChart({
 			</div>
 			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4">
 				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
-					{/* <ResponsiveSVGContainer>
-						<AuthorsAdminBarChart
+					<ResponsiveSVGContainer>
+						<BarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
 							allQuantities={allQuantities}
@@ -243,30 +252,30 @@ export default function AdminChart({
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={chartData}
+							// authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
-					</ResponsiveSVGContainer> */}
+					</ResponsiveSVGContainer>
 				</div>
 				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full  lg:w-1/4 h-96">
-					{/* <ResponsiveSVGContainer>
-						<AuthorsAdminPieChart
+					<ResponsiveSVGContainer>
+						<PieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
-							pageIndex={pageIndex}
+							// pageIndex={pageIndex}
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
-							authors={chartData}
+							// authors={chartData}
 							colorScale={colorScale}
 							hasData={hasData}
 							focusedCategory={focusedCategory}
 							doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
-					</ResponsiveSVGContainer> */}
+					</ResponsiveSVGContainer>
 				</div>
 			</div>
 		</React.Fragment>

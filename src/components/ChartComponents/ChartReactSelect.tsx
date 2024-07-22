@@ -1,7 +1,5 @@
 import React from "react";
-import Select, { OptionProps, components } from "react-select";
-import { CombinedChartDataOrdersType } from "../LineChart";
-import { ScaleOrdinal } from "d3";
+import Select, { components } from "react-select";
 const customStyles = {
 	control: (provided: any) => ({
 		...provided,
@@ -10,7 +8,7 @@ const customStyles = {
 		borderRadius: "25px",
 		padding: "0.2em",
 	}),
-	option: (provided: any, state: any) => ({
+	option: (provided: any) => ({
 		...provided,
 		backgroundColor: "white",
 		":active": { backgroundColor: "rgb(243 244 246)" },
@@ -43,7 +41,7 @@ const Option = (props: any) => {
 // 	focusedAuthor: string;
 // };
 
-const AuthorsChartReactSelect = ({
+const ChartReactSelect = ({
 	options,
 	colorScale,
 	setFocusedUser,
@@ -99,4 +97,4 @@ const AuthorsChartReactSelect = ({
 	);
 };
 
-export default AuthorsChartReactSelect;
+export default ChartReactSelect;

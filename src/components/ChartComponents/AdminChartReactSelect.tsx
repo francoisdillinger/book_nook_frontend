@@ -1,26 +1,26 @@
 import React from "react";
 import Select, { OptionProps, components } from "react-select";
 const customStyles = {
-	control: (provided) => ({
+	control: (provided: any) => ({
 		...provided,
 		backgroundColor: "rgb(243 244 246)",
 		borderColor: "#fff",
 		borderRadius: "25px",
 		padding: "0.2em",
 	}),
-	option: (provided, state) => ({
+	option: (provided: any, state: any) => ({
 		...provided,
 		backgroundColor: "white",
 		":active": { backgroundColor: "rgb(243 244 246)" },
 		":hover": { backgroundColor: "rgb(243 244 246)" },
 	}),
-	singleValue: (provided) => ({
+	singleValue: (provided: any) => ({
 		...provided,
 		color: "rgb(107 114 128)", // Set the color for the selected value
 	}),
 };
 
-const Option = (props: OptionProps) => {
+const Option = (props: any) => {
 	return (
 		<components.Option {...props}>
 			<div className="flex mb-2 cursor-pointer">
@@ -38,17 +38,17 @@ const AdminChartReactSelect = ({
 	placeHolder,
 	filterChart,
 	setChartFilter,
-}) => {
+}: any) => {
 	// console.log("Options: ", options);
-	const filterOptions = filterChart.map((option, index) => {
+	const filterOptions = filterChart.map((option: { name: any }) => {
 		return {
 			name: option.name,
 			label: option.name,
 		};
 	});
 
-	const handleChange = (option) => {
-		console.log(option);
+	const handleChange = (option: any) => {
+		// console.log(option);
 		setChartFilter(option.name);
 	};
 

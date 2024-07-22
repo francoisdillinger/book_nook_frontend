@@ -25,7 +25,9 @@ import TotalsComponent from "./ChartComponents/TotalsComponent";
 import AdminChart from "./ChartComponents/AdminChart";
 import AuthorsChartReactSelect from "./ChartComponents/AuthorsChart/AuthorsChartReactSelect";
 import { authors_data } from "../data/authors_data";
+import { categories_data } from "../data/categories_data";
 import AuthorsAdminChart from "./ChartComponents/AuthorsChart/AuthorsAdminChart";
+import ChartReactSelect from "./ChartComponents/ChartReactSelect";
 
 const doesToolTipOverflowWindow = (e: React.MouseEvent) => {
 	const tooltipWidth = 150; // Set maximum expected width of tooltip
@@ -151,38 +153,49 @@ export default function AdminHome() {
 							filterChart={filter}
 							setChartFilter={setChartFilter}
 						/>
-						{filterChart === "Users" && selectOptions.length && (
+						{/* {filterChart === "Users" && selectOptions.length && (
 							<UsersChartReactSelect
 								options={selectOptions}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
 								focusedUser={focusedUser}
 							/>
-						)}
-						{filterChart === "Categories" && selectOptions.length && (
+						)} */}
+						{/* {filterChart === "Categories" && selectOptions.length && (
 							<>
 								<CategoriesChartReactSelect
 									options={selectOptions}
 									colorScale={colorScale}
 									setFocusedUser={setFocusedUser}
 									focusedCategory={focusedUser}
-								/>
-								{/* <CategoriesChartReactSelect
+								/> */}
+						{/* <CategoriesChartReactSelect
 									options={additionalOptions}
 									colorScale={colorScale}
 									setFocusedUser={setFocusedUser}
 									focusedCategory={focusedUser}
 								/> */}
-							</>
-						)}
-						{filterChart === "Authors" && selectOptions.length && (
+						{/* </>
+						)} */}
+						{/* {filterChart === "Authors" && selectOptions.length && (
 							<AuthorsChartReactSelect
 								options={selectOptions}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
 								focusedAuthor={focusedUser}
 							/>
-						)}
+						)} */}
+						{(filterChart === "Authors" ||
+							filterChart === "Categories" ||
+							filterChart === "Users") &&
+							selectOptions.length && (
+								<ChartReactSelect
+									options={selectOptions}
+									colorScale={colorScale}
+									setFocusedUser={setFocusedUser}
+									focusedAuthor={focusedUser}
+								/>
+							)}
 					</div>
 					<div className="flex justify-start w-full mr-4 h-20 items-center lg:w-1/2 lg:justify-end xl:h-fit">
 						<ChartTimePeriodButtons
@@ -228,8 +241,8 @@ export default function AdminHome() {
 						/>
 					</div>
 				</div>
-				{/* {filterChart === "Users" && (
-					<UsersAdminChart
+				{filterChart === "Users" && (
+					<AdminChart
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
@@ -246,11 +259,14 @@ export default function AdminHome() {
 						selectOptions={selectOptions}
 						setFocusedUser={setFocusedUser}
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						chartFilter={filterChart}
+						focusedCategory={focusedUser}
 					/>
 				)}
 				{filterChart === "Categories" && (
-					<CategoriesAdminChart
+					<AdminChart
 						chartData={categories_data}
+						chartFilter={filterChart}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
@@ -268,10 +284,11 @@ export default function AdminHome() {
 						focusedUser={focusedUser}
 						setFocusedUser={setFocusedUser}
 					/>
-				)} */}
+				)}
 				{filterChart === "Authors" && (
 					<AdminChart
 						chartData={authors_data}
+						chartFilter={filterChart}
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
