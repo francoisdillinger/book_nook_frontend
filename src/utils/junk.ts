@@ -58,11 +58,11 @@ type UsersType = {
 export type ChartDataType = {
 	name: string;
 	books: {
-		bookTitle: string;
+		bookTitle?: string;
 		bookOrders: {
 			orderId: string;
-			userId: string;
-			bookId: string;
+			userId?: string;
+			bookId?: string;
 			quantity: number;
 			orderDate: string;
 			orderAmount: number;
@@ -115,7 +115,24 @@ export type ProcessedUserType = {
 	}[];
 };
 
-const trimData = () => {};
+export type TrimmedUserType = {
+	userName: string;
+	orders: {
+		userId?: string;
+		bookId?: string;
+		orderId: string;
+		quantity: number;
+		orderDate: string;
+		orderAmount: number;
+	}[];
+};
+
+export type UserOrderData = {
+	orderId: string;
+	quantity: number;
+	orderDate: string;
+	orderAmount: number;
+};
 
 // export const trimAuthorsData = (
 // 	authors: AuthorsDataType
