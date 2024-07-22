@@ -153,14 +153,14 @@ export default function AdminHome() {
 							filterChart={filter}
 							setChartFilter={setChartFilter}
 						/>
-						{filterChart === "Users" && selectOptions.length && (
+						{/* {filterChart === "Users" && selectOptions.length && (
 							<UsersChartReactSelect
 								options={selectOptions}
 								colorScale={colorScale}
 								setFocusedUser={setFocusedUser}
 								focusedUser={focusedUser}
 							/>
-						)}
+						)} */}
 						{/* {filterChart === "Categories" && selectOptions.length && (
 							<>
 								<CategoriesChartReactSelect
@@ -185,7 +185,9 @@ export default function AdminHome() {
 								focusedAuthor={focusedUser}
 							/>
 						)} */}
-						{(filterChart === "Authors" || filterChart === "Categories") &&
+						{(filterChart === "Authors" ||
+							filterChart === "Categories" ||
+							filterChart === "Users") &&
 							selectOptions.length && (
 								<ChartReactSelect
 									options={selectOptions}
@@ -239,8 +241,8 @@ export default function AdminHome() {
 						/>
 					</div>
 				</div>
-				{/* {filterChart === "Users" && (
-					<UsersAdminChart
+				{filterChart === "Users" && (
+					<AdminChart
 						margin={margin}
 						timeFilter={timeFilter}
 						tooltip={tooltip}
@@ -257,8 +259,10 @@ export default function AdminHome() {
 						selectOptions={selectOptions}
 						setFocusedUser={setFocusedUser}
 						doesToolTipOverflowWindow={doesToolTipOverflowWindow}
+						chartFilter={filterChart}
+						focusedCategory={focusedUser}
 					/>
-				)} */}
+				)}
 				{filterChart === "Categories" && (
 					<AdminChart
 						chartData={categories_data}
