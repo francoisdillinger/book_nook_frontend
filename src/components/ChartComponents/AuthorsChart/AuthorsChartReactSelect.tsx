@@ -49,8 +49,8 @@ const AuthorsChartReactSelect = ({
 	setFocusedUser,
 	focusedAuthor,
 }: any) => {
-	console.log("Options: ", options);
-	console.log("colorCalse: ", colorScale);
+	// console.log("Options: ", options);
+	// console.log("colorCalse: ", colorScale);
 	const selectOptions = options
 		.map(
 			(
