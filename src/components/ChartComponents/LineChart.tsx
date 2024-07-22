@@ -79,20 +79,20 @@ import { ChartDataType } from "../../utils/junk";
 // 	});
 // };
 
-export const sortOrders = (
-	data: CombinedChartDataOrdersType[]
-): CombinedChartDataOrdersType[] => {
-	return data.map((item) => {
-		return {
-			...item,
-			orders: item.orders.sort((a, b) => {
-				return (
-					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-				);
-			}),
-		};
-	});
-};
+// export const sortOrders = (
+// 	data: CombinedChartDataOrdersType[]
+// ): CombinedChartDataOrdersType[] => {
+// 	return data.map((item) => {
+// 		return {
+// 			...item,
+// 			orders: item.orders.sort((a, b) => {
+// 				return (
+// 					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+// 				);
+// 			}),
+// 		};
+// 	});
+// };
 
 // type TrimmedAuthorsDataType = {
 // 	authors: {
