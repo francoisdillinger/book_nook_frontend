@@ -49,7 +49,7 @@ type BarChartType = {
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
-	authors: AuthorsDataType;
+	// authors: AuthorsDataType;
 	colorScale: Function;
 	hasData: number;
 	focusedCategory: string;
@@ -65,7 +65,7 @@ export default function BarChart({
 	height = 0,
 	tooltip,
 	setTooltip,
-	authors,
+	// authors,
 	colorScale,
 	hasData,
 	focusedCategory,
