@@ -3,26 +3,27 @@ import ChartToolTip from "./ChartToolTip";
 import { TooltipStateType } from "./ChartToolTip";
 import ResponsiveSVGContainer from "./../ResponsiveSVGContainer";
 import { MarginType } from "../AdminHome";
-import { authors_data } from "../../data/authors_data";
-import { AuthorsDataType } from "../../data/authors_data";
-import { CategoriesDataType } from "../../data/categories_data";
 import { usePagination } from "../../hooks/usePagination";
 import SimpleSelect from "../SimpleSelect";
 import LineChart, { CombinedChartDataOrdersType } from "./LineChart";
 import BarChart from "./BarChat";
 import PieChart from "./PieChart";
 import {
+	aggregateOrdersByOrderId,
+	combineUserOrders,
 	transformAuthorsToChartDataFormat,
 	transformCategoriesToChartDataFormat,
+	transformUsersToChartDataFormat,
+	trimUserData,
 } from "../../utils/transformData";
 import { sortListBySelectOption, sortOrders } from "../../utils/sortData";
 import {
 	getFlattenedDates,
 	getFlattenedQuantities,
-	getTimeFilteredData,
 	getUniqueDatas,
 	getUniqueQuantities,
 } from "../../utils/getData";
+import { filterByTime, filterOutInactiveUsers } from "../../utils/filterData";
 
 type AdminChartType = {
 	// chartData: AuthorsDataType | CategoriesDataType;
@@ -119,6 +120,10 @@ export default function AdminChart({
 		} else if (chartFilter === "Categories") {
 			data = transformCategoriesToChartDataFormat(chartData);
 			console.log("Data: ", data);
+		} else if (chartFilter === "Users") {
+			data = transformUsersToChartDataFormat(chartData);
+			console.log("Users: ", chartData);
+			console.log("Data: ", data);
 		}
 		// const trimmedAuthors = trimAuthorsData(authors_data);
 		// const combinedAuthorName = combineName(trimmedAuthors);
@@ -127,9 +132,9 @@ export default function AdminChart({
 		// const combinedOrders = combineOrders(transformedChartData);
 		// // console.log(combinedOrders);
 		// console.log("trans", transformedChartData);
+
 		const sortedCombinedOrders = sortOrders(data!);
-		// console.log("Data: ", data);
-		const timeFilteredChartData = getTimeFilteredData(
+		const timeFilteredChartData = filterByTime(
 			timeFilter,
 			sortedCombinedOrders
 		);
@@ -260,7 +265,7 @@ export default function AdminChart({
 						<PieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
-							pageIndex={pageIndex}
+							// pageIndex={pageIndex}
 							timeFilter={timeFilter}
 							tooltip={tooltip}
 							setTooltip={setTooltip}
