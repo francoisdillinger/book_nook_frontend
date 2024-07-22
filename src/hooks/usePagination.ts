@@ -12,6 +12,8 @@ const filterByRange = <T>(items: T[], range: number[]): T[] => {
 
 // Currenting being used in the following components:
 // <AuthorsAdminChart/>
+// You also need to implement functionality so the when the paginatedList is sorted
+// the page index resets, otherwise you may not realize you're looking at wrong data
 export const usePagination = <T>(listToPaginate: T[], itemsPerPage: number) => {
 	const [paginateThisList, setPaginateThisList] = useState<T[]>(listToPaginate);
 	const [pageIndex, setPageIndex] = useState(1);
