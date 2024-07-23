@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ChartToolTip from "./ChartToolTip";
-import { TooltipStateType } from "./ChartToolTip";
 import ResponsiveSVGContainer from "./../ResponsiveSVGContainer";
 // import { MarginType } from "../AdminHome";
 import { usePagination } from "../../hooks/usePagination";
-import SimpleSelect from "../SimpleSelect";
 import LineChart, { CombinedChartDataOrdersType } from "./LineChart";
 import BarChart from "./BarChat";
 import PieChart from "./PieChart";
@@ -24,10 +22,6 @@ import { filterByTime } from "../../utils/filterData";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import { setOptions } from "../../features/chart/chartHighlightDataSlice";
-import {
-	ChartSortType,
-	setSortOption,
-} from "../../features/chart/chartSortOptionsSlice";
 import ChartHeader from "./ChartHeader";
 
 type AdminChartType = {
