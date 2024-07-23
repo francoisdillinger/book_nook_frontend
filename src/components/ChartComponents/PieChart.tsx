@@ -3,6 +3,10 @@ import * as d3 from "d3";
 import { motion } from "framer-motion";
 import { TooltipStateType } from "./ChartToolTip";
 import { CombinedChartDataOrdersType } from "./LineChart";
+import { colorScale } from "../../utils/junk";
+import { RootState } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
+import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 
 // const reduceOrderQuantities = (
 // 	authors: CombinedAuthorsOrdersType[]
@@ -27,32 +31,32 @@ import { CombinedChartDataOrdersType } from "./LineChart";
 type PieChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	// pageIndex: number;
-	timeFilter: string;
+	// timeFilter: string;
 	width?: number;
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	// authors: AuthorsDataType;
-	colorScale: Function;
+	// colorScale: Function;
 	hasData: number;
-	focusedCategory: string;
-	doesToolTipOverflowWindow: Function;
+	// focusedCategory: string;
+	// doesToolTipOverflowWindow: Function;
 };
 
 export default function PieChart({
 	paginatedList,
 	// pageIndex,
-	timeFilter,
+	// timeFilter,
 	width = 0,
 	height = 0,
 	tooltip,
 	setTooltip,
 	// authors,
-	colorScale,
+	// colorScale,
 	hasData,
-	focusedCategory,
-	doesToolTipOverflowWindow,
-}: PieChartType) {
+}: // focusedCategory,
+// doesToolTipOverflowWindow,
+PieChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight;
@@ -61,6 +65,9 @@ export default function PieChart({
 	// const [reducedAuthorsData, setReducedAuthorsData] =
 	// 	useState<ReducedAuthorsDataType[]>();
 	const [totalOrderCount, setTotalOrderCount] = useState(0);
+	const focusedDataPoint = useSelector(
+		(state: RootState) => state.highlightData.focusedDataPoint
+	);
 	const [key, setKey] = useState(0);
 
 	useEffect(() => {
@@ -98,7 +105,7 @@ export default function PieChart({
 		// setReducedCategoriesData(reducedData);
 		// setReducedAuthorsData(reduceOrderQuantities(filteredAuthorsChart));
 		setKey((prevKey) => prevKey + 1);
-	}, [timeFilter, paginatedList]);
+	}, [paginatedList]);
 	// console.log("Total Order Count: ", totalOrderCount);
 	// console.log("PageKey: ", key);
 	// console.log("Key: ", key);
@@ -154,11 +161,11 @@ export default function PieChart({
 							dominantBaseline="middle"
 							className="fill-current text-neutral-600 font-light text-5xl lg:text-4xl xl:text-5xl"
 						>
-							{focusedCategory != ""
+							{focusedDataPoint != ""
 								? parseFloat(
 										(
 											((paginatedList?.find(
-												(data) => data.name === focusedCategory
+												(data) => data.name === focusedDataPoint
 											)?.totalItems || 0) /
 												totalOrderCount) *
 											100
@@ -223,14 +230,14 @@ export default function PieChart({
 											stiffness: 100, // Adjust stiffness for more or less bounce
 										}}
 										fill={
-											focusedCategory === item.data.name ||
-											focusedCategory === ""
+											focusedDataPoint === item.data.name ||
+											focusedDataPoint === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === item.data.name ||
-											focusedCategory === ""
+											focusedDataPoint === item.data.name ||
+											focusedDataPoint === ""
 												? 1
 												: 0.2
 										}
