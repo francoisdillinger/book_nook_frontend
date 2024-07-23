@@ -1,3 +1,4 @@
+import * as d3 from "d3";
 import { CombinedAuthorNameType } from "../components/ChartComponents/LineChart";
 
 type AuthorsDataType = {
@@ -196,3 +197,5 @@ export const reformatUserData = (users: UsersType): ProcessedUserType[] => {
 		};
 	});
 };
+
+export const colorScale = d3.scaleOrdinal(d3.schemeSet3);
