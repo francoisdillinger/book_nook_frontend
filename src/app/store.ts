@@ -4,12 +4,14 @@ import chartViewReducer from "./../features/chart/chartViewSlice"; // Adjust the
 import highlightDataReducer from "../features/chart/chartHighlightDataSlice";
 import chartSortOptionsReducer from "../features/chart/chartSortOptionsSlice";
 import chartTimeFilterReducer from "../features/chart/chartTimeFilterSlice";
+import chartTooltipReducer from "../features/chart/chartTooltipSlice";
 
 const rootReducer = {
 	chartView: chartViewReducer,
 	highlightData: highlightDataReducer,
 	chartSortOptions: chartSortOptionsReducer,
 	chartTimeFilter: chartTimeFilterReducer,
+	ChartToolTip: chartTooltipReducer,
 	// Add other reducers here
 };
 
