@@ -1,5 +1,14 @@
 import React from "react";
-import Select, { OptionProps, components } from "react-select";
+import Select, {
+	OptionProps,
+	components,
+	SingleValue,
+	ActionMeta,
+} from "react-select";
+import { useSelector, useDispatch } from "react-redux";
+import { setView } from "./../../features/chart/chartViewSlice";
+import { RootState } from "../../app/store";
+
 const customStyles = {
 	control: (provided: any) => ({
 		...provided,
@@ -20,7 +29,7 @@ const customStyles = {
 	}),
 };
 
-const Option = (props: any) => {
+const Option = (props: OptionProps<any>) => {
 	return (
 		<components.Option {...props}>
 			<div className="flex mb-2 cursor-pointer">
@@ -34,50 +43,57 @@ const Option = (props: any) => {
 	);
 };
 
-const AdminChartReactSelect = ({
-	placeHolder,
-	filterChart,
-	setChartFilter,
-}: any) => {
-	// console.log("Options: ", options);
-	const filterOptions = filterChart.map((option: { name: any }) => {
-		return {
-			name: option.name,
-			label: option.name,
-		};
-	});
+type OptionType = {
+	value: "Authors" | "Categories" | "Users";
+	label: string;
+};
 
-	const handleChange = (option: any) => {
-		// console.log(option);
-		setChartFilter(option.name);
+const AdminChartReactSelect = () => {
+	const view = useSelector((state: RootState) => state.chartView.view);
+	const dispatch = useDispatch();
+	const options: OptionType[] = [
+		{ value: "Authors", label: "Authors" },
+		{ value: "Categories", label: "Categories" },
+		{ value: "Users", label: "Users" },
+	];
+
+	// We are using type:any below because i am not going to spend time writing
+	// a bunch of type checks. I get this isn't the 'typescript' way but oh well.
+	// Every type I import or implement solves one error but causes another, this
+	// quick fix doesn't.
+	const handleChange = (selectedOption: any) => {
+		if (selectedOption) {
+			dispatch(setView(selectedOption.value));
+		}
 	};
 
-	// const onUsernameClick = (event) => {
-	// Prevent the click from reaching the global listener
-	// This prevents the focusedUser from being reset
-	//------------------------------
-	// This needed to allow bubbling as otherwise the filter won't
-	// be reset when a new selection is made from this particular component
-	// and the fliter will remain across Authors/Categories/Users
-	// event.stopPropagation();
-	//------------------------------
-	// };
-	// console.log(selectOptions.find((option) => option.name === focusedUser));
 	return (
-		// <div onClick={(e) => onUsernameClick(e)}>
 		<Select
-			options={filterOptions}
+			options={options}
 			className="w-40"
 			components={{ Option }}
 			styles={customStyles}
-			placeholder={placeHolder}
+			placeholder={view}
 			onChange={handleChange}
-			// value={
-			// 	selectOptions.find((option) => option.name === focusedUser) || null
-			// }
+			value={options.find((option) => option.value === view) || null}
 		/>
-		// </div>
 	);
 };
 
 export default AdminChartReactSelect;
+
+// const handleChange = (option: any) => {
+// 	// console.log(option);
+// 	setChartFilter(option.name);
+// };
+
+// const onUsernameClick = (event) => {
+// Prevent the click from reaching the global listener
+// This prevents the focusedUser from being reset
+//------------------------------
+// This needed to allow bubbling as otherwise the filter won't
+// be reset when a new selection is made from this particular component
+// and the fliter will remain across Authors/Categories/Users
+// event.stopPropagation();
+//------------------------------
+// };
