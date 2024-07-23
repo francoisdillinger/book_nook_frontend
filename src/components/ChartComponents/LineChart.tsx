@@ -7,7 +7,10 @@ import YAxis from "./../YAxis";
 import { MarginType } from "../AdminHome";
 import { AuthorsDataType } from "../../data/authors_data";
 import { v4 as uuidv4 } from "uuid";
-import { ChartDataType } from "../../utils/junk";
+import { ChartDataType, colorScale } from "../../utils/junk";
+import { RootState } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
+import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 
 // let totalAmount = 0;
 // let totalItems = 0;
@@ -158,18 +161,18 @@ type LineChartType = {
 	allDates: string[];
 	allQuantities: number[];
 	margin: MarginType;
-	timeFilter: string;
+	// timeFilter: string;
 	width?: number;
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	// authors: AuthorsDataType;
-	colorScale: Function;
+	// colorScale: Function;
 	hasData: number;
 	setHasData: Function;
-	setSelectOptions: Function;
-	focusedCategory: string;
-	doesToolTipOverflowWindow: Function;
+	// setSelectOptions: Function;
+	// focusedCategory: string;
+	// doesToolTipOverflowWindow: Function;
 };
 
 export default function LineChart({
@@ -181,17 +184,20 @@ export default function LineChart({
 	height = 0,
 	tooltip,
 	setTooltip,
-	colorScale,
+	// colorScale,
 	hasData,
-	focusedCategory,
-	doesToolTipOverflowWindow,
-}: LineChartType) {
+}: // focusedCategory,
+// doesToolTipOverflowWindow,
+LineChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight - margin.top - margin.bottom;
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
+	const focusedDataPoint = useSelector(
+		(state: RootState) => state.highlightData.focusedDataPoint
+	);
 
 	const parsedDates = useMemo(
 		() =>
@@ -294,6 +300,7 @@ export default function LineChart({
 							// the console when no orders are present as it tries
 							// to create a path from empty points.
 							if (dataPoint.orders.length === 0) return;
+							// You need to implement functionality to check if there is not order then do not animate because it keeps throwing errors for negative heigh of recatngles...meaning there is 0 height
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
@@ -319,14 +326,14 @@ export default function LineChart({
 										fill="none"
 										strokeWidth={2}
 										stroke={
-											focusedCategory === dataPoint.name ||
-											focusedCategory === ""
+											focusedDataPoint === dataPoint.name ||
+											focusedDataPoint === ""
 												? color
 												: "gray"
 										}
 										opacity={
-											focusedCategory === dataPoint.name ||
-											focusedCategory === ""
+											focusedDataPoint === dataPoint.name ||
+											focusedDataPoint === ""
 												? 0.8
 												: 0.1
 										}
@@ -356,14 +363,14 @@ export default function LineChart({
 												}}
 												r={6}
 												fill={
-													focusedCategory === dataPoint.name ||
-													focusedCategory === ""
+													focusedDataPoint === dataPoint.name ||
+													focusedDataPoint === ""
 														? color
 														: "gray"
 												}
 												opacity={
-													focusedCategory === dataPoint.name ||
-													focusedCategory === ""
+													focusedDataPoint === dataPoint.name ||
+													focusedDataPoint === ""
 														? 1
 														: 0.1
 												}
