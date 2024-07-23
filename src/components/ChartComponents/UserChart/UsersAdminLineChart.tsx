@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
 import {
-	reformatUserData,
-	getFilteredData,
+	// reformatUserData,
+	// getFilteredData,
 	ProcessedUserType,
 	ProcessedOrder,
 } from "../../../utils/usersAdminChartUtilities";
