@@ -21,7 +21,7 @@ import {
 	categories_data,
 	CategoriesDataType,
 } from "../../../data/categories_data";
-import TotalsComponent from "../TotalsComponent";
+import TotalsComponent from "../SalesData";
 import CategoriesAdminLineChart from "./CategoriesAdminLineChart";
 import CategoriesAdminBarChart from "./CategoriesAdminBarChart";
 import CategoriesAdminPieChart from "./CategoriesAdminPieChart";
