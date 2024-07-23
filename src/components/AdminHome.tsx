@@ -1,52 +1,16 @@
-import React, { useEffect, useState } from "react";
-import * as d3 from "d3";
+import React, { useEffect } from "react";
 import { users } from "../data/users";
 import ChartTimePeriodButtons from "./ChartTimePeriodButtons";
-import { TooltipStateType } from "./ChartComponents/ChartToolTip";
 import AdminChartReactSelect from "./ChartComponents/AdminChartReactSelect";
-import UsersChartReactSelect from "./ChartComponents/UserChart/UsersChartReactSelect";
-import CategoriesChartReactSelect from "./ChartComponents/CategoriesChart/CategoriesChartReactSelect";
-import {
-	TotalSalesType,
-	AverageSalesType,
-	TotalBooksType,
-	AverageBooksType,
-	reformatUserData,
-	getFilteredData,
-	calculatePercentageChange,
-	previousPeriodOrders,
-	totalsReducer,
-	totalOrdersReducer,
-	totalOrderedQuantityReducer,
-	previousTime,
-} from "../utils/usersAdminChartUtilities";
 // import { filterOutInactiveUsers } from "./ChartComponents/UserChart/UsersAdminLineChart";
-import TotalsComponent from "./ChartComponents/SalesData";
 import AdminChart from "./ChartComponents/AdminChart";
-import AuthorsChartReactSelect from "./ChartComponents/AuthorsChart/AuthorsChartReactSelect";
 import { authors_data } from "../data/authors_data";
 import { categories_data } from "../data/categories_data";
-import AuthorsAdminChart from "./ChartComponents/AuthorsChart/AuthorsAdminChart";
 import ChartReactSelect from "./ChartComponents/ChartReactSelect";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { setDataPoint } from "../features/chart/chartHighlightDataSlice";
 // import { reformatUserData } from "../utils/junk";
-import {
-	// totalsReducer,
-	// totalOrdersReducer,
-	// totalOrderedQuantityReducer,
-	// calculatePercentageChange,
-	getSalesTotals,
-	getBookTotals,
-} from "../utils/adminChartUtilities";
-import {
-	filterByTime,
-	filterOutInactiveUsers,
-	filterPreviousPeriodOrders,
-} from "../utils/filterData";
-import { trimUserData, combineUserOrders } from "../utils/transformData";
-import SalesData from "./ChartComponents/SalesData";
 import Totals from "./ChartComponents/Totals";
 
 // export type MarginType = {
