@@ -4,13 +4,15 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "./ChartToolTip";
 import XAxis from "./../XAxis";
 import YAxis from "./../YAxis";
-import { MarginType } from "../AdminHome";
+// import { MarginType } from "../AdminHome";
 import { AuthorsDataType } from "../../data/authors_data";
 import { v4 as uuidv4 } from "uuid";
 import { ChartDataType, colorScale } from "../../utils/junk";
 import { RootState } from "../../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
+import { setTooltip } from "../../features/chart/chartTooltipSlice";
+import { MARGIN } from "../../constants";
 
 // let totalAmount = 0;
 // let totalItems = 0;
@@ -160,12 +162,12 @@ type LineChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	allDates: string[];
 	allQuantities: number[];
-	margin: MarginType;
+	// margin: MarginType;
 	// timeFilter: string;
 	width?: number;
 	height?: number;
-	tooltip: TooltipStateType;
-	setTooltip: Function;
+	// tooltip: TooltipStateType;
+	// setTooltip: Function;
 	// authors: AuthorsDataType;
 	// colorScale: Function;
 	hasData: number;
@@ -179,11 +181,11 @@ export default function LineChart({
 	allDates,
 	allQuantities,
 	paginatedList,
-	margin,
+	// margin,
 	width = 0,
 	height = 0,
-	tooltip,
-	setTooltip,
+	// tooltip,
+	// setTooltip,
 	// colorScale,
 	hasData,
 }: // focusedCategory,
@@ -191,14 +193,15 @@ export default function LineChart({
 LineChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
-	const graphHeight = svgHeight - margin.top - margin.bottom;
-	const graphWidth = svgWidth - margin.left - margin.right;
+	const graphHeight = svgHeight - MARGIN.top - MARGIN.bottom;
+	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
 	const focusedDataPoint = useSelector(
 		(state: RootState) => state.highlightData.focusedDataPoint
 	);
-
+	const dispatch = useDispatch();
+	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 	const parsedDates = useMemo(
 		() =>
 			(allDates ?? [])
@@ -264,7 +267,7 @@ LineChartType) {
 					ref={graphLineChartRef}
 					width={graphWidth}
 					height={graphHeight}
-					transform={`translate(${margin.left},${margin.top})`}
+					transform={`translate(${MARGIN.left},${MARGIN.top})`}
 				>
 					{hasData && (
 						<XAxis
@@ -405,15 +408,17 @@ LineChartType) {
 															</div>
 														</div>
 													);
-													setTooltip({
-														visible: true,
-														content: content,
-														x: x,
-														y: y,
-													});
+													dispatch(
+														setTooltip({
+															visible: true,
+															content: content,
+															x: x,
+															y: y,
+														})
+													);
 												}}
 												onMouseLeave={() => {
-													setTooltip({ ...tooltip, visible: false });
+													dispatch(setTooltip({ ...tooltip, visible: false }));
 												}}
 											/>
 										);
