@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "./ChartToolTip";
 import BarChartXAxis from "./UserChart/BarChartXAxis";
 import BarChartYAxis from "./UserChart/BarChartYAxis";
-import { MarginType } from "./../AdminHome";
+// import { MarginType } from "./../AdminHome";
 // import { AuthorsDataType } from "../../data/authors_data";
 // import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
 import { colorScale } from "../../utils/junk";
@@ -23,6 +23,8 @@ import {
 import { RootState } from "../../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
+import { setTooltip } from "../../features/chart/chartTooltipSlice";
+import { MARGIN } from "../../constants";
 
 export const reduceOrderQuantities = (
 	authors: CombinedChartDataOrdersType[]
@@ -46,12 +48,12 @@ export const reduceOrderQuantities = (
 type BarChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	allQuantities: number[];
-	margin: MarginType;
+	// margin: MarginType;
 	// timeFilter: string;
 	width?: number;
 	height?: number;
-	tooltip: TooltipStateType;
-	setTooltip: Function;
+	// tooltip: TooltipStateType;
+	// setTooltip: Function;
 	// authors: AuthorsDataType;
 	// colorScale: Function;
 	hasData: number;
@@ -62,12 +64,12 @@ type BarChartType = {
 export default function BarChart({
 	paginatedList,
 	allQuantities,
-	margin,
+	// margin,
 	// timeFilter,
 	width = 0,
 	height = 0,
-	tooltip,
-	setTooltip,
+	// tooltip,
+	// setTooltip,
 	// authors,
 	// colorScale,
 	hasData,
@@ -78,13 +80,15 @@ BarChartType) {
 	const svgHeight = height;
 	const additionalPadding = 20;
 	const graphHeight =
-		svgHeight - margin.top - margin.bottom + additionalPadding;
-	const graphWidth = svgWidth - margin.left - margin.right;
+		svgHeight - MARGIN.top - MARGIN.bottom + additionalPadding;
+	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const [reducedAuthorsData, setReducedAuthorsData] =
 		useState<ReducedChartDataType[]>();
 	const focusedDataPoint = useSelector(
 		(state: RootState) => state.highlightData.focusedDataPoint
 	);
+	const dispatch = useDispatch();
+	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 
 	useEffect(() => {
 		// console.log("Authors: ", authors);
@@ -173,7 +177,7 @@ BarChartType) {
 				<g
 					width={graphWidth}
 					height={graphHeight}
-					transform={`translate(${margin.left},${10})`}
+					transform={`translate(${MARGIN.left},${10})`}
 				>
 					<rect
 						x="0"
@@ -275,15 +279,17 @@ BarChartType) {
 												</div>
 											</div>
 										);
-										setTooltip({
-											visible: true,
-											content: content,
-											x: x,
-											y: y,
-										});
+										dispatch(
+											setTooltip({
+												visible: true,
+												content: content,
+												x: x,
+												y: y,
+											})
+										);
 									}}
 									onMouseLeave={() => {
-										setTooltip({ ...tooltip, visible: false });
+										dispatch(setTooltip({ ...tooltip, visible: false }));
 									}}
 								></motion.rect>
 							);
