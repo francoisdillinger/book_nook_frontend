@@ -17,7 +17,7 @@ import AuthorsAdminPieChart from "./AuthorsAdminPieChart";
 import { usePagination } from "../../../hooks/usePagination";
 import { getFilteredAuthorsData } from "../../../utils/authorsAdminChartUtilities";
 import SimpleSelect from "../../SimpleSelect";
-import { sortListBySelectOption } from "../../../utils/sortData";
+import { sortListBySelectOption } from "../../../utils/sortingData";
 // import {
 // 	AverageBooksType,
 // 	AverageSalesType,
