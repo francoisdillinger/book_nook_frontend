@@ -1,13 +1,10 @@
 import React, { useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import { TooltipStateType } from "./ChartToolTip";
 import XAxis from "./../XAxis";
 import YAxis from "./../YAxis";
 // import { MarginType } from "../AdminHome";
-import { AuthorsDataType } from "../../data/authors_data";
-import { v4 as uuidv4 } from "uuid";
-import { ChartDataType, colorScale } from "../../utils/junk";
+import { colorScale } from "../../utils/junk";
 import { RootState } from "../../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
