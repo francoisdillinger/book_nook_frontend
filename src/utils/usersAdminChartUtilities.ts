@@ -40,7 +40,12 @@ export type ProcessedOrder = {
 
 export type ProcessedUserType = {
 	userName: string;
-	orders: ProcessedOrder[];
+	orders: {
+		date: string;
+		quantity: number;
+		orderId: string;
+		amount: number;
+	}[];
 };
 
 export const reformatUserData = (users: UsersType): ProcessedUserType[] => {
