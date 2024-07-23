@@ -23,7 +23,7 @@ import {
 	totalOrdersReducer,
 	totalsReducer,
 } from "../../../utils/usersAdminChartUtilities";
-import TotalsComponent from "../TotalsComponent";
+import TotalsComponent from "../SalesData";
 
 type UsersAdminChartType = {
 	chartData: UsersType;

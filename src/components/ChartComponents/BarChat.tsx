@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 import { TooltipStateType } from "./ChartToolTip";
 import BarChartXAxis from "./UserChart/BarChartXAxis";
 import BarChartYAxis from "./UserChart/BarChartYAxis";
-import { MarginType } from "./../AdminHome";
-import { AuthorsDataType } from "../../data/authors_data";
-import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
-import { trimAuthorsData } from "../../utils/junk";
+// import { MarginType } from "./../AdminHome";
+// import { AuthorsDataType } from "../../data/authors_data";
+// import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
+import { colorScale } from "../../utils/junk";
 import {
 	// trimAuthorsData,
-	combineName,
-	combineOrders,
-	sortOrders,
+	// combineName,
+	// combineOrders,
+	// sortOrders,
 	// CombinedAuthorsOrdersType,
 	// ReducedAuthorsDataType,
 	ReducedChartDataType,
@@ -20,6 +20,11 @@ import {
 } from "./LineChart";
 // import { CategoriesDataType } from "../../../data/categories_data";
 // import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
+import { RootState } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
+import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
+import { setTooltip } from "../../features/chart/chartTooltipSlice";
+import { MARGIN } from "../../constants";
 
 export const reduceOrderQuantities = (
 	authors: CombinedChartDataOrdersType[]
@@ -43,42 +48,47 @@ export const reduceOrderQuantities = (
 type BarChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	allQuantities: number[];
-	margin: MarginType;
-	timeFilter: string;
+	// margin: MarginType;
+	// timeFilter: string;
 	width?: number;
 	height?: number;
-	tooltip: TooltipStateType;
-	setTooltip: Function;
+	// tooltip: TooltipStateType;
+	// setTooltip: Function;
 	// authors: AuthorsDataType;
-	colorScale: Function;
+	// colorScale: Function;
 	hasData: number;
-	focusedCategory: string;
-	doesToolTipOverflowWindow: Function;
+	// focusedCategory: string;
+	// doesToolTipOverflowWindow: Function;
 };
 
 export default function BarChart({
 	paginatedList,
 	allQuantities,
-	margin,
-	timeFilter,
+	// margin,
+	// timeFilter,
 	width = 0,
 	height = 0,
-	tooltip,
-	setTooltip,
+	// tooltip,
+	// setTooltip,
 	// authors,
-	colorScale,
+	// colorScale,
 	hasData,
-	focusedCategory,
-	doesToolTipOverflowWindow,
-}: BarChartType) {
+}: // focusedCategory,
+// doesToolTipOverflowWindow,
+BarChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const additionalPadding = 20;
 	const graphHeight =
-		svgHeight - margin.top - margin.bottom + additionalPadding;
-	const graphWidth = svgWidth - margin.left - margin.right;
+		svgHeight - MARGIN.top - MARGIN.bottom + additionalPadding;
+	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const [reducedAuthorsData, setReducedAuthorsData] =
 		useState<ReducedChartDataType[]>();
+	const focusedDataPoint = useSelector(
+		(state: RootState) => state.highlightData.focusedDataPoint
+	);
+	const dispatch = useDispatch();
+	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 
 	useEffect(() => {
 		// console.log("Authors: ", authors);
@@ -117,7 +127,7 @@ export default function BarChart({
 		// 	categoryArray
 		// );
 		setReducedAuthorsData(reduceOrderQuantities(paginatedList));
-	}, [graphWidth, timeFilter]);
+	}, [graphWidth, paginatedList]);
 
 	// const y = d3
 	// 	.scaleLinear()
@@ -167,7 +177,7 @@ export default function BarChart({
 				<g
 					width={graphWidth}
 					height={graphHeight}
-					transform={`translate(${margin.left},${10})`}
+					transform={`translate(${MARGIN.left},${10})`}
 				>
 					<rect
 						x="0"
@@ -236,12 +246,12 @@ export default function BarChart({
 									x={x(author.name)}
 									// y={y(author.totalItems)}
 									fill={
-										focusedCategory === author.name || focusedCategory === ""
+										focusedDataPoint === author.name || focusedDataPoint === ""
 											? color
 											: "gray"
 									}
 									opacity={
-										focusedCategory === author.name || focusedCategory === ""
+										focusedDataPoint === author.name || focusedDataPoint === ""
 											? 1
 											: 0.2
 									}
@@ -269,15 +279,17 @@ export default function BarChart({
 												</div>
 											</div>
 										);
-										setTooltip({
-											visible: true,
-											content: content,
-											x: x,
-											y: y,
-										});
+										dispatch(
+											setTooltip({
+												visible: true,
+												content: content,
+												x: x,
+												y: y,
+											})
+										);
 									}}
 									onMouseLeave={() => {
-										setTooltip({ ...tooltip, visible: false });
+										dispatch(setTooltip({ ...tooltip, visible: false }));
 									}}
 								></motion.rect>
 							);

@@ -1,5 +1,11 @@
+import { ScaleOrdinal } from "d3";
 import React from "react";
 import Select, { components } from "react-select";
+import { CombinedChartDataOrdersType } from "./LineChart";
+import { colorScale } from "../../utils/junk";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../app/store";
+import { setDataPoint } from "../../features/chart/chartHighlightDataSlice";
 const customStyles = {
 	control: (provided: any) => ({
 		...provided,
@@ -35,20 +41,19 @@ const Option = (props: any) => {
 };
 
 // type ChartSelectType = {
-// 	options: CombinedChartDataOrdersType[];
-// 	colorScale: ScaleOrdinal<string, string, never>;
-// 	setFocusedUser: Function;
+// 	options: CombinedChartDataOrdersType[] | [];
+// 	// colorScale: ScaleOrdinal<string, string, never>|;
+// 	// setFocusedUser: Function;
 // 	focusedAuthor: string;
 // };
 
-const ChartReactSelect = ({
-	options,
-	colorScale,
-	setFocusedUser,
-	focusedAuthor,
-}: any) => {
+const ChartReactSelect = () => {
 	// console.log("Options: ", options);
 	// console.log("colorCalse: ", colorScale);
+	const { options, focusedDataPoint } = useSelector(
+		(state: RootState) => state.highlightData
+	);
+	const dispatch = useDispatch();
 	const selectOptions = options
 		.map(
 			(
@@ -67,7 +72,7 @@ const ChartReactSelect = ({
 
 	const handleChange = (option: any) => {
 		// console.log(option);
-		setFocusedUser(option.name);
+		dispatch(setDataPoint(option.name));
 	};
 
 	const onUsernameClick = (
@@ -85,11 +90,11 @@ const ChartReactSelect = ({
 				className="w-60"
 				components={{ Option }}
 				styles={customStyles}
-				placeholder="Highlight Author..."
+				placeholder="Highlight..."
 				onChange={handleChange}
 				value={
 					selectOptions.find(
-						(option: { name: any }) => option.name === focusedAuthor
+						(option: { name: any }) => option.name === focusedDataPoint
 					) || null
 				}
 			/>

@@ -1,4 +1,4 @@
-type TotalsType = {
+type SalesType = {
 	title: string;
 	isDollarAmount: boolean;
 	current: string;
@@ -6,13 +6,14 @@ type TotalsType = {
 	previousPeriod: string;
 };
 
-export default function TotalsComponent({
+export default function SalesData({
 	title,
 	isDollarAmount,
 	current,
 	change,
 	previousPeriod,
-}: TotalsType) {
+}: SalesType) {
+	console.log("Change: ", change);
 	return (
 		<div className="bg-gray-100 rounded-lg flex justify-center p-8 w-full sm:half-width-minus-gap md:w-1/4">
 			<div className="flex flex-col items-start">

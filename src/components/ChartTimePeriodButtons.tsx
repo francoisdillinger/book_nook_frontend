@@ -1,14 +1,14 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../app/store";
+import { setTimeFilter } from "../features/chart/chartTimeFilterSlice";
 
-type ChartTimePeriodType = {
-	timeFilter: string;
-	setTimeFilter: Function;
-};
+export default function ChartTimePeriodButtons() {
+	const timeFilter = useSelector(
+		(state: RootState) => state.chartTimeFilter.timeFilter
+	);
+	const dispatch = useDispatch();
 
-export default function ChartTimePeriodButtons({
-	timeFilter,
-	setTimeFilter,
-}: ChartTimePeriodType) {
 	return (
 		<React.Fragment>
 			<div className="">
@@ -18,7 +18,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md "
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("day")}
+					onClick={() => dispatch(setTimeFilter("day"))}
 				>
 					1D
 				</button>
@@ -28,7 +28,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md"
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("week")}
+					onClick={() => dispatch(setTimeFilter("week"))}
 				>
 					1W
 				</button>
@@ -38,7 +38,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md"
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("month")}
+					onClick={() => dispatch(setTimeFilter("month"))}
 				>
 					1M
 				</button>
@@ -48,7 +48,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md"
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("half-year")}
+					onClick={() => dispatch(setTimeFilter("half-year"))}
 				>
 					6M
 				</button>
@@ -58,7 +58,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md"
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("year")}
+					onClick={() => dispatch(setTimeFilter("year"))}
 				>
 					YTD
 				</button>
@@ -68,7 +68,7 @@ export default function ChartTimePeriodButtons({
 							? "bg-gray-100 rounded-full text-logo shadow-md"
 							: " text-neutral-600"
 					}`}
-					onClick={() => setTimeFilter("max")}
+					onClick={() => dispatch(setTimeFilter("max"))}
 				>
 					Max
 				</button>
