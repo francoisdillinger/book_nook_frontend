@@ -7,6 +7,7 @@ import { colorScale } from "../../utils/junk";
 import { RootState } from "../../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
+import { setTooltip } from "../../features/chart/chartTooltipSlice";
 
 // const reduceOrderQuantities = (
 // 	authors: CombinedAuthorsOrdersType[]
@@ -34,8 +35,8 @@ type PieChartType = {
 	// timeFilter: string;
 	width?: number;
 	height?: number;
-	tooltip: TooltipStateType;
-	setTooltip: Function;
+	// tooltip: TooltipStateType;
+	// setTooltip: Function;
 	// authors: AuthorsDataType;
 	// colorScale: Function;
 	hasData: number;
@@ -49,8 +50,8 @@ export default function PieChart({
 	// timeFilter,
 	width = 0,
 	height = 0,
-	tooltip,
-	setTooltip,
+	// tooltip,
+	// setTooltip,
 	// authors,
 	// colorScale,
 	hasData,
@@ -69,6 +70,8 @@ PieChartType) {
 		(state: RootState) => state.highlightData.focusedDataPoint
 	);
 	const [key, setKey] = useState(0);
+	const dispatch = useDispatch();
+	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 
 	useEffect(() => {
 		// const trimmedAuthors = trimAuthorsData(authors);
@@ -265,15 +268,17 @@ PieChartType) {
 													</div>
 												</div>
 											);
-											setTooltip({
-												visible: true,
-												content: content,
-												x: x,
-												y: y,
-											});
+											dispatch(
+												setTooltip({
+													visible: true,
+													content: content,
+													x: x,
+													y: y,
+												})
+											);
 										}}
 										onMouseLeave={() => {
-											setTooltip({ ...tooltip, visible: false });
+											dispatch(setTooltip({ ...tooltip, visible: false }));
 										}}
 									></motion.path>
 								);
