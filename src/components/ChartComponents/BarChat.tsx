@@ -5,14 +5,14 @@ import { TooltipStateType } from "./ChartToolTip";
 import BarChartXAxis from "./UserChart/BarChartXAxis";
 import BarChartYAxis from "./UserChart/BarChartYAxis";
 import { MarginType } from "./../AdminHome";
-import { AuthorsDataType } from "../../data/authors_data";
-import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
-import { trimAuthorsData } from "../../utils/junk";
+// import { AuthorsDataType } from "../../data/authors_data";
+// import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
+import { colorScale } from "../../utils/junk";
 import {
 	// trimAuthorsData,
-	combineName,
-	combineOrders,
-	sortOrders,
+	// combineName,
+	// combineOrders,
+	// sortOrders,
 	// CombinedAuthorsOrdersType,
 	// ReducedAuthorsDataType,
 	ReducedChartDataType,
@@ -20,6 +20,9 @@ import {
 } from "./LineChart";
 // import { CategoriesDataType } from "../../../data/categories_data";
 // import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
+import { RootState } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
+import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 
 export const reduceOrderQuantities = (
 	authors: CombinedChartDataOrdersType[]
@@ -44,33 +47,33 @@ type BarChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
 	allQuantities: number[];
 	margin: MarginType;
-	timeFilter: string;
+	// timeFilter: string;
 	width?: number;
 	height?: number;
 	tooltip: TooltipStateType;
 	setTooltip: Function;
 	// authors: AuthorsDataType;
-	colorScale: Function;
+	// colorScale: Function;
 	hasData: number;
-	focusedCategory: string;
-	doesToolTipOverflowWindow: Function;
+	// focusedCategory: string;
+	// doesToolTipOverflowWindow: Function;
 };
 
 export default function BarChart({
 	paginatedList,
 	allQuantities,
 	margin,
-	timeFilter,
+	// timeFilter,
 	width = 0,
 	height = 0,
 	tooltip,
 	setTooltip,
 	// authors,
-	colorScale,
+	// colorScale,
 	hasData,
-	focusedCategory,
-	doesToolTipOverflowWindow,
-}: BarChartType) {
+}: // focusedCategory,
+// doesToolTipOverflowWindow,
+BarChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const additionalPadding = 20;
@@ -79,6 +82,9 @@ export default function BarChart({
 	const graphWidth = svgWidth - margin.left - margin.right;
 	const [reducedAuthorsData, setReducedAuthorsData] =
 		useState<ReducedChartDataType[]>();
+	const focusedDataPoint = useSelector(
+		(state: RootState) => state.highlightData.focusedDataPoint
+	);
 
 	useEffect(() => {
 		// console.log("Authors: ", authors);
@@ -117,7 +123,7 @@ export default function BarChart({
 		// 	categoryArray
 		// );
 		setReducedAuthorsData(reduceOrderQuantities(paginatedList));
-	}, [graphWidth, timeFilter]);
+	}, [graphWidth, paginatedList]);
 
 	// const y = d3
 	// 	.scaleLinear()
@@ -236,12 +242,12 @@ export default function BarChart({
 									x={x(author.name)}
 									// y={y(author.totalItems)}
 									fill={
-										focusedCategory === author.name || focusedCategory === ""
+										focusedDataPoint === author.name || focusedDataPoint === ""
 											? color
 											: "gray"
 									}
 									opacity={
-										focusedCategory === author.name || focusedCategory === ""
+										focusedDataPoint === author.name || focusedDataPoint === ""
 											? 1
 											: 0.2
 									}
