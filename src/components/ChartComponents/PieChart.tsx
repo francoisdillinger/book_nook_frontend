@@ -1,13 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import { TooltipStateType } from "./ChartToolTip";
 import { CombinedChartDataOrdersType } from "./LineChart";
 import { colorScale } from "../../utils/junk";
 import { RootState } from "../../app/store";
-import { useSelector, useDispatch } from "react-redux";
-import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
-import { setTooltip } from "../../features/chart/chartTooltipSlice";
+import { useSelector } from "react-redux";
 import PieChartPath from "./PieChartPath";
 
 // const reduceOrderQuantities = (
