@@ -1,17 +1,9 @@
 import React, { useMemo, useRef } from "react";
 import * as d3 from "d3";
-import { motion } from "framer-motion";
 import XAxis from "./../XAxis";
 import YAxis from "./../YAxis";
-// import { MarginType } from "../AdminHome";
 import { colorScale } from "../../utils/junk";
-import { RootState } from "../../app/store";
-import { useSelector, useDispatch } from "react-redux";
-import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
-import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
-import ChartLine from "./LineChartPath";
-import ChartLineCircle from "./LineChartCircle";
 import LineChartPath from "./LineChartPath";
 import LineChartCircle from "./LineChartCircle";
 
