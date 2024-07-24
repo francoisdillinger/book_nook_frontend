@@ -182,7 +182,7 @@ AdminChartType) {
 						<BarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
-							allQuantities={allQuantities}
+							// allQuantities={allQuantities}
 							// margin={margin}
 							// timeFilter={timeFilter}
 							// tooltip={tooltip}
