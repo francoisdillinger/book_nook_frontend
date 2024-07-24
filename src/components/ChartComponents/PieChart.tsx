@@ -8,6 +8,7 @@ import { RootState } from "../../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 import { setTooltip } from "../../features/chart/chartTooltipSlice";
+import PieChartPath from "./PieChartPath";
 
 // const reduceOrderQuantities = (
 // 	authors: CombinedAuthorsOrdersType[]
@@ -70,8 +71,8 @@ PieChartType) {
 		(state: RootState) => state.highlightData.focusedDataPoint
 	);
 	const [key, setKey] = useState(0);
-	const dispatch = useDispatch();
-	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+	// const dispatch = useDispatch();
+	// const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 
 	useEffect(() => {
 		// const trimmedAuthors = trimAuthorsData(authors);
@@ -220,67 +221,11 @@ PieChartType) {
 								// the colors change as well. I'll come back to this.
 								if (item.data.totalItems === 0) return;
 								return (
-									<motion.path
-										key={item.data.name}
-										d={arcPath(item) || ""}
-										stroke={"white"}
-										strokeWidth={2}
-										transition={{
-											duration: 0.5,
-											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-											type: "spring", // Use spring physics for bounce
-											damping: 20, // Adjust damping for more or less bounce
-											stiffness: 100, // Adjust stiffness for more or less bounce
-										}}
-										fill={
-											focusedDataPoint === item.data.name ||
-											focusedDataPoint === ""
-												? color
-												: "gray"
-										}
-										opacity={
-											focusedDataPoint === item.data.name ||
-											focusedDataPoint === ""
-												? 1
-												: 0.2
-										}
-										onMouseEnter={(e) => {
-											const { x, y } = doesToolTipOverflowWindow(e);
-											const content = (
-												<div>
-													<div>
-														<span className="text-slate-600 font-bold">
-															Author Name:
-														</span>{" "}
-														{item.data.name}
-													</div>
-													<div>
-														<span className="text-slate-600 font-bold">
-															Total Quantity:
-														</span>{" "}
-														{item.data.totalItems.toString()}
-													</div>
-													<div>
-														<span className="text-slate-600 font-bold">
-															Amount:
-														</span>{" "}
-														${item.data.totalAmount}
-													</div>
-												</div>
-											);
-											dispatch(
-												setTooltip({
-													visible: true,
-													content: content,
-													x: x,
-													y: y,
-												})
-											);
-										}}
-										onMouseLeave={() => {
-											dispatch(setTooltip({ ...tooltip, visible: false }));
-										}}
-									></motion.path>
+									<PieChartPath
+										item={item}
+										arcPath={arcPath}
+										color={color}
+									/>
 								);
 							})}
 					</motion.g>
