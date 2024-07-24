@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { CombinedChartDataOrdersType } from "../components/ChartComponents/LineChart";
-import { ProcessedUserType, sixMonthsAgo } from "./usersAdminChartUtilities";
-import { TrimmedCategoriesDataType, TrimmedUserType } from "./junk";
+import { sixMonthsAgo } from "./usersAdminChartUtilities";
+import { TrimmedUserType } from "./junk";
 
 export const filterByTime = (
 	filter: string,
