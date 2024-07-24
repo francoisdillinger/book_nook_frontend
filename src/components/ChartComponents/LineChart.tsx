@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import XAxis from "./../XAxis";
 import YAxis from "./../YAxis";
@@ -6,6 +6,12 @@ import { colorScale } from "../../utils/junk";
 import { MARGIN } from "../../constants";
 import LineChartPath from "./LineChartPath";
 import LineChartCircle from "./LineChartCircle";
+import {
+	getFlattenedDates,
+	getFlattenedQuantities,
+	getUniqueDatas,
+	getUniqueQuantities,
+} from "../../utils/getData";
 
 // let totalAmount = 0;
 // let totalItems = 0;
@@ -153,8 +159,9 @@ export type ReducedChartDataType = {
 
 type LineChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
-	allDates: string[];
-	allQuantities: number[];
+	orderedChartsData: CombinedChartDataOrdersType[] | undefined;
+	// allDates: string[];
+	// allQuantities: number[];
 	// margin: MarginType;
 	// timeFilter: string;
 	width?: number;
@@ -164,15 +171,16 @@ type LineChartType = {
 	// authors: AuthorsDataType;
 	// colorScale: Function;
 	hasData: number;
-	setHasData: Function;
+	// setHasData: Function;
 	// setSelectOptions: Function;
 	// focusedCategory: string;
 	// doesToolTipOverflowWindow: Function;
 };
 
 export default function LineChart({
-	allDates,
-	allQuantities,
+	orderedChartsData,
+	// allDates,
+	// allQuantities,
 	paginatedList,
 	// margin,
 	width = 0,
@@ -190,11 +198,27 @@ LineChartType) {
 	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
+	const [allDates, setAllDates] = useState<string[]>([]);
+	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
 	// const focusedDataPoint = useSelector(
 	// 	(state: RootState) => state.highlightData.focusedDataPoint
 	// );
 	// const dispatch = useDispatch();
 	// const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+
+	useEffect(() => {
+		const flattenedDates = getFlattenedDates(
+			orderedChartsData ? orderedChartsData : []
+		);
+		const flattenedQuanities = getFlattenedQuantities(
+			orderedChartsData ? orderedChartsData : []
+		);
+		const uniqueDates = getUniqueDatas(flattenedDates);
+		const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
+		setAllDates(uniqueDates);
+		setAllQuantinties(uniqueQuantities);
+	}, [orderedChartsData]);
+
 	const parsedDates = useMemo(
 		() =>
 			(allDates ?? [])
