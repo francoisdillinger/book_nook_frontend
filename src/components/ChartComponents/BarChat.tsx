@@ -21,109 +21,27 @@ export const reduceOrderQuantities = (
 	});
 };
 
-// type ReducedAuthorsDataType = {
-// 	authorName: string;
-// 	totalBooksOrdered: number;
-// };
-
 type BarChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
-	// allQuantities: number[];
-	// margin: MarginType;
-	// timeFilter: string;
 	width?: number;
 	height?: number;
-	// tooltip: TooltipStateType;
-	// setTooltip: Function;
-	// authors: AuthorsDataType;
-	// colorScale: Function;
 	hasData: number;
-	// focusedCategory: string;
-	// doesToolTipOverflowWindow: Function;
 };
 
 export default function BarChart({
 	paginatedList,
-	// allQuantities,
-	// margin,
-	// timeFilter,
 	width = 0,
 	height = 0,
-	// tooltip,
-	// setTooltip,
-	// authors,
-	// colorScale,
 	hasData,
-}: // focusedCategory,
-// doesToolTipOverflowWindow,
-BarChartType) {
+}: BarChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const additionalPadding = 20;
 	const graphHeight =
 		svgHeight - MARGIN.top - MARGIN.bottom + additionalPadding;
 	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
-	// const [reducedAuthorsData, setReducedAuthorsData] =
-	// 	useState<ReducedChartDataType[]>();
-	// const focusedDataPoint = useSelector(
-	// 	(state: RootState) => state.highlightData.focusedDataPoint
-	// );
-	// const dispatch = useDispatch();
-	// const tooltip = useSelector((state: RootState) => state.ChartToolTip);
-
-	// useEffect(() => {
-	// console.log("Authors: ", authors);
-	// const trimmedAuthors = trimAuthorsData(authors);
-	// const combinedAuthorName = combineName(trimmedAuthors);
-	// const combinedOrders = combineOrders(combinedAuthorName);
-	// const sortedCombinedOrders = sortOrders(combinedOrders);
-	// const filteredAuthorsChart = getFilteredAuthorsData(
-	// 	timeFilter,
-	// 	sortedCombinedOrders
-	// );
-	// const flattenedDates = filteredAuthorsChart.flatMap(
-	// 	(author: CombinedAuthorsOrdersType) => {
-	// 		return author.orders.map((order) => order.orderDate);
-	// 	}
-	// );
-	// const flattenedQuanities = filteredAuthorsChart.flatMap(
-	// 	(author: CombinedAuthorsOrdersType) => {
-	// 		return author.orders.map((order) => order.quantity);
-	// 	}
-	// );
-	// const uniqueDates = [...new Set(flattenedDates)];
-	// const uniqueQuantities = [...new Set(flattenedQuanities)];
-	// const trimmedCategories = trimCategoriesData(categories);
-	// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
-	// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
-	// const categoryArray = filteredCategories.categories.map((category) => ({
-	// 	categoryName: category.categoryName,
-	// 	orders: category.orders.sort(
-	// 		(a, b) =>
-	// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-	// 	),
-	// }));
-	// const timeFilteredCategories = getFilteredCategoriesData(
-	// 	timeFilter,
-	// 	categoryArray
-	// );
-	// setReducedAuthorsData(reduceOrderQuantities(paginatedList));
-	// }, [graphWidth, paginatedList]);
-
-	// const y = d3
-	// 	.scaleLinear()
-	// 	.domain([
-	// 		0,
-	// 		d3.max(
-	// 			reducedAuthorsData
-	// 				? reducedAuthorsData
-	// 						.map((author) => author.totalBooksOrdered)
-	// 						.filter((value) => value !== undefined && !isNaN(value))
-	// 				: [0]
-	// 		) || 0,
-	// 	])
-	// 	.range([graphHeight, 0]);
 	const topPadding = 5;
+
 	const y = d3
 		.scaleLinear()
 		.domain([
@@ -137,11 +55,6 @@ BarChartType) {
 			) || 0) + topPadding,
 		])
 		.range([graphHeight, 0]);
-
-	// const y = d3
-	// 	.scaleLinear()
-	// 	.domain([0, 100]) // Test with a fixed domain
-	// 	.range([graphHeight, 0]);
 
 	const x = d3
 		.scaleBand()
@@ -191,15 +104,6 @@ BarChartType) {
 								author.totalItems !== undefined && !isNaN(author.totalItems)
 									? graphHeight - y(author.totalItems)
 									: 0;
-							// console.log("Author:", author);
-							// console.log("PaginatedAuthor: ", paginatedList[index]);
-							// console.log("Total Items:", author.totalItems);
-							// console.log("y(author.totalItems):", y(author.totalItems));
-							// console.log("graphHeight:", graphHeight);
-							// console.log(
-							// 	"Calculated barHeight:",
-							// 	graphHeight - y(author.totalItems)
-							// );
 							// This is to prevent empty categories from throwing errors.
 							// If this item has no book orders then it is rendered as
 							// an empty rect, but framer motion tries to animate it and
