@@ -1,6 +1,4 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { ChartSortType } from "../features/chart/chartSortOptionsSlice";
+import React from "react";
 
 type SimpleSelectProps<T> = {
 	options: T[];
