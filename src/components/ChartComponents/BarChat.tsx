@@ -1,31 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import * as d3 from "d3";
-import { motion } from "framer-motion";
-import { TooltipStateType } from "./ChartToolTip";
 import BarChartXAxis from "./UserChart/BarChartXAxis";
 import BarChartYAxis from "./UserChart/BarChartYAxis";
-// import { MarginType } from "./../AdminHome";
-// import { AuthorsDataType } from "../../data/authors_data";
-// import { getFilteredAuthorsData } from "../../utils/authorsAdminChartUtilities";
 import { colorScale } from "../../utils/junk";
-import {
-	// trimAuthorsData,
-	// combineName,
-	// combineOrders,
-	// sortOrders,
-	// CombinedAuthorsOrdersType,
-	// ReducedAuthorsDataType,
-	ReducedChartDataType,
-	CombinedChartDataOrdersType,
-} from "./LineChart";
-// import { CategoriesDataType } from "../../../data/categories_data";
-// import { filterOutEmptyCategories } from "./CategoriesAdminLineChart";
-import { RootState } from "../../app/store";
-import { useSelector, useDispatch } from "react-redux";
-import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
-import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
 import ChartBar from "./ChartBar";
+import { ReducedChartDataType, CombinedChartDataOrdersType } from "./LineChart";
 
 export const reduceOrderQuantities = (
 	authors: CombinedChartDataOrdersType[]
