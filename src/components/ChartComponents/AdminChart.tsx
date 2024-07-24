@@ -1,72 +1,41 @@
 import React, { useEffect, useState } from "react";
 import ChartToolTip from "./ChartToolTip";
 import ResponsiveSVGContainer from "./../ResponsiveSVGContainer";
-// import { MarginType } from "../AdminHome";
 import { usePagination } from "../../hooks/usePagination";
 import LineChart, { CombinedChartDataOrdersType } from "./LineChart";
 import BarChart from "./BarChat";
 import PieChart from "./PieChart";
-import {
-	transformAuthorsToChartDataFormat,
-	transformCategoriesToChartDataFormat,
-	transformUsersToChartDataFormat,
-} from "../../utils/transformData";
 import { sortListBySelectOption, sortOrders } from "../../utils/sortData";
 import { filterByTime } from "../../utils/filterData";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import { setOptions } from "../../features/chart/chartHighlightDataSlice";
 import ChartHeader from "./ChartHeader";
+import {
+	transformAuthorsToChartDataFormat,
+	transformCategoriesToChartDataFormat,
+	transformUsersToChartDataFormat,
+} from "../../utils/transformData";
 
 type AdminChartType = {
 	chartData: any;
-	// chartFilter: string;
-	// margin: MarginType;
-	// timeFilter: string;
-	// setTimeFilter: Function;
 	width: number;
 	height: number;
-	// tooltip: TooltipStateType;
-	// setTooltip: Function;
-	// colorScale: Function;
-	// hasData: number;
-	// setHasData: Function;
-	// selectOptions: any;
-	// setSelectOptions: Function;
-	// doesToolTipOverflowWindow: Function;
-	// focusedCategory: string;
-	// focusedUser: string;
-	// setFocusedUser: Function;
 };
 
-export default function AdminChart({
-	chartData,
-}: // chartFilter,
-// margin,
-// timeFilter,
-// tooltip,
-// setTooltip,
-// colorScale,
-// hasData,
-// setHasData,
-// setSelectOptions,
-// doesToolTipOverflowWindow,
-// focusedCategory,
-AdminChartType) {
+export default function AdminChart({ chartData }: AdminChartType) {
+	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+	const view = useSelector((state: RootState) => state.chartView.view);
+	const [hasData, setHasData] = useState(0);
+	const dispatch = useDispatch();
 	const [orderedChartsData, setOrderedData] =
 		useState<CombinedChartDataOrdersType[]>();
-	// const [allDates, setAllDates] = useState<string[]>([]);
-	// const [allQuantities, setAllQuantinties] = useState<number[]>([]);
-	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
-	// const [sortOption, setSortOption] = useState<string>("Sort: A-Z");
-	// const options = [
-	// 	"Sort: A-Z",
-	// 	"Sort: Z-A",
-	// 	"Total Items: Ascending",
-	// 	"Total Items: Descending",
-	// 	"Total $ Amount: Ascending",
-	// 	"Total $ Amount: Descending",
-	// ];
+	const { sortOption } = useSelector(
+		(state: RootState) => state.chartSortOptions
+	);
+	const timeFilter = useSelector(
+		(state: RootState) => state.chartTimeFilter.timeFilter
+	);
 	const {
 		setPaginateThisList,
 		pageIndex,
@@ -75,15 +44,6 @@ AdminChartType) {
 		decreasePageIndex,
 		totalPages,
 	} = usePagination(orderedChartsData ? orderedChartsData : [], 10);
-	const view = useSelector((state: RootState) => state.chartView.view);
-	const { sortOption } = useSelector(
-		(state: RootState) => state.chartSortOptions
-	);
-	const timeFilter = useSelector(
-		(state: RootState) => state.chartTimeFilter.timeFilter
-	);
-	const dispatch = useDispatch();
-	const [hasData, setHasData] = useState(0);
 
 	useEffect(() => {
 		let data;
@@ -93,12 +53,9 @@ AdminChartType) {
 		} else if (view === "Categories") {
 			console.log("View: ", view);
 			data = transformCategoriesToChartDataFormat(chartData);
-			// console.log("Data: ", data);
 		} else if (view === "Users") {
 			console.log("View: ", view);
 			data = transformUsersToChartDataFormat(chartData);
-			// console.log("Users: ", chartData);
-			// console.log("Data: ", data);
 		}
 
 		const sortedCombinedOrders = sortOrders(data!);
@@ -106,12 +63,6 @@ AdminChartType) {
 			timeFilter,
 			sortedCombinedOrders
 		);
-		// const flattenedDates = getFlattenedDates(timeFilteredChartData);
-		// const flattenedQuanities = getFlattenedQuantities(timeFilteredChartData);
-		// const uniqueDates = getUniqueDatas(flattenedDates);
-		// const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
-		// setAllDates(uniqueDates);
-		// setAllQuantinties(uniqueQuantities);
 		setOrderedData(timeFilteredChartData);
 		setPaginateThisList(
 			sortListBySelectOption(timeFilteredChartData, sortOption)
@@ -127,10 +78,6 @@ AdminChartType) {
 	useEffect(() => {
 		dispatch(setOptions(paginatedList));
 	}, [paginatedList]);
-
-	// const handleSortChange = (selectedOption: ChartSortType) => {
-	// 	dispatch(setSortOption(selectedOption));
-	// };
 
 	return (
 		<React.Fragment>
@@ -153,18 +100,7 @@ AdminChartType) {
 									//height and width are provided by the <ResponsiveSVGContainer>
 									orderedChartsData={orderedChartsData}
 									paginatedList={paginatedList}
-									// allDates={allDates}
-									// allQuantities={allQuantities}
-									// margin={margin}
-									// timeFilter={timeFilter}
-									// tooltip={tooltip}
-									// setTooltip={setTooltip}
-									// colorScale={colorScale}
 									hasData={hasData}
-									// setHasData={setHasData}
-									// setSelectOptions={setSelectOptions}
-									// doesToolTipOverflowWindow={doesToolTipOverflowWindow}
-									// focusedCategory={focusedCategory}
 								/>
 							</ResponsiveSVGContainer>
 						</div>
@@ -177,15 +113,7 @@ AdminChartType) {
 						<BarChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
-							// allQuantities={allQuantities}
-							// margin={margin}
-							// timeFilter={timeFilter}
-							// tooltip={tooltip}
-							// setTooltip={setTooltip}
-							// colorScale={colorScale}
 							hasData={hasData}
-							// focusedCategory={focusedCategory}
-							// doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
 					</ResponsiveSVGContainer>
 				</div>
@@ -194,13 +122,7 @@ AdminChartType) {
 						<PieChart
 							//height and width are provided by the <ResponsiveSVGContainer>
 							paginatedList={paginatedList}
-							// timeFilter={timeFilter}
-							// tooltip={tooltip}
-							// setTooltip={setTooltip}
-							// colorScale={colorScale}
 							hasData={hasData}
-							// focusedCategory={focusedCategory}
-							// doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 						/>
 					</ResponsiveSVGContainer>
 				</div>
