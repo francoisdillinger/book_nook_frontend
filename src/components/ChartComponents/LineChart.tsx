@@ -10,8 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
-import ChartLine from "./ChartLine";
-import ChartLineCircle from "./ChartLineCircle";
+import ChartLine from "./LineChartPath";
+import ChartLineCircle from "./LineChartCircle";
+import LineChartPath from "./LineChartPath";
+import LineChartCircle from "./LineChartCircle";
 
 // let totalAmount = 0;
 // let totalItems = 0;
@@ -306,7 +308,7 @@ LineChartType) {
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
-									<ChartLine
+									<LineChartPath
 										dataPoint={dataPoint}
 										bottomLineGenerator={bottomLineGenerator}
 										linePath={linePath}
@@ -316,7 +318,7 @@ LineChartType) {
 										// console.log("Order Quantity: ", order.quantity);
 										// console.log("cy: ", y(order.quantity));
 										return (
-											<ChartLineCircle
+											<LineChartCircle
 												order={order}
 												dataPoint={dataPoint}
 												graphHeight={graphHeight}
