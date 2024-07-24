@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
+import ChartBar from "./ChartBar";
 
 export const reduceOrderQuantities = (
 	authors: CombinedChartDataOrdersType[]
@@ -47,7 +48,7 @@ export const reduceOrderQuantities = (
 
 type BarChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
-	allQuantities: number[];
+	// allQuantities: number[];
 	// margin: MarginType;
 	// timeFilter: string;
 	width?: number;
@@ -63,7 +64,7 @@ type BarChartType = {
 
 export default function BarChart({
 	paginatedList,
-	allQuantities,
+	// allQuantities,
 	// margin,
 	// timeFilter,
 	width = 0,
@@ -82,52 +83,52 @@ BarChartType) {
 	const graphHeight =
 		svgHeight - MARGIN.top - MARGIN.bottom + additionalPadding;
 	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
-	const [reducedAuthorsData, setReducedAuthorsData] =
-		useState<ReducedChartDataType[]>();
-	const focusedDataPoint = useSelector(
-		(state: RootState) => state.highlightData.focusedDataPoint
-	);
-	const dispatch = useDispatch();
-	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+	// const [reducedAuthorsData, setReducedAuthorsData] =
+	// 	useState<ReducedChartDataType[]>();
+	// const focusedDataPoint = useSelector(
+	// 	(state: RootState) => state.highlightData.focusedDataPoint
+	// );
+	// const dispatch = useDispatch();
+	// const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 
-	useEffect(() => {
-		// console.log("Authors: ", authors);
-		// const trimmedAuthors = trimAuthorsData(authors);
-		// const combinedAuthorName = combineName(trimmedAuthors);
-		// const combinedOrders = combineOrders(combinedAuthorName);
-		// const sortedCombinedOrders = sortOrders(combinedOrders);
-		// const filteredAuthorsChart = getFilteredAuthorsData(
-		// 	timeFilter,
-		// 	sortedCombinedOrders
-		// );
-		// const flattenedDates = filteredAuthorsChart.flatMap(
-		// 	(author: CombinedAuthorsOrdersType) => {
-		// 		return author.orders.map((order) => order.orderDate);
-		// 	}
-		// );
-		// const flattenedQuanities = filteredAuthorsChart.flatMap(
-		// 	(author: CombinedAuthorsOrdersType) => {
-		// 		return author.orders.map((order) => order.quantity);
-		// 	}
-		// );
-		// const uniqueDates = [...new Set(flattenedDates)];
-		// const uniqueQuantities = [...new Set(flattenedQuanities)];
-		// const trimmedCategories = trimCategoriesData(categories);
-		// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
-		// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
-		// const categoryArray = filteredCategories.categories.map((category) => ({
-		// 	categoryName: category.categoryName,
-		// 	orders: category.orders.sort(
-		// 		(a, b) =>
-		// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-		// 	),
-		// }));
-		// const timeFilteredCategories = getFilteredCategoriesData(
-		// 	timeFilter,
-		// 	categoryArray
-		// );
-		setReducedAuthorsData(reduceOrderQuantities(paginatedList));
-	}, [graphWidth, paginatedList]);
+	// useEffect(() => {
+	// console.log("Authors: ", authors);
+	// const trimmedAuthors = trimAuthorsData(authors);
+	// const combinedAuthorName = combineName(trimmedAuthors);
+	// const combinedOrders = combineOrders(combinedAuthorName);
+	// const sortedCombinedOrders = sortOrders(combinedOrders);
+	// const filteredAuthorsChart = getFilteredAuthorsData(
+	// 	timeFilter,
+	// 	sortedCombinedOrders
+	// );
+	// const flattenedDates = filteredAuthorsChart.flatMap(
+	// 	(author: CombinedAuthorsOrdersType) => {
+	// 		return author.orders.map((order) => order.orderDate);
+	// 	}
+	// );
+	// const flattenedQuanities = filteredAuthorsChart.flatMap(
+	// 	(author: CombinedAuthorsOrdersType) => {
+	// 		return author.orders.map((order) => order.quantity);
+	// 	}
+	// );
+	// const uniqueDates = [...new Set(flattenedDates)];
+	// const uniqueQuantities = [...new Set(flattenedQuanities)];
+	// const trimmedCategories = trimCategoriesData(categories);
+	// const reformattedCategories = reformatCategoriesBooks(trimmedCategories);
+	// const filteredCategories = filterOutEmptyCategories(reformattedCategories);
+	// const categoryArray = filteredCategories.categories.map((category) => ({
+	// 	categoryName: category.categoryName,
+	// 	orders: category.orders.sort(
+	// 		(a, b) =>
+	// 			new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
+	// 	),
+	// }));
+	// const timeFilteredCategories = getFilteredCategoriesData(
+	// 	timeFilter,
+	// 	categoryArray
+	// );
+	// setReducedAuthorsData(reduceOrderQuantities(paginatedList));
+	// }, [graphWidth, paginatedList]);
 
 	// const y = d3
 	// 	.scaleLinear()
@@ -227,71 +228,14 @@ BarChartType) {
 							// if (author.totalItems === 0) return;
 							if (author.totalItems === 0) return;
 							return (
-								<motion.rect
-									initial={{ height: 0, y: graphHeight ? graphHeight : 0 }}
-									animate={{
-										height: barHeight,
-										y: y(author.totalItems),
-									}}
-									transition={{
-										duration: 0.5,
-										ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-										type: "spring", // Use spring physics for bounce
-										damping: 10, // Adjust damping for more or less bounce
-										stiffness: 100, // Adjust stiffness for more or less bounce
-									}}
-									key={author.name}
-									width={x.bandwidth()}
-									height={barHeight}
-									x={x(author.name)}
-									// y={y(author.totalItems)}
-									fill={
-										focusedDataPoint === author.name || focusedDataPoint === ""
-											? color
-											: "gray"
-									}
-									opacity={
-										focusedDataPoint === author.name || focusedDataPoint === ""
-											? 1
-											: 0.2
-									}
-									onMouseEnter={(e) => {
-										const { x, y } = doesToolTipOverflowWindow(e);
-										const content = (
-											<div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Author Name:
-													</span>{" "}
-													{author.name}
-												</div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Total Quantity:
-													</span>{" "}
-													{author.totalItems.toString()}
-												</div>
-												<div>
-													<span className="text-slate-600 font-bold">
-														Amount:
-													</span>{" "}
-													${author.totalAmount}
-												</div>
-											</div>
-										);
-										dispatch(
-											setTooltip({
-												visible: true,
-												content: content,
-												x: x,
-												y: y,
-											})
-										);
-									}}
-									onMouseLeave={() => {
-										dispatch(setTooltip({ ...tooltip, visible: false }));
-									}}
-								></motion.rect>
+								<ChartBar
+									graphHeight={graphHeight}
+									barHeight={barHeight}
+									author={author}
+									color={color}
+									x={x}
+									y={y}
+								/>
 							);
 						})
 					) : (
