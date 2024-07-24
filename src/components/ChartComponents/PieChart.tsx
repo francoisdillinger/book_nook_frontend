@@ -91,6 +91,9 @@ export default function PieChart({
 							dominantBaseline="middle"
 							className="fill-current text-neutral-600 font-light text-5xl lg:text-4xl xl:text-5xl"
 						>
+							{/* We need this to display the percentage based on ALL data not just compared to the paginatedList
+							For example: The percentage for paginated list is comparing data to just 10 other data points
+							we need it to compare to ALL other data points total. */}
 							{focusedDataPoint != ""
 								? parseFloat(
 										(
