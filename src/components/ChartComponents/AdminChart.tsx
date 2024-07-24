@@ -12,12 +12,6 @@ import {
 	transformUsersToChartDataFormat,
 } from "../../utils/transformData";
 import { sortListBySelectOption, sortOrders } from "../../utils/sortData";
-import {
-	getFlattenedDates,
-	getFlattenedQuantities,
-	getUniqueDatas,
-	getUniqueQuantities,
-} from "../../utils/getData";
 import { filterByTime } from "../../utils/filterData";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
