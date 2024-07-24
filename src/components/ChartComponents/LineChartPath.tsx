@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { CombinedChartDataOrdersType } from "./LineChart";
 
