@@ -171,7 +171,7 @@ AdminChartType) {
 					</div>
 				</div>
 			</div>
-			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4">
+			<div className="border-box flex flex-wrap lg:flex-nowrap lg:ml-20 xl:ml-18 justify-between md:gap-4 mb-12">
 				<div className="bg-gray-100 rounded-lg my-2 pt-2 w-full lg:w-3/4 h-96">
 					<ResponsiveSVGContainer>
 						<BarChart
