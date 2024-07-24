@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
+import ChartLine from "./ChartLine";
+import ChartLineCircle from "./ChartLineCircle";
 
 // let totalAmount = 0;
 // let totalItems = 0;
@@ -194,11 +196,11 @@ LineChartType) {
 	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const focusedDataPoint = useSelector(
-		(state: RootState) => state.highlightData.focusedDataPoint
-	);
-	const dispatch = useDispatch();
-	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+	// const focusedDataPoint = useSelector(
+	// 	(state: RootState) => state.highlightData.focusedDataPoint
+	// );
+	// const dispatch = useDispatch();
+	// const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 	const parsedDates = useMemo(
 		() =>
 			(allDates ?? [])
@@ -304,119 +306,23 @@ LineChartType) {
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
-									<motion.path
-										key={dataPoint.name}
-										initial={{
-											d:
-												bottomLineGenerator(
-													dataPoint.orders.map((order) => [
-														new Date(order.orderDate).getTime(),
-														order.quantity,
-													])
-												) || "",
-										}}
-										animate={{ d: linePath || "" }}
-										transition={{
-											duration: 0.5,
-											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-											type: "spring", // Use spring physics for bounce
-											damping: 10, // Adjust damping for more or less bounce
-											stiffness: 100, // Adjust stiffness for more or less bounce
-										}}
-										fill="none"
-										strokeWidth={2}
-										stroke={
-											focusedDataPoint === dataPoint.name ||
-											focusedDataPoint === ""
-												? color
-												: "gray"
-										}
-										opacity={
-											focusedDataPoint === dataPoint.name ||
-											focusedDataPoint === ""
-												? 0.8
-												: 0.1
-										}
+									<ChartLine
+										dataPoint={dataPoint}
+										bottomLineGenerator={bottomLineGenerator}
+										linePath={linePath}
+										color={color}
 									/>
 									{dataPoint.orders.map((order) => {
 										// console.log("Order Quantity: ", order.quantity);
 										// console.log("cy: ", y(order.quantity));
 										return (
-											<motion.circle
-												// The issue of one or two circles not resetting use due to a few duplicate keys
-												// so I added a uuid as a uniqueId field on the order.
-												key={order.uniqueId}
-												className="cursor-pointer"
-												stroke={"white"}
-												strokeWidth={2}
-												initial={{ cy: graphHeight }}
-												animate={{
-													cy: y(order.quantity),
-													cx: x(new Date(order.orderDate)),
-												}}
-												transition={{
-													duration: 0.5,
-													ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-													type: "spring", // Use spring physics for bounce
-													damping: 10, // Adjust damping for more or less bounce
-													stiffness: 100, // Adjust stiffness for more or less bounce
-												}}
-												r={6}
-												fill={
-													focusedDataPoint === dataPoint.name ||
-													focusedDataPoint === ""
-														? color
-														: "gray"
-												}
-												opacity={
-													focusedDataPoint === dataPoint.name ||
-													focusedDataPoint === ""
-														? 1
-														: 0.1
-												}
-												onMouseEnter={(e) => {
-													// console.log(e);
-													const { x, y } = doesToolTipOverflowWindow(e);
-													const content = (
-														<div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Order ID:
-																</span>{" "}
-																{order.orderId}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Date:
-																</span>{" "}
-																{order.orderDate.toString()}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Quantity:
-																</span>{" "}
-																{order.quantity}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Amount:
-																</span>{" "}
-																${order.orderAmount}
-															</div>
-														</div>
-													);
-													dispatch(
-														setTooltip({
-															visible: true,
-															content: content,
-															x: x,
-															y: y,
-														})
-													);
-												}}
-												onMouseLeave={() => {
-													dispatch(setTooltip({ ...tooltip, visible: false }));
-												}}
+											<ChartLineCircle
+												order={order}
+												dataPoint={dataPoint}
+												graphHeight={graphHeight}
+												color={color}
+												x={x}
+												y={y}
 											/>
 										);
 									})}
