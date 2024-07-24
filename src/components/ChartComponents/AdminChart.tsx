@@ -61,8 +61,8 @@ export default function AdminChart({
 AdminChartType) {
 	const [orderedChartsData, setOrderedData] =
 		useState<CombinedChartDataOrdersType[]>();
-	const [allDates, setAllDates] = useState<string[]>([]);
-	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
+	// const [allDates, setAllDates] = useState<string[]>([]);
+	// const [allQuantities, setAllQuantinties] = useState<number[]>([]);
 	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
 	// const [sortOption, setSortOption] = useState<string>("Sort: A-Z");
 	// const options = [
@@ -112,12 +112,12 @@ AdminChartType) {
 			timeFilter,
 			sortedCombinedOrders
 		);
-		const flattenedDates = getFlattenedDates(timeFilteredChartData);
-		const flattenedQuanities = getFlattenedQuantities(timeFilteredChartData);
-		const uniqueDates = getUniqueDatas(flattenedDates);
-		const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
-		setAllDates(uniqueDates);
-		setAllQuantinties(uniqueQuantities);
+		// const flattenedDates = getFlattenedDates(timeFilteredChartData);
+		// const flattenedQuanities = getFlattenedQuantities(timeFilteredChartData);
+		// const uniqueDates = getUniqueDatas(flattenedDates);
+		// const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
+		// setAllDates(uniqueDates);
+		// setAllQuantinties(uniqueQuantities);
 		setOrderedData(timeFilteredChartData);
 		setPaginateThisList(
 			sortListBySelectOption(timeFilteredChartData, sortOption)
@@ -157,16 +157,17 @@ AdminChartType) {
 							<ResponsiveSVGContainer>
 								<LineChart
 									//height and width are provided by the <ResponsiveSVGContainer>
+									orderedChartsData={orderedChartsData}
 									paginatedList={paginatedList}
-									allDates={allDates}
-									allQuantities={allQuantities}
+									// allDates={allDates}
+									// allQuantities={allQuantities}
 									// margin={margin}
 									// timeFilter={timeFilter}
 									// tooltip={tooltip}
 									// setTooltip={setTooltip}
 									// colorScale={colorScale}
 									hasData={hasData}
-									setHasData={setHasData}
+									// setHasData={setHasData}
 									// setSelectOptions={setSelectOptions}
 									// doesToolTipOverflowWindow={doesToolTipOverflowWindow}
 									// focusedCategory={focusedCategory}
