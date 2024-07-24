@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import React from "react";
 import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
 import { CombinedChartDataOrdersType } from "./LineChart";
 import { useDispatch, useSelector } from "react-redux";
