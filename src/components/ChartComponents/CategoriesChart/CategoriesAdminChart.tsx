@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChartToolTip from "../ChartToolTip";
 import { TooltipStateType } from "../ChartToolTip";
 import ResponsiveSVGContainer from "../../ResponsiveSVGContainer";
-import { MarginType } from "../../AdminHomePage";
+import { MarginType } from "../../../pages/AdminHomePage";
 import {
 	AverageBooksType,
 	AverageSalesType,
