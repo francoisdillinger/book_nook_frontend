@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Profile() {
+export default function ProfilePage() {
 	const [image, setImage] = useState<string>("");
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

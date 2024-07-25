@@ -1,4 +1,4 @@
-import { TrimmedBookType } from "../components/AdminBooks";
+import { TrimmedBookType } from "../components/AdminBooksPage";
 
 export const book: TrimmedBookType = {
 	id: "94214347-e2c1-4fa4-872f-2b02dfaccfef",

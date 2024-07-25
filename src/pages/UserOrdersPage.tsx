@@ -17,7 +17,7 @@ const trimOrders = (orders: UserOrdersType): UserOrder[] => {
 	return [...orders.orders];
 };
 
-export default function UserOrders() {
+export default function UserOrdersPage() {
 	const [userOrders, setUserOrders] = useState<UserOrder[] | null>();
 	useEffect(() => {
 		const trimmedOrders = trimOrders(orders);

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AddAuthor() {
+export default function AddAuthorPage() {
 	return (
 		<React.Fragment>
 			<div className="w-11/12 md:w-1/2 bg-white md:bg-gray-100 md:rounded-lg md:mt-16 p-8  m-auto mb-20">

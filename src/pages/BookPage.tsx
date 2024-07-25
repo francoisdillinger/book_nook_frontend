@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { TrimmedBookType } from "./AdminBooks";
+import { TrimmedBookType } from "../components/AdminBooksPage";
 import { book } from "../data/bookItem";
 import alchemist from "../assets/alchemist.jpg";
-import StaticStarRating from "./StaticStarRating";
-import BookItemBadges from "./BookItemBadges";
-import BookStandardCarousel from "./BookStandardCarousel";
-import BookReview from "./BookReview";
+import StaticStarRating from "../components/StaticStarRating";
+import BookItemBadges from "../components/BookItemBadges";
+import BookStandardCarousel from "../components/BookStandardCarousel";
+import BookReview from "../components/BookReview";
 
 export const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -19,7 +19,7 @@ export const totalRating = (book: TrimmedBookType): number => {
 	return parseFloat((totalRating / length).toFixed(1));
 };
 
-export default function BookItem() {
+export default function BookPage() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
 

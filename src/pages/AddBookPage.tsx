@@ -10,7 +10,7 @@ export const trimAuthors = (authors: AuthorsDataType): TrimmedAuthorsType[] => {
 	return [...authors.data.authors];
 };
 
-export default function AddBook() {
+export default function AddBookPage() {
 	const [image, setImage] = useState<string>("");
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
 

@@ -1,4 +1,4 @@
-import { TrimmedBookType } from "./AdminBooks";
+import { TrimmedBookType } from "./AdminBooksPage";
 
 type BookItemBadgesType = {
 	bookItem: TrimmedBookType | null | undefined;

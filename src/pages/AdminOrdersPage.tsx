@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import TableData from "./TableData";
+import TableData from "../components/TableData";
 import { orders_data } from "../data/orders_data";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 import {
 	OrdersSearchType,
 	OrdersSortType,
@@ -51,7 +51,7 @@ export const filterByRange = <T,>(orders: T[], range: number[]): T[] => {
 	});
 };
 
-export default function AdminOrders() {
+export default function AdminOrdersPage() {
 	const options = [
 		"Date: Newest",
 		"Date: Oldest",

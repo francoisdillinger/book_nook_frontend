@@ -4,7 +4,7 @@ import {
 	booksWithCategories,
 	BookWithCategoriesType,
 } from "../data/booksWithCategories";
-import { TrimmedBookType } from "./AdminBooks";
+import { TrimmedBookType } from "../components/AdminBooksPage";
 import {
 	GraphQL_Categories,
 	graphql_categories,
@@ -13,9 +13,9 @@ import {
 import alchemist from "../assets/alchemist.jpg";
 // import { categories_data } from "../data/categories_data";
 import { motion } from "framer-motion";
-import StaticStarRating from "./StaticStarRating";
-import { getRange } from "./AdminOrders";
-import { totalRating } from "./BookItem";
+import StaticStarRating from "../components/StaticStarRating";
+import { getRange } from "./AdminOrdersPage";
+import { totalRating } from "./BookPage";
 
 type FilterByCategoryType = {
 	categoryName: string;
@@ -126,7 +126,7 @@ const filterByRange = (
 	});
 };
 
-export default function BookSearch() {
+export default function SearchResultsPage() {
 	const numOfResults = 8;
 	const [paginationIndex, setPaginationIndex] = useState(1);
 	// const [inRange, setInRange] = useState<boolean>(false);

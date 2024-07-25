@@ -112,7 +112,7 @@ const sortOrders = (orders: TrimmedBookType[], sortOption: BooksSortType) => {
 	}
 };
 
-export default function AdminBooks() {
+export default function AdminBooksPage() {
 	const options = [
 		"Sort a-z: Title",
 		"Sort z-a: Title",

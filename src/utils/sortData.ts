@@ -7,7 +7,6 @@
 //     "Total $ Amount: Descending",
 // ];
 
-import { CombinedAuthorsOrdersType } from "../components/ChartComponents/AuthorsChart/AuthorsAdminLineChart";
 import { CombinedChartDataOrdersType } from "../components/ChartComponents/LineChart";
 
 // export const sortListBySelectOption = (

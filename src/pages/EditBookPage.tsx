@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function EditBook() {
+export default function EditBookPage() {
 	const [image, setImage] = useState<string>("");
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { author_data, AuthorsDataType } from "../data/authors";
-import { trimAuthors, TrimmedAuthorsType } from "./AddBook";
+import { trimAuthors, TrimmedAuthorsType } from "./AddBookPage";
 
-export default function EditAuthor() {
+export default function EditAuthorPage() {
 	const [authors, setAuthors] = useState<TrimmedAuthorsType[] | null>();
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");

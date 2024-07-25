@@ -1,118 +1,17 @@
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
-import { motion } from "framer-motion";
 import XAxis from "./../XAxis";
 import YAxis from "./../YAxis";
-// import { MarginType } from "../AdminHome";
 import { colorScale } from "../../utils/junk";
-import { RootState } from "../../app/store";
-import { useSelector, useDispatch } from "react-redux";
-import { doesToolTipOverflowWindow } from "../../utils/adminChartUtilities";
-import { setTooltip } from "../../features/chart/chartTooltipSlice";
 import { MARGIN } from "../../constants";
-
-// let totalAmount = 0;
-// let totalItems = 0;
-// totalAmount += order.orderAmount;
-// totalItems += order.quantity;
-// totalAmount: parseFloat(totalAmount.toFixed(2)),
-// totalItems: totalItems,
-
-// export const combineOrders = (data: ChartDataType[]) => {
-// 	console.log("data: ", data);
-// };
-
-// export const combineOrders = (
-// 	authors: ChartDataType[]
-// ): CombinedChartDataOrdersType[] => {
-// 	let totalAmount = 0;
-// 	let totalItems = 0;
-// 	return authors.map((author) => {
-// 		return {
-// 			name: author.name,
-// 			orders: author.books
-// 				.map((book) => {
-// 					return book.bookOrders.map((order) => {
-// 						totalAmount += order.orderAmount;
-// 						totalItems += order.quantity;
-// 						return {
-// 							bookTitle: book.bookTitle,
-// 							...order,
-// 							uniqueId: uuidv4(),
-// 						};
-// 					});
-// 				})
-// 				.flat(),
-// 			totalAmount: parseFloat(totalAmount.toFixed(2)),
-// 			totalItems: totalItems,
-// 		};
-// 	});
-// };
-
-// data.map((item) => {
-//     return {
-//         name: item.name,
-//         orders: item.books.flatMap((book) => {
-//             if (!Array.isArray(book.bookOrders)) {
-//                 console.error(
-//                     `Expected bookOrders to be an array, but got ${typeof book.bookOrders}`
-//                 );
-//                 return [];
-//             }
-//             return book.bookOrders.map((order) => {
-//                 return {
-//                     bookTitle: book.bookTitle,
-//                     ...order,
-//                     uniqueId: uuidv4(),
-//                 };
-//             });
-//         }),
-//     };
-// });
-
-// export const combineName = (
-// 	authors: TrimmedAuthorsDataType
-// ): CombinedAuthorNameType[] => {
-// 	return authors.authors.map((author) => {
-// 		return {
-// 			authorName: author.authorFirstName + " " + author.authorLastName,
-// 			books: author.books,
-// 		};
-// 	});
-// };
-
-// export const sortOrders = (
-// 	data: CombinedChartDataOrdersType[]
-// ): CombinedChartDataOrdersType[] => {
-// 	return data.map((item) => {
-// 		return {
-// 			...item,
-// 			orders: item.orders.sort((a, b) => {
-// 				return (
-// 					new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime()
-// 				);
-// 			}),
-// 		};
-// 	});
-// };
-
-// type TrimmedAuthorsDataType = {
-// 	authors: {
-// 		authorFirstName: string;
-// 		authorLastName: string;
-// 		books: {
-// 			bookTitle: string;
-// 			bookOrders: {
-// 				orderId: string;
-// 				userId: string;
-// 				bookId: string;
-// 				quantity: number;
-// 				orderDate: string;
-// 				orderAmount: number;
-// 			}[];
-// 		}[];
-// 	}[];
-// };
+import LineChartPath from "./LineChartPath";
+import LineChartCircle from "./LineChartCircle";
+import {
+	getFlattenedDates,
+	getFlattenedQuantities,
+	getUniqueDatas,
+	getUniqueQuantities,
+} from "../../utils/getData";
 
 export type CombinedAuthorNameType = {
 	authorName: string;
@@ -145,11 +44,6 @@ export type CombinedChartDataOrdersType = {
 	}[];
 };
 
-// export type ReducedAuthorsDataType = {
-// 	authorName: string;
-// 	totalBooksOrdered: number;
-// };
-
 export type ReducedChartDataType = {
 	name: string;
 	totalBooksOrdered: number;
@@ -157,48 +51,43 @@ export type ReducedChartDataType = {
 
 type LineChartType = {
 	paginatedList: CombinedChartDataOrdersType[];
-	allDates: string[];
-	allQuantities: number[];
-	// margin: MarginType;
-	// timeFilter: string;
+	orderedChartsData: CombinedChartDataOrdersType[] | undefined;
 	width?: number;
 	height?: number;
-	// tooltip: TooltipStateType;
-	// setTooltip: Function;
-	// authors: AuthorsDataType;
-	// colorScale: Function;
 	hasData: number;
-	setHasData: Function;
-	// setSelectOptions: Function;
-	// focusedCategory: string;
-	// doesToolTipOverflowWindow: Function;
 };
 
 export default function LineChart({
-	allDates,
-	allQuantities,
+	orderedChartsData,
 	paginatedList,
-	// margin,
+
 	width = 0,
 	height = 0,
-	// tooltip,
-	// setTooltip,
-	// colorScale,
+
 	hasData,
-}: // focusedCategory,
-// doesToolTipOverflowWindow,
-LineChartType) {
+}: LineChartType) {
 	const svgWidth = width;
 	const svgHeight = height;
 	const graphHeight = svgHeight - MARGIN.top - MARGIN.bottom;
 	const graphWidth = svgWidth - MARGIN.left - MARGIN.right;
 	const svgLineChartRef = useRef<SVGSVGElement>(null);
 	const graphLineChartRef = useRef<SVGSVGElement>(null);
-	const focusedDataPoint = useSelector(
-		(state: RootState) => state.highlightData.focusedDataPoint
-	);
-	const dispatch = useDispatch();
-	const tooltip = useSelector((state: RootState) => state.ChartToolTip);
+	const [allDates, setAllDates] = useState<string[]>([]);
+	const [allQuantities, setAllQuantinties] = useState<number[]>([]);
+
+	useEffect(() => {
+		const flattenedDates = getFlattenedDates(
+			orderedChartsData ? orderedChartsData : []
+		);
+		const flattenedQuanities = getFlattenedQuantities(
+			orderedChartsData ? orderedChartsData : []
+		);
+		const uniqueDates = getUniqueDatas(flattenedDates);
+		const uniqueQuantities = getUniqueQuantities(flattenedQuanities);
+		setAllDates(uniqueDates);
+		setAllQuantinties(uniqueQuantities);
+	}, [orderedChartsData]);
+
 	const parsedDates = useMemo(
 		() =>
 			(allDates ?? [])
@@ -211,7 +100,7 @@ LineChartType) {
 		() => d3.extent(parsedDates) as [Date, Date] | [undefined, undefined],
 		[parsedDates]
 	);
-	// console.log("Date Extent: ", dateExtent);
+
 	const domain = useMemo(
 		() =>
 			dateExtent[0] && dateExtent[1] ? dateExtent : [new Date(), new Date()],
@@ -285,16 +174,12 @@ LineChartType) {
 						paginatedList != undefined &&
 						paginatedList.map((dataPoint, index) => {
 							const color = colorScale(index.toString());
-							// console.log("Color: ", color);
-							// console.log("Category: ", category);
 							const linePath = theLine(
 								dataPoint.orders.map((order) => [
 									new Date(order.orderDate).getTime(), // Convert Date string to Date object and then get the time
 									order.quantity,
 								])
 							);
-							// console.log("Line Path: ", linePath);
-							// console.log("Focused Category: ", focusedCategory);
 
 							// This prevents framer motion errors from blowing up
 							// the console when no orders are present as it tries
@@ -304,119 +189,21 @@ LineChartType) {
 							return (
 								<React.Fragment>
 									{/* Unique key for each fragment */}
-									<motion.path
-										key={dataPoint.name}
-										initial={{
-											d:
-												bottomLineGenerator(
-													dataPoint.orders.map((order) => [
-														new Date(order.orderDate).getTime(),
-														order.quantity,
-													])
-												) || "",
-										}}
-										animate={{ d: linePath || "" }}
-										transition={{
-											duration: 0.5,
-											ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-											type: "spring", // Use spring physics for bounce
-											damping: 10, // Adjust damping for more or less bounce
-											stiffness: 100, // Adjust stiffness for more or less bounce
-										}}
-										fill="none"
-										strokeWidth={2}
-										stroke={
-											focusedDataPoint === dataPoint.name ||
-											focusedDataPoint === ""
-												? color
-												: "gray"
-										}
-										opacity={
-											focusedDataPoint === dataPoint.name ||
-											focusedDataPoint === ""
-												? 0.8
-												: 0.1
-										}
+									<LineChartPath
+										dataPoint={dataPoint}
+										bottomLineGenerator={bottomLineGenerator}
+										linePath={linePath}
+										color={color}
 									/>
 									{dataPoint.orders.map((order) => {
-										// console.log("Order Quantity: ", order.quantity);
-										// console.log("cy: ", y(order.quantity));
 										return (
-											<motion.circle
-												// The issue of one or two circles not resetting use due to a few duplicate keys
-												// so I added a uuid as a uniqueId field on the order.
-												key={order.uniqueId}
-												className="cursor-pointer"
-												stroke={"white"}
-												strokeWidth={2}
-												initial={{ cy: graphHeight }}
-												animate={{
-													cy: y(order.quantity),
-													cx: x(new Date(order.orderDate)),
-												}}
-												transition={{
-													duration: 0.5,
-													ease: [0.17, 0.67, 0.83, 0.67], // Bezier curve for a bounce effect
-													type: "spring", // Use spring physics for bounce
-													damping: 10, // Adjust damping for more or less bounce
-													stiffness: 100, // Adjust stiffness for more or less bounce
-												}}
-												r={6}
-												fill={
-													focusedDataPoint === dataPoint.name ||
-													focusedDataPoint === ""
-														? color
-														: "gray"
-												}
-												opacity={
-													focusedDataPoint === dataPoint.name ||
-													focusedDataPoint === ""
-														? 1
-														: 0.1
-												}
-												onMouseEnter={(e) => {
-													// console.log(e);
-													const { x, y } = doesToolTipOverflowWindow(e);
-													const content = (
-														<div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Order ID:
-																</span>{" "}
-																{order.orderId}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Date:
-																</span>{" "}
-																{order.orderDate.toString()}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Quantity:
-																</span>{" "}
-																{order.quantity}
-															</div>
-															<div>
-																<span className="text-slate-600 font-bold">
-																	Amount:
-																</span>{" "}
-																${order.orderAmount}
-															</div>
-														</div>
-													);
-													dispatch(
-														setTooltip({
-															visible: true,
-															content: content,
-															x: x,
-															y: y,
-														})
-													);
-												}}
-												onMouseLeave={() => {
-													dispatch(setTooltip({ ...tooltip, visible: false }));
-												}}
+											<LineChartCircle
+												order={order}
+												dataPoint={dataPoint}
+												graphHeight={graphHeight}
+												color={color}
+												x={x}
+												y={y}
 											/>
 										);
 									})}
