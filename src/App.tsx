@@ -12,7 +12,7 @@ import NewsLetter from "./components/NewsLetter";
 import BlogSection from "./components/BlogSection";
 import HomePageContent from "./components/HomePageContent";
 import SideBarAdminMenu from "./components/SideBarAdminMenu";
-import AdminHome from "./components/AdminHome";
+import AdminHome from "./components/AdminHomePage";
 import Scratch from "./components/Scratch";
 import UsersAdminChart from "./components/ChartComponents/UserChart/UsersAdminChart";
 import AdminChart from "./components/ChartComponents/AdminChart";
@@ -31,6 +31,7 @@ import SignUpForm from "./components/SignUpForm";
 import LoginForm from "./components/LoginForm";
 import Profile from "./components/Profile";
 import UserOrders from "./components/UserOrders";
+import AdminHomePage from "./components/AdminHomePage";
 
 export default function App() {
 	return (
@@ -46,7 +47,7 @@ export default function App() {
 			{/* <Profile /> */}
 			{/* <UserOrders /> */}
 			{/* <SideBarAdminMenu /> */}
-			<AdminHome />
+			<AdminHomePage />
 
 			<div className="  m-auto">
 				{/* <AdminMenu /> */}
