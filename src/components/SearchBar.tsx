@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 type SearchBarType = {
 	options: string[];
@@ -66,13 +67,14 @@ export default function SearchBar({
 						value={values.value}
 					/>
 				</div>
-				<button
+				<Link
+					to={"/search"}
 					onClick={(event) => clickHandler(event)}
 					type="submit"
 					className={`${buttonStyles}`}
 				>
 					Search
-				</button>
+				</Link>
 			</div>
 		</React.Fragment>
 	);
