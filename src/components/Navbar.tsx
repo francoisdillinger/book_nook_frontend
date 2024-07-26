@@ -221,22 +221,22 @@ export default function Navbar() {
 							</React.Fragment>
 						) : (
 							<React.Fragment>
-								<a
-									href=""
+								<Link
+									to={"/login"}
 									className=" py-5 px-3 text-gray-600 hover:text-gray-900"
 									onClick={(e) => {
-										e.preventDefault();
+										// e.preventDefault();
 										setLoggedIn(true);
 									}}
 								>
 									Login
-								</a>
-								<a
-									href=""
+								</Link>
+								<Link
+									to={"/signup"}
 									className="py-3 px-3 bg-yellow-400 text-yellow-900 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
 								>
 									Signup
-								</a>
+								</Link>
 							</React.Fragment>
 						)}
 					</div>
