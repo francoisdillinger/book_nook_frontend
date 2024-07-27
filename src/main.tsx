@@ -10,6 +10,9 @@ import SearchResultsPage from "./pages/SearchResultPage.tsx";
 import AdminHomePage from "./pages/AdminHomePage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
+import BookPage from "./pages/BookPage.tsx";
+import AboutUsPage from "./pages/AboutUsPage.tsx";
+import ContactUsPage from "./pages/ContactUsPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +22,14 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <HomePage />,
+			},
+			{
+				path: "/about",
+				element: <AboutUsPage />,
+			},
+			{
+				path: "/contact",
+				element: <ContactUsPage />,
 			},
 			{
 				path: "/login",
@@ -35,6 +46,10 @@ const router = createBrowserRouter([
 			{
 				path: "/admin",
 				element: <AdminHomePage />,
+			},
+			{
+				path: "/book/:bookTitle",
+				element: <BookPage />,
 			},
 		],
 	},
