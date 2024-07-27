@@ -6,6 +6,8 @@ import StaticStarRating from "../components/StaticStarRating";
 import BookItemBadges from "../components/BookItemBadges";
 import BookStandardCarousel from "../components/BookStandardCarousel";
 import BookReview from "../components/BookReview";
+import { useParams } from "react-router-dom";
+import { books, BooksData } from "../data/books";
 
 export const totalRating = (book: TrimmedBookType): number => {
 	const length = book.bookReviews ? book.bookReviews?.length : 1;
@@ -22,11 +24,20 @@ export const totalRating = (book: TrimmedBookType): number => {
 export default function BookPage() {
 	const [bookItem, setBookItem] = useState<null | TrimmedBookType>();
 	const [bookRating, setBookRating] = useState<number>(0);
+	const { bookTitle } = useParams();
+	console.log(bookTitle);
+	// useEffect(() => {
+	// 	setBookItem(book);
+	// 	setBookRating(totalRating(book));
+	// }, [book]);
 
 	useEffect(() => {
-		setBookItem(book);
-		setBookRating(totalRating(book));
-	}, [book]);
+		const book = books.data.books.filter(
+			(book) => book.bookTitle === bookTitle
+		);
+		setBookItem(book[0]);
+		setBookRating(totalRating(book[0]));
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -42,7 +53,9 @@ export default function BookPage() {
 					<div className="text-center md:text-left">
 						<h1 className="text-4xl text-gray-500">{bookItem?.bookTitle}</h1>
 						<h2 className="text-xl text-gray-400 pb-2">
-							{book.author.authorFirstName + " " + book.author.authorLastName}
+							{bookItem?.author.authorFirstName +
+								" " +
+								bookItem?.author.authorLastName}
 						</h2>
 						<div className="flex items-center justify-center md:justify-start">
 							<p className="text-xl text-gray-500">{bookRating}</p>
@@ -77,7 +90,7 @@ export default function BookPage() {
 				<div className="w-full md:w-1/4 ">
 					<div className="py-4 md:py-0 bg-gray-100 rounded-t-lg w-full flex flex-col items-center justify-center h-1/2">
 						<h3 className="text-logo text-3xl pb-4">
-							${book.price.toFixed(2)}
+							${bookItem?.price.toFixed(2)}
 						</h3>
 						<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer hover:scale-110 active:scale-100 ease-in-out duration-300">
 							Add To Cart
@@ -107,8 +120,8 @@ export default function BookPage() {
 					Synopsis
 				</h2>
 				<p className="text-lg text-gray-500">
-					{book.longDescription
-						? book.longDescription.split("\n").map((line, index) => (
+					{bookItem?.longDescription
+						? bookItem.longDescription.split("\n").map((line, index) => (
 								<span
 									key={index}
 									className="pl-8"
@@ -142,7 +155,7 @@ export default function BookPage() {
 							Leave Review
 						</div>
 					</div>
-					{book?.bookReviews?.map((review, index) => (
+					{bookItem?.bookReviews?.map((review, index) => (
 						<BookReview
 							key={index}
 							rating={review.rating}

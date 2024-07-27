@@ -16,14 +16,20 @@ import { motion } from "framer-motion";
 import StaticStarRating from "../components/StaticStarRating";
 import { getRange } from "./AdminOrdersPage";
 import { totalRating } from "./BookPage";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 type FilterByCategoryType = {
 	categoryName: string;
 	filterByCategory: boolean;
 };
 
+// type BooksSearchType = {
+// 	option: "ISBN" | "Author" | "Title";
+// 	value: string;
+// };
+
 type BooksSearchType = {
-	option: "ISBN" | "Author" | "Title";
+	option: "all" | "author" | "title";
 	value: string;
 };
 
@@ -39,18 +45,40 @@ type BooksSortType = {
 		| "Publish Date: Oldest First";
 };
 
-const searchedBooks = (
+// const searchedBooks = (
+// 	books: TrimmedBookType[],
+// 	searchValues: BooksSearchType
+// ) => {
+// 	return books.filter((book) => {
+// 		if (searchValues.option === "ISBN") {
+// 			return book.isbn.includes(searchValues.value);
+// 		} else if (searchValues.option === "Author") {
+// 			const name =
+// 				book.author.authorFirstName + " " + book.author.authorLastName;
+// 			return name.includes(searchValues.value);
+// 		} else if (searchValues.option === "Title") {
+// 			return book.bookTitle.includes(searchValues.value);
+// 		}
+// 	});
+// };
+
+const bookSearchResults = (
 	books: TrimmedBookType[],
 	searchValues: BooksSearchType
 ) => {
 	return books.filter((book) => {
-		if (searchValues.option === "ISBN") {
-			return book.isbn.includes(searchValues.value);
-		} else if (searchValues.option === "Author") {
+		if (searchValues.option === "all") {
+			const name =
+				book.author.authorFirstName + " " + book.author.authorLastName;
+			return (
+				name.includes(searchValues.value) ||
+				book.bookTitle.includes(searchValues.value)
+			);
+		} else if (searchValues.option === "author") {
 			const name =
 				book.author.authorFirstName + " " + book.author.authorLastName;
 			return name.includes(searchValues.value);
-		} else if (searchValues.option === "Title") {
+		} else if (searchValues.option === "title") {
 			return book.bookTitle.includes(searchValues.value);
 		}
 	});
@@ -130,6 +158,10 @@ export default function SearchResultsPage() {
 	const numOfResults = 8;
 	const [paginationIndex, setPaginationIndex] = useState(1);
 	// const [inRange, setInRange] = useState<boolean>(false);
+	const [searchParams] = useSearchParams();
+	const all = searchParams.get("all");
+	const author = searchParams.get("author");
+	const title = searchParams.get("title");
 	const [buttonIncreaseDisabled, setIncreaseButtonDiabled] = useState(false);
 	const [buttonDecreaseDisabled, setDecreaseButtonDisabled] = useState(true);
 	const [expandCategories, setExpandCategories] = useState<boolean>(true);
@@ -158,7 +190,7 @@ export default function SearchResultsPage() {
 	];
 
 	const [searchValues, setSearchValues] = useState<BooksSearchType>({
-		option: "ISBN",
+		option: "all",
 		value: "",
 	});
 	const [sortOption, setSortOption] = useState<BooksSortType>({
@@ -171,6 +203,18 @@ export default function SearchResultsPage() {
 	}, [books]);
 
 	useEffect(() => {
+		if (all) {
+			setSearchValues({ option: "all", value: all });
+		} else if (author) {
+			setSearchValues({ option: "author", value: author });
+		} else if (title) {
+			setSearchValues({ option: "title", value: title });
+		} else {
+			setSearchValues({ option: "all", value: "" });
+		}
+	}, [all, author, title]);
+
+	useEffect(() => {
 		const trimmedCategories = trimGQLCategories(graphql_categories);
 		const categoriesWithBoolean = addFilterByBoolean(trimmedCategories);
 		setFilteringCategories(categoriesWithBoolean);
@@ -178,8 +222,8 @@ export default function SearchResultsPage() {
 
 	useEffect(() => {
 		// Step 1: Apply Search
-		const searchedResults = searchedBooks(trimmedBooks || [], searchValues);
-
+		// const searchedResults = searchedBooks(trimmedBooks || [], searchValues);
+		const searchedResults = bookSearchResults(trimmedBooks || [], searchValues);
 		// Step 2: Apply Sort
 		const sortedResults = sortOrders(searchedResults, sortOption);
 
@@ -437,7 +481,12 @@ export default function SearchResultsPage() {
 								</div>
 								<div className="w-1/2 font-semibold text-sm pl-4 flex flex-col justify-between">
 									<div>
-										<h1 className="text-2xl text-gray-500">{book.bookTitle}</h1>
+										{/* We should create an authors page with all books and details of author */}
+										<Link to={`/book/${book.bookTitle}`}>
+											<h1 className="text-2xl text-gray-500">
+												{book.bookTitle}
+											</h1>
+										</Link>
 										<h2 className="text-gray-400 pb-2">
 											{book.author.authorFirstName +
 												" " +

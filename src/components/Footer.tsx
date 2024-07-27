@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SvgLogo from "./SvgLogo";
 
 export default function Footer() {
@@ -5,7 +6,10 @@ export default function Footer() {
 		<div className="">
 			<div className="flex flex-col sm:m-auto md:flex-row justify-around md:p-8 pt-4 md:pt-16 bg-gray-100">
 				<div className="m-auto md:m-0 w-2/3 md:w-1/3 lg:w-1/4 sm:mb-8 md:mb-0">
-					<div className="flex items-center">
+					<Link
+						to={"/"}
+						className="flex items-center"
+					>
 						{/* <img className="w-16" src="booknook_logo2.svg" alt="" /> */}
 						<div className="rounded-lg overflow-hidden">
 							<SvgLogo
@@ -19,7 +23,7 @@ export default function Footer() {
 							</h2>
 							<p className="text-slate-500 text-sm">Where Stories Live</p>
 						</div>
-					</div>
+					</Link>
 					<div className="w-fit md:w-4/5 lg:w-fit ">
 						<p className="text-slate-600 font-medium my-4 text-sm">
 							BookNook is your cozy online retreat for book lovers everywhere.
@@ -90,36 +94,36 @@ export default function Footer() {
 				<div className="flex justify-center md:justify-start lg:justify-around md:gap-5 lg:gap-20 w-full md:w-1/3 lg:w-1/4 sm:mb-8 md:mb-0">
 					<div className="">
 						<h2 className="font-bold mb-6 text-slate-900">Quick Links</h2>
-						<a
+						<Link
+							to={"/about"}
 							className="block mb-2 text-slate-500 text-sm font-medium"
-							href=""
 						>
 							About Us
-						</a>
-						<a
+						</Link>
+						<Link
+							to={"/contact"}
 							className="block mb-2 text-slate-500 text-sm font-medium"
-							href=""
 						>
 							Contact Us
-						</a>
-						<a
+						</Link>
+						<Link
+							to={"/search"}
 							className="block mb-2 text-slate-500 text-sm font-medium"
-							href=""
 						>
 							Products
-						</a>
-						<a
+						</Link>
+						<Link
+							to={"/login"}
 							className="block mb-2 text-slate-500 text-sm font-medium"
-							href=""
 						>
 							Login
-						</a>
-						<a
+						</Link>
+						<Link
+							to={"/signup"}
 							className="block mb-2 text-slate-500 text-sm font-medium"
-							href=""
 						>
 							Sign Up
-						</a>
+						</Link>
 					</div>
 					<div className="">
 						<h2 className="font-bold mb-6 text-slate-900">Customer Area</h2>
