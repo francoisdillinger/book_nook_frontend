@@ -3,6 +3,7 @@ import useMenuVisibility from "../hooks/useMenuVisibility";
 import useDropDownVisibility from "../hooks/useDropDownVisibility";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
+import memers from "../assets/memers.jpg";
 
 export default function Navbar() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -66,7 +67,7 @@ export default function Navbar() {
 									className="py-5 px-4 text-gray-600 hover:text-gray-900"
 								>
 									<div className="relative">
-										<div className="absolute left-3 bottom-3">
+										<div className="absolute left-5 bottom-5">
 											<p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
 												3
 											</p>
@@ -77,7 +78,7 @@ export default function Navbar() {
 											viewBox="0 0 24 24"
 											strokeWidth={1.5}
 											stroke="currentColor"
-											className="w-6 h-6"
+											className="w-8 h-8"
 										>
 											<path
 												strokeLinecap="round"
@@ -94,8 +95,8 @@ export default function Navbar() {
 										data-dropdown-toggle="dropdownDivider"
 									>
 										<img
-											className="w-7 h-7 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-											src=""
+											className="w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+											src={memers}
 											alt="Bordered avatar"
 										/>
 									</div>
