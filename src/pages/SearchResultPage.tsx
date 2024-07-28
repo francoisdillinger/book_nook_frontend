@@ -510,7 +510,7 @@ export default function SearchResultsPage() {
 									</div>
 								</div>
 								<div className="w-1/2 flex flex-col items-end">
-									<h3 className="text-logo text-2xl pb-2">
+									<h3 className="text-accent text-2xl pb-2">
 										${book.price.toFixed(2)}
 									</h3>
 									<div className="text-gray-600 bg-yellow-400 p-2 rounded-lg hover:bg-yellow-300 w-28 text-center cursor-pointer">
