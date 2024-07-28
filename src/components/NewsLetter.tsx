@@ -20,7 +20,7 @@ export default function NewsLetter() {
 						/>
 						<button
 							type="submit"
-							className="w-24 text-sm font-medium text-white bg-logo rounded-r-lg border border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							className="w-24 text-sm font-medium text-white bg-accent rounded-r-lg border border-accent hover:bg-accentHover focus:ring-4 focus:outline-none focus:ring-blue-300 "
 						>
 							Subscribe
 						</button>
