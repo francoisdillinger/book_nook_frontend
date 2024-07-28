@@ -26,7 +26,12 @@ export default {
 			},
 			colors: {
 				logo: "#D86464",
+				logoHover: "#E86A6A",
 				logoLight: "#fbe0df",
+				accent: "#6c66ff",
+				accentHover: "#726dff",
+				accentLight: "#dfdff7",
+				triadic: "#64d864",
 			},
 		},
 	},
