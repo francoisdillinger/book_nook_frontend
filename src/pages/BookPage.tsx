@@ -151,7 +151,7 @@ export default function BookPage() {
 						<p className="text-md text-gray-400 font-medium pl-6">
 							{bookItem?.bookReviews?.length} ratings
 						</p>
-						<div className="bg-logo shadow-md cursor-pointer text-gray-100 p-2 rounded-lg ml-4  hover:scale-110 active:scale-100 ease-in-out duration-300">
+						<div className="bg-accent shadow-md cursor-pointer text-gray-100 p-2 rounded-lg ml-4  hover:scale-110 active:scale-100 ease-in-out duration-300">
 							Leave Review
 						</div>
 					</div>
