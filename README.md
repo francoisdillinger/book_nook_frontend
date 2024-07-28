@@ -48,7 +48,3 @@ This project is a continuous work in progress, but the provided images offer a g
 - **Live Demo**: A live version of the site is planned for the future.
 
 Thank you for checking out my project! Stay tuned for updates as the development progresses.
-
-
-
->>>>>>> ecceee8 (Updated readme so visitors will get an accurate idea of the project while in development.)
