@@ -48,7 +48,7 @@ export default function Navbar() {
 							options={["All", "Author", "Title"]}
 							placeHolder="Search by Author or Titles..."
 							selectStyles="font-semibold form-select block w-24 py-2 px-3 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
-							buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700  focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							buttonStyles="p-2.5 z-10 text-sm font-medium h-full text-white bg-accent rounded-r-lg border border-accent  focus:outline-none hover:bg-accentHover"
 							values={{
 								option: "",
 								value: "",
@@ -233,7 +233,7 @@ export default function Navbar() {
 								</Link>
 								<Link
 									to={"/signup"}
-									className="py-3 px-3 bg-yellow-400 text-yellow-900 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
+									className="py-3 px-3 bg-logo text-white rounded hover:bg-logoHover transition duration-300"
 								>
 									Signup
 								</Link>
