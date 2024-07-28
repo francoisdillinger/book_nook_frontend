@@ -22,7 +22,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-500 font-bold text-xl">ISBN</h2>
-					<p className="text-xl mx-2 md:p-2 text-logo">
+					<p className="text-xl mx-2 md:p-2 text-accent">
 						{bookItem ? bookItem.isbn : "None"}
 					</p>
 				</div>
@@ -43,7 +43,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-500 font-bold text-xl">Pages</h2>
-					<p className="text-xl mx-2 md:p-2 text-logo">
+					<p className="text-xl mx-2 md:p-2 text-accent">
 						{bookItem ? bookItem.pageCount : "None"}
 					</p>
 				</div>
@@ -64,7 +64,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-500 font-bold text-xl">Published</h2>
-					<p className="text-xl mx-2 md:p-2 text-logo">
+					<p className="text-xl mx-2 md:p-2 text-accent">
 						{bookItem ? bookItem.publishDate : "None"}
 					</p>
 				</div>
@@ -84,7 +84,7 @@ export default function BookItemBadges({ bookItem }: BookItemBadgesType) {
 						</svg>
 					</div>
 					<h2 className="text-gray-500 font-bold text-xl">Inventory</h2>
-					<p className="text-xl mx-2 md:p-2 text-logo">
+					<p className="text-xl mx-2 md:p-2 text-accent">
 						{bookItem ? bookItem.inventoryCount : "None"}
 					</p>
 				</div>
